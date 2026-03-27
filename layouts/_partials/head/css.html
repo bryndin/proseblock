@@ -1,9 +1,44 @@
-{{- with resources.Get "css/main.css" }}
-  {{- if hugo.IsDevelopment }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{- else }}
-    {{- with . | minify | fingerprint }}
-      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-    {{- end }}
-  {{- end }}
-{{- end }}
+{{- /*
+  CSS Pipeline with ExecuteAsTemplate for layer bundling (ERD §1.2.1).
+  Dev: dynamic filename for cache-busting.
+  Prod: minified + fingerprinted.
+
+  @context {page} . The current page context.
+*/ -}}
+{{- $page := . -}}
+
+{{- /* 1. Initialize an empty slice to hold all our CSS resources */ -}}
+{{- $cssSlice := slice -}}
+
+{{- /* 2. Append individual base files */ -}}
+{{- $cssSlice = $cssSlice | append (resources.Get "css/reset.css") -}}
+{{- $cssSlice = $cssSlice | append (resources.Get "css/tokens.css") -}}
+{{- $cssSlice = $cssSlice | append (resources.Get "css/base.css") -}}
+
+{{- /* 3. Append Layout files naturally flattened by ranging over them */ -}}
+{{- range $css := resources.Match "css/layout/*.css" -}}
+  {{- $cssSlice = $cssSlice | append $css -}}
+{{- end -}}
+
+{{- /* 4. Append Component files */ -}}
+{{- range $css := resources.Match "css/components/*.css" -}}
+  {{- $cssSlice = $cssSlice | append $css -}}
+{{- end -}}
+
+{{- /* 5. Append final utilities */ -}}
+{{- $cssSlice = $cssSlice | append (resources.Get "css/utilities.css") -}}
+
+{{- /* 6. Concat all collected files into one final bundle */ -}}
+{{- $css := $cssSlice | resources.Concat "css/bundle.css" -}}
+
+{{- /* 7. Execute any Hugo template variables inside the combined CSS */ -}}
+{{- $css = $css | resources.ExecuteAsTemplate "css/bundle.css" $page -}}
+
+{{- if hugo.IsDevelopment -}}
+  {{- /* Hugo tracks dependencies automatically; saving any layer triggers live-reload */ -}}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{- else -}}
+  {{- /* Production: minify and fingerprint */ -}}
+  {{- $css = $css | minify | fingerprint -}}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
+{{- end -}}
