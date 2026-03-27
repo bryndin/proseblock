@@ -1,2 +1,32 @@
-<h1>{{ site.Title }}</h1>
-{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+{{- /*
+  header.html — Site header partial.
+  Renders the sticky header bar with menu toggle, site title, and icon buttons.
+  Uses .c-header BEM block (class applied on <header> in baseof.html).
+
+  @context {page} . The current page context.
+*/ -}}
+{{- $page := . -}}
+
+{{- /* Left: menu toggle */ -}}
+<div class="c-header__start">
+  <button class="c-header__icon-btn c-header__icon-btn--menu" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">
+    {{ partial "svg/menu.html" }}
+  </button>
+</div>
+
+{{- /* Center: site title */ -}}
+<div class="c-header__center">
+  <a href="{{ "/" | relURL }}" class="c-header__title" aria-label="{{ site.Title }} — Home">{{ site.Title }}</a>
+</div>
+
+{{- /* Right: icon actions */ -}}
+<div class="c-header__end">
+  {{- with $searchEnabled := site.Params.enableSearch }}
+  <a href="{{ "search/" | relURL }}" class="c-header__icon-btn" aria-label="Search" id="search-btn">
+    {{ partial "svg/search.html" }}
+  </a>
+  {{- end }}
+  <button class="c-header__icon-btn" id="theme-toggle" aria-label="Toggle theme">
+    {{ partial "svg/contrast.html" }}
+  </button>
+</div>

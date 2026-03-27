@@ -1,0 +1,100 @@
+/* ==========================================================================
+   COMPONENT: HERO — @layer components
+   .c-hero — Full-width hero sections for Home and Article pages.
+   ========================================================================== */
+
+@layer components {
+
+  .c-hero {
+    /* *** Arguments (The Public API) *************************************** */
+    --_bg: var(--hero-bg);
+    --_title-text: var(--hero-title-text);
+    --_body-text: var(--hero-body-text);
+    --_meta-text: var(--hero-meta-text);
+    --_accent: var(--hero-accent);
+    --_border: var(--hero-border);
+
+    /* *** Configuration (Internal Styling) ********************************* */
+    --_padding-x: var(--space-12);
+    --_padding-y: var(--space-24);
+    --_max-width-inner: var(--max-w-hero);
+    --_title-size: var(--text-4xl);
+    --_title-leading: var(--leading-tight);
+
+    width: 100%;
+    padding: var(--_padding-y) var(--_padding-x);
+    background-color: var(--_bg);
+    border: var(--border-width) solid var(--_border);
+    margin-bottom: var(--space-16);
+  }
+
+  @media (min-width: 768px) {
+    .c-hero {
+      --_padding-x: var(--space-20);
+    }
+  }
+
+  .c-hero__inner {
+    max-width: var(--_max-width-inner);
+  }
+
+  /* --- Category label --- */
+
+  .c-hero__category {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-8);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--_accent);
+  }
+
+  /* --- Title --- */
+
+  .c-hero__title {
+    font-size: var(--_title-size);
+    font-weight: var(--weight-regular);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--_title-leading);
+    color: var(--_title-text);
+    margin-bottom: var(--space-12);
+  }
+
+  @media (min-width: 768px) {
+    .c-hero__title {
+      font-size: var(--text-5xl);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .c-hero__title {
+      font-size: var(--text-7xl);
+    }
+  }
+
+  /* --- Home hero subtitle --- */
+
+  .c-hero__subtitle {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-relaxed);
+    color: var(--_body-text);
+    max-width: 48rem;
+    opacity: 0.8;
+  }
+
+  @media (min-width: 768px) {
+    .c-hero__subtitle {
+      font-size: var(--text-xl);
+    }
+  }
+
+  /* --- Home hero: no bottom margin --- */
+
+  .c-hero--home {
+    margin-bottom: 0;
+  }
+}

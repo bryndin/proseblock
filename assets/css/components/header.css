@@ -1,0 +1,109 @@
+/* ==========================================================================
+   COMPONENT: HEADER — @layer components
+   .c-header — Sticky site header bar with nav controls.
+   ========================================================================== */
+
+@layer components {
+
+  .c-header {
+    /* *** Arguments (The Public API) *************************************** */
+    --_bg: var(--header-bg);
+    --_text: var(--header-text);
+    --_icon: var(--header-icon);
+
+    /* *** Configuration (Internal Styling) ********************************* */
+    --_height: var(--space-24);
+    --_padding-x: var(--space-12);
+    --_title-size: var(--text-xl);
+    --_title-weight: var(--weight-bold);
+    --_icon-size: var(--text-xl);
+    --_z: var(--z-header);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: var(--_height);
+    padding-inline: var(--_padding-x);
+    background-color: var(--_bg);
+    color: var(--_text);
+    position: sticky;
+    top: 0;
+    z-index: var(--_z);
+  }
+
+  /* --- Left section (menu toggle) --- */
+
+  .c-header__start {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  /* --- Center section (site title) --- */
+
+  .c-header__center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+  }
+
+  .c-header__title {
+    font-size: var(--_title-size);
+    font-weight: var(--_title-weight);
+    text-transform: uppercase;
+    font-family: var(--font-sans);
+    letter-spacing: var(--tracking-normal);
+    color: var(--_text);
+  }
+
+  @media (min-width: 768px) {
+    .c-header__title {
+      letter-spacing: 0.6em;
+      transform: translateX(0.3em);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .c-header__title {
+      letter-spacing: 1.2em;
+      transform: translateX(0.6em);
+    }
+  }
+
+  /* --- Right section (action icons) --- */
+
+  .c-header__end {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--space-10);
+  }
+
+  /* --- Icon buttons --- */
+
+  .c-header__icon-btn {
+    color: var(--_icon);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--duration-normal) var(--ease-default);
+  }
+
+  .c-header__icon-btn:hover {
+    color: var(--_text);
+  }
+
+  .c-header__icon-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .c-header__icon-btn--menu svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

@@ -1,17 +1,26 @@
+{{- /*
+  baseof.html — Base template skeleton.
+  Semantic HTML5 structure with data-theme attribute for dark mode.
+
+  @context {page} . The current page context.
+*/ -}}
+{{- $page := . -}}
 <!DOCTYPE html>
-<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}" data-theme="{{ site.Params.defaultTheme | default `light` }}">
 <head>
-  {{ partial "head.html" . }}
+  {{ partial "head.html" $page }}
 </head>
 <body>
-  <header>
-    {{ partial "header.html" . }}
+  <header class="c-header" role="banner">
+    {{ partial "header.html" $page }}
   </header>
   <main>
-    {{ block "main" . }}{{ end }}
+    {{ block "main" $page }}{{ end }}
   </main>
-  <footer>
-    {{ partial "footer.html" . }}
+  <footer class="c-footer" role="contentinfo">
+    {{ partial "footer.html" $page }}
   </footer>
+  {{- /* Full-screen navigation overlay (hidden by default) */ -}}
+  {{ partial "menu.html" (dict "menuID" "main" "page" $page) }}
 </body>
 </html>

@@ -1,10 +1,162 @@
+{{- /*
+  page.html — Article/page template.
+  2-column layout: TOC sidebar (left), article content (right).
+  Hero banner with metadata, article body, author block, newsletter CTA.
+
+  @context {page} . The current page context.
+*/ -}}
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
+{{- $page := . -}}
 
-  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+<div class="l-site">
+  {{- /* ─── Article Hero ─── */ -}}
+  <header class="c-hero">
+    <div class="c-hero__inner">
+      {{- /* Category label */ -}}
+      {{- with $categories := $page.Params.categories }}
+      <div class="c-hero__category">
+        <span>{{ index $categories 0 }}</span>
+      </div>
+      {{- end }}
 
-  {{ .Content }}
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+      {{- /* Title */ -}}
+      <h1 class="c-hero__title">{{ $page.Title }}</h1>
+
+      {{- /* Metadata row */ -}}
+      <div class="c-metadata c-metadata--hero">
+        <div class="c-metadata__item">
+          <span class="c-metadata__icon">{{ partial "svg/calendar.html" }}</span>
+          <span>{{ $page.Date | time.Format site.Params.dateFormat }}</span>
+        </div>
+        {{- with $authors := $page.Params.authors }}
+        <span class="c-metadata__dot"></span>
+        <div class="c-metadata__item">
+          <span class="c-metadata__icon">{{ partial "svg/person.html" }}</span>
+          <span>{{ index $authors 0 }}</span>
+        </div>
+        {{- end }}
+        {{- with $readingTime := site.Params.enableReadingTime }}
+        <span class="c-metadata__dot"></span>
+        <div class="c-metadata__item">
+          <span class="c-metadata__icon">{{ partial "svg/schedule.html" }}</span>
+          <span>{{ $page.ReadingTime }} min</span>
+        </div>
+        {{- end }}
+      </div>
+    </div>
+  </header>
+
+  {{- /* ─── Two-Column Article Layout ─── */ -}}
+  <div class="l-site__columns--article">
+
+    {{- /* Sidebar: TOC */ -}}
+    <aside class="l-site__article-sidebar">
+      <div class="c-toc">
+        {{- /* Reading rail */ -}}
+        <div class="c-toc__rail">
+          <div class="c-toc__rail-fill" id="reading-progress"></div>
+        </div>
+
+        <div class="c-toc__body">
+          {{- /* Table of contents (Hugo-generated) */ -}}
+          {{- with $toc := $page.TableOfContents }}
+          {{- if and (site.Params.enableTOC) $toc }}
+          <div class="c-toc__list">
+            {{ $toc }}
+          </div>
+          {{- end }}
+          {{- end }}
+
+          {{- /* Share button */ -}}
+          {{- with $sharingEnabled := site.Params.enableSharing }}
+          <div class="c-toc__actions">
+            <button class="c-toc__share-btn" id="share-btn">
+              <span class="c-toc__share-icon">{{ partial "svg/share.html" }}</span>
+              <span class="c-toc__share-label">Share Dispatch</span>
+            </button>
+          </div>
+          {{- end }}
+        </div>
+      </div>
+    </aside>
+
+    {{- /* Main content column */ -}}
+    <div class="l-site__article-body">
+      <div class="l-article-content" id="article-container">
+
+        {{- /* Article body */ -}}
+        <article class="c-article">
+          <div class="c-article__body">
+            {{ $page.Content }}
+          </div>
+        </article>
+
+        {{- /* Author block */ -}}
+        {{- with $authors := $page.Params.authors }}
+        {{- if site.Params.enableAuthorBlock }}
+        {{- with $authorName := index $authors 0 }}
+        <div class="c-author">
+          <div class="c-author__avatar">
+            <span class="c-author__avatar-icon">{{ partial "svg/person.html" }}</span>
+          </div>
+          <div class="c-author__info">
+            <div>
+              <span class="c-author__label">Author</span>
+              <h3 class="c-author__name">{{ $authorName }}</h3>
+            </div>
+            {{- /* Attempt to load author bio from taxonomy term */ -}}
+            {{- with $authorTerm := site.GetPage (printf "/authors/%s" ($authorName | urlize)) }}
+            {{- with $bio := $authorTerm.Params.description }}
+            <p class="c-author__bio">{{ $bio }}</p>
+            {{- end }}
+            {{- end }}
+            <div class="c-author__social">
+              {{- with $social := site.Params.social }}
+              <div class="c-author__social-icons">
+                {{- with $twitter := $social.twitter }}
+                <a class="c-author__social-link" href="{{ $twitter }}" rel="noopener noreferrer" target="_blank">
+                  {{ partial "svg/x-twitter.html" }}
+                </a>
+                {{- end }}
+              </div>
+              {{- end }}
+              <div class="c-author__social-divider"></div>
+              {{- with $authorTerm := site.GetPage (printf "/authors/%s" ($authorName | urlize)) }}
+              <a class="c-author__more-link" href="{{ $authorTerm.RelPermalink }}">
+                More from author
+                <span class="c-author__more-icon">{{ partial "svg/arrow-forward.html" }}</span>
+              </a>
+              {{- end }}
+            </div>
+          </div>
+        </div>
+        {{- end }}
+        {{- end }}
+        {{- end }}
+
+        {{- /* Newsletter CTA */ -}}
+        {{- with $newsletterEnabled := site.Params.enableNewsletter }}
+        <div class="c-newsletter">
+          <div class="c-newsletter__inner">
+            <h3 class="c-newsletter__label">Newsletter</h3>
+            <h2 class="c-newsletter__title">Stay Updated</h2>
+            {{- with $freqText := site.Params.newsletter.frequencyText }}
+            <p class="c-newsletter__body">{{ $freqText }}</p>
+            {{- end }}
+            <form class="c-newsletter__form">
+              <input class="c-newsletter__input" type="email" placeholder="Email Address" required>
+              <button class="c-newsletter__submit" type="submit">
+                Subscribe
+                <span class="c-newsletter__submit-icon">{{ partial "svg/arrow-forward.html" }}</span>
+              </button>
+            </form>
+          </div>
+        </div>
+        {{- end }}
+
+      </div>
+    </div>
+
+  </div>
+</div>
 {{ end }}

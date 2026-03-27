@@ -1,0 +1,176 @@
+/* ==========================================================================
+   BASE — @layer base
+   Bare HTML tag styling. Critical for Hugo-rendered Markdown output.
+   Uses only Tier 2.1 Global Semantics or Tier 1 Primitives.
+   ========================================================================== */
+
+@layer base {
+
+  body {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-normal);
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    selection-background-color: var(--bg-highest);
+  }
+
+  ::selection {
+    background-color: var(--bg-highest);
+  }
+
+  /* --- Headings --- */
+
+  h1 {
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    color: var(--text-primary);
+  }
+
+  h2 {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    color: var(--text-primary);
+  }
+
+  h3 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-snug);
+    color: var(--text-primary);
+  }
+
+  h4 {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-snug);
+    color: var(--text-primary);
+  }
+
+  h5,
+  h6 {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-snug);
+    color: var(--text-primary);
+  }
+
+  /* --- Body text --- */
+
+  p {
+    color: var(--text-secondary);
+    line-height: var(--leading-loose);
+  }
+
+  /* --- Links (in article body context) --- */
+
+  a:hover {
+    color: var(--accent);
+    transition: color var(--duration-normal) var(--ease-default);
+  }
+
+  /* --- Lists (Markdown output) --- */
+
+  article ul,
+  article ol {
+    padding-left: var(--space-6);
+    color: var(--text-secondary);
+    line-height: var(--leading-loose);
+  }
+
+  article ul {
+    list-style: disc;
+  }
+
+  article ol {
+    list-style: decimal;
+  }
+
+  article li + li {
+    margin-top: var(--space-2);
+  }
+
+  /* --- Blockquotes --- */
+
+  blockquote {
+    padding: var(--space-8);
+    padding-left: var(--space-8);
+    margin-block: var(--space-8);
+    background-color: var(--bg-secondary);
+    border-left: 4px solid var(--accent);
+    font-style: italic;
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-regular);
+    color: var(--text-primary);
+  }
+
+  /* --- Code --- */
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+  }
+
+  pre {
+    overflow-x: auto;
+    padding: var(--space-6);
+    background-color: var(--bg-secondary);
+    border: var(--border-width) solid var(--border-subtle);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+  }
+
+  pre code {
+    white-space: pre;
+  }
+
+  /* --- Images --- */
+
+  img {
+    height: auto;
+  }
+
+  figure {
+    margin-block: var(--space-8);
+  }
+
+  figcaption {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+
+  /* --- Horizontal rule --- */
+
+  hr {
+    border: none;
+    border-top: var(--border-width) solid var(--border-subtle);
+    margin-block: var(--space-12);
+  }
+
+  /* --- Tables (Markdown) --- */
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+
+  th {
+    text-align: left;
+    font-weight: var(--weight-bold);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 2px solid var(--border-subtle);
+  }
+
+  td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: var(--border-width) solid var(--border-subtle);
+  }
+}

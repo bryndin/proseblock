@@ -1,0 +1,64 @@
+/* ==========================================================================
+   COMPONENT: ARTICLE — @layer components
+   .c-article — Article body wrapper (the white card on article pages).
+   ========================================================================== */
+
+@layer components {
+
+  .c-article {
+    /* *** Arguments (The Public API) *************************************** */
+    --_bg: var(--article-bg);
+    --_text: var(--article-text);
+
+    /* *** Configuration (Internal Styling) ********************************* */
+    --_padding: var(--space-8);
+    --_padding-md: var(--space-12);
+    --_padding-lg: var(--space-16);
+    --_shadow: var(--shadow-editorial);
+
+    background-color: var(--_bg);
+    padding: var(--_padding);
+    box-shadow: var(--_shadow);
+  }
+
+  @media (min-width: 768px) {
+    .c-article {
+      padding: var(--_padding-md);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .c-article {
+      padding: var(--_padding-lg);
+    }
+  }
+
+  .c-article__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    font-size: var(--text-lg);
+    line-height: var(--leading-article);
+    color: var(--_text);
+    font-weight: var(--weight-light);
+  }
+
+  /* --- Drop cap on first paragraph --- */
+
+  .c-article__body > p:first-child::first-letter {
+    font-size: var(--text-7xl);
+    font-weight: var(--weight-bold);
+    float: left;
+    margin-right: var(--space-3);
+    line-height: var(--leading-none);
+    margin-top: var(--space-1);
+    color: var(--accent);
+  }
+
+  /* --- Main content area (wraps article + author + newsletter) on pages --- */
+
+  .l-article-content {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,67 @@
+/* ==========================================================================
+   COMPONENT: FOOTER — @layer components
+   .c-footer — Site footer with copyright and menu links.
+   ========================================================================== */
+
+@layer components {
+
+  .c-footer {
+    /* *** Arguments (The Public API) *************************************** */
+    --_bg: var(--footer-bg);
+    --_text: var(--footer-text);
+    --_text-hover: var(--footer-text-hover);
+    --_border: var(--footer-border);
+
+    /* *** Configuration (Internal Styling) ********************************* */
+    --_padding-x: var(--space-12);
+    --_padding-y: var(--space-20);
+    --_gap: var(--space-8);
+    --_label-size: var(--text-xs);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--_padding-y) var(--_padding-x);
+    background-color: var(--_bg);
+    border-top: var(--border-width) solid var(--_border);
+    gap: var(--_gap);
+  }
+
+  @media (min-width: 768px) {
+    .c-footer {
+      flex-direction: row;
+    }
+  }
+
+  .c-footer__copyright {
+    font-size: var(--_label-size);
+    font-weight: var(--weight-black);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--_text);
+    opacity: 0.4;
+  }
+
+  .c-footer__nav {
+    display: flex;
+    gap: var(--space-12);
+  }
+
+  .c-footer__link {
+    font-size: var(--text-2xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--_text);
+    opacity: 0.4;
+    transition: opacity var(--duration-normal) var(--ease-default),
+                color var(--duration-normal) var(--ease-default);
+  }
+
+  .c-footer__link:hover {
+    opacity: 1;
+    color: var(--_text-hover);
+  }
+}

@@ -1,0 +1,97 @@
+/* ==========================================================================
+   COMPONENT: FEATURED — @layer components
+   .c-featured — Featured article card on the home page.
+   ========================================================================== */
+
+@layer components {
+
+  .c-featured {
+    /* *** Arguments (The Public API) *************************************** */
+    --_bg: var(--featured-bg);
+    --_border: var(--featured-border);
+    --_title-text: var(--featured-title-text);
+    --_body-text: var(--featured-body-text);
+    --_accent: var(--featured-accent);
+
+    /* *** Configuration (Internal Styling) ********************************* */
+    --_padding: var(--space-12);
+    --_shadow: var(--shadow-tonal);
+
+    position: relative;
+    overflow: hidden;
+    padding: var(--_padding);
+    background-color: var(--_bg);
+    border: var(--border-width) solid var(--_border);
+    opacity: 0.2;
+    box-shadow: var(--_shadow);
+    transition: all var(--duration-normal) var(--ease-default);
+  }
+
+  /* --- Header row (label + pagination) --- */
+
+  .c-featured__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-8);
+  }
+
+  .c-featured__label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--_accent);
+  }
+
+  .c-featured__pagination {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .c-featured__page-btn {
+    transition: color var(--duration-normal) var(--ease-default);
+  }
+
+  .c-featured__page-btn:hover {
+    color: var(--_accent);
+  }
+
+  .c-featured__page-btn svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .c-featured__page-indicator {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--_body-text);
+    opacity: 0.4;
+  }
+
+  /* --- Content --- */
+
+  .c-featured__content {
+    max-width: 32rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .c-featured__title {
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-regular);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-tight);
+    color: var(--_title-text);
+  }
+
+  .c-featured__excerpt {
+    font-size: var(--text-base);
+    font-weight: var(--weight-light);
+    line-height: var(--leading-relaxed);
+    color: var(--_body-text);
+  }
+}

@@ -1,51 +1,108 @@
 {{- /*
-Renders a menu for the given menu ID.
+  menu.html — Full-screen navigation overlay.
+  Renders the .c-menu block with nav links, newsletter form,
+  social links, and desktop mission statement panel.
 
-@context {page} page The current page.
-@context {string} menuID The menu ID.
+  @context {page}   .page   The current page context.
+  @context {string} .menuID The menu ID to render.
 
-@example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
-*/}}
+  @example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+*/ -}}
+{{- $page := .page -}}
+{{- $menuID := .menuID -}}
 
-{{- $page := .page }}
-{{- $menuID := .menuID }}
+<div class="c-menu" id="main-menu" aria-hidden="true" role="dialog" aria-label="Site navigation">
 
-{{- with index site.Menus $menuID }}
-  <nav>
-    <ul>
-      {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
-    </ul>
-  </nav>
-{{- end }}
-
-{{- define "_partials/inline/menu/walk.html" }}
-  {{- $page := .page }}
-  {{- range .menuEntries }}
-    {{- $attrs := dict "href" .URL }}
-    {{- if $page.IsMenuCurrent .Menu . }}
-      {{- $attrs = merge $attrs (dict "class" "active" "aria-current" "page") }}
-    {{- else if $page.HasMenuCurrent .Menu .}}
-      {{- $attrs = merge $attrs (dict "class" "ancestor" "aria-current" "true") }}
-    {{- end }}
-    {{- $name := .Name }}
-    {{- with .Identifier }}
-      {{- with T . }}
-        {{- $name = . }}
-      {{- end }}
-    {{- end }}
-    <li>
-      <a
-        {{- range $k, $v := $attrs }}
-          {{- with $v }}
-            {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+  {{- /* ─── Left: Navigation Panel ─── */ -}}
+  <nav class="c-menu__nav" aria-label="Main navigation">
+    <div>
+      {{- /* Branding header */ -}}
+      <div class="c-menu__brand">
+        <div>
+          <span class="c-menu__brand-title">{{ site.Title }}</span>
+          {{- with $description := site.Params.description }}
+          <span class="c-menu__brand-tagline">{{ $description | truncate 40 }}</span>
           {{- end }}
-        {{- end -}}
-      >{{ $name }}</a>
-      {{- with .Children }}
-        <ul>
-          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
-        </ul>
+        </div>
+        <button class="c-menu__close--mobile" aria-label="Close menu">
+          {{ partial "svg/close.html" }}
+        </button>
+      </div>
+
+      {{- /* Navigation links */ -}}
+      {{- with $menuEntries := index site.Menus $menuID }}
+      <div class="c-menu__links">
+        {{- range $entry := $menuEntries }}
+        <a class="c-menu__link" href="{{ $entry.URL }}">
+          {{- /* Icon per entry (optional via Params.icon on menu item) */ -}}
+          {{- with $icon := $entry.Params.icon }}
+          <span class="c-menu__link-icon">
+            {{ partial (printf "svg/%s.html" $icon) }}
+          </span>
+          {{- end }}
+          <span class="c-menu__link-text">{{ $entry.Name }}</span>
+        </a>
+        {{- end }}
+      </div>
       {{- end }}
-    </li>
-  {{- end }}
-{{- end }}
+    </div>
+
+    {{- /* Footer section (newsletter + social) */ -}}
+    <div class="c-menu__footer">
+      {{- /* Newsletter */ -}}
+      {{- with $newsletterEnabled := site.Params.enableNewsletter }}
+      <div class="c-menu__newsletter">
+        <h4 class="c-menu__newsletter-label">Newsletter</h4>
+        <form class="c-menu__newsletter-form">
+          <input class="c-menu__newsletter-input" type="email" placeholder="Email Address" required>
+          <button class="c-menu__newsletter-submit" type="submit">
+            Subscribe
+            <span class="c-menu__newsletter-submit-icon">{{ partial "svg/arrow-forward.html" }}</span>
+          </button>
+        </form>
+      </div>
+      {{- end }}
+
+      {{- /* Social links */ -}}
+      {{- with $social := site.Params.social }}
+      <div class="c-menu__social">
+        {{- with $twitter := $social.twitter }}
+        <a class="c-menu__social-link" href="{{ $twitter }}" title="Twitter / X" rel="noopener noreferrer" target="_blank">
+          {{ partial "svg/x-twitter.html" }}
+        </a>
+        {{- end }}
+        {{- with $github := $social.github }}
+        <a class="c-menu__social-link" href="{{ $github }}" title="GitHub" rel="noopener noreferrer" target="_blank">
+          {{ partial "svg/share.html" }}
+        </a>
+        {{- end }}
+        {{- with $rss := $social.rss }}
+        <a class="c-menu__social-link" href="{{ $rss }}" title="RSS Feed" rel="noopener noreferrer">
+          {{ partial "svg/mail.html" }}
+        </a>
+        {{- end }}
+      </div>
+      {{- end }}
+    </div>
+  </nav>
+
+  {{- /* ─── Right: Mission Statement (desktop only) ─── */ -}}
+  <aside class="c-menu__aside">
+    <button class="c-menu__close--desktop" aria-label="Close menu">
+      {{ partial "svg/close.html" }}
+    </button>
+    <div class="c-menu__mission">
+      <p class="c-menu__mission-headline">
+        Curate<br>Every<br>Detail
+      </p>
+      <div>
+        {{- with $description := site.Params.description }}
+        <p class="c-menu__mission-body">{{ $description }}</p>
+        {{- end }}
+        <div class="c-menu__mission-rule"></div>
+      </div>
+    </div>
+    <div class="c-menu__texture"></div>
+  </aside>
+
+</div>

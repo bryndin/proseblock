@@ -1,5 +1,18 @@
+{{- /*
+  head.html — Document head partial.
+  Meta, fonts, CSS pipeline, JS pipeline.
+
+  @context {page} . The current page context.
+*/ -}}
+{{- $page := . -}}
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
-{{ partialCached "head/css.html" . }}
-{{ partialCached "head/js.html" . }}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{{- with $description := $page.Description | default site.Params.description }}
+<meta name="description" content="{{ $description }}">
+{{- end }}
+<title>{{ if $page.IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" $page.Title site.Title }}{{ end }}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+{{ partial "head/css.html" $page }}
+{{ partial "head/js.html" $page }}

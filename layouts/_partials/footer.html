@@ -1,1 +1,20 @@
-<p>Copyright {{ now.Year }}. All rights reserved.</p>
+{{- /*
+  footer.html — Site footer partial.
+  Copyright and footer menu links driven by hugo.toml.
+  Class .c-footer is applied on <footer> in baseof.html.
+
+  @context {page} . The current page context.
+*/ -}}
+{{- $page := . -}}
+
+<div class="c-footer__copyright">
+  &copy; {{ now.Year }} {{ site.Title }}
+</div>
+
+{{- with $footerMenu := index site.Menus "footer" }}
+<nav class="c-footer__nav" aria-label="Footer navigation">
+  {{- range $entry := $footerMenu }}
+  <a class="c-footer__link" href="{{ $entry.URL }}">{{ $entry.Name }}</a>
+  {{- end }}
+</nav>
+{{- end }}
