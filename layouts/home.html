@@ -91,7 +91,7 @@
           {{- end }}
 
           {{- /* Paginator */ -}}
-          {{- with $paginator }}
+          {{- if $paginator }}
           {{- if gt $paginator.TotalPages 1 }}
           <nav class="c-paginator" aria-label="Page navigation">
             {{- if $paginator.HasPrev }}

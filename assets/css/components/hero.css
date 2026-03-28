@@ -92,8 +92,6 @@
     }
   }
 
-  /* --- Home hero: no bottom margin --- */
-
   .c-hero--home {
     margin-bottom: 0;
   }
