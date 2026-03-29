@@ -1,39 +1,42 @@
 {{ $article := . }}
 <article class="c-article-card">
   <a href="{{ $article.RelPermalink }}">
-    {{- /* Category */ -}}
-    {{- with $categories := $article.Params.categories }}
-    <div class="c-article-card__category">{{ index $categories 0 }}</div>
-    {{- end }}
-
-    {{- /* Title */ -}}
-    <h4 class="c-article-card__title">{{ $article.LinkTitle }}</h4>
-
-    {{- /* Excerpt */ -}}
-    {{- with $summary := $article.Summary }}
-    <p class="c-article-card__excerpt">{{ $summary | plainify | truncate 200 }}</p>
-    {{- end }}
-
-    {{- /* Metadata row */ -}}
-    <div class="c-metadata">
-      <div class="c-metadata__item">
-        <span class="c-metadata__icon">{{ partial "svg/calendar.html" }}</span>
-        <span>{{ $article.Date | time.Format site.Params.dateFormat }}</span>
-      </div>
-      <span class="c-metadata__dot"></span>
-      {{- with $authors := $article.Params.authors }}
-      <div class="c-metadata__item">
-        <span class="c-metadata__icon">{{ partial "svg/person.html" }}</span>
-        <span>{{ index $authors 0 }}</span>
-      </div>
-      <span class="c-metadata__dot"></span>
+    <div class="c-article-card__content">
+      {{- /* Category */ -}}
+      {{- with $categories := $article.Params.categories }}
+      <div class="c-article-card__category">{{ index $categories 0 }}</div>
       {{- end }}
-      {{- with $readingTime := site.Params.enableReadingTime }}
-      <div class="c-metadata__item">
-        <span class="c-metadata__icon">{{ partial "svg/schedule.html" }}</span>
-        <span>{{ $article.ReadingTime }} min</span>
-      </div>
+
+      {{- /* Title */ -}}
+      <h4 class="c-article-card__title">{{ $article.LinkTitle }}</h4>
+
+      {{- /* Excerpt */ -}}
+      {{- with $summary := $article.Summary }}
+      {{- /* TODO(DB): truncation limit must come from hugo.toml */ -}}
+      <p class="c-article-card__excerpt">{{ $summary | plainify | truncate 200 }}</p>
       {{- end }}
+
+      {{- /* Metadata row */ -}}
+      <div class="c-metadata">
+        <div class="c-metadata__item">
+          <span class="c-metadata__icon">{{ partial "svg/calendar.html" }}</span>
+          <span>{{ $article.Date | time.Format site.Params.dateFormat }}</span>
+        </div>
+        <span class="c-metadata__dot"></span>
+        {{- with $authors := $article.Params.authors }}
+        <div class="c-metadata__item">
+          <span class="c-metadata__icon">{{ partial "svg/person.html" }}</span>
+          <span>{{ index $authors 0 }}</span>
+        </div>
+        <span class="c-metadata__dot"></span>
+        {{- end }}
+        {{- with $readingTime := site.Params.enableReadingTime }}
+        <div class="c-metadata__item">
+          <span class="c-metadata__icon">{{ partial "svg/schedule.html" }}</span>
+          <span>{{ $article.ReadingTime }} min</span>
+        </div>
+        {{- end }}
+      </div>
     </div>
   </a>
 </article>

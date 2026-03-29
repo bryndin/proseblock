@@ -19,15 +19,18 @@
     --_body-size: var(--text-lg);
     --_transition: var(--duration-normal) var(--ease-default);
 
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
     padding: var(--_padding);
     margin-inline: calc(-1 * var(--_padding));
     background-color: var(--_bg);
     cursor: pointer;
     transition: background-color var(--_transition),
                 box-shadow var(--_transition);
+  }
+
+  .c-article-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
   }
 
   .c-article-card:hover {

@@ -35,6 +35,7 @@
               <a href="{{ $featured.RelPermalink }}" class="c-featured__content">
                 <h3 class="c-featured__title">{{ $featured.LinkTitle }}</h3>
                 {{- with $summary := $featured.Summary }}
+                {{- /* TODO(DB): truncation limit must come from hugo.toml */ -}}
                 <p class="c-featured__excerpt">{{ $summary | plainify | truncate 200 }}</p>
                 {{- end }}
               </a>

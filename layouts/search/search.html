@@ -67,6 +67,7 @@
             {{- end }}
             <h3 class="c-article-card__title">{{ $article.LinkTitle }}</h3>
             {{- with $summary := $article.Summary }}
+            {{- /* TODO(DB): truncation limit must come from hugo.toml */ -}}
             <p class="c-article-card__excerpt">{{ $summary | plainify | truncate 200 }}</p>
             {{- end }}
             <div class="c-metadata">
