@@ -1,0 +1,37 @@
+/* TODO(DB): Refactor this module to use arguments and configurations */
+/* TODO(DB): Should the class names be renamed? */
+/* TODO(DB): How to avoid hardcoding the layer name?? */
+
+.c-featured__pagination {
+    /* *** Arguments (The Public API) ****************************************************** */
+
+    /* *** Configuration (Internal Styling) ************************************************** */
+    --_font-size: var(--text-xs);
+    --_gap: var(--space-6);
+    --_icon_size: 1rem;
+
+    display: flex;
+    align-items: center;
+    gap: var(--_gap);
+}
+
+.c-featured__page-btn {
+    transition: color var(--duration-normal) var(--ease-default);
+}
+
+.c-featured__page-btn:hover {
+    color: var(--_accent);
+}
+
+.c-featured__page-btn svg {
+    width: var(--_icon_size);
+    height: var(--_icon_size);
+}
+
+.c-featured__page-indicator {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--_body-text);
+    opacity: 0.4;
+}

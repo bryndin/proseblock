@@ -25,32 +25,7 @@
       <div class="u-home-main">
         <div class="u-home-main__sections">
 
-          {{- /* Featured article (first regular page) */ -}}
-          {{- with $featured := index site.RegularPages 0 }}
-          <section>
-            <article class="c-featured">
-              <div class="c-featured__header">
-                <span class="c-featured__label">Featured</span>
-                <div class="c-featured__pagination">
-                  <button class="c-featured__page-btn" aria-label="Previous featured article">
-                    {{ partial "svg/chevron-left.html" }}
-                  </button>
-                  <span class="c-featured__page-indicator">01 / 03</span>
-                  <button class="c-featured__page-btn" aria-label="Next featured article">
-                    {{ partial "svg/chevron-right.html" }}
-                  </button>
-                </div>
-              </div>
-              <a href="{{ $featured.RelPermalink }}" class="c-featured__content">
-                <h3 class="c-featured__title">{{ $featured.LinkTitle }}</h3>
-                {{- with $summary := $featured.Summary }}
-                {{- /* TODO(DB): truncation limit must come from hugo.toml */ -}}
-                <p class="c-featured__excerpt">{{ $summary | plainify | truncate 200 }}</p>
-                {{- end }}
-              </a>
-            </article>
-          </section>
-          {{- end }}
+          {{ partial "featured.html" }}
 
           {{- /* Article list */ -}}
           {{- $paginator := $page.Paginate site.RegularPages }}

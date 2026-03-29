@@ -1,0 +1,29 @@
+{{- /* Featured articles (set `featured = true` in the front matter ) */ -}}
+{{- $featuredArticles := where site.RegularPages ".Params.featured" "==" true }}
+{{- $totalFeatured := len $featuredArticles }}
+
+{{- if $totalFeatured }}
+<section class="js-featured-carousel" data-total="{{ $totalFeatured }}">
+    <article class="c-featured">
+        <div class="c-featured__header">
+            <span class="c-featured__label">Featured</span>
+            {{- /* TODO(DB): Show pagination only with more than one featured article */ -}}
+            {{- /* TODO(DB): Add autorotation. How to do that without the block changing size? */ -}}
+            {{ partial "paginator-compact.html" (dict "start" 1 "total" $totalFeatured "left" "svg/chevron-left.html" "right" "svg/chevron-right.html") }}   
+        </div>
+
+        {{- range $index, $article := $featuredArticles }}
+            <a href="{{ $article.RelPermalink }}" 
+                    class="c-featured__content js-featured-item" 
+                    data-index="{{ $index }}"
+                    {{ if ne $index 0 }}style="display: none;"{{ end }}>
+                <h3 class="c-featured__title">{{ $article.LinkTitle }}</h3>
+                {{- with $summary := $article.Summary | default $article.Description }}
+                    {{- /* TODO(DB): truncation limit must come from hugo.toml */ -}}
+                    <p class="c-featured__excerpt">{{ $summary | plainify | truncate 200 }}</p>
+                {{- end }}
+            </a>
+        {{- end }}
+    </article>
+</section>
+{{- end }}
