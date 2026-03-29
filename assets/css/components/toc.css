@@ -3,137 +3,134 @@
    .c-toc — Article sidebar table of contents with reading rail indicator.
    ========================================================================== */
 
-@layer components {
+.c-toc {
+  /* *** Arguments (The Public API) *************************************** */
+  --_text: var(--toc-text);
+  --_text-hover: var(--toc-text-hover);
+  --_accent: var(--toc-accent);
+  --_rail-bg: var(--toc-rail-bg);
+  --_separator: var(--toc-separator);
 
-  .c-toc {
-    /* *** Arguments (The Public API) *************************************** */
-    --_text: var(--toc-text);
-    --_text-hover: var(--toc-text-hover);
-    --_accent: var(--toc-accent);
-    --_rail-bg: var(--toc-rail-bg);
-    --_separator: var(--toc-separator);
+  /* *** Configuration (Internal Styling) ********************************* */
+  --_link-size: var(--text-tiny);
+  --_link-weight: var(--weight-semibold);
+  --_rail-width: 2px;
+  --_rail-height: var(--height-toc-rail);
 
-    /* *** Configuration (Internal Styling) ********************************* */
-    --_link-size: var(--text-tiny);
-    --_link-weight: var(--weight-semibold);
-    --_rail-width: 2px;
-    --_rail-height: var(--height-toc-rail);
+  position: sticky;
+  top: var(--space-10);
+  display: flex;
+  gap: var(--space-3);
+}
 
-    position: sticky;
-    top: var(--space-10);
-    display: flex;
-    gap: var(--space-3);
-  }
+/* --- Reading rail --- */
 
-  /* --- Reading rail --- */
+.c-toc__rail {
+  width: var(--_rail-width);
+  height: var(--_rail-height);
+  background-color: var(--_rail-bg);
+  opacity: 0.2;
+  position: relative;
+  align-self: flex-start;
+  margin-top: var(--space-1);
+  flex-shrink: 0;
+}
 
-  .c-toc__rail {
-    width: var(--_rail-width);
-    height: var(--_rail-height);
-    background-color: var(--_rail-bg);
-    opacity: 0.2;
-    position: relative;
-    align-self: flex-start;
-    margin-top: var(--space-1);
-    flex-shrink: 0;
-  }
+.c-toc__rail-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: var(--_accent);
+  transition: height 0.1s var(--ease-out);
+}
 
-  .c-toc__rail-fill {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0;
-    background-color: var(--_accent);
-    transition: height 0.1s var(--ease-out);
-  }
+/* --- TOC body --- */
 
-  /* --- TOC body --- */
+.c-toc__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
 
-  .c-toc__body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-12);
-  }
+/* --- Link list --- */
 
-  /* --- Link list --- */
+.c-toc__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
 
-  .c-toc__list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
+.c-toc__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--_link-size);
+  font-weight: var(--_link-weight);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--_text);
+  transition: color var(--duration-normal) var(--ease-default);
+}
 
-  .c-toc__link {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    padding: var(--space-1) var(--space-2);
-    font-size: var(--_link-size);
-    font-weight: var(--_link-weight);
-    letter-spacing: var(--tracking-widest);
-    text-transform: uppercase;
-    color: var(--_text);
-    transition: color var(--duration-normal) var(--ease-default);
-  }
+.c-toc__link:hover {
+  color: var(--_text-hover);
+}
 
-  .c-toc__link:hover {
-    color: var(--_text-hover);
-  }
+.c-toc__link-line {
+  display: inline-block;
+  width: 1rem;
+  height: 1px;
+  background-color: var(--_rail-bg);
+  opacity: 0.3;
+  transition: width var(--duration-normal) var(--ease-default),
+    background-color var(--duration-normal) var(--ease-default);
+}
 
-  .c-toc__link-line {
-    display: inline-block;
-    width: 1rem;
-    height: 1px;
-    background-color: var(--_rail-bg);
-    opacity: 0.3;
-    transition: width var(--duration-normal) var(--ease-default),
-                background-color var(--duration-normal) var(--ease-default);
-  }
+.c-toc__link:hover .c-toc__link-line {
+  width: 1.5rem;
+  background-color: var(--_accent);
+}
 
-  .c-toc__link:hover .c-toc__link-line {
-    width: 1.5rem;
-    background-color: var(--_accent);
-  }
+/* --- Share section --- */
 
-  /* --- Share section --- */
+.c-toc__actions {
+  margin-top: var(--space-12);
+  padding-top: var(--space-12);
+  border-top: var(--border-width) solid var(--_separator);
+  padding-inline: var(--space-2);
+  opacity: 0.2;
+}
 
-  .c-toc__actions {
-    margin-top: var(--space-12);
-    padding-top: var(--space-12);
-    border-top: var(--border-width) solid var(--_separator);
-    padding-inline: var(--space-2);
-    opacity: 0.2;
-  }
+.c-toc__share-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
 
-  .c-toc__share-btn {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-  }
+.c-toc__share-btn:hover .c-toc__share-icon {
+  transform: scale(var(--scale-subtle));
+}
 
-  .c-toc__share-btn:hover .c-toc__share-icon {
-    transform: scale(var(--scale-subtle));
-  }
+.c-toc__share-btn:hover .c-toc__share-label {
+  color: var(--_accent);
+}
 
-  .c-toc__share-btn:hover .c-toc__share-label {
-    color: var(--_accent);
-  }
+.c-toc__share-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--_accent);
+  transition: transform var(--duration-normal) var(--ease-default);
+}
 
-  .c-toc__share-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: var(--_accent);
-    transition: transform var(--duration-normal) var(--ease-default);
-  }
-
-  .c-toc__share-label {
-    font-size: var(--text-xs);
-    font-weight: var(--weight-bold);
-    letter-spacing: var(--tracking-ultra);
-    text-transform: uppercase;
-    color: var(--_text);
-    transition: color var(--duration-normal) var(--ease-default);
-  }
+.c-toc__share-label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-ultra);
+  text-transform: uppercase;
+  color: var(--_text);
+  transition: color var(--duration-normal) var(--ease-default);
 }

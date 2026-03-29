@@ -9,6 +9,9 @@
 <html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}" data-theme="{{ site.Params.defaultTheme | default `light` }}">
 <head>
   {{ partial "head.html" $page }}
+
+  {{ partial "head/css.html" $page }}
+  {{ partial "head/js.html" $page }}
 </head>
 <body>
   <header class="c-header" role="banner">

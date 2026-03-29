@@ -4,56 +4,53 @@
    Shared by hero, article-card, and search results.
    ========================================================================== */
 
-@layer components {
+.c-metadata {
+  /* *** Arguments (The Public API) *************************************** */
+  --_text: var(--metadata-text);
+  --_icon: var(--metadata-icon);
+  --_dot: var(--metadata-dot);
 
-  .c-metadata {
-    /* *** Arguments (The Public API) *************************************** */
-    --_text: var(--metadata-text);
-    --_icon: var(--metadata-icon);
-    --_dot: var(--metadata-dot);
+  /* *** Configuration (Internal Styling) ********************************* */
+  --_font-size: var(--text-xs);
+  --_icon-size: var(--metadata-icon-size);
+  --_gap-x: var(--space-8);
+  --_gap-y: var(--space-4);
 
-    /* *** Configuration (Internal Styling) ********************************* */
-    --_font-size: var(--text-xs);
-    --_icon-size: var(--metadata-icon-size);
-    --_gap-x: var(--space-8);
-    --_gap-y: var(--space-4);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--_gap-y) var(--_gap-x);
+  font-size: var(--_font-size);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--_text);
+  opacity: 0.6;
+}
 
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--_gap-y) var(--_gap-x);
-    font-size: var(--_font-size);
-    font-weight: var(--weight-bold);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-widest);
-    color: var(--_text);
-    opacity: 0.6;
-  }
+/* Variant used in article hero with reduced opacity */
+.c-metadata--hero {
+  opacity: 0.4;
+  letter-spacing: var(--tracking-wider);
+}
 
-  /* Variant used in article hero with reduced opacity */
-  .c-metadata--hero {
-    opacity: 0.4;
-    letter-spacing: var(--tracking-wider);
-  }
+.c-metadata__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
 
-  .c-metadata__item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-  }
+.c-metadata__icon {
+  width: var(--_icon-size);
+  height: var(--_icon-size);
+  opacity: 0.6;
+  color: var(--_icon);
+}
 
-  .c-metadata__icon {
-    width: var(--_icon-size);
-    height: var(--_icon-size);
-    opacity: 0.6;
-    color: var(--_icon);
-  }
-
-  .c-metadata__dot {
-    width: var(--metadata-dot-size);
-    height: var(--metadata-dot-size);
-    border-radius: var(--radius-full);
-    background-color: currentColor;
-    opacity: 0.3;
-  }
+.c-metadata__dot {
+  width: var(--metadata-dot-size);
+  height: var(--metadata-dot-size);
+  border-radius: var(--radius-full);
+  background-color: currentColor;
+  opacity: 0.3;
 }

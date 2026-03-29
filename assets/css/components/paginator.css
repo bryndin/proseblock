@@ -3,75 +3,72 @@
    .c-paginator — Page navigation with chevron-style controls.
    ========================================================================== */
 
-@layer components {
+.c-paginator {
+  /* *** Arguments (The Public API) *************************************** */
+  --_text: var(--paginator-text);
+  --_text-muted: var(--paginator-text-muted);
+  --_active-border: var(--paginator-active-border);
+  --_hover-bg: var(--paginator-hover-bg);
+  --_border: var(--paginator-border);
 
-  .c-paginator {
-    /* *** Arguments (The Public API) *************************************** */
-    --_text: var(--paginator-text);
-    --_text-muted: var(--paginator-text-muted);
-    --_active-border: var(--paginator-active-border);
-    --_hover-bg: var(--paginator-hover-bg);
-    --_border: var(--paginator-border);
+  /* *** Configuration (Internal Styling) ********************************* */
+  --_padding-top: var(--space-20);
 
-    /* *** Configuration (Internal Styling) ********************************* */
-    --_padding-top: var(--space-20);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--_padding-top);
+  border-top: var(--border-width) solid var(--_border);
+}
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: var(--_padding-top);
-    border-top: var(--border-width) solid var(--_border);
-  }
+.c-paginator__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  transition: background-color var(--duration-normal) var(--ease-default);
+}
 
-  .c-paginator__btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-4);
-    transition: background-color var(--duration-normal) var(--ease-default);
-  }
+.c-paginator__btn:hover {
+  background-color: var(--_hover-bg);
+}
 
-  .c-paginator__btn:hover {
-    background-color: var(--_hover-bg);
-  }
+.c-paginator__btn svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
 
-  .c-paginator__btn svg {
-    width: 1.125rem;
-    height: 1.125rem;
-  }
+.c-paginator__numbers {
+  display: none;
+  gap: var(--space-12);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-widest);
+  align-items: flex-end;
+}
 
+@media (min-width: 768px) {
   .c-paginator__numbers {
-    display: none;
-    gap: var(--space-12);
-    font-size: var(--text-xs);
-    font-weight: var(--weight-black);
-    letter-spacing: var(--tracking-widest);
-    align-items: flex-end;
+    display: flex;
   }
+}
 
-  @media (min-width: 768px) {
-    .c-paginator__numbers {
-      display: flex;
-    }
-  }
+.c-paginator__number {
+  padding-bottom: var(--space-2);
+  line-height: var(--leading-none);
+  color: var(--_text-muted);
+  opacity: 0.3;
+}
 
-  .c-paginator__number {
-    padding-bottom: var(--space-2);
-    line-height: var(--leading-none);
-    color: var(--_text-muted);
-    opacity: 0.3;
-  }
+.c-paginator__number--active {
+  color: var(--_text);
+  opacity: 1;
+  border-bottom: 2px solid var(--_active-border);
+}
 
-  .c-paginator__number--active {
-    color: var(--_text);
-    opacity: 1;
-    border-bottom: 2px solid var(--_active-border);
-  }
-
-  .c-paginator__ellipsis {
-    color: var(--_text-muted);
-    opacity: 0.2;
-    padding-bottom: var(--space-2);
-    line-height: var(--leading-none);
-  }
+.c-paginator__ellipsis {
+  color: var(--_text-muted);
+  opacity: 0.2;
+  padding-bottom: var(--space-2);
+  line-height: var(--leading-none);
 }

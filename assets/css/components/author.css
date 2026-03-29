@@ -3,143 +3,140 @@
    .c-author — Author bio block at bottom of articles.
    ========================================================================== */
 
-@layer components {
+.c-author {
+  /* *** Arguments (The Public API) *************************************** */
+  --_bg: var(--author-bg);
+  --_accent: var(--author-accent);
+  --_name-text: var(--author-name-text);
+  --_body-text: var(--author-body-text);
 
+  /* *** Configuration (Internal Styling) ********************************* */
+  --_gap: var(--space-8);
+  --_avatar-size: var(--space-20);
+  --_margin-top: var(--space-20);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--_gap);
+  align-items: flex-start;
+  margin-top: var(--_margin-top);
+}
+
+@media (min-width: 768px) {
   .c-author {
-    /* *** Arguments (The Public API) *************************************** */
-    --_bg: var(--author-bg);
-    --_accent: var(--author-accent);
-    --_name-text: var(--author-name-text);
-    --_body-text: var(--author-body-text);
-
-    /* *** Configuration (Internal Styling) ********************************* */
-    --_gap: var(--space-8);
-    --_avatar-size: var(--space-20);
-    --_margin-top: var(--space-20);
-
-    display: flex;
-    flex-direction: column;
-    gap: var(--_gap);
-    align-items: flex-start;
-    margin-top: var(--_margin-top);
+    flex-direction: row;
   }
+}
 
-  @media (min-width: 768px) {
-    .c-author {
-      flex-direction: row;
-    }
-  }
+/* --- Avatar --- */
 
-  /* --- Avatar --- */
+.c-author__avatar {
+  width: var(--_avatar-size);
+  height: var(--_avatar-size);
+  border-radius: var(--radius-full);
+  background-color: var(--_bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
 
-  .c-author__avatar {
-    width: var(--_avatar-size);
-    height: var(--_avatar-size);
-    border-radius: var(--radius-full);
-    background-color: var(--_bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
+.c-author__avatar-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--_body-text);
+  opacity: 0.4;
+}
 
-  .c-author__avatar-icon {
-    width: 2.25rem;
-    height: 2.25rem;
-    color: var(--_body-text);
-    opacity: 0.4;
-  }
+/* --- Info --- */
 
-  /* --- Info --- */
+.c-author__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
 
-  .c-author__info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
+.c-author__label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-ultra);
+  text-transform: uppercase;
+  color: var(--_accent);
+}
 
-  .c-author__label {
-    font-size: var(--text-xs);
-    font-weight: var(--weight-bold);
-    letter-spacing: var(--tracking-ultra);
-    text-transform: uppercase;
-    color: var(--_accent);
-  }
+.c-author__name {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-xl);
+  color: var(--_name-text);
+}
 
-  .c-author__name {
-    font-size: var(--text-xl);
-    font-weight: var(--weight-bold);
-    line-height: var(--leading-xl);
-    color: var(--_name-text);
-  }
+.c-author__bio {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-relaxed);
+  color: var(--_body-text);
+  max-width: 42rem;
+}
 
-  .c-author__bio {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-light);
-    line-height: var(--leading-relaxed);
-    color: var(--_body-text);
-    max-width: 42rem;
-  }
+/* --- Social links --- */
 
-  /* --- Social links --- */
+.c-author__social {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding-top: var(--space-2);
+}
 
-  .c-author__social {
-    display: flex;
-    align-items: center;
-    gap: var(--space-6);
-    padding-top: var(--space-2);
-  }
+.c-author__social-icons {
+  display: flex;
+  gap: var(--space-4);
+}
 
-  .c-author__social-icons {
-    display: flex;
-    gap: var(--space-4);
-  }
+.c-author__social-link {
+  color: var(--_body-text);
+  transition: color var(--duration-normal) var(--ease-default);
+}
 
-  .c-author__social-link {
-    color: var(--_body-text);
-    transition: color var(--duration-normal) var(--ease-default);
-  }
+.c-author__social-link:hover {
+  color: var(--_accent);
+}
 
-  .c-author__social-link:hover {
-    color: var(--_accent);
-  }
+.c-author__social-link svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
 
-  .c-author__social-link svg {
-    width: 1rem;
-    height: 1rem;
-    fill: currentColor;
-  }
+.c-author__social-divider {
+  width: 1px;
+  height: 1rem;
+  background-color: var(--_bg);
+}
 
-  .c-author__social-divider {
-    width: 1px;
-    height: 1rem;
-    background-color: var(--_bg);
-  }
+.c-author__more-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--_accent);
+  transition: color var(--duration-normal) var(--ease-default);
+}
 
-  .c-author__more-link {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: var(--text-xs);
-    font-weight: var(--weight-bold);
-    letter-spacing: var(--tracking-widest);
-    text-transform: uppercase;
-    color: var(--_accent);
-    transition: color var(--duration-normal) var(--ease-default);
-  }
+.c-author__more-link:hover {
+  color: var(--_name-text);
+}
 
-  .c-author__more-link:hover {
-    color: var(--_name-text);
-  }
+.c-author__more-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+  transition: transform var(--duration-normal) var(--ease-default);
+}
 
-  .c-author__more-icon {
-    width: 0.875rem;
-    height: 0.875rem;
-    transition: transform var(--duration-normal) var(--ease-default);
-  }
-
-  .c-author__more-link:hover .c-author__more-icon {
-    transform: translateX(0.25rem);
-  }
+.c-author__more-link:hover .c-author__more-icon {
+  transform: translateX(0.25rem);
 }
