@@ -31,6 +31,15 @@
             <article class="c-featured">
               <div class="c-featured__header">
                 <span class="c-featured__label">Featured</span>
+                <div class="c-featured__pagination">
+                  <button class="c-featured__page-btn" aria-label="Previous featured article">
+                    {{ partial "svg/chevron-left.html" }}
+                  </button>
+                  <span class="c-featured__page-indicator">01 / 03</span>
+                  <button class="c-featured__page-btn" aria-label="Next featured article">
+                    {{ partial "svg/chevron-right.html" }}
+                  </button>
+                </div>
               </div>
               <a href="{{ $featured.RelPermalink }}" class="c-featured__content">
                 <h3 class="c-featured__title">{{ $featured.LinkTitle }}</h3>
