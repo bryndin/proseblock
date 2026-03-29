@@ -99,12 +99,14 @@
   @media (min-width: 768px) {
     .c-menu__brand-title {
       font-size: var(--text-5xl);
+      line-height: var(--leading-none);
     }
   }
 
   @media (min-width: 1024px) {
     .c-menu__brand-title {
       font-size: var(--text-7xl);
+      line-height: var(--leading-none);
     }
   }
 
@@ -199,6 +201,7 @@
   @media (min-width: 1024px) {
     .c-menu__link-text {
       font-size: var(--text-7xl);
+      line-height: var(--leading-none);
     }
   }
 
@@ -240,15 +243,12 @@
     align-items: flex-end;
     gap: var(--space-2);
     max-width: 24rem;
-    border-bottom: var(--border-width) solid var(--_icon);
-    padding-bottom: var(--space-2);
-    opacity: 0.2;
+    border-bottom: var(--border-width) solid oklch(from var(--_icon) l c h / 0.2);
     transition: border-color var(--duration-normal) var(--ease-default);
   }
 
   .c-menu__newsletter-form:focus-within {
     border-color: var(--_accent);
-    opacity: 1;
   }
 
   .c-menu__newsletter-input {

@@ -57,6 +57,7 @@
     font-size: var(--_input-size);
     font-weight: var(--weight-extralight);
     letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-none);
     color: var(--_text);
     outline: none;
   }
@@ -64,6 +65,7 @@
   @media (min-width: 768px) {
     .c-search__input {
       font-size: var(--text-7xl);
+      line-height: var(--leading-none);
     }
   }
 
@@ -128,6 +130,7 @@
   .c-search__category-name {
     font-size: var(--text-xl);
     font-weight: var(--weight-light);
+    line-height: var(--leading-xl);
     transition: padding-left var(--duration-normal) var(--ease-default);
   }
 

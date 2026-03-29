@@ -46,7 +46,7 @@
   /* --- Drop cap on first paragraph --- */
 
   .c-article__body > p:first-child::first-letter {
-    font-size: var(--text-7xl);
+    font-size: var(--text-6xl);
     font-weight: var(--weight-bold);
     float: left;
     margin-right: var(--space-3);

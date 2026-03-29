@@ -31,6 +31,18 @@
     gap: var(--_widget-gap);
   }
 
+  .c-sidebar__widget--newsletter {
+    --_widget-gap: var(--space-8);
+  }
+
+  .c-sidebar__widget--notice {
+    --_widget-gap: var(--space-6);
+  }
+
+  .c-sidebar__widget--categories {
+    --_widget-gap: var(--space-10);
+  }
+
   .c-sidebar__widget-header {
     display: flex;
     align-items: center;
@@ -123,8 +135,7 @@
     width: 100%;
     background: transparent;
     border: 0;
-    border-bottom: var(--border-width) solid var(--_heading-text);
-    opacity: 0.1;
+    border-bottom: var(--border-width) solid oklch(from var(--_heading-text) l c h / 0.1);
     padding-block: var(--space-4);
     font-size: var(--text-xs);
     letter-spacing: var(--tracking-widest);
@@ -139,7 +150,6 @@
   .c-sidebar__input:focus {
     outline: none;
     border-color: var(--_heading-text);
-    opacity: 1;
   }
 
   .c-sidebar__submit {

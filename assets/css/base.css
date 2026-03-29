@@ -13,7 +13,6 @@
     line-height: var(--leading-normal);
     color: var(--text-primary);
     background-color: var(--bg-primary);
-    selection-background-color: var(--bg-highest);
   }
 
   ::selection {
@@ -48,7 +47,7 @@
   h4 {
     font-size: var(--text-xl);
     font-weight: var(--weight-semibold);
-    line-height: var(--leading-snug);
+    line-height: var(--leading-xl);
     color: var(--text-primary);
   }
 
@@ -56,7 +55,7 @@
   h6 {
     font-size: var(--text-lg);
     font-weight: var(--weight-semibold);
-    line-height: var(--leading-snug);
+    line-height: var(--leading-lg);
     color: var(--text-primary);
   }
 
@@ -98,9 +97,8 @@
   /* --- Blockquotes --- */
 
   blockquote {
-    padding: var(--space-8);
-    padding-left: var(--space-8);
-    margin-block: var(--space-8);
+    padding: var(--space-12) var(--space-8);
+    margin-block: var(--space-12);
     background-color: var(--bg-secondary);
     border-left: 4px solid var(--accent);
     font-style: italic;
@@ -123,6 +121,12 @@
     border: var(--border-width) solid var(--border-subtle);
     font-size: var(--text-sm);
     line-height: var(--leading-relaxed);
+  }
+  
+  @media (min-width: 768px) {
+    pre {
+      padding: var(--space-8);
+    }
   }
 
   pre code {

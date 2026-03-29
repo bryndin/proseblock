@@ -136,7 +136,7 @@
 
         {{- /* Newsletter widget */ -}}
         {{- with $newsletterEnabled := site.Params.enableNewsletter }}
-        <div class="c-sidebar__widget">
+        <div class="c-sidebar__widget c-sidebar__widget--newsletter">
           <div class="c-sidebar__widget-header">
             <span class="c-sidebar__widget-icon">{{ partial "svg/mail.html" }}</span>
             <h5 class="c-sidebar__widget-title">Dispatch</h5>
@@ -156,7 +156,7 @@
 
         {{- /* Categories widget */ -}}
         {{- with $categories := site.Taxonomies.categories }}
-        <div class="c-sidebar__widget">
+        <div class="c-sidebar__widget c-sidebar__widget--categories">
           <div class="c-sidebar__widget-header">
             <span class="c-sidebar__widget-icon">{{ partial "svg/search.html" }}</span>
             <h5 class="c-sidebar__widget-title">Categories</h5>
