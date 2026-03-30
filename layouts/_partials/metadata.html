@@ -1,0 +1,26 @@
+{{/* layouts/partials/metadata.html */}}
+{{ $article := .article }}
+{{ $modifier := .modifier | default "" }} {{/* e.g., "c-metadata--hero" */}}
+
+<div class="c-metadata {{ $modifier }}">
+    <div class="c-metadata__item">
+        <span class="c-metadata__icon">{{ partial "svg/calendar.html" }}</span>
+        <span>{{ $article.Date | time.Format site.Params.dateFormat }}</span>
+    </div>
+    
+    {{- with $authors := $article.Params.authors }}
+        <span class="c-metadata__dot"></span>
+        <div class="c-metadata__item">
+            <span class="c-metadata__icon">{{ partial "svg/person.html" }}</span>
+            <span>{{ index $authors 0 }}</span>
+        </div>
+    {{- end }}
+    
+    {{- with $readingTime := site.Params.enableReadingTime }}
+        <span class="c-metadata__dot"></span>
+        <div class="c-metadata__item">
+            <span class="c-metadata__icon">{{ partial "svg/schedule.html" }}</span>
+            <span>{{ $article.ReadingTime }} min</span>
+        </div>
+    {{- end }}
+</div>

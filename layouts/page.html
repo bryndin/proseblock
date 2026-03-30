@@ -22,26 +22,7 @@
             <h1 class="c-hero__title">{{ $page.Title }}</h1>
 
             {{- /* Metadata row */ -}}
-            <div class="c-metadata c-metadata--hero">
-                <div class="c-metadata__item">
-                    <span class="c-metadata__icon">{{ partial "svg/calendar.html" }}</span>
-                    <span>{{ $page.Date | time.Format site.Params.dateFormat }}</span>
-                </div>
-                {{- with $authors := $page.Params.authors }}
-                    <span class="c-metadata__dot"></span>
-                    <div class="c-metadata__item">
-                        <span class="c-metadata__icon">{{ partial "svg/person.html" }}</span>
-                        <span>{{ index $authors 0 }}</span>
-                    </div>
-                {{- end }}
-                {{- with $readingTime := site.Params.enableReadingTime }}
-                    <span class="c-metadata__dot"></span>
-                    <div class="c-metadata__item">
-                        <span class="c-metadata__icon">{{ partial "svg/schedule.html" }}</span>
-                        <span>{{ $page.ReadingTime }} min</span>
-                    </div>
-                {{- end }}
-            </div>
+            {{ partial "metadata.html" (dict "article" $page "modifier" "c-metadata--hero") }}
         </div>
     </header>
 

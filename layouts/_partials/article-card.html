@@ -18,26 +18,7 @@
             {{- end }}
 
             {{- /* Metadata row */ -}}
-            <div class="c-metadata">
-                <div class="c-metadata__item">
-                    <span class="c-metadata__icon">{{ partial "svg/calendar.html" }}</span>
-                    <span>{{ $article.Date | time.Format site.Params.dateFormat }}</span>
-                </div>
-                <span class="c-metadata__dot"></span>
-                {{- with $authors := $article.Params.authors }}
-                    <div class="c-metadata__item">
-                        <span class="c-metadata__icon">{{ partial "svg/person.html" }}</span>
-                        <span>{{ index $authors 0 }}</span>
-                    </div>
-                    <span class="c-metadata__dot"></span>
-                {{- end }}
-                {{- with $readingTime := site.Params.enableReadingTime }}
-                    <div class="c-metadata__item">
-                        <span class="c-metadata__icon">{{ partial "svg/schedule.html" }}</span>
-                        <span>{{ $article.ReadingTime }} min</span>
-                    </div>
-                {{- end }}
+            {{ partial "metadata.html" (dict "article" $article) }}
             </div>
-        </div>
     </a>
 </article>
