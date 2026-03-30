@@ -1,0 +1,153 @@
+/* ==========================================================================
+   COMPONENT: TOC — @layer components
+   .c-toc — Article sidebar table of contents with reading rail indicator.
+   ========================================================================== */
+
+.c-toc {
+    /* *** Arguments (The Public API) *************************************** */
+    --_text: var(--color-on-surface-variant, var(--toc-text));
+    --_text-hover: var(--color-primary, var(--toc-text-hover));
+    --_accent: var(--color-primary, var(--toc-accent));
+    --_rail-bg: var(--color-outline-variant, var(--toc-rail-bg));
+    --_separator: var(--color-outline-variant, var(--toc-separator));
+
+    /* *** Configuration (Internal Styling) ********************************* */
+    --_link-size: 11px; 
+    --_link-weight: var(--weight-semibold);
+    --_rail-width: 2px;
+
+    position: sticky;
+    top: var(--space-10);
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+}
+
+/* --- TOC body --- */
+
+.c-toc__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Hugo Generated Link List --- */
+
+/* Reset ALL lists so every anchor starts completely flush with the rail */
+.c-toc__list nav ul,
+.c-toc__list nav li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Add vertical spacing between items */
+.c-toc__list nav ul,
+.c-toc__list nav li {
+    gap: var(--space-4);
+}
+
+/* --- Hugo Generated Links --- */
+
+.c-toc__list nav a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3); 
+    
+    /* ADDED: padding-right of 0.5rem to pre-reserve the space the animation will need */
+    padding: 0.25rem 0.5rem 0.25rem 0; 
+    
+    font-size: var(--_link-size);
+    font-weight: var(--_link-weight);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--_text);
+    
+    /* ADDED: animate padding-right perfectly in sync with the tick width */
+    transition: color var(--duration-normal) var(--ease-default),
+                padding-right var(--duration-normal) var(--ease-default);
+}
+
+.c-toc__list nav a:hover {
+    color: var(--_text-hover);
+    
+    /* ADDED: Eat into the reserved right padding as the left tick pushes outward. 
+       This keeps the total width of the <a> tag absolutely perfectly identical! */
+    padding-right: 0;
+}
+
+/* --- Synthesized Link Line (Now in the Document Flow) --- */
+
+.c-toc__list nav a::before {
+    content: "";
+    display: block; /* Makes it a flex item so it pushes text */
+    height: 1px;
+    background-color: var(--_separator); 
+    opacity: 0.4; 
+    flex-shrink: 0;
+    
+    /* Animation affects width, which physically pushes the flex text */
+    transition: width var(--duration-normal) var(--ease-default),
+        background-color var(--duration-normal) var(--ease-default),
+        opacity var(--duration-normal) var(--ease-default);
+}
+
+/* --- Dynamic Indentation via Tick Width --- */
+
+/* Level 1 (H2) */
+.c-toc__list nav a::before {
+    width: 1rem;
+}
+.c-toc__list nav a:hover::before {
+    width: 1.5rem;
+    background-color: var(--_accent);
+    opacity: 1;
+}
+
+/* Level 2 (H3) - Longer tick creates the indent AND connects to the rail */
+.c-toc__list nav ul ul a::before {
+    width: 2rem;
+}
+.c-toc__list nav ul ul a:hover::before {
+    width: 2.5rem;
+    background-color: var(--_accent);
+    opacity: 1;
+}
+
+/* Level 3 (H4) - Even longer tick */
+.c-toc__list nav ul ul ul a::before {
+    width: 3rem;
+}
+.c-toc__list nav ul ul ul a:hover::before {
+    width: 3.5rem;
+    background-color: var(--_accent);
+    opacity: 1;
+}
+
+/* --- Reading rail --- */
+
+.c-toc__rail {
+    width: var(--_rail-width);
+    margin-left: 6px; 
+    margin-top: 7px;
+    margin-bottom: 7px;
+    
+    background-color: var(--_rail-bg);
+    opacity: 0.2;
+    
+    position: relative;
+    flex-shrink: 0;
+}
+
+.c-toc__rail-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: var(--_accent);
+    transition: height 0.1s var(--ease-out);
+}

@@ -1,0 +1,20 @@
+{{- /* TOC widget */ -}}
+{{ $page := . }}
+
+<div class="c-toc">
+    {{- /* Reading rail */ -}}
+    <div class="c-toc__rail">
+        <div class="c-toc__rail-fill" id="reading-progress"></div>
+    </div>
+
+    <div class="c-toc__body">
+        {{- /* Table of contents (Hugo-generated) */ -}}
+        {{- with $toc := $page.TableOfContents }}
+            {{- if and (site.Params.enableTOC) $toc }}
+                <div class="c-toc__list">
+                    {{ $toc }}
+                </div>
+            {{- end }}
+        {{- end }}
+    </div>
+</div>
