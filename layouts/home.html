@@ -1,127 +1,126 @@
 {{- /*
-  home.html — Home page template.
-  2-column layout: main area with hero, featured article, paginated article list.
-  Sidebar with newsletter, categories.
+    home.html — Home page template.
+    2-column layout: main area with hero, featured article, paginated article list.
+    Sidebar with newsletter, categories.
 
-  @context {page} . The home page context.
+    @context {page} . The home page context.
 */ -}}
 {{ define "main" }}
 {{- $page := . -}}
 
-{{- /* ─── Hero Section ─── */ -}}
-  <header class="c-hero c-hero--home">
-    <div class="c-hero__inner">
-      <h2 class="c-hero__title">{{ site.Title }}</h2>
-      {{- with $description := site.Params.description }}
-      <p class="c-hero__subtitle">{{ $description }}</p>
-      {{- end }}
-    </div>
-  </header>
-
-  {{- /* ─── Two-Column Layout ─── */ -}}
-  <div class="l-site__columns">
-    {{- /* Main content area */ -}}
-    <div class="l-site__main">
-      <div class="u-home-main">
-        <div class="u-home-main__sections">
-
-          {{ partial "featured.html" }}
-
-          {{- /* Article list */ -}}
-          {{- $paginator := $page.Paginate site.RegularPages }}
-          {{- with $pages := $paginator.Pages }}
-          <section class="c-article-list">
-            {{- range $article := $pages }}
-              {{ partial "article-card.html" $article }}
+    {{- /* ─── Hero Section ─── */ -}}
+    <header class="c-hero c-hero--home">
+        <div class="c-hero__inner">
+            <h2 class="c-hero__title">{{ site.Title }}</h2>
+            {{- with $description := site.Params.description }}
+                <p class="c-hero__subtitle">{{ $description }}</p>
             {{- end }}
-          </section>
-          {{- end }}
+        </div>
+    </header>
 
-          {{- /* Paginator */ -}}
-          {{- if $paginator }}
-          {{- if gt $paginator.TotalPages 1 }}
-          <nav class="c-paginator" aria-label="Page navigation">
-            {{- if $paginator.HasPrev }}
-            <a class="c-paginator__btn" href="{{ $paginator.Prev.URL }}" aria-label="Previous page">
-              {{ partial "svg/chevron-left.html" }}
-            </a>
-            {{- else }}
-            <span class="c-paginator__btn" aria-disabled="true">
-              {{ partial "svg/chevron-left.html" }}
-            </span>
-            {{- end }}
+    {{- /* ─── Two-Column Layout ─── */ -}}
+    <div class="l-site__columns">
+        {{- /* Main content area */ -}}
+        <div class="l-site__main">
+            <div class="u-home-main">
+                <div class="u-home-main__sections">
+                    {{ partial "featured.html"}}
 
-            <div class="c-paginator__numbers">
-              {{- range $pageNum := $paginator.Pagers }}
-              {{- if eq $pageNum.PageNumber $paginator.PageNumber }}
-              <span class="c-paginator__number c-paginator__number--active">{{ printf "%02d" $pageNum.PageNumber }}</span>
-              {{- else }}
-              <a href="{{ $pageNum.URL }}" class="c-paginator__number">{{ printf "%02d" $pageNum.PageNumber }}</a>
-              {{- end }}
-              {{- end }}
+                    {{- /* Article list */ -}}
+                    {{- $paginator := $page.Paginate site.RegularPages }}
+                    {{- with $pages := $paginator.Pages }}
+                        <section class="c-article-list">
+                            {{- range $article := $pages }}
+                                {{ partial "article-card.html" $article }}
+                            {{- end }}
+                        </section>
+                    {{- end }}
+
+                    {{- /* Paginator */ -}}
+                    {{- if $paginator }}
+                        {{- if gt $paginator.TotalPages 1 }}
+                            <nav class="c-paginator" aria-label="Page navigation">
+                                {{- if $paginator.HasPrev }}
+                                    <a class="c-paginator__btn" href="{{ $paginator.Prev.URL }}" aria-label="Previous page">
+                                        {{ partial "svg/chevron-left.html" }}
+                                    </a>
+                                {{- else }}
+                                    <span class="c-paginator__btn" aria-disabled="true">
+                                        {{ partial "svg/chevron-left.html" }}
+                                    </span>
+                                {{- end }}
+
+                                <div class="c-paginator__numbers">
+                                    {{- range $pageNum := $paginator.Pagers }}
+                                        {{- if eq $pageNum.PageNumber $paginator.PageNumber }}
+                                            <span class="c-paginator__number c-paginator__number--active">{{ printf "%02d" $pageNum.PageNumber }}</span>
+                                        {{- else }}
+                                            <a href="{{ $pageNum.URL }}" class="c-paginator__number">{{ printf "%02d" $pageNum.PageNumber }}</a>
+                                        {{- end }}
+                                    {{- end }}
+                                </div>
+
+                                {{- if $paginator.HasNext }}
+                                    <a class="c-paginator__btn" href="{{ $paginator.Next.URL }}" aria-label="Next page">
+                                        {{ partial "svg/chevron-right.html" }}
+                                    </a>
+                                {{- else }}
+                                    <span class="c-paginator__btn" aria-disabled="true">
+                                        {{ partial "svg/chevron-right.html" }}
+                                    </span>
+                                {{- end }}
+                            </nav>
+                        {{- end }}
+                    {{- end }}
+
+                </div>
             </div>
-
-            {{- if $paginator.HasNext }}
-            <a class="c-paginator__btn" href="{{ $paginator.Next.URL }}" aria-label="Next page">
-              {{ partial "svg/chevron-right.html" }}
-            </a>
-            {{- else }}
-            <span class="c-paginator__btn" aria-disabled="true">
-              {{ partial "svg/chevron-right.html" }}
-            </span>
-            {{- end }}
-          </nav>
-          {{- end }}
-          {{- end }}
-
         </div>
-      </div>
+
+        {{- /* ─── Sidebar ─── */ -}}
+        <aside class="l-site__sidebar">
+            <div class="c-sidebar">
+
+                {{- /* Newsletter widget */ -}}
+                {{- with $newsletterEnabled := site.Params.enableNewsletter }}
+                    <div class="c-sidebar__widget c-sidebar__widget--newsletter">
+                        <div class="c-sidebar__widget-header">
+                            <span class="c-sidebar__widget-icon">{{ partial "svg/mail.html" }}</span>
+                            <h5 class="c-sidebar__widget-title">Dispatch</h5>
+                        </div>
+                        {{- with $freqText := site.Params.newsletter.frequencyText }}
+                            <p class="c-sidebar__widget-body">{{ $freqText }}</p>
+                        {{- end }}
+                        <form class="c-sidebar__form">
+                            <input class="c-sidebar__input" type="email" placeholder="EMAIL ADDRESS" required>
+                            <button class="c-sidebar__submit" type="submit">
+                                Subscribe
+                                <span class="c-sidebar__submit-icon">{{ partial "svg/arrow-forward.html" }}</span>
+                            </button>
+                        </form>
+                    </div>
+                {{- end }}
+
+                {{- /* Categories widget */ -}}
+                {{- with $categories := site.Taxonomies.categories }}
+                    <div class="c-sidebar__widget c-sidebar__widget--categories">
+                        <div class="c-sidebar__widget-header">
+                            <span class="c-sidebar__widget-icon">{{ partial "svg/search.html" }}</span>
+                            <h5 class="c-sidebar__widget-title">Categories</h5>
+                        </div>
+                        <div class="c-sidebar__category-list">
+                            {{- range $name, $taxonomy := $categories }}
+                                <a class="c-sidebar__category-link" href="{{ printf "/categories/%s/" $name | relURL }}">
+                                    <span class="c-sidebar__category-name">{{ $name }}</span>
+                                    <span class="c-sidebar__category-count">{{ printf "%02d" (len $taxonomy.Pages) }}</span>
+                                </a>
+                            {{- end }}
+                        </div>
+                    </div>
+                {{- end }}
+
+            </div>
+        </aside>
+
     </div>
-
-    {{- /* ─── Sidebar ─── */ -}}
-    <aside class="l-site__sidebar">
-      <div class="c-sidebar">
-
-        {{- /* Newsletter widget */ -}}
-        {{- with $newsletterEnabled := site.Params.enableNewsletter }}
-        <div class="c-sidebar__widget c-sidebar__widget--newsletter">
-          <div class="c-sidebar__widget-header">
-            <span class="c-sidebar__widget-icon">{{ partial "svg/mail.html" }}</span>
-            <h5 class="c-sidebar__widget-title">Dispatch</h5>
-          </div>
-          {{- with $freqText := site.Params.newsletter.frequencyText }}
-          <p class="c-sidebar__widget-body">{{ $freqText }}</p>
-          {{- end }}
-          <form class="c-sidebar__form">
-            <input class="c-sidebar__input" type="email" placeholder="EMAIL ADDRESS" required>
-            <button class="c-sidebar__submit" type="submit">
-              Subscribe
-              <span class="c-sidebar__submit-icon">{{ partial "svg/arrow-forward.html" }}</span>
-            </button>
-          </form>
-        </div>
-        {{- end }}
-
-        {{- /* Categories widget */ -}}
-        {{- with $categories := site.Taxonomies.categories }}
-        <div class="c-sidebar__widget c-sidebar__widget--categories">
-          <div class="c-sidebar__widget-header">
-            <span class="c-sidebar__widget-icon">{{ partial "svg/search.html" }}</span>
-            <h5 class="c-sidebar__widget-title">Categories</h5>
-          </div>
-          <div class="c-sidebar__category-list">
-            {{- range $name, $taxonomy := $categories }}
-            <a class="c-sidebar__category-link" href="{{ printf "/categories/%s/" $name | relURL }}">
-              <span class="c-sidebar__category-name">{{ $name }}</span>
-              <span class="c-sidebar__category-count">{{ printf "%02d" (len $taxonomy.Pages) }}</span>
-            </a>
-            {{- end }}
-          </div>
-        </div>
-        {{- end }}
-
-      </div>
-    </aside>
-
-  </div>
 {{ end }}
