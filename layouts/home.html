@@ -35,44 +35,7 @@
                             {{- end }}
                         </section>
                     {{- end }}
-
-                    {{- /* Paginator */ -}}
-                    {{- if $paginator }}
-                        {{- if gt $paginator.TotalPages 1 }}
-                            <nav class="c-paginator" aria-label="Page navigation">
-                                {{- if $paginator.HasPrev }}
-                                    <a class="c-paginator__btn" href="{{ $paginator.Prev.URL }}" aria-label="Previous page">
-                                        {{ partial "svg/chevron-left.html" }}
-                                    </a>
-                                {{- else }}
-                                    <span class="c-paginator__btn" aria-disabled="true">
-                                        {{ partial "svg/chevron-left.html" }}
-                                    </span>
-                                {{- end }}
-
-                                <div class="c-paginator__numbers">
-                                    {{- range $pageNum := $paginator.Pagers }}
-                                        {{- if eq $pageNum.PageNumber $paginator.PageNumber }}
-                                            <span class="c-paginator__number c-paginator__number--active">{{ printf "%02d" $pageNum.PageNumber }}</span>
-                                        {{- else }}
-                                            <a href="{{ $pageNum.URL }}" class="c-paginator__number">{{ printf "%02d" $pageNum.PageNumber }}</a>
-                                        {{- end }}
-                                    {{- end }}
-                                </div>
-
-                                {{- if $paginator.HasNext }}
-                                    <a class="c-paginator__btn" href="{{ $paginator.Next.URL }}" aria-label="Next page">
-                                        {{ partial "svg/chevron-right.html" }}
-                                    </a>
-                                {{- else }}
-                                    <span class="c-paginator__btn" aria-disabled="true">
-                                        {{ partial "svg/chevron-right.html" }}
-                                    </span>
-                                {{- end }}
-                            </nav>
-                        {{- end }}
-                    {{- end }}
-
+                    {{ partial "paginator.html" $paginator }}
                 </div>
             </div>
         </div>
