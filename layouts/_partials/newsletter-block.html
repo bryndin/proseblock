@@ -1,0 +1,20 @@
+{{- /* Newsletter CTA */ -}}
+
+{{- with $newsletterEnabled := site.Params.enableNewsletter }}
+<div class="c-newsletter">
+    <div class="c-newsletter__inner">
+    <h3 class="c-newsletter__label">Newsletter</h3>
+    <h2 class="c-newsletter__title">Stay Updated</h2>
+    {{- with $freqText := site.Params.newsletter.frequencyText }}
+    <p class="c-newsletter__body">{{ $freqText }}</p>
+    {{- end }}
+    <form class="c-newsletter__form">
+        <input class="c-newsletter__input" type="email" placeholder="Email Address" required>
+        <button class="c-newsletter__submit" type="submit">
+        Subscribe
+        <span class="c-newsletter__submit-icon">{{ partial "svg/arrow-forward.html" }}</span>
+        </button>
+    </form>
+    </div>
+</div>
+{{- end }}
