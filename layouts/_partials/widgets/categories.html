@@ -1,0 +1,17 @@
+{{- /* Categories widget */ -}}
+{{- with $categories := site.Taxonomies.categories }}
+    <div class="c-sidebar__widget c-sidebar__widget--categories">
+        <div class="c-sidebar__widget-header">
+            <span class="c-sidebar__widget-icon">{{ partial "svg/search.html" }}</span>
+            <h5 class="c-sidebar__widget-title">Categories</h5>
+        </div>
+        <div class="c-sidebar__category-list">
+            {{- range $name, $taxonomy := $categories }}
+                <a class="c-sidebar__category-link" href="{{ printf "/categories/%s/" $name | relURL }}">
+                    <span class="c-sidebar__category-name">{{ $name }}</span>
+                    <span class="c-sidebar__category-count">{{ printf "%02d" (len $taxonomy.Pages) }}</span>
+                </a>
+            {{- end }}
+        </div>
+    </div>
+{{- end }}
