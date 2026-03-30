@@ -44,25 +44,7 @@
         <aside class="l-site__sidebar">
             <div class="c-sidebar">
 
-                {{- /* Newsletter widget */ -}}
-                {{- with $newsletterEnabled := site.Params.enableNewsletter }}
-                    <div class="c-sidebar__widget c-sidebar__widget--newsletter">
-                        <div class="c-sidebar__widget-header">
-                            <span class="c-sidebar__widget-icon">{{ partial "svg/mail.html" }}</span>
-                            <h5 class="c-sidebar__widget-title">Dispatch</h5>
-                        </div>
-                        {{- with $freqText := site.Params.newsletter.frequencyText }}
-                            <p class="c-sidebar__widget-body">{{ $freqText }}</p>
-                        {{- end }}
-                        <form class="c-sidebar__form">
-                            <input class="c-sidebar__input" type="email" placeholder="EMAIL ADDRESS" required>
-                            <button class="c-sidebar__submit" type="submit">
-                                Subscribe
-                                <span class="c-sidebar__submit-icon">{{ partial "svg/arrow-forward.html" }}</span>
-                            </button>
-                        </form>
-                    </div>
-                {{- end }}
+                {{ partial "widgets/newsletter.html" (dict "enabled" site.Params.enableNewsletter "frequencyText" site.Params.newsletter.frequencyText) }}
 
                 {{- /* Categories widget */ -}}
                 {{- with $categories := site.Taxonomies.categories }}
