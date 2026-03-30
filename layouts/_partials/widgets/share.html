@@ -1,0 +1,9 @@
+{{- /* Share button */ -}}
+{{- if site.Params.enableSharing }}
+    <div class="c-sidebar__actions">
+        <button class="c-sidebar__share-btn" id="share-btn">
+            <span class="c-sidebar__share-icon">{{ partial "svg/share.html" }}</span>
+            <span class="c-sidebar__share-label">Share Dispatch</span>
+        </button>
+    </div>
+{{- end }}

@@ -50,7 +50,7 @@
 
     {{- /* Sidebar: TOC */ -}}
     <aside class="l-site__article-sidebar">
-      <div class="c-toc">
+      <div class="c-toc">   
         {{- /* Reading rail */ -}}
         <div class="c-toc__rail">
           <div class="c-toc__rail-fill" id="reading-progress"></div>
@@ -65,18 +65,9 @@
           </div>
           {{- end }}
           {{- end }}
-
-          {{- /* Share button */ -}}
-          {{- with $sharingEnabled := site.Params.enableSharing }}
-          <div class="c-toc__actions">
-            <button class="c-toc__share-btn" id="share-btn">
-              <span class="c-toc__share-icon">{{ partial "svg/share.html" }}</span>
-              <span class="c-toc__share-label">Share Dispatch</span>
-            </button>
-          </div>
-          {{- end }}
         </div>
       </div>
+      {{ partial "widgets/share.html" }}
     </aside>
 
     {{- /* Main content column */ -}}

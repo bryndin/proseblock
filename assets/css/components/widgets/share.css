@@ -1,0 +1,39 @@
+/* --- Share section --- */
+
+.c-sidebar__actions {
+    margin-top: var(--space-12);
+    padding-top: var(--space-12);
+    border-top: var(--border-width) solid var(--_separator);
+    padding-inline: var(--space-2);
+    opacity: 0.2;
+}
+
+.c-sidebar__share-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.c-sidebar__share-btn:hover .c-sidebar__share-icon {
+    transform: scale(var(--scale-subtle));
+}
+
+.c-sidebar__share-btn:hover .c-sidebar__share-label {
+    color: var(--_accent);
+}
+
+.c-sidebar__share-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--_accent);
+    transition: transform var(--duration-normal) var(--ease-default);
+}
+
+.c-sidebar__share-label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-ultra);
+    text-transform: uppercase;
+    color: var(--_text);
+    transition: color var(--duration-normal) var(--ease-default);
+}
