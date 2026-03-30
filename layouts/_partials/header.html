@@ -9,24 +9,24 @@
 
 {{- /* Left: menu toggle */ -}}
 <div class="c-header__start">
-  <button class="c-header__icon-btn c-header__icon-btn--menu" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">
-    {{ partial "svg/menu.html" }}
-  </button>
+    <button class="c-header__icon-btn c-header__icon-btn--menu" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">
+        {{ partial "svg/menu.html" }}
+    </button>
 </div>
 
 {{- /* Center: site title */ -}}
 <div class="c-header__center">
-  <a href="{{ "/" | relURL }}" class="c-header__title" aria-label="{{ site.Title }} — Home">{{ site.Title }}</a>
+    <a href="{{ "/" | relURL }}" class="c-header__title" aria-label="{{ site.Title }} — Home">{{ site.Title }}</a>
 </div>
 
 {{- /* Right: icon actions */ -}}
 <div class="c-header__end">
-  {{- with $searchEnabled := site.Params.enableSearch }}
-  <a href="{{ "search/" | relURL }}" class="c-header__icon-btn" aria-label="Search" id="search-btn">
-    {{ partial "svg/search.html" }}
-  </a>
-  {{- end }}
-  <button class="c-header__icon-btn" id="theme-toggle" aria-label="Toggle theme">
-    {{ partial "svg/contrast.html" }}
-  </button>
+    {{- with $searchEnabled := site.Params.enableSearch }}
+        <a href="{{ "search/" | relURL }}" class="c-header__icon-btn" aria-label="Search" id="search-btn">
+            {{ partial "svg/search.html" }}
+        </a>
+    {{- end }}
+    <button class="c-header__icon-btn" id="theme-toggle" aria-label="Toggle theme">
+        {{ partial "svg/contrast.html" }}
+    </button>
 </div>
