@@ -5,79 +5,68 @@
 */ -}}
 {{- $page := . -}}
 
-{{- /* 1. Define the deterministic layer order */ -}}
 {{- $layerNames := slice "reset" "tokens" "base" "layout" "components" "utilities" -}}
 
-{{- /* 2. Define patterns for each layer */ -}}
 {{- $layerMap := dict
   "reset"      (slice "css/reset.css")
   "tokens"     (slice "css/tokens.css")
   "base"       (slice "css/base.css")
   "layout"     (slice "css/layout/*.css")
-  "components" (slice "css/components/*.css")
+  "components" (slice "css/components/*.css" "css/components/widgets/*.css" )
   "utilities"  (slice "css/utilities.css")
 -}}
 
-{{- /* 3. Initialize the global bundle slice with the Layer Prelude */ -}}
-{{- /* This ensures browser priority even if files are added out of order */ -}}
-{{- $preludeContent := printf "@layer %s;\n" (delimit $layerNames ", ") -}}
-{{- $bundleSlice := slice ($preludeContent | resources.FromString "css/internal/prelude.css") -}}
+{{- /* 1. Build the entire CSS payload as a single string */ -}}
+{{- $fullCSS := printf "@layer %s;\n\n" (delimit $layerNames ", ") -}}
 
-{{- /* 4. Process each architectural layer */ -}}
 {{- range $name := $layerNames -}}
   {{- $currentLayerFiles := slice -}}
 
-  {{- /* A. Gather files matching the defined patterns for this layer */ -}}
-  {{- $patterns := index $layerMap $name -}}
-  {{- range $pattern := $patterns -}}
-    {{- $matches := resources.Match $pattern -}}
-    {{- range $match := $matches -}}
+  {{- /* Gather static files */ -}}
+  {{- range $pattern := index $layerMap $name -}}
+    {{- range $match := resources.Match $pattern -}}
       {{- $currentLayerFiles = $currentLayerFiles | append $match -}}
     {{- end -}}
   {{- end -}}
 
-  {{- /* B. Special Case: Inject dynamic components registered via .Store */ -}}
+  {{- /* Gather dynamic components */ -}}
   {{- if eq $name "components" -}}
-    {{- $dynamicCSS := $page.Store.Get "bundle-css" -}}
-    {{- if $dynamicCSS -}}
-      {{- range $resource := $dynamicCSS -}}
+    {{- with $page.Store.Get "bundle-css" -}}
+      {{- range $resource := . -}}
         {{- $currentLayerFiles = $currentLayerFiles | append $resource -}}
       {{- end -}}
     {{- end -}}
   {{- end -}}
 
-  {{- /* C. Wrap the accumulated files into the named @layer */ -}}
+  {{- /* Extract and wrap contents natively */ -}}
   {{- if gt (len $currentLayerFiles) 0 -}}
-    {{- /* Concatenate files in this layer first to get a single content block */ -}}
-    {{- $layerConcat := $currentLayerFiles | resources.Concat (printf "css/internal/raw-%s.css" $name) -}}
+    {{- $layerContent := slice -}}
+    {{- range $res := $currentLayerFiles -}}
+      {{- /* Reading .Content directly grabs fresh text on file save */ -}}
+      {{- $layerContent = $layerContent | append (printf "/* %s */\n%s" $res.Name $res.Content) -}}
+    {{- end -}}
     
-    {{- /* Wrap the content in the CSS @layer block */ -}}
-    {{- $wrappedContent := printf "@layer %s {\n%s\n}" $name $layerConcat.Content -}}
-    {{- $layerResource := $wrappedContent | resources.FromString (printf "css/internal/layer-%s.css" $name) -}}
-    
-    {{- $bundleSlice = $bundleSlice | append $layerResource -}}
+    {{- /* Append this layer to the global string */ -}}
+    {{- $fullCSS = printf "%s@layer %s {\n%s\n}\n\n" $fullCSS $name (delimit $layerContent "\n") -}}
   {{- end -}}
 {{- end -}}
 
-{{- /* 5. Final Pipeline Execution */ -}}
+{{- /* 2. Bypass Hugo's internal cache trap */ -}}
+{{- /* By hashing the intermediate string, we force Hugo to recognize the new content. */ -}}
+{{- $contentHash := md5 $fullCSS -}}
+{{- $rawResource := $fullCSS | resources.FromString (printf "css/internal/bundle-raw-%s.css" $contentHash) -}}
 
-{{- /* Concat all layers into one bundle */ -}}
-{{- $css := $bundleSlice | resources.Concat "css/bundle.css" -}}
-
-{{- /* 
-  ExecuteAsTemplate: This allows you to use Hugo variables inside your CSS.
-  We use a unique internal path in development to ensure fresh builds.
-*/ -}}
+{{- /* 3. Final Execution */ -}}
+{{- /* CRITICAL FIX: The target path here MUST be statically named in development! */ -}}
 {{- $targetPath := "css/bundle.css" -}}
-{{- if hugo.IsDevelopment -}}
-  {{- $targetPath = printf "css/bundle.%d.css" now.UnixNano -}}
-{{- end -}}
-{{- $css = $css | resources.ExecuteAsTemplate $targetPath $page -}}
+{{- $css := $rawResource | resources.ExecuteAsTemplate $targetPath $page -}}
 
-{{- /* 6. Output Final Link Tag */ -}}
+{{- /* 4. Output Final Link Tag */ -}}
 {{- if hugo.IsDevelopment -}}
+  {{- /* Live Reload will correctly match this static href and hot-swap the CSS */ -}}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 {{- else -}}
+  {{- /* Fingerprinting handles production caching natively */ -}}
   {{- $css = $css | minify | fingerprint -}}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
 {{- end -}}
