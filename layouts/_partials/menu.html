@@ -1,108 +1,75 @@
-{{- /*
-  menu.html — Full-screen navigation overlay.
-  Renders the .c-menu block with nav links, newsletter form,
-  social links, and desktop mission statement panel.
+{{- /* Main Menu */ -}}
+{{- $site := site -}}
+{{- $menu := $site.Menus.main -}}
+{{- $newsletter := $site.Params.newsletter -}}
+{{- $socials := $site.Params.socials -}}
 
-  @context {page}   .page   The current page context.
-  @context {string} .menuID The menu ID to render.
-
-  @example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
-*/ -}}
-{{- $page := .page -}}
-{{- $menuID := .menuID -}}
-
-<div class="c-menu" id="main-menu" aria-hidden="true" role="dialog" aria-label="Site navigation">
-
-  {{- /* ─── Left: Navigation Panel ─── */ -}}
-  <nav class="c-menu__nav" aria-label="Main navigation">
-    <div>
-      {{- /* Branding header */ -}}
-      <div class="c-menu__brand">
-        <div>
-          <span class="c-menu__brand-title">{{ site.Title }}</span>
-          {{- with $description := site.Params.description }}
-          <span class="c-menu__brand-tagline">{{ $description | truncate 40 }}</span>
-          {{- end }}
-        </div>
-        <button class="c-menu__close--mobile" aria-label="Close menu">
-          {{ partial "svg/close.html" }}
+<div class="c-drawer" id="site-menu" aria-hidden="true">
+    
+    <nav class="c-drawer__panel">
+        
+        {{- /* Close Button */ -}}
+        <button class="c-drawer__close-btn js-menu-close" aria-label="Close menu" aria-expanded="true">
+            {{ partial "svg/close.html" }}
         </button>
-      </div>
 
-      {{- /* Navigation links */ -}}
-      {{- with $menuEntries := index site.Menus $menuID }}
-      <div class="c-menu__links">
-        {{- range $entry := $menuEntries }}
-        <a class="c-menu__link" href="{{ $entry.URL }}">
-          {{- /* Icon per entry (optional via Params.icon on menu item) */ -}}
-          {{- with $icon := $entry.Params.icon }}
-          <span class="c-menu__link-icon">
-            {{ partial (printf "svg/%s.html" $icon) }}
-          </span>
-          {{- end }}
-          <span class="c-menu__link-text">{{ $entry.Name }}</span>
-        </a>
-        {{- end }}
-      </div>
-      {{- end }}
-    </div>
+        <div class="c-drawer__inner">
+            
+            <div class="c-drawer__header">
+                <span class="c-drawer__site-title">{{ $site.Title }}</span>
+                <span class="c-drawer__site-subtitle">The Digital Curator</span>
+            </div>
 
-    {{- /* Footer section (newsletter + social) */ -}}
-    <div class="c-menu__footer">
-      {{- /* Newsletter */ -}}
-      {{- with $newsletterEnabled := site.Params.enableNewsletter }}
-      <div class="c-menu__newsletter">
-        <h4 class="c-menu__newsletter-label">Newsletter</h4>
-        <form class="c-menu__newsletter-form">
-          <input class="c-menu__newsletter-input" type="email" placeholder="Email Address" required>
-          <button class="c-menu__newsletter-submit" type="submit">
-            Subscribe
-            <span class="c-menu__newsletter-submit-icon">{{ partial "svg/arrow-forward.html" }}</span>
-          </button>
-        </form>
-      </div>
-      {{- end }}
+            <div class="c-drawer__nav-scroll-wrapper">
+                <div class="c-drawer__nav-list">
+                    {{- if $menu }}
+                        {{- range $item := $menu }}
+                            <a href="{{ $item.URL | relURL }}" class="c-drawer__link group" title="{{ $item.Title }}">
+                                <span class="c-drawer__link-icon-wrapper">
+                                    {{- $iconPath := printf "svg/%s.html" ($item.Params.icon | default "circle") -}}
 
-      {{- /* Social links */ -}}
-      {{- with $social := site.Params.social }}
-      <div class="c-menu__social">
-        {{- with $twitter := $social.twitter }}
-        <a class="c-menu__social-link" href="{{ $twitter }}" title="Twitter / X" rel="noopener noreferrer" target="_blank">
-          {{ partial "svg/x-twitter.html" }}
-        </a>
-        {{- end }}
-        {{- with $github := $social.github }}
-        <a class="c-menu__social-link" href="{{ $github }}" title="GitHub" rel="noopener noreferrer" target="_blank">
-          {{ partial "svg/share.html" }}
-        </a>
-        {{- end }}
-        {{- with $rss := $social.rss }}
-        <a class="c-menu__social-link" href="{{ $rss }}" title="RSS Feed" rel="noopener noreferrer">
-          {{ partial "svg/mail.html" }}
-        </a>
-        {{- end }}
-      </div>
-      {{- end }}
-    </div>
-  </nav>
+                                    {{- /* Checking file existence dynamically */ -}}
+                                    {{- if templates.Exists (printf "_partials/%s" $iconPath) -}}
+                                        {{ partial $iconPath }}
+                                    {{- else -}}
+                                        {{ partial "svg/circle.html" }}
+                                    {{- end -}}
+                                </span>
+                                <span class="c-drawer__link-text">{{ $item.Name }}</span>
+                            </a>
+                        {{- end }}
+                    {{- end }}
+                </div>
+            </div>
 
-  {{- /* ─── Right: Mission Statement (desktop only) ─── */ -}}
-  <aside class="c-menu__aside">
-    <button class="c-menu__close--desktop" aria-label="Close menu">
-      {{ partial "svg/close.html" }}
-    </button>
-    <div class="c-menu__mission">
-      <p class="c-menu__mission-headline">
-        Curate<br>Every<br>Detail
-      </p>
-      <div>
-        {{- with $description := site.Params.description }}
-        <p class="c-menu__mission-body">{{ $description }}</p>
-        {{- end }}
-        <div class="c-menu__mission-rule"></div>
-      </div>
-    </div>
-    <div class="c-menu__texture"></div>
-  </aside>
+            <div class="c-drawer__footer">
+                <div class="c-drawer__newsletter">
+                    <h4 class="c-drawer__newsletter-title">Newsletter</h4>
 
+                    <form class="c-drawer__newsletter-form group" action="{{ $newsletter.action }}" method="POST">
+                        <input type="email" name="email" class="c-drawer__newsletter-input" placeholder="Email Address" required>
+                        <button type="submit" class="c-drawer__newsletter-submit">
+                            Subscribe 
+                            <span class="c-drawer__newsletter-arrow">
+                                {{ partial "svg/arrow-forward.html" }}
+                            </span>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="c-drawer__socials">
+                    {{- range $social := $socials }}
+                        <a href="{{ $social.url }}" class="c-drawer__social-link" title="{{ $social.name }}" target="_blank" rel="noopener noreferrer">
+                            <span class="c-drawer__social-icon">
+                                {{ partial (printf "svg/%s.html" $social.icon) }}
+                            </span>
+                        </a>
+                    {{- end }}
+                </div>
+            </div>
+            
+        </div>
+    </nav>
+
+    <div class="c-drawer__backdrop js-menu-close" aria-label="Close menu"></div>
 </div>

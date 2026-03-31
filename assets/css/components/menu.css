@@ -1,407 +1,284 @@
 /* ==========================================================================
-   COMPONENT: MENU — @layer components
-   .c-menu — Full-screen navigation overlay.
+   COMPONENT: Drawer Navigation
+   .c-drawer — Side-sliding navigation overlay with blurred backdrop
    ========================================================================== */
 
-.c-menu {
-  /* *** Arguments (The Public API) *************************************** */
-  --_bg: var(--menu-bg);
-  --_aside-bg: var(--menu-aside-bg);
-  --_text: var(--menu-text);
-  --_accent: var(--menu-accent);
-  --_icon: var(--menu-icon);
-  --_mission-text: var(--menu-mission-text);
-
-  /* *** Configuration (Internal Styling) ********************************* */
-  --_z: var(--z-menu);
-  --_padding: var(--space-12);
-  --_link-size: var(--text-4xl);
-  --_link-size-md: var(--text-5xl);
-  --_link-size-lg: var(--text-7xl);
-  --_icon-size-sm: var(--text-xl);
-  --_icon-size-md: var(--text-4xl);
-  --_icon-size-lg: var(--text-7xl);
-
-  position: fixed;
-  inset: 0;
-  z-index: var(--_z);
-  display: none;
-  background-color: var(--_bg);
-  transition: all var(--duration-menu) var(--ease-default);
-  overflow: hidden;
-}
-
-.c-menu[aria-hidden="false"] {
-  display: flex;
-  flex-direction: column;
-}
-
-@media (min-width: 1024px) {
-  .c-menu[aria-hidden="false"] {
-    flex-direction: row;
-  }
-}
-
-/* --- Left section: navigation links --- */
-
-.c-menu__nav {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: var(--_padding);
-  height: 100%;
-  width: 100%;
-  background-color: var(--_bg);
-  position: relative;
-  z-index: 10;
-  overflow-y: auto;
-}
-
-@media (min-width: 768px) {
-  .c-menu__nav {
-    padding: var(--space-20);
-  }
-}
-
-@media (min-width: 1024px) {
-  .c-menu__nav {
-    width: 50%;
-  }
-}
-
-/* --- Branding header --- */
-
-.c-menu__brand {
-  margin-bottom: var(--space-24);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-@media (min-width: 1024px) {
-  .c-menu__brand {
-    display: block;
-  }
-}
-
-.c-menu__brand-title {
-  font-size: var(--text-4xl);
-  font-weight: var(--weight-regular);
-  letter-spacing: var(--tracking-tight);
-  line-height: var(--leading-tight);
-  color: var(--_text);
-  display: block;
-  margin-bottom: var(--space-6);
-}
-
-@media (min-width: 768px) {
-  .c-menu__brand-title {
-    font-size: var(--text-5xl);
-    line-height: var(--leading-none);
-  }
-}
-
-@media (min-width: 1024px) {
-  .c-menu__brand-title {
-    font-size: var(--text-7xl);
-    line-height: var(--leading-none);
-  }
-}
-
-.c-menu__brand-tagline {
-  font-size: 0.65rem;
-  font-weight: var(--weight-bold);
-  letter-spacing: var(--tracking-mega);
-  text-transform: uppercase;
-  color: var(--_icon);
-  margin-left: var(--space-1);
-}
-
-/* --- Close button (mobile, inside nav) --- */
-
-.c-menu__close--mobile {
-  padding: var(--space-2);
-  display: block;
-}
-
-@media (min-width: 1024px) {
-  .c-menu__close--mobile {
-    display: none;
-  }
-}
-
-.c-menu__close--mobile svg {
-  width: 2rem;
-  height: 2rem;
-  color: var(--_text);
-}
-
-/* --- Navigation link list --- */
-
-.c-menu__links {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  overflow-x: hidden;
-}
-
-.c-menu__link {
-  display: flex;
-  align-items: center;
-  gap: var(--space-6);
-  padding-block: var(--space-3);
-  color: var(--_text);
-  transition: all var(--duration-normal) var(--ease-default);
-}
-
-.c-menu__link-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  color: var(--_icon);
-  opacity: 0.5;
-  transition: opacity var(--duration-normal) var(--ease-default);
-}
-
-@media (min-width: 768px) {
-  .c-menu__link-icon {
-    width: 2rem;
-    height: 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .c-menu__link-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-}
-
-.c-menu__link:hover .c-menu__link-icon {
-  opacity: 1;
-}
-
-.c-menu__link-text {
-  font-size: var(--text-3xl);
-  font-weight: var(--weight-light);
-  letter-spacing: var(--tracking-tighter);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: padding-left var(--duration-slow) var(--ease-default);
-}
-
-@media (min-width: 768px) {
-  .c-menu__link-text {
-    font-size: var(--text-4xl);
-  }
-}
-
-@media (min-width: 1024px) {
-  .c-menu__link-text {
-    font-size: var(--text-7xl);
-    line-height: var(--leading-none);
-  }
-}
-
-.c-menu__link:hover .c-menu__link-text {
-  padding-left: var(--space-4);
-}
-
-/* --- Footer section (newsletter + social) --- */
-
-.c-menu__footer {
-  display: flex;
-  flex-direction: column;
-}
-
-/* --- Menu newsletter --- */
-
-.c-menu__newsletter {
-  padding-block: var(--space-12);
-}
-
-@media (min-width: 768px) {
-  .c-menu__newsletter {
-    padding-block: var(--space-16);
-  }
-}
-
-.c-menu__newsletter-label {
-  font-size: var(--text-xs);
-  font-weight: var(--weight-bold);
-  letter-spacing: var(--tracking-ultra);
-  text-transform: uppercase;
-  color: var(--_accent);
-  margin-bottom: var(--space-8);
-}
-
-.c-menu__newsletter-form {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  gap: var(--space-2);
-  max-width: 24rem;
-  border-bottom: var(--border-width) solid oklch(from var(--_icon) l c h / 0.2);
-  transition: border-color var(--duration-normal) var(--ease-default);
-}
-
-.c-menu__newsletter-form:focus-within {
-  border-color: var(--_accent);
-}
-
-.c-menu__newsletter-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  padding: 0;
-  font-size: var(--text-sm);
-  font-weight: var(--weight-light);
-  outline: none;
-}
-
-.c-menu__newsletter-input::placeholder {
-  color: var(--_icon);
-  opacity: 0.4;
-}
-
-.c-menu__newsletter-submit {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--text-xs);
-  font-weight: var(--weight-bold);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
-  color: var(--_text);
-  white-space: nowrap;
-  transition: color var(--duration-normal) var(--ease-default);
-}
-
-.c-menu__newsletter-submit:hover {
-  color: var(--_accent);
-}
-
-.c-menu__newsletter-submit-icon {
-  width: 1rem;
-  height: 1rem;
-  transition: transform var(--duration-normal) var(--ease-default);
-}
-
-.c-menu__newsletter-submit:hover .c-menu__newsletter-submit-icon {
-  transform: translateX(0.25rem);
-}
-
-/* --- Social links --- */
-
-.c-menu__social {
-  display: flex;
-  gap: var(--space-6);
-}
-
-.c-menu__social-link {
-  color: var(--_icon);
-  transition: color var(--duration-normal) var(--ease-default);
-}
-
-.c-menu__social-link:hover {
-  color: var(--_accent);
-}
-
-.c-menu__social-link svg {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-/* --- Right section: mission statement (desktop only) --- */
-
-.c-menu__aside {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  padding: var(--space-20);
-  height: 100%;
-  width: 50%;
-  background-color: var(--_aside-bg);
-  opacity: 0.5;
-  position: relative;
-}
-
-@media (min-width: 1024px) {
-  .c-menu__aside {
+.c-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
     display: flex;
-  }
+    visibility: hidden;
+    pointer-events: none;
+    transition: visibility 0.7s ease;
 }
 
-/* --- Close button (desktop) --- */
-
-.c-menu__close--desktop {
-  position: absolute;
-  top: var(--space-12);
-  right: var(--space-12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--space-16);
-  height: var(--space-16);
-  transition: transform var(--duration-normal) var(--ease-default);
+.c-drawer.is-open {
+    visibility: visible;
+    pointer-events: auto;
 }
 
-.c-menu__close--desktop:hover {
-  transform: scale(1.1);
+/* --- Blurred Backdrop --- */
+
+.c-drawer__backdrop {
+    flex: 1;
+    background-color: rgba(var(--color-inverse-surface-rgb, 40, 45, 50), 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.c-menu__close--desktop svg {
-  width: 3rem;
-  height: 3rem;
-  color: var(--_text);
-  stroke-width: 1;
+.c-drawer.is-open .c-drawer__backdrop {
+    opacity: 1;
 }
 
-/* --- Mission text --- */
+/* --- Sidebar Panel --- */
 
-.c-menu__mission {
-  max-width: 28rem;
-  text-align: right;
-  user-select: none;
+.c-drawer__panel {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh; 
+    width: 100%;
+    background-color: var(--color-surface-container-low, #f7f9fd);
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    
+    transform: translateX(-100%);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.c-menu__mission-headline {
-  font-size: var(--text-hero);
-  line-height: 0.8;
-  font-weight: var(--weight-black);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-tighter);
-  color: var(--_mission-text);
-  opacity: 0.4;
-  margin-bottom: var(--space-8);
+@media (min-width: 640px) { .c-drawer__panel { width: 85%; } }
+@media (min-width: 768px) { .c-drawer__panel { width: 60%; } }
+@media (min-width: 1024px) { .c-drawer__panel { width: 45%; } }
+
+.c-drawer.is-open .c-drawer__panel {
+    transform: translateX(0);
 }
 
-.c-menu__mission-body {
-  font-weight: var(--weight-medium);
-  line-height: var(--leading-relaxed);
-  color: var(--_icon);
-  max-width: 20rem;
-  margin-left: auto;
-  padding-right: var(--space-2);
+/* --- Fixed Close Button (Kills the Huge X Bug) --- */
+
+.c-drawer__close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-on-surface);
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    z-index: 20;
 }
 
-.c-menu__mission-rule {
-  width: var(--space-12);
-  height: 2px;
-  background-color: var(--_accent);
-  margin-left: auto;
-  margin-top: var(--space-4);
+.c-drawer__close-btn:hover {
+    opacity: 0.6;
 }
 
-/* --- Background texture --- */
+/* Hard-locks the SVG size so it cannot explode */
+.c-drawer__close-btn svg {
+    width: 32px;
+    height: 32px;
+    display: block;
+}
 
-.c-menu__texture {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  opacity: 0.05;
-  pointer-events: none;
-  background-image: radial-gradient(var(--color-gray-900) 1px, transparent 1px);
-  background-size: 40px 40px;
+/* --- Flex Constraints for Dynamic Scaling --- */
+
+.c-drawer__inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0; 
+    /* Dynamic padding: shrinks from 4rem to 2rem on short screens */
+    padding: clamp(2rem, 5vh, 4rem); 
+}
+
+/* --- Header Branding --- */
+
+.c-drawer__header {
+    flex-shrink: 0; 
+    /* Dynamic margin: shrinks from 3rem to 1.5rem on short screens */
+    margin-bottom: clamp(1.5rem, 4vh, 3rem); 
+}
+
+.c-drawer__site-title {
+    display: block;
+    font-size: clamp(2.25rem, 4vw, 3.75rem);
+    font-weight: 200; 
+    letter-spacing: 0.4em; 
+    text-transform: uppercase;
+    color: var(--color-on-surface);
+    line-height: 1;
+    margin-bottom: var(--space-4, 1rem);
+}
+
+.c-drawer__site-subtitle {
+    display: block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--color-outline);
+}
+
+/* --- Navigation Links (The Magic Scaling Block) --- */
+
+.c-drawer__nav-scroll-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0; 
+    overflow-y: auto;
+    scrollbar-width: none; /* Hides scrollbar for cleaner look if needed */
+}
+
+.c-drawer__nav-scroll-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.c-drawer__nav-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-evenly; 
+    min-height: min-content; /* Critical: prevents items from squishing together */
+}
+
+.c-drawer__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4, 1rem);
+    padding: clamp(0.25rem, 1vh, 0.5rem) 0; 
+    color: var(--color-on-surface);
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.c-drawer__link-icon-wrapper {
+    color: rgba(var(--color-on-surface-variant-rgb, 100, 100, 100), 0.4);
+    transition: color 0.3s ease;
+    display: flex;
+}
+
+.c-drawer__link-icon-wrapper svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.c-drawer__link:hover .c-drawer__link-icon-wrapper {
+    color: var(--color-primary);
+}
+
+.c-drawer__link-text {
+    /* Magic Typography Scaling based on Viewport Height */
+    font-size: clamp(1.25rem, 4vh, 2.5rem); 
+    font-weight: 200; 
+    letter-spacing: -0.05em;
+    transition: padding-left 0.3s ease;
+}
+
+.c-drawer__link:hover .c-drawer__link-text {
+    padding-left: 0.5rem;
+}
+
+/* --- Footer (Newsletter & Socials) --- */
+
+.c-drawer__footer {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    /* Dynamic gap and margin so footer pulls up out of the way on short screens */
+    gap: clamp(1.5rem, 4vh, 3rem);
+    margin-top: clamp(2rem, 5vh, 6rem); 
+}
+
+.c-drawer__newsletter {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6, 1.5rem);
+}
+
+.c-drawer__newsletter-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+}
+
+.c-drawer__newsletter-form {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-2, 0.5rem);
+    max-width: 24rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(var(--color-on-surface-variant-rgb, 100, 100, 100), 0.2);
+    transition: border-color 0.3s ease;
+}
+
+.c-drawer__newsletter-form:focus-within {
+    border-color: var(--color-primary);
+}
+
+.c-drawer__newsletter-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: var(--color-on-surface);
+    outline: none;
+}
+
+.c-drawer__newsletter-submit {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2, 0.5rem);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-on-surface);
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.c-drawer__newsletter-submit:hover {
+    color: var(--color-primary);
+}
+
+.c-drawer__newsletter-arrow svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.c-drawer__newsletter-submit:hover .c-drawer__newsletter-arrow svg {
+    transform: translateX(4px);
+}
+
+.c-drawer__socials {
+    display: flex;
+    gap: var(--space-8, 2rem);
+}
+
+.c-drawer__social-link {
+    color: var(--color-on-surface-variant);
+    transition: color 0.3s ease;
+}
+
+.c-drawer__social-link:hover {
+    color: var(--color-primary);
+}
+
+.c-drawer__social-icon svg {
+    width: 22px;
+    height: 22px;
 }
