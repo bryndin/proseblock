@@ -85,6 +85,17 @@
 }
 
 .l-site__article-sidebar {
+  /* Make the entire sidebar sticky */
+  position: sticky;
+  top: 10rem; /* Matches Tailwind's top-40 */
+  
+  /* Layout ToC and Share Button with a gap */
+  display: flex;
+  flex-direction: column;
+  gap: 3rem; /* Matches Tailwind's space-y-12 */
+    
+  /* Ensure the sidebar aligns to the top so stickiness triggers correctly */
+  align-self: flex-start; 
   width: 100%;
 }
 

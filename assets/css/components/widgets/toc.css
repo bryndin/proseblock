@@ -15,6 +15,7 @@
     --_link-size: 11px; 
     --_link-weight: var(--weight-semibold);
     --_rail-width: 2px;
+    --_text-transform: uppercase;
 
     position: sticky;
     top: var(--space-10);
@@ -62,7 +63,7 @@
     font-size: var(--_link-size);
     font-weight: var(--_link-weight);
     letter-spacing: var(--tracking-widest);
-    text-transform: uppercase;
+    text-transform: var(--_text-transform);
     text-decoration: none;
     color: var(--_text);
     
@@ -125,6 +126,45 @@
     width: 3.5rem;
     background-color: var(--_accent);
     opacity: 1;
+}
+
+/* --- Floating Title --- */
+
+.c-toc__floating-title {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    margin-bottom: 0;
+    /* Smooth expand/collapse matching Tailwind's duration-500 ease-in-out */
+    transition: opacity 0.5s ease-in-out, 
+                max-height 0.5s ease-in-out, 
+                margin-bottom 0.5s ease-in-out;
+}
+
+/* Toggled via JS when Hero is out of view */
+.c-toc__floating-title.is-visible {
+    opacity: 1;
+    max-height: 15rem; /* Large enough to fit multiline titles */
+    margin-bottom: var(--space-4, 1rem);
+}
+
+.c-toc__floating-title a {
+    display: block;
+    /* padding-left matches the indentation of the ToC list items below it */
+    padding: var(--space-4, 1rem) var(--space-4, 1rem) var(--space-4, 1rem) var(--space-4, 1rem);
+    font-size: var(--_link-size);
+    font-weight: var(--_link-weight);
+    letter-spacing: var(--tracking-widest);
+    text-transform: var(--_text-transform);
+    text-decoration: none;
+    color: var(--_text);
+
+    transition: color var(--duration-normal) var(--ease-default);
+    cursor: pointer;
+}
+
+.c-toc__floating-title a:hover {
+    color: var(--_text-hover);
 }
 
 /* --- Reading rail --- */

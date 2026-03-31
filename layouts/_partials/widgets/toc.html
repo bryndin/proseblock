@@ -8,13 +8,20 @@
     </div>
 
     <div class="c-toc__body">
-        {{- /* Table of contents (Hugo-generated) */ -}}
-        {{- with $toc := $page.TableOfContents }}
-            {{- if and (site.Params.enableTOC) $toc }}
-                <div class="c-toc__list">
+        <div class="c-toc__list">
+            
+            {{- /* 1. New Floating Title */ -}}
+            <div class="c-toc__floating-title" id="floating-title-container">
+                <a href="#">{{ $page.Title }}</a>
+            </div>
+
+            {{- /* 2. Table of contents (Hugo-generated) */ -}}
+            {{- with $toc := $page.TableOfContents }}
+                {{- if and (site.Params.enableTOC) $toc }}
                     {{ $toc }}
-                </div>
+                {{- end }}
             {{- end }}
-        {{- end }}
+            
+        </div>
     </div>
 </div>

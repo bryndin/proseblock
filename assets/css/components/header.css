@@ -25,9 +25,38 @@
   padding-inline: var(--_padding-x);
   background-color: var(--_bg);
   color: var(--_text);
-  position: sticky;
+
+  /* Ensure the header is fixed and has a transition */
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: var(--_z);
+  /* Replicates the cubic-bezier smoothness from the design */
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.4s ease;
+}
+
+/* State class triggered by JS */
+.c-header.is-hidden {
+    transform: translateY(-100%);
+}
+
+/* Reading Progress transition */
+#reading-progress {
+    transition: height 0.1s ease-out;
+}
+
+#floating-title-container {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+#floating-title-container.is-visible {
+    opacity: 1;
+    max-height: 10rem; /* roughly maps to max-h-40 */
 }
 
 /* --- Left section (menu toggle) --- */

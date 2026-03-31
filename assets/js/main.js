@@ -1,12 +1,7 @@
 import { initPaginatorCompact } from "./components/paginator-compact.js";
-// import { initTableOfContents } from "./components/toc.js";
-// import { initMenu } from "./components/menu.js";
-// import { initHeaderSearch, initSearchPage } from "./components/search.js";
+import { initHeaderScroll } from "./components/header-scroll.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initPaginatorCompact();
-  // initTableOfContents();
-  // initMenu();
-  // initHeaderSearch();
-  // initSearchPage();
+  initHeaderScroll();
 });
