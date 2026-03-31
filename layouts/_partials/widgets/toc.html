@@ -1,27 +1,34 @@
 {{- /* TOC widget */ -}}
-{{ $page := . }}
+{{- $page := . -}}
 
-<div class="c-toc">
-    {{- /* Reading rail */ -}}
-    <div class="c-toc__rail">
-        <div class="c-toc__rail-fill" id="reading-progress"></div>
-    </div>
+{{- /* 1. Determine if TOC is enabled (Global fallback, Local override) */ -}}
+{{- $isEnabled := site.Params.enableTOC -}}
+{{- if isset $page.Params "enabletoc" -}}
+    {{- $isEnabled = $page.Params.enabletoc -}}
+{{- end -}}
 
-    <div class="c-toc__body">
-        <div class="c-toc__list">
-            
-            {{- /* 1. New Floating Title */ -}}
-            <div class="c-toc__floating-title" id="floating-title-container">
-                <a href="#">{{ $page.Title }}</a>
-            </div>
+{{- /* 2. Render Widget */ -}}
+{{- if $isEnabled -}}
+    <div class="c-toc">
+        {{- /* Reading rail */ -}}
+        <div class="c-toc__rail">
+            <div class="c-toc__rail-fill" id="reading-progress"></div>
+        </div>
 
-            {{- /* 2. Table of contents (Hugo-generated) */ -}}
-            {{- with $toc := $page.TableOfContents }}
-                {{- if and (site.Params.enableTOC) $toc }}
+        <div class="c-toc__body">
+            <div class="c-toc__list">
+                
+                {{- /* Floating Title */ -}}
+                <div class="c-toc__floating-title" id="floating-title-container">
+                    <a href="{{ $page.RelPermalink }}" aria-label="Scroll to top of article">{{ $page.Title }}</a>
+                </div>
+
+                {{- /* Table of contents (Hugo-generated) */ -}}
+                {{- with $toc := $page.TableOfContents -}}
                     {{ $toc }}
-                {{- end }}
-            {{- end }}
-            
+                {{- end -}}
+                
+            </div>
         </div>
     </div>
-</div>
+{{- end -}}

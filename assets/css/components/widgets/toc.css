@@ -17,11 +17,13 @@
     --_rail-width: 2px;
     --_text-transform: uppercase;
 
-    position: sticky;
-    top: var(--space-10);
     display: flex;
     gap: 0;
     align-items: stretch;
+
+    /* Allow the ToC to fill the sidebar but shrink if it needs to */
+    flex: 1;
+    min-height: 0; 
 }
 
 /* --- TOC body --- */
@@ -30,6 +32,29 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    
+    /* CRITICAL FOR P1: This forces the text to scroll! */
+    overflow-y: auto;
+    min-height: 0; /* CRITICAL: Allows the scroll container to activate */
+    
+    /* Add padding so the scrollbar doesn't touch your text */
+    padding-right: 1rem; 
+    
+    /* Optional: Minimalist scrollbar styling (Firefox) */
+    scrollbar-width: thin;
+    scrollbar-color: var(--_separator) transparent;
+}
+
+/* Optional: Minimalist scrollbar styling (Chrome/Safari/Edge) */
+.c-toc__body::-webkit-scrollbar {
+    width: 4px;
+}
+.c-toc__body::-webkit-scrollbar-track {
+    background: transparent;
+}
+.c-toc__body::-webkit-scrollbar-thumb {
+    background-color: var(--_separator);
+    border-radius: 4px;
 }
 
 /* --- Hugo Generated Link List --- */

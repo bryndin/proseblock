@@ -83,10 +83,21 @@ export function initHeaderScroll() {
     if (floatingTitleLink) {
         floatingTitleLink.addEventListener('click', (e) => {
             e.preventDefault();
+            
+            // 1. Smoothly scroll to the top
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
+
+            // 2. Clean the URL (Remove the hash)
+            // This grabs the current path (e.g., /posts/markdown-test/) and strips any #hash
+            const cleanUrl = window.location.pathname + window.location.search;
+            
+            // pushState updates the URL bar without reloading the page.
+            // It also adds to the browser history, so hitting the "Back" button 
+            // will take the user back to the header they were just reading!
+            history.pushState(null, '', cleanUrl);
         });
     }
 }
