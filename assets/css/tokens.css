@@ -331,6 +331,16 @@
    --metadata-dot: var(--text-secondary);
    --metadata-icon-size: var(--size-icon-ui);
    --metadata-dot-size: var(--size-dot);
+
+   /* --- 404 Error Page --- */
+   --hero-error-title-text: var(--text-primary);
+   --hero-error-subtitle-text: var(--text-secondary);
+
+   --error-nav-bg: var(--bg-card); /* Maps to your 'bg-surface-container-lowest' equivalent */
+   --error-nav-text-primary: var(--text-primary);
+   --error-nav-text-secondary: var(--text-secondary);
+   --error-nav-text-accent: var(--accent);
+   --error-nav-text-heading: var(--outline);
 }
 
 /* =====================================================================
