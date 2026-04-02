@@ -7,6 +7,9 @@
 */ -}}
 {{ define "main" }}
 {{- $page := . -}}
+{{- $searchParams := site.Params.widgets | default dict -}}
+{{- $catLimit := index $searchParams "CategoriesLimit" | default 5 -}}
+{{- $tagLimit := index $searchParams "TagsLimit" | default 4 -}}
 
     {{- /* ─── Hero Section ─── */ -}}
     <header class="c-hero c-hero--home">
@@ -35,7 +38,7 @@
                             {{- end }}
                         </section>
                     {{- end }}
-                    {{ partial "paginator.html" $paginator }}
+                    {{ partial "paginator.html" (dict "mode" "ssr" "paginator" $paginator) }}
                 </div>
             </div>
         </div>
@@ -45,7 +48,8 @@
             <div class="c-sidebar">
                 {{- /* TODO(DB): Newsleter widget is badly styled */ -}}
                 {{ partial "widgets/newsletter.html" (dict "enabled" site.Params.enableNewsletter "frequencyText" site.Params.newsletter.frequencyText) }}
-                {{ partial "widgets/categories.html" }}
+                {{ partial "widgets/categories.html" (dict "mode" "ssr" "limit" $catLimit) }}
+                {{ partial "widgets/tags.html" (dict "mode" "ssr" "limit" $tagLimit) }}
                 {{- /* TODO(DB): Missing Announcement widget */ -}}
             </div>
         </aside>

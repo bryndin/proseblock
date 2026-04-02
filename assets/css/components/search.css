@@ -1,181 +1,339 @@
 /* ==========================================================================
-   COMPONENT: SEARCH — @layer components
-   .c-search — Search hub hero and category sidebar.
-   ========================================================================== */
-
-.c-search {
-  /* *** Arguments (The Public API) *************************************** */
+    HERO SEARCH (Modifier of .c-hero)
+    ========================================================================== */
+.c-hero--search {
+  --_bg: var(--bg-secondary);
   --_text: var(--search-text);
   --_placeholder: var(--search-placeholder);
-  --_underline: var(--search-underline);
   --_accent: var(--search-accent);
-  --_category-text: var(--search-category-text);
-  --_category-count: var(--search-category-count);
-  --_quote-bg: var(--search-quote-bg);
-  --_quote-text: var(--search-quote-text);
+  --_underline: var(--search-underline);
+  --_border: var(--hero-border);
 
-  /* *** Configuration (Internal Styling) ********************************* */
-  --_input-size: var(--text-5xl);
-  --_underline-height: 2px;
-
-  margin-bottom: var(--space-24);
+  background-color: var(--_bg);
+  color: var(--_text);
+  border: var(--border-width) solid oklch(from var(--_border) l c h / 40%);
 }
 
-/* --- Search input hero --- */
+@media (width >= 768px) {
+  .c-hero--search {
+    padding: var(--space-24);
+  }
+}
 
-.c-search__hero {
+.c-hero--search__group {
+  display: flex;
+  flex-direction: column;
   position: relative;
+  max-width: var(--max-w-hero);
+  margin-inline: auto;
 }
 
-.c-search__label {
+.c-hero--search__label {
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  margin-bottom: var(--space-4);
-  opacity: 0.4;
-}
-
-.c-search__label-icon {
-  width: 1.875rem;
-  height: 1.875rem;
-}
-
-.c-search__label-text {
-  font-size: var(--text-sm);
+  opacity: 0.6;
+  margin-bottom: var(--space-6);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  /* Designers dropped this to 10px in the new file */
   font-weight: var(--weight-bold);
-  letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
 }
 
-.c-search__input {
+/* Target SVG directly */
+.c-hero--search__label svg {
+  width: 1.5rem;
+  /* text-2xl */
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
+.c-hero--search__input {
   width: 100%;
   background: transparent;
   border: none;
   padding: 0;
-  font-size: var(--_input-size);
+  font-size: var(--text-5xl);
   font-weight: var(--weight-extralight);
   letter-spacing: var(--tracking-tight);
-  line-height: var(--leading-none);
   color: var(--_text);
   outline: none;
 }
 
-@media (min-width: 768px) {
-  .c-search__input {
-    font-size: var(--text-7xl);
-    line-height: var(--leading-none);
-  }
-}
-
-.c-search__input::placeholder {
+.c-hero--search__input::placeholder {
   color: var(--_placeholder);
 }
 
-.c-search__underline {
-  height: var(--_underline-height);
+@media (width >= 768px) {
+  .c-hero--search__input {
+    font-size: var(--text-7xl);
+  }
+}
+
+.c-hero--search__indicator {
+  height: 1px;
   width: 100%;
   background-color: var(--_underline);
-  margin-top: var(--space-6);
+  margin-top: var(--space-8);
   position: relative;
   overflow: hidden;
 }
 
-.c-search__underline-accent {
+.c-hero--search__indicator-bar {
   position: absolute;
   inset: 0;
   width: 6rem;
   background-color: var(--_accent);
   transform: translateX(-100%);
-  transition: transform 1s ease-in-out;
+  transition: transform 1s var(--ease-default);
 }
 
-.c-search__input:focus~.c-search__underline .c-search__underline-accent {
+.c-hero--search__group:focus-within .c-hero--search__indicator-bar {
   transform: translateX(500%);
 }
 
-/* --- Category list (search sidebar) --- */
+/* ==========================================================================
+     SEARCH RESULTS (Main Area)
+     ========================================================================== */
+.c-search-results {
+  --_bg: var(--bg-card);
+  --_shadow: 40px 0 60px -20px oklch(27% 0.015 230 / 0.02);
+  /* Designer's new softer shadow */
 
-.c-search__categories {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-12);
-}
-
-.c-search__section-title {
-  font-size: var(--text-sm);
-  font-weight: var(--weight-bold);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
-  color: var(--_text);
-  opacity: 0.6;
-  margin-bottom: var(--space-8);
-}
-
-.c-search__category-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.c-search__category-link {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  padding-block: var(--space-2);
-  transition: all var(--duration-normal) var(--ease-default);
-}
-
-.c-search__category-name {
-  font-size: var(--text-xl);
-  font-weight: var(--weight-light);
-  line-height: var(--leading-xl);
-  transition: padding-left var(--duration-normal) var(--ease-default);
-}
-
-.c-search__category-link:hover .c-search__category-name {
-  padding-left: var(--space-2);
-}
-
-.c-search__category-count {
-  font-size: var(--text-xs);
-  font-weight: var(--weight-bold);
-  color: var(--_category-count);
-  opacity: 0;
-  transition: opacity var(--duration-normal) var(--ease-default);
-}
-
-.c-search__category-link:hover .c-search__category-count {
-  opacity: 1;
-}
-
-/* --- Quote block --- */
-
-.c-search__quote {
+  background-color: var(--_bg);
+  box-shadow: var(--_shadow);
   padding: var(--space-8);
-  background-color: var(--_quote-bg);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-medium);
-  font-style: italic;
-  line-height: var(--leading-relaxed);
-  color: var(--_quote-text);
+  min-height: 600px;
 }
 
-/* --- Featured articles section title --- */
+@media (min-width: 768px) {
+  .c-search-results {
+    padding: var(--space-12);
+  }
+}
 
-.c-search__featured-title {
-  font-size: var(--text-sm);
+/* ==========================================================================
+     SIDEBAR WIDGETS
+     ========================================================================== */
+.c-search-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+/* General Title (Filter Results) */
+.c-search-widget__title {
+  --_text: var(--text-secondary);
+
+  font-size: var(--text-xs);
+  /* text-[10px] */
   font-weight: var(--weight-bold);
-  letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
   color: var(--_text);
-  opacity: 0.6;
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-6);
 }
 
-/* --- Featured articles list --- */
+/* New Taxonomy Title Header */
+.c-search-widget__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
 
-.c-search__results {
+.c-search-widget__header svg {
+  width: 0.875rem;
+  /* text-[14px] */
+  height: 0.875rem;
+  color: var(--text-primary);
+  opacity: 0.6;
+}
+
+.c-search-widget__subtitle {
+  font-size: var(--text-tiny);
+  /* text-[11px] */
+  font-weight: var(--weight-black);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-mega);
+  /* tracking-[0.4em] */
+  color: var(--text-primary);
+}
+
+/* Filters */
+.c-search-filter {
+  margin-bottom: var(--space-5);
+}
+
+.c-search-filter__label {
+  --_text: var(--text-secondary);
+
+  display: block;
+  font-size: var(--text-2xs);
+  /* text-[9px] */
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--_text);
+  opacity: 0.5;
+  margin-bottom: var(--space-2);
+}
+
+/* Dropdown System */
+.c-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.c-dropdown__toggle {
+  --_bg: var(--bg-tertiary);
+  /* bg-surface-container */
+  --_bg-hover: var(--bg-elevated);
+  /* bg-surface-variant */
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: var(--_bg);
+  border: none;
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-light);
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background-color var(--duration-normal) var(--ease-default);
+}
+
+.c-dropdown__toggle:hover {
+  background-color: var(--_bg-hover);
+}
+
+.c-dropdown__toggle svg {
+  width: var(--size-icon-ui);
+  height: var(--size-icon-ui);
+  opacity: 0.4;
+  transition: transform var(--duration-fast);
+}
+
+.c-dropdown__menu {
+  --_bg: var(--bg-tertiary);
+  --_border: var(--border-muted);
+
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--_bg);
+  border-top: 1px solid var(--_border);
+  box-shadow: var(--shadow-ambient);
+  z-index: 100;
+  max-height: 15rem;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.c-dropdown.is-open .c-dropdown__menu {
+  display: block;
+}
+
+.c-dropdown.is-open .c-dropdown__toggle svg {
+  transform: rotate(180deg);
+}
+
+.c-dropdown__option {
+  --_bg-hover: var(--bg-elevated);
+
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-light);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background-color var(--duration-normal) var(--ease-default);
+}
+
+.c-dropdown__option:hover,
+.c-dropdown__option[aria-selected="true"] {
+  background-color: var(--_bg-hover);
+}
+
+/* Suggested Links (New Typography) */
+.c-search-suggested {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  max-width: 200px;
+  /* Designers specifically requested this wrapper restriction */
+}
+
+.c-search-suggested__link {
+  --_text: var(--text-primary);
+  --_accent: var(--accent);
+  --_count: var(--text-secondary);
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--_text);
+}
+
+.c-search-suggested__text {
+  font-size: var(--text-xs);
+  /* text-[10px] */
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  transition: color var(--duration-normal) var(--ease-default);
+}
+
+.c-search-suggested__count {
+  font-size: var(--text-2xs);
+  /* text-[9px] */
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-widest);
+  color: var(--_count);
+  opacity: 0.4;
+  margin-bottom: 1px;
+  /* items-end alignment fix from designers */
+}
+
+.c-search-suggested__link:hover .c-search-suggested__text {
+  color: var(--_accent);
+}
+
+
+/* ==========================================================================
+    SEARCH UTILITIES (Replaces inline JS styling)
+    ========================================================================== */
+.c-search-empty {
+  font-size: var(--text-xl);
+  color: var(--text-secondary);
+  opacity: 0.6;
+  margin-top: var(--space-8);
+}
+
+/* Disabled state for paginator chevron generated by JS */
+.c-paginator__btn[aria-disabled="true"] {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Button resets for pagination triggers */
+button.c-paginator__btn--interactive {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
 }

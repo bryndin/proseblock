@@ -1,17 +1,41 @@
-{{- /* Categories widget */ -}}
-{{- with $categories := site.Taxonomies.categories }}
-    <div class="c-sidebar__widget c-sidebar__widget--categories">
-        <div class="c-sidebar__widget-header">
-            <span class="c-sidebar__widget-icon">{{ partial "svg/search.html" }}</span>
-            <h5 class="c-sidebar__widget-title">Categories</h5>
+{{- $mode := .mode | default "ssr" -}}
+{{- $title := .title | default "Categories" -}}
+{{- $icon := .icon | default "svg/categories.html" -}}
+{{- $limit := .limit | default 10 -}}
+
+{{- if eq $mode "ssr" -}}
+    {{- with $categories := site.Taxonomies.categories -}}
+        <div class="c-sidebar__widget c-sidebar__widget--categories">
+            <div class="c-sidebar__widget-header">
+                <span class="c-sidebar__widget-icon">{{ partial (printf "%s" $icon) }}</span>
+                <h5 class="c-sidebar__widget-title">{{ $title }}</h5>
+            </div>
+            <div class="c-sidebar__category-list">
+                {{- $sorted := $categories.ByCount -}}
+                {{- range first $limit $sorted -}}
+                    <a class="c-sidebar__category-link" href="{{ .Page.RelPermalink }}">
+                        <span class="c-sidebar__category-name">{{ .Page.Title }}</span>
+                        <span class="c-sidebar__category-count">{{ printf "%02d" .Count }}</span>
+                    </a>
+                {{- end -}}
+            </div>
         </div>
-        <div class="c-sidebar__category-list">
-            {{- range $name, $taxonomy := $categories }}
-                <a class="c-sidebar__category-link" href="{{ printf "/categories/%s/" $name | relURL }}">
-                    <span class="c-sidebar__category-name">{{ $name }}</span>
-                    <span class="c-sidebar__category-count">{{ printf "%02d" (len $taxonomy.Pages) }}</span>
-                </a>
-            {{- end }}
+    {{- end -}}
+{{- else if eq $mode "csr" -}}
+    <div class="c-search-widget">
+        <div class="c-search-widget__header">
+            {{ partial (printf "%s" $icon) }}
+            <h5 class="c-search-widget__subtitle">{{ $title }}</h5>
         </div>
+        <ul class="c-search-suggested" id="dynamic-categories-container" data-limit="{{ $limit }}"></ul>
     </div>
-{{- end }}
+    
+    <template id="tpl-suggested-category">
+        <li class="c-search-suggested__item">
+            <button type="button" class="c-search-suggested__link" data-filter-category="{NAME_LOWER}" style="appearance:none; background:transparent; border:none; width:100%; text-align:left; cursor:pointer; padding:0; font-family:inherit;">
+                <span class="c-search-suggested__text">{NAME}</span>
+                <span class="c-search-suggested__count">{COUNT}</span>
+            </button>
+        </li>
+    </template>
+{{- end -}}

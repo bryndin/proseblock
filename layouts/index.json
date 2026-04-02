@@ -1,0 +1,37 @@
+{{- /* layouts/index.json */ -}}
+{{- $page := . -}}
+{{- $pages := where site.RegularPages "Type" "in" (slice "posts" "post" "articles") -}}
+{{- $index := slice -}}
+
+{{- range $p := $pages -}}
+  {{- $date := $p.Date | time.Format "Jan 2, 2006" -}}
+  {{- $timestamp := $p.Date.Unix -}}
+  {{- $title := $p.Title -}}
+  {{- $permalink := $p.RelPermalink -}}
+  {{- $summary := $p.Summary | plainify -}}
+  {{- $content := $p.Plain -}}
+  
+  {{- /* Extract Categories */ -}}
+  {{- $catNames := slice -}}
+  {{- $categories := $p.GetTerms "categories" -}}
+  {{- range $cat := $categories -}}
+    {{- $catNames = $catNames | append $cat.LinkTitle -}}
+  {{- end -}}
+
+  {{- /* Extract Tags */ -}}
+  {{- $tagNames := slice -}}
+  {{- $tags := $p.GetTerms "tags" -}}
+  {{- range $tag := $tags -}}
+    {{- $tagNames = $tagNames | append $tag.LinkTitle -}}
+  {{- end -}}
+
+  {{- /* Pre-render the article-card partial on the server! */ -}}
+  {{- $html := partial "article-card.html" $p -}}
+
+  {{- /* Add "tags" to your dict */ -}}
+  {{- $item := dict "title" $title "permalink" $permalink "date" $date "timestamp" $timestamp "summary" $summary "content" $content "categories" $catNames "tags" $tagNames "html" $html -}}
+  {{- $index = $index | append $item -}}
+
+{{- end -}}
+
+{{- $index | jsonify -}}

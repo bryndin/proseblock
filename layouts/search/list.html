@@ -1,0 +1,94 @@
+{{- define "main" -}}
+  {{- $page := . -}}
+  {{- $searchUrl := "index.json" | absURL -}}
+  {{- $searchParams := site.Params.search | default dict -}}
+  {{- $maxResults := index $searchParams "maxResults" | default 8 -}}
+  {{- $catLimit := index $searchParams "categoriesLimit" | default 5 -}}
+  {{- $tagLimit := index $searchParams "tagsLimit" | default 4 -}}
+
+  <header class="c-hero c-hero--search">
+    <div class="c-hero__inner">
+      <div class="c-hero--search__label">
+        {{ partial "svg/search.html" }}
+        <span>Search the site</span>
+      </div>
+      
+      <input type="text" id="search-input" class="c-hero--search__input" placeholder="Type here..." aria-label="Search query" autofocus>
+      
+      <div class="c-hero--search__indicator" aria-hidden="true">
+        <div class="c-hero--search__indicator-bar"></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="l-site__columns">
+    <div class="l-site__main">
+      <div class="u-home-main">
+        <div class="u-home-main__sections">
+          
+          {{- /* Search Results Container */ -}}
+          <section id="search-results-container" class="c-article-list" data-max-results="{{ $maxResults }}" data-search-url="{{ $searchUrl }}" aria-live="polite"></section>
+          
+          <div id="search-pagination-container"></div>
+          
+          {{- /* Call the EXACT same partial, but in Client-Side mode! */ -}}
+          {{ partial "paginator.html" (dict "mode" "csr") }}
+          
+          <template id="tpl-chevron-left">{{ partial "svg/chevron-left.html" }}</template>
+          <template id="tpl-chevron-right">{{ partial "svg/chevron-right.html" }}</template>
+        </div>
+      </div>
+    </div>
+
+    {{- /* Sidebar */ -}}
+    <aside class="l-site__sidebar">
+      <div class="c-sidebar c-search-sidebar">
+        
+        {{- /* Filter Widget */ -}}
+        <div class="c-search-widget">
+          <h2 class="c-search-widget__title">Filter Results</h2>
+          <div class="c-search-filter">
+            <label class="c-search-filter__label">Category</label>
+            <div class="c-dropdown" id="dropdown-category">
+              <button class="c-dropdown__toggle" aria-haspopup="listbox" aria-expanded="false" type="button">
+                <span class="c-dropdown__value">All Categories</span>
+                {{ partial "svg/chevron-down.html" }}
+              </button>
+              <ul class="c-dropdown__menu" role="listbox">
+                <li class="c-dropdown__option" role="option" aria-selected="true" data-value="all">All Categories</li>
+                {{- with $categories := site.Taxonomies.categories -}}
+                  {{- range $name, $taxonomy := $categories -}}
+                    <li class="c-dropdown__option" role="option" aria-selected="false" data-value="{{ $name | lower }}">{{ $name | title }}</li>
+                  {{- end -}}
+                {{- end -}}
+              </ul>
+              <input type="hidden" id="filter-category" value="all">
+            </div>
+          </div>
+          <div class="c-search-filter">
+            <label class="c-search-filter__label">Timeline</label>
+            <div class="c-dropdown" id="dropdown-timeline">
+              <button class="c-dropdown__toggle" aria-haspopup="listbox" aria-expanded="false" type="button">
+                <span class="c-dropdown__value">Any time</span>
+                {{ partial "svg/chevron-down.html" }}
+              </button>
+              <ul class="c-dropdown__menu" role="listbox">
+                <li class="c-dropdown__option" role="option" aria-selected="true" data-value="all">Any time</li>
+                <li class="c-dropdown__option" role="option" aria-selected="false" data-value="86400">Past 24 hours</li>
+                <li class="c-dropdown__option" role="option" aria-selected="false" data-value="604800">Past week</li>
+                <li class="c-dropdown__option" role="option" aria-selected="false" data-value="2592000">Past month</li>
+                <li class="c-dropdown__option" role="option" aria-selected="false" data-value="31536000">Past year</li>
+              </ul>
+              <input type="hidden" id="filter-date" value="all">
+            </div>
+          </div>
+        </div>
+
+        {{- /* Inject the Dual-Mode Partials for Search! */ -}}
+        {{ partial "widgets/categories.html" (dict "mode" "csr" "title" "Suggested Categories" "limit" $catLimit) }}
+        {{ partial "widgets/tags.html" (dict "mode" "csr" "title" "Suggested Tags" "limit" $tagLimit) }}
+
+      </div>
+    </aside>
+  </div>
+{{- end -}}
