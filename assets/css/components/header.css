@@ -26,8 +26,8 @@
   background-color: var(--_bg);
   color: var(--_text);
 
-  /* Ensure the header is fixed and has a transition */
-  position: fixed;
+  /* Ensure the header is sticky and has a transition */
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;

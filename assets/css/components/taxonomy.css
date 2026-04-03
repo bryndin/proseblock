@@ -1,48 +1,4 @@
 /* ==========================================================================
-     TAXONOMY HERO (Modifier of .c-hero)
-     ========================================================================== */
-.c-hero--taxonomy {
-    /* *** Arguments (The Public API) *************************************** */
-    --_bg: var(--bg-secondary);
-    --_border: var(--border-muted);
-
-    /* *** Configuration (Internal Styling) ********************************* */
-    --_padding-y: var(--space-24);
-    --_padding-x: var(--space-12);
-
-    background-color: var(--_bg);
-    border: var(--border-width) solid var(--_border);
-    padding: var(--_padding-y) var(--_padding-x);
-    margin-bottom: var(--space-16);
-}
-
-@media (min-width: 768px) {
-    .c-hero--taxonomy {
-        --_padding-x: var(--space-20);
-    }
-}
-
-/* Target the inherited .c-hero__title to apply the softer taxonomy style */
-.c-hero--taxonomy .c-hero__title {
-    font-size: var(--text-4xl);
-    font-weight: var(--weight-regular);
-    letter-spacing: var(--tracking-tight);
-    line-height: var(--leading-tight);
-}
-
-@media (min-width: 768px) {
-    .c-hero--taxonomy .c-hero__title {
-        font-size: var(--text-5xl);
-    }
-}
-
-@media (min-width: 1024px) {
-    .c-hero--taxonomy .c-hero__title {
-        font-size: var(--text-7xl);
-    }
-}
-
-/* ==========================================================================
      CATEGORIES PAGE GRID
      ========================================================================== */
 .c-category-grid {
