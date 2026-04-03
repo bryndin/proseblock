@@ -1,7 +1,112 @@
-{{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-  {{ end }}
-{{ end }}
+{{- /* 
+  layouts/_default/term.html 
+  Renders the paginated article list for a specific Taxonomy Term.
+*/ -}}
+{{- define "main" -}}
+  {{- $page := . -}}
+
+  {{- /* 1. Determine Title Prefix Logic */ -}}
+  {{- $title := $page.Title -}}
+  {{- $prefix := "" -}}
+  {{- if eq $page.Type "tags" -}}
+    {{- $title = printf "#%s" $page.Title -}}
+    {{- $prefix = "Tag: " -}}
+  {{- else if eq $page.Type "categories" -}}
+    {{- $prefix = "Category: " -}}
+  {{- end -}}
+
+  {{- /* 2. Taxonomy Hero (Reuses our existing component) */ -}}
+  <header class="c-hero c-hero--taxonomy">
+    <div class="c-hero__inner">
+      <h2 class="c-hero__title">
+        {{- if $prefix -}}<span style="opacity: 0.6; font-weight: 300;">{{ $prefix }}</span>{{- end -}}
+        {{- $title -}}
+      </h2>
+      {{- with $content := $page.Content -}}
+        <div class="c-hero__subtitle">{{ $content }}</div>
+      {{- else -}}
+        <p class="c-hero__subtitle">
+          Exploring a curated collection of articles, essays, and perspectives related to this topic.
+        </p>
+      {{- end -}}
+    </div>
+  </header>
+
+  {{- /* 3. Two-Column Layout (Matching Home Page) */ -}}
+  <div class="l-site__columns">
+    
+    {{- /* Main Content Area */ -}}
+    <div class="l-site__main">
+      <div class="u-home-main">
+        <div class="u-home-main__sections">
+          
+          {{- /* Reuses Home Page Pagination Logic */ -}}
+          {{- $paginator := $page.Paginate $page.Pages -}}
+          {{- with $pages := $paginator.Pages -}}
+            <section class="c-article-list">
+              {{- range $article := $pages -}}
+                {{ partial "article-card.html" $article }}
+              {{- end -}}
+            </section>
+          {{- end -}}
+          {{ partial "paginator.html" (dict "mode" "ssr" "paginator" $paginator) }}
+
+        </div>
+      </div>
+    </div>
+
+    {{- /* Sidebar */ -}}
+    <aside class="l-site__sidebar">
+      <div class="c-sidebar">
+        
+        {{- /* Newsletter Widget */ -}}
+        {{- $newsletterEnabled := false -}}
+        {{- $newsletterFreq := "Weekly" -}}
+        {{- with $nlParams := site.Params.newsletter -}}
+          {{- $newsletterFreq = index $nlParams "frequencyText" | default "Weekly" -}}
+        {{- end -}}
+        {{- with $enable := site.Params.enableNewsletter -}}{{- $newsletterEnabled = $enable -}}{{- end -}}
+        {{ partial "widgets/newsletter.html" (dict "enabled" $newsletterEnabled "frequencyText" $newsletterFreq) }}
+        
+        {{- /* 4. Calculate Related Categories (Server-Side Logic) */ -}}
+        {{- $relatedCats := slice -}}
+        {{- range site.Taxonomies.categories.ByCount -}}
+          {{- if ne .Page.Title $page.Title -}}
+            {{- /* Intersect checks which articles share BOTH terms */ -}}
+            {{- $common := intersect $page.Pages .Pages -}}
+            {{- if gt (len $common) 0 -}}
+              {{- $relatedCats = $relatedCats | append (dict "Page" .Page "Count" (len $common)) -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+        {{- $sortedCats := sort $relatedCats "Count" "desc" -}}
+
+        {{- /* 5. Calculate Related Tags (Server-Side Logic) */ -}}
+        {{- $relatedTags := slice -}}
+        {{- range site.Taxonomies.tags.ByCount -}}
+          {{- if ne .Page.Title $page.Title -}}
+            {{- $common := intersect $page.Pages .Pages -}}
+            {{- if gt (len $common) 0 -}}
+              {{- $relatedTags = $relatedTags | append (dict "Page" .Page "Count" (len $common)) -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+        {{- $sortedTags := sort $relatedTags "Count" "desc" -}}
+
+        {{- /* Extract Limits from Config */ -}}
+        {{- $catLimit := 5 -}}
+        {{- $tagLimit := 5 -}}
+        {{- with $widgetParams := site.Params.widgets -}}
+          {{- with $limit := index $widgetParams "categoriesLimit" -}}{{- $catLimit = $limit -}}{{- end -}}
+          {{- with $limit := index $widgetParams "tagsLimit" -}}{{- $tagLimit = $limit -}}{{- end -}}
+        {{- end -}}
+
+        {{- /* Render the SSR Widgets using our calculated data arrays! */ -}}
+        {{ partial "widgets/categories.html" (dict "mode" "ssr" "title" "Related Categories" "limit" $catLimit "terms" $sortedCats) }}
+        {{ partial "widgets/tags.html" (dict "mode" "ssr" "title" "Related Tags" "limit" $tagLimit "terms" $sortedTags) }}
+
+      </div>
+    </aside>
+
+  </div>
+{{- end -}}

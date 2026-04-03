@@ -1,29 +1,31 @@
 {{- $mode := .mode | default "ssr" -}}
 {{- $title := .title | default "Tags" -}}
-{{- $icon := .icon | default "svg/tags.html" -}}
 {{- $limit := .limit | default 15 -}}
+{{- $terms := .terms | default site.Taxonomies.tags.ByCount -}}
 
 {{- if eq $mode "ssr" -}}
-    {{- with $tags := site.Taxonomies.tags -}}
-        <div class="c-sidebar__widget c-sidebar__widget--tags">
-            <div class="c-sidebar__widget-header">
-                <span class="c-sidebar__widget-icon">{{ partial (printf "%s" $icon) }}</span>
-                <h5 class="c-sidebar__widget-title">{{ $title }}</h5>
-            </div>
-            <div class="c-sidebar__category-list">
-                {{- $sorted := $tags.ByCount -}}
-                {{- range first $limit $sorted -}}
-                    <a class="c-sidebar__category-link" href="{{ .Page.RelPermalink }}">
-                        <span class="c-sidebar__category-name">#{{ .Page.Title }}</span>
-                    </a>
-                {{- end -}}
-            </div>
+    <div class="c-search-widget">
+        <div class="c-search-widget__header">
+            {{ partial "svg/tags.html" }}
+            <h5 class="c-search-widget__subtitle">{{ $title }}</h5>
         </div>
-    {{- end -}}
+        <ul class="c-search-suggested">
+            {{- range first $limit $terms -}}
+                {{- $page := .Page -}}
+                {{- $count := .Count -}}
+                <li class="c-search-suggested__item">
+                    <a href="{{ $page.RelPermalink }}" class="c-search-suggested__link">
+                        <span class="c-search-suggested__text">#{{ $page.Title }}</span>
+                        <span class="c-search-suggested__count">{{ printf "%02d" $count }}</span>
+                    </a>
+                </li>
+            {{- end -}}
+        </ul>
+    </div>
 {{- else if eq $mode "csr" -}}
     <div class="c-search-widget">
         <div class="c-search-widget__header">
-            {{ partial (printf "%s" $icon) }}
+            {{ partial "svg/tags.html" }}
             <h5 class="c-search-widget__subtitle">{{ $title }}</h5>
         </div>
         <ul class="c-search-suggested" id="dynamic-tags-container" data-limit="{{ $limit }}"></ul>

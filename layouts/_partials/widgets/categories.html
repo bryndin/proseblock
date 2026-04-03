@@ -1,30 +1,32 @@
 {{- $mode := .mode | default "ssr" -}}
 {{- $title := .title | default "Categories" -}}
-{{- $icon := .icon | default "svg/categories.html" -}}
 {{- $limit := .limit | default 10 -}}
+{{- /* Use custom passed terms, fallback to site-wide taxonomy if missing */ -}}
+{{- $terms := .terms | default site.Taxonomies.categories.ByCount -}}
 
 {{- if eq $mode "ssr" -}}
-    {{- with $categories := site.Taxonomies.categories -}}
-        <div class="c-sidebar__widget c-sidebar__widget--categories">
-            <div class="c-sidebar__widget-header">
-                <span class="c-sidebar__widget-icon">{{ partial (printf "%s" $icon) }}</span>
-                <h5 class="c-sidebar__widget-title">{{ $title }}</h5>
-            </div>
-            <div class="c-sidebar__category-list">
-                {{- $sorted := $categories.ByCount -}}
-                {{- range first $limit $sorted -}}
-                    <a class="c-sidebar__category-link" href="{{ .Page.RelPermalink }}">
-                        <span class="c-sidebar__category-name">{{ .Page.Title }}</span>
-                        <span class="c-sidebar__category-count">{{ printf "%02d" .Count }}</span>
-                    </a>
-                {{- end -}}
-            </div>
+    <div class="c-search-widget">
+        <div class="c-search-widget__header">
+            {{ partial "svg/categories.html" }}
+            <h5 class="c-search-widget__subtitle">{{ $title }}</h5>
         </div>
-    {{- end -}}
+        <ul class="c-search-suggested">
+            {{- range first $limit $terms -}}
+                {{- $page := .Page -}}
+                {{- $count := .Count -}}
+                <li class="c-search-suggested__item">
+                    <a href="{{ $page.RelPermalink }}" class="c-search-suggested__link">
+                        <span class="c-search-suggested__text">{{ $page.Title }}</span>
+                        <span class="c-search-suggested__count">{{ printf "%02d" $count }}</span>
+                    </a>
+                </li>
+            {{- end -}}
+        </ul>
+    </div>
 {{- else if eq $mode "csr" -}}
     <div class="c-search-widget">
         <div class="c-search-widget__header">
-            {{ partial (printf "%s" $icon) }}
+            {{ partial "svg/categories.html" }}
             <h5 class="c-search-widget__subtitle">{{ $title }}</h5>
         </div>
         <ul class="c-search-suggested" id="dynamic-categories-container" data-limit="{{ $limit }}"></ul>

@@ -1,0 +1,80 @@
+{{- /* 
+  layouts/categories/terms.html 
+  Index of all categories, sorted by count.
+*/ -}}
+{{- define "main" -}}
+  {{- $page := . -}}
+
+  {{- /* Taxonomy Hero (Uses base .c-hero so header-scroll.js hooks automatically) */ -}}
+  <header class="c-hero c-hero--taxonomy">
+    <div class="c-hero__inner">
+      {{- /* Pulls Title and Content dynamically from content/categories/_index.md */ -}}
+      <h2 class="c-hero__title">{{ $page.Title | default "Categories" }}</h2>
+      {{- with $content := $page.Content -}}
+        <div class="c-hero__subtitle">{{ $content }}</div>
+      {{- else -}}
+        <p class="c-hero__subtitle">
+          A curated structural hierarchy of our editorial archives. Organized by discipline, medium, and philosophical intent.
+        </p>
+      {{- end -}}
+    </div>
+  </header>
+
+  <div class="l-site__columns">
+    
+    {{- /* Main Column (Inherits white card shadow exactly like Home) */ -}}
+    <div class="l-site__main">
+      <div class="u-home-main">
+        <div class="u-home-main__sections">
+          
+          <div class="c-category-grid">
+            {{- /* Get Categories sorted by highest count */ -}}
+            {{- $taxonomies := $page.Data.Terms.ByCount -}}
+            {{- range $index, $term := $taxonomies -}}
+              
+              {{- /* BEM Card Component */ -}}
+              <div class="c-category-card">
+                <a href="{{ $term.Page.RelPermalink }}" class="c-category-card__link">
+                  <div class="c-category-card__header">
+                    {{- /* 1-based index with zero-padding (01, 02) */ -}}
+                    <span class="c-category-card__index">{{ printf "%02d" (add $index 1) }}</span>
+                    <span class="c-category-card__count">{{ printf "%02d" $term.Count }} ARTICLES</span>
+                  </div>
+                  <h3 class="c-category-card__title">{{ $term.Page.Title }}</h3>
+                </a>
+              </div>
+
+            {{- end -}}
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    {{- /* Sidebar */ -}}
+    <aside class="l-site__sidebar">
+      <div class="c-sidebar">
+        {{- /* Extract Newsletter config securely */ -}}
+        {{- $newsletterEnabled := false -}}
+        {{- $newsletterFreq := "Weekly" -}}
+        {{- with $nlParams := site.Params.newsletter -}}
+          {{- $newsletterFreq = index $nlParams "frequencyText" | default "Weekly" -}}
+        {{- end -}}
+        {{- with $enable := site.Params.enableNewsletter -}}{{- $newsletterEnabled = $enable -}}{{- end -}}
+        
+        {{ partial "widgets/newsletter.html" (dict "enabled" $newsletterEnabled "frequencyText" $newsletterFreq) }}
+        
+        {{- /* 
+          Re-use our Dual-Mode Widget! 
+          Limits pulled from the hugo.toml we setup earlier. 
+        */ -}}
+        {{- $tagLimit := 15 -}}
+        {{- with $widgetParams := site.Params.widgets -}}
+          {{- with $limit := index $widgetParams "tagsLimit" -}}{{- $tagLimit = $limit -}}{{- end -}}
+        {{- end -}}
+        {{ partial "widgets/tags.html" (dict "mode" "ssr" "title" "Tags" "limit" $tagLimit) }}
+      </div>
+    </aside>
+
+  </div>
+{{- end -}}
