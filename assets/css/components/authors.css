@@ -1,0 +1,84 @@
+@layer components {
+  /* ==========================================================================
+     AUTHOR INDEX PAGE
+     ========================================================================== */
+
+  .c-author-index {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-24);
+  }
+
+  .c-author-section__title {
+    /* *** Arguments (The Public API) *************************************** */
+    --_text: var(--text-secondary);
+    --_border: var(--border-muted); /* surface-container-high */
+
+    font-size: var(--text-xs); /* text-[10px] */
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-mega); /* tracking-[0.4em] */
+    text-transform: uppercase;
+    color: var(--_text);
+    opacity: 0.4;
+    padding-bottom: var(--space-4);
+    margin-bottom: var(--space-8);
+    border-bottom: 1px solid var(--_border);
+  }
+
+  .c-author-section__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: var(--space-12);
+    row-gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .c-author-section__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* ==========================================================================
+     AUTHOR CARD
+     ========================================================================== */
+     
+  .c-author-card {
+    /* *** Arguments (The Public API) *************************************** */
+    --_border: var(--border-subtle);
+    --_border-hover: var(--accent);
+    --_text: var(--text-primary);
+    --_text-hover: var(--accent);
+    --_meta: var(--text-secondary);
+    
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-block: var(--space-2);
+    border-bottom: 1px solid oklch(from var(--_border) l c h / 0.5);
+    text-decoration: none;
+    transition: border-color var(--duration-normal) var(--ease-default);
+  }
+
+  .c-author-card:hover {
+    border-bottom-color: var(--_border-hover);
+  }
+
+  .c-author-card__name {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-tight);
+    color: var(--_text);
+    transition: color var(--duration-normal) var(--ease-default);
+  }
+
+  .c-author-card:hover .c-author-card__name {
+    color: var(--_text-hover);
+  }
+
+  .c-author-card__count {
+    font-size: var(--text-xs); /* text-[10px] */
+    font-weight: var(--weight-black);
+    color: var(--_meta);
+    opacity: 0.3;
+  }
+}

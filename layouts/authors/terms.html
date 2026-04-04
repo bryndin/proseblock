@@ -1,0 +1,116 @@
+{{- /* 
+  layouts/authors/terms.html 
+  Index of all authors, grouped alphabetically. Uses the Article Page Layout.
+*/ -}}
+{{- define "main" -}}
+  {{- $page := . -}}
+
+  {{- /* 1. Pre-calculate Alphabetical Buckets for the TOC */ -}}
+  {{- $authors := $page.Data.Terms.Alphabetical -}}
+  {{- $letters := slice -}}
+  {{- range $term := $authors -}}
+    {{- $firstChar := substr $term.Page.Title 0 1 | upper -}}
+    {{- if not (in $letters $firstChar) -}}
+      {{- $letters = $letters | append $firstChar -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- /* 2. Taxonomy Hero */ -}}
+  <header class="c-hero c-hero--taxonomy">
+    <div class="c-hero__inner">
+      <h2 class="c-hero__title">{{ $page.Title | default "Authors" }}</h2>
+      {{- with $content := $page.Content -}}
+        <div class="c-hero__subtitle">{{ $content }}</div>
+      {{- else -}}
+        <p class="c-hero__subtitle">
+          Meet the minds behind the curation. A collective of minimalists and digital architects focused on high-density information and structural clarity.
+        </p>
+      {{- end -}}
+    </div>
+  </header>
+
+  {{- /* 3. Article Layout Grid (80/20 Split from page.html) */ -}}
+  <div class="l-site__columns--article">
+
+    {{- /* Left Sidebar: Table of Contents */ -}}
+    <aside class="l-site__article-sidebar">
+      <div class="c-toc">
+        
+        {{- /* Reading Progress Rail */ -}}
+        <div class="c-toc__rail">
+          <div class="c-toc__rail-fill" id="reading-progress"></div>
+        </div>
+
+        <div class="c-toc__body">
+          <div class="c-toc__list">
+            
+            {{- /* Floating Title (Reveals on scroll) */ -}}
+            <div class="c-toc__floating-title" id="floating-title-container">
+              <a href="{{ $page.RelPermalink }}" aria-label="Scroll to top">{{ $page.Title | default "Authors" }}</a>
+            </div>
+
+            {{- /* Dynamic TOC Nav targeting the exact c-toc CSS */ -}}
+            <nav id="TableOfContents">
+              <ul>
+                {{- range $letter := $letters -}}
+                  <li>
+                    <a href="#section-{{ $letter | lower }}">{{ $letter }}</a>
+                  </li>
+                {{- end -}}
+              </ul>
+            </nav>
+
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    {{- /* Right Main Column */ -}}
+    <div class="l-site__article-body">
+      {{- /* article-container ID is critical for header-scroll.js to calculate progress! */ -}}
+      <div class="l-article-content" id="article-container">
+        
+        {{- /* Uses c-article to inherit the white background, padding, and editorial shadow */ -}}
+        <article class="c-article">
+          <div class="c-author-index">
+            
+            {{- $currentLetter := "" -}}
+            
+            {{- range $term := $authors -}}
+              {{- $firstChar := substr $term.Page.Title 0 1 | upper -}}
+              
+              {{- /* If letter changes, close the old grid and open a new section */ -}}
+              {{- if ne $firstChar $currentLetter -}}
+                {{- if ne $currentLetter "" -}}
+                    </div> <!-- c-author-section__grid -->
+                  </div> <!-- c-author-section -->
+                {{- end -}}
+                
+                <div id="section-{{ $firstChar | lower }}" class="c-author-section">
+                  <h3 class="c-author-section__title">{{ $firstChar }}</h3>
+                  <div class="c-author-section__grid">
+                
+                {{- $currentLetter = $firstChar -}}
+              {{- end -}}
+
+              {{- /* BEM Component for Author Card */ -}}
+              <a href="{{ $term.Page.RelPermalink }}" class="c-author-card">
+                <span class="c-author-card__name">{{ $term.Page.Title }}</span>
+                <span class="c-author-card__count">{{ printf "%02d" $term.Count }} ARTICLES</span>
+              </a>
+
+            {{- end -}}
+            
+            {{- /* Close the final bucket */ -}}
+            {{- if ne $currentLetter "" -}}
+                </div> <!-- c-author-section__grid -->
+              </div> <!-- c-author-section -->
+            {{- end -}}
+
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+{{- end -}}
