@@ -1,0 +1,113 @@
+{{- /* 
+  layouts/authors/term.html 
+  Renders the paginated article list for a specific Author.
+*/ -}}
+{{- define "main" -}}
+  {{- $page := . -}}
+
+  {{- /* 1. Author Hero (Extends .c-hero--taxonomy for border/bg, adds --author for flex layout) */ -}}
+  <header class="c-hero c-hero--taxonomy c-hero--author">
+    <div class="c-hero__inner c-hero__inner--author">
+      
+      {{- /* Avatar (Pulled from Author's _index.md front matter: `avatar: "images/julian.jpg"`) */ -}}
+      {{- with $avatar := $page.Params.avatar -}}
+        <div class="c-hero__avatar-wrapper">
+          <img src="{{ $avatar | relURL }}" alt="{{ $page.Title }}" class="c-hero__avatar">
+        </div>
+      {{- end -}}
+
+      <div class="c-hero__author-content">
+        <h2 class="c-hero__title">{{ $page.Title }}</h2>
+        {{- with $content := $page.Content -}}
+          <div class="c-hero__subtitle">{{ $content }}</div>
+        {{- end -}}
+        
+        {{- /* Social Links (Array in front matter: `social: [{name: "X", icon: "brand_awareness", url: "#"}]`) */ -}}
+        {{- with $socials := $page.Params.social -}}
+          <div class="c-hero__social">
+            {{- range $social := $socials -}}
+              <a href="{{ $social.url }}" class="c-hero__social-link" target="_blank" rel="noopener noreferrer">
+                <span class="c-hero__social-icon">{{ partial (printf "svg/%s.html" $social.icon) . }}</span>
+                <span class="c-hero__social-name">{{ $social.name }}</span>
+              </a>
+            {{- end -}}
+          </div>
+        {{- end -}}
+      </div>
+      
+    </div>
+  </header>
+
+  {{- /* 2. Two-Column Layout (Matching Home Page: Main Left, Sidebar Right) */ -}}
+  <div class="l-site__columns">
+    
+    {{- /* Main Content Area */ -}}
+    <div class="l-site__main">
+      <div class="u-home-main">
+        <div class="u-home-main__sections">
+          
+          {{- /* Reuses Home Page Pagination Logic */ -}}
+          {{- $paginator := $page.Paginate $page.Pages -}}
+          {{- with $pages := $paginator.Pages -}}
+            <section class="c-article-list">
+              {{- range $article := $pages -}}
+                {{ partial "article-card.html" $article }}
+              {{- end -}}
+            </section>
+          {{- end -}}
+          {{ partial "paginator.html" (dict "mode" "ssr" "paginator" $paginator) }}
+
+        </div>
+      </div>
+    </div>
+
+    {{- /* Sidebar */ -}}
+    <aside class="l-site__sidebar">
+      <div class="c-sidebar">
+        
+        {{- /* Newsletter Widget */ -}}
+        {{- $newsletterEnabled := false -}}
+        {{- $newsletterFreq := "Weekly" -}}
+        {{- with $nlParams := site.Params.newsletter -}}
+          {{- $newsletterFreq = index $nlParams "frequencyText" | default "Weekly" -}}
+        {{- end -}}
+        {{- with $enable := site.Params.enableNewsletter -}}{{- $newsletterEnabled = $enable -}}{{- end -}}
+        {{ partial "widgets/newsletter.html" (dict "enabled" $newsletterEnabled "frequencyText" $newsletterFreq) }}
+        
+        {{- /* 3. Calculate Author's Top Categories (Server-Side Logic) */ -}}
+        {{- $relatedCats := slice -}}
+        {{- range site.Taxonomies.categories.ByCount -}}
+          {{- $common := intersect $page.Pages .Pages -}}
+          {{- if gt (len $common) 0 -}}
+            {{- $relatedCats = $relatedCats | append (dict "Page" .Page "Count" (len $common)) -}}
+          {{- end -}}
+        {{- end -}}
+        {{- $sortedCats := sort $relatedCats "Count" "desc" -}}
+
+        {{- /* 4. Calculate Author's Top Tags (Server-Side Logic) */ -}}
+        {{- $relatedTags := slice -}}
+        {{- range site.Taxonomies.tags.ByCount -}}
+          {{- $common := intersect $page.Pages .Pages -}}
+          {{- if gt (len $common) 0 -}}
+            {{- $relatedTags = $relatedTags | append (dict "Page" .Page "Count" (len $common)) -}}
+          {{- end -}}
+        {{- end -}}
+        {{- $sortedTags := sort $relatedTags "Count" "desc" -}}
+
+        {{- /* Extract Limits from Config */ -}}
+        {{- $catLimit := 5 -}}
+        {{- $tagLimit := 5 -}}
+        {{- with $widgetParams := site.Params.widgets -}}
+          {{- with $limit := index $widgetParams "categoriesLimit" -}}{{- $catLimit = $limit -}}{{- end -}}
+          {{- with $limit := index $widgetParams "tagsLimit" -}}{{- $tagLimit = $limit -}}{{- end -}}
+        {{- end -}}
+
+        {{- /* Render SSR Widgets using the Author's specific tally data! */ -}}
+        {{ partial "widgets/categories.html" (dict "mode" "ssr" "title" "Topics" "limit" $catLimit "terms" $sortedCats) }}
+        {{ partial "widgets/tags.html" (dict "mode" "ssr" "title" "Tags" "limit" $tagLimit "terms" $sortedTags) }}
+
+      </div>
+    </aside>
+
+  </div>
+{{- end -}}
