@@ -36,8 +36,9 @@
             {{- with .Params.social }}
             <div class="c-author__social-icons">
                 {{- range . }}
-                <a class="c-author__social-link" href="{{ .url }}" rel="noopener noreferrer" target="_blank" title="{{ .name }}">
-                    {{ partial (printf "svg/%s.html" .icon) }}
+                <a class="c-author__social-link" href="{{ .url }}" rel="noopener noreferrer" target="_blank">
+                    <span class="c-author__social-icon" aria-hidden="true">{{ partial (printf "svg/%s.html" .icon) }}</span>
+                    <span class="u-sr-only">{{ .name }}</span>
                 </a>
                 {{- end }}
             </div>

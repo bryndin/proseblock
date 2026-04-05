@@ -59,10 +59,11 @@
 
                 <div class="c-drawer__socials">
                     {{- range $social := $socials }}
-                        <a href="{{ $social.url }}" class="c-drawer__social-link" title="{{ $social.name }}" target="_blank" rel="noopener noreferrer">
-                            <span class="c-drawer__social-icon">
+                        <a href="{{ $social.url }}" class="c-drawer__social-link" target="_blank" rel="noopener noreferrer">
+                            <span class="c-drawer__social-icon" aria-hidden="true">
                                 {{ partial (printf "svg/%s.html" $social.icon) }}
                             </span>
+                            <span class="u-sr-only">{{ $social.name }}</span>
                         </a>
                     {{- end }}
                 </div>
