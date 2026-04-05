@@ -1,0 +1,129 @@
+{{- /*
+  layouts/archives/list.html
+  Chronological index of all articles, grouped by Year and Month.
+  Uses the Article Page Layout (Left TOC Sidebar, Right Content).
+*/ -}}
+{{- define "main" -}}
+  {{- $page := . -}}
+
+  {{- /* 1. Fetch and Group all Articles */ -}}
+  {{- $articles := where site.RegularPages "Type" "in" (slice "posts" "post" "articles") -}}
+
+  {{- /* 2. Taxonomy Hero */ -}}
+  <header class="c-hero c-hero--taxonomy">
+    <div class="c-hero__inner">
+      <h2 class="c-hero__title">{{ $page.Title | default "Archives" }}</h2>
+      {{- with $content := $page.Content -}}
+        <div class="c-hero__subtitle">{{ $content }}</div>
+      {{- else -}}
+        <p class="c-hero__subtitle">
+          A complete chronological record of our explorations into minimalism, technology, and the evolving digital landscape.
+        </p>
+      {{- end -}}
+    </div>
+  </header>
+
+  {{- /* 3. Article Layout Grid (Left Sidebar, Right Main) */ -}}
+  <div class="l-site__columns--article">
+
+    {{- /* Left Sidebar: Table of Contents */ -}}
+    <aside class="l-site__article-sidebar">
+      <div class="c-toc">
+        
+        {{- /* Reading Progress Rail */ -}}
+        <div class="c-toc__rail">
+          <div class="c-toc__rail-fill" id="reading-progress"></div>
+        </div>
+
+        <div class="c-toc__body">
+          <div class="c-toc__list">
+            
+            {{- /* Floating Title (Reveals on scroll) */ -}}
+            <div class="c-toc__floating-title" id="floating-title-container">
+              <a href="{{ $page.RelPermalink }}" aria-label="Scroll to top">{{ $page.Title | default "Archives" }}</a>
+            </div>
+
+            {{- /* Dynamic TOC Nav targeting the exact c-toc CSS */ -}}
+            <nav id="TableOfContents">
+              <ul>
+                {{- range $articles.GroupByDate "2006" -}}
+                  {{- $year := .Key -}}
+                  <li>
+                    <a href="#year-{{ $year }}">{{ $year }}</a>
+                    {{- /* Nested list triggers the longer Level 2 tick in toc.css! */ -}}
+                    <ul>
+                      {{- range .Pages.GroupByDate "January" -}}
+                        {{- $month := .Key -}}
+                        <li>
+                          <a href="#{{ $month | lower }}-{{ $year }}">{{ $month }}</a>
+                        </li>
+                      {{- end -}}
+                    </ul>
+                  </li>
+                {{- end -}}
+              </ul>
+            </nav>
+
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    {{- /* Right Main Column */ -}}
+    <div class="l-site__article-body">
+      <div class="l-article-content" id="article-container">
+        
+        {{- /* Uses c-article to inherit the white background, padding, and editorial shadow */ -}}
+        <article class="c-article" style="padding-bottom: var(--space-32);">
+          <div class="c-archive">
+            
+            {{- /* Loop Years */ -}}
+            {{- range $articles.GroupByDate "2006" -}}
+              {{- $year := .Key -}}
+              <div id="year-{{ $year }}" class="c-archive__year-group">
+                <h3 class="c-archive__year-title">{{ $year }}</h3>
+                
+                <div class="c-archive__months">
+                  {{- /* Loop Months within Year */ -}}
+                  {{- range .Pages.GroupByDate "January" -}}
+                    {{- $month := .Key -}}
+                    <div id="{{ $month | lower }}-{{ $year }}" class="c-archive__month-group">
+                      <h4 class="c-archive__month-title">{{ $month }}</h4>
+                      
+                      <div class="c-archive__articles">
+                        {{- /* Loop Articles within Month */ -}}
+                        {{- range .Pages -}}
+                          
+                          <a href="{{ .RelPermalink }}" class="c-archive-card group">
+                            
+                            {{- /* Date Block (Left) */ -}}
+                            <div class="c-archive-card__date">
+                              <span class="c-archive-card__month">{{ .Date.Format "Jan" }}</span>
+                              <span class="c-archive-card__day">{{ .Date.Format "02" }}</span>
+                            </div>
+                            
+                            {{- /* Content Block (Right) */ -}}
+                            <div class="c-archive-card__content">
+                              {{- with $categories := .Params.categories -}}
+                                <span class="c-archive-card__category">{{ index $categories 0 }}</span>
+                              {{- end -}}
+                              <h5 class="c-archive-card__title">{{ .Title }}</h5>
+                            </div>
+
+                          </a>
+
+                        {{- end -}}
+                      </div>
+                    </div>
+                  {{- end -}}
+                </div>
+              </div>
+            {{- end -}}
+
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+{{- end -}}

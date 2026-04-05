@@ -1,0 +1,159 @@
+/* ==========================================================================
+    ARCHIVE PAGE (CHRONOLOGICAL INDEX)
+    ========================================================================== */
+
+.c-archive {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+/* --- Year Groupings --- */
+
+.c-archive__year-group {
+  display: block;
+}
+
+.c-archive__year-title {
+  /* *** Arguments (The Public API) *************************************** */
+  --_text: var(--text-primary);
+  --_border: var(--border-muted); /* matches surface-container-high */
+
+  font-size: 0.6875rem; /* ~11px */
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-mega); /* 0.4em */
+  text-transform: uppercase;
+  color: var(--_text);
+  text-align: right;
+  margin-bottom: var(--space-12);
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid var(--_border);
+  opacity: 0.4;
+}
+
+/* --- Month Groupings --- */
+
+.c-archive__months {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.c-archive__month-group {
+  display: block;
+}
+
+.c-archive__month-title {
+  --_text: var(--accent);
+
+  font-size: 0.6875rem; /* ~11px */
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-mega); /* 0.4em */
+  text-transform: uppercase;
+  color: var(--_text);
+  text-align: right;
+  margin-bottom: var(--space-12);
+  opacity: 0.4;
+}
+
+/* --- Articles List --- */
+
+.c-archive__articles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* ==========================================================================
+    ARCHIVE CARD (Individual Article Row)
+    ========================================================================== */
+
+.c-archive-card {
+  --_border: var(--border-subtle);
+  --_border-hover: var(--accent);
+
+  display: flex;
+  gap: var(--space-8);
+  align-items: flex-start;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .c-archive-card {
+    gap: var(--space-16);
+  }
+}
+
+/* Date Badge (Left) */
+.c-archive-card__date {
+  --_text: var(--text-secondary);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--space-1);
+  min-width: 2rem; /* 32px */
+  color: var(--_text);
+}
+
+.c-archive-card__month {
+  font-size: var(--text-2xs); /* 9px */
+  font-weight: var(--weight-black);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  opacity: 0.3;
+}
+
+.c-archive-card__day {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-none);
+  color: var(--text-primary);
+}
+
+/* Content Wrapper (Right) */
+.c-archive-card__content {
+  flex-grow: 1;
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid oklch(from var(--_border) l c h / 0.5);
+  transition: border-color var(--duration-normal) var(--ease-default);
+}
+
+.c-archive-card:hover .c-archive-card__content {
+  border-bottom-color: var(--_border-hover);
+}
+
+/* Content Details */
+.c-archive-card__category {
+  --_text: var(--accent);
+
+  display: block;
+  font-size: var(--text-xs); /* 10px */
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest); /* 0.2em */
+  color: var(--_text);
+  margin-bottom: var(--space-3);
+  opacity: 0.6;
+}
+
+.c-archive-card__title {
+  --_text: var(--text-primary);
+  --_text-hover: var(--accent);
+
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  color: var(--_text);
+  transition: color var(--duration-normal) var(--ease-default);
+}
+
+@media (min-width: 768px) {
+  .c-archive-card__title {
+    font-size: var(--text-2xl);
+  }
+}
+
+.c-archive-card:hover .c-archive-card__title {
+  color: var(--_text-hover);
+}
