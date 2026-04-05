@@ -4,39 +4,51 @@
 {{- with $authors := $page.Params.authors }}
 {{- if site.Params.enableAuthorBlock }}
 {{- with $authorName := index $authors 0 }}
+{{- $authorTerm := site.GetPage (printf "/authors/%s" ($authorName | urlize)) }}
 <div class="c-author">
     <div class="c-author__avatar">
+        {{- $hasAvatar := false }}
+        {{- with $authorTerm }}
+            {{- with .Params.avatar }}
+                <img class="c-author__avatar-image" src="{{ . | relURL }}" alt="{{ $authorName }}">
+                {{- $hasAvatar = true }}
+            {{- end }}
+        {{- end }}
+        {{- if not $hasAvatar }}
         <span class="c-author__avatar-icon">{{ partial "svg/person.html" }}</span>
+        {{- end }}
     </div>
     <div class="c-author__info">
         <div>
             <span class="c-author__label">Author</span>
             <h3 class="c-author__name">{{ $authorName }}</h3>
         </div>
-        {{- /* Attempt to load author bio from taxonomy term */ -}}
-        {{- with $authorTerm := site.GetPage (printf "/authors/%s" ($authorName | urlize)) }}
-        {{- with $bio := $authorTerm.Params.description }}
-        <p class="c-author__bio">{{ $bio }}</p>
+        {{- /* Loads author bio from taxonomy term */ -}}
+        {{- with $authorTerm }}
+            {{- if .Content }}
+            <div class="c-author__bio">{{ .Content }}</div>
+            {{- else if .Params.description }}
+            <p class="c-author__bio">{{ .Params.description }}</p>
+            {{- end }}
         {{- end }}
-        {{- end }}
+        {{- with $authorTerm }}
         <div class="c-author__social">
-            {{- with $social := site.Params.social }}
+            {{- with .Params.social }}
             <div class="c-author__social-icons">
-                {{- with $twitter := $social.twitter }}
-                <a class="c-author__social-link" href="{{ $twitter }}" rel="noopener noreferrer" target="_blank">
-                    {{ partial "svg/x-twitter.html" }}
+                {{- range . }}
+                <a class="c-author__social-link" href="{{ .url }}" rel="noopener noreferrer" target="_blank" title="{{ .name }}">
+                    {{ partial (printf "svg/%s.html" .icon) }}
                 </a>
                 {{- end }}
             </div>
-            {{- end }}
             <div class="c-author__social-divider"></div>
-            {{- with $authorTerm := site.GetPage (printf "/authors/%s" ($authorName | urlize)) }}
-            <a class="c-author__more-link" href="{{ $authorTerm.RelPermalink }}">
+            {{- end }}
+            <a class="c-author__more-link" href="{{ .RelPermalink }}">
                 More from author
                 <span class="c-author__more-icon">{{ partial "svg/arrow-forward.html" }}</span>
             </a>
-            {{- end }}
         </div>
+        {{- end }}
     </div>
 </div>
 {{- end }}
