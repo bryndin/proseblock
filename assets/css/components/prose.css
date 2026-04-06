@@ -1,0 +1,164 @@
+/* ==========================================================================
+   COMPONENT: PROSE — @layer components
+   Overrides and enhancements for Markdown-rendered content.
+   Provides a centralized place for typography fixes (tables, blockquotes, code).
+   ========================================================================== */
+
+.c-article__body {
+  --_code-bg: var(--bg-secondary);
+  --_code-padding: var(--space-6);
+  --_table-margin: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .c-article__body {
+    --_code-padding: var(--space-8);
+  }
+}
+
+/* --- Blockquotes --- */
+
+.c-article__body blockquote {
+  font-size: inherit;
+  /* The root blockquote uses the solid semantic token */
+  background-color: var(--article-blockquote-bg, var(--bg-secondary));
+}
+
+.c-article__body blockquote p:last-child {
+  margin: 0;
+}
+
+/* Nested blockquotes form continuous lines and backgrounds */
+.c-article__body blockquote blockquote {
+  margin: 0;
+  padding-inline-end: 0;
+  /* Apply a progressive overlay tint for each level of nesting */
+  background-color: color-mix(in srgb, var(--text-primary) 4%, transparent);
+}
+
+/* --- Tables --- */
+
+.c-article__body table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  margin-block: var(--_table-margin);
+  border-collapse: collapse;
+}
+
+.c-article__body table th,
+.c-article__body table td {
+  /* Prevent aggressive wrapping of small cells */
+  white-space: nowrap;
+}
+
+/* --- Code Block Overrides --- */
+
+/* 
+  Design Note: Removing borders and keeping a soft background color.
+  A background cleanly distinguishes code from reading text, feeling more premium
+  and alive than visually heavy borders. Removing borders modernizes the design.
+*/
+.c-article__body pre {
+  background-color: var(--_code-bg);
+  border: none;
+  direction: ltr;
+}
+
+/* The highlight wrapper around the generic pre (adds standard vertical rhythm) */
+.c-article__body .highlight {
+  background-color: var(--_code-bg);
+  margin-block: var(--space-8);
+}
+
+/* Disable the background output by the Chroma syntax stylesheet */
+.c-article__body .highlight .chroma {
+  background-color: transparent;
+}
+
+/* Reset baseline margins/paddings injected by Chroma/Base to handle flex layouts */
+.c-article__body .chroma pre {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+/* Base code block padding and width controls */
+.c-article__body pre code {
+  display: block;
+  padding: var(--_code-padding);
+  overflow-x: auto;
+  white-space: pre;
+  background-color: transparent;
+}
+
+/* Highlighting specific code lines via the hl attribute array */
+.c-article__body .highlight .chroma .hl {
+  /* Use a brand-tinted overlay for featured code lines */
+  background-color: color-mix(in srgb, var(--accent) 15%, transparent);
+}
+
+/* specific resets for 'table' shaped line numbering blocks */
+.c-article__body .chroma .lntable {
+  width: 100%;
+  display: table;
+  margin-block: 0;
+  border-spacing: 0; /* Ensures no gap between left and right background cells */
+}
+
+/* Remove default paddings from internal lntable components to cleanly distribute them */
+.c-article__body .chroma .lntable td {
+  vertical-align: top;
+  padding: 0;
+  border: none;
+  /* Apply top and bottom padding to the cells to maintain block spacing */
+  padding-block: var(--_code-padding);
+}
+
+.c-article__body .chroma .lntable code {
+  padding: 0;
+}
+
+/* Col 1: Line Numbers */
+.c-article__body .chroma .lntable td:first-child {
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* Wipe chroma defaults and restructure the number span to fill space */
+.c-article__body .chroma .lntable td:first-child .lnt {
+  margin: 0;
+  padding: 0;
+  padding-inline-start: var(--_code-padding);
+  padding-inline-end: var(--space-4); /* Spacing between numbers and actual code */
+  display: block; /* Guarantees the wrapper expands */
+}
+
+/* This `.hl` is an inline span wrapping the `.lnt`. Make it block so it fills the cell horizontally. */
+.c-article__body .chroma .lntable td:first-child .hl {
+  display: block;
+}
+
+/* Col 2: Actual Source Code */
+.c-article__body .chroma .lntable td:last-child {
+  width: 100%;
+}
+
+/* The actual flex line for the code */
+.c-article__body .chroma .lntable td:last-child .line {
+  /* Start at 0 to touch the gutter seamlessly */
+  padding-inline-start: 0;
+  /* Push trailing space internally */
+  padding-inline-end: var(--_code-padding);
+}
+
+/* Maintain proper link inheritance for gutter syntax items */
+.c-article__body .highlight .chroma .lnlinks {
+  text-decoration-line: none;
+  transition: color var(--duration-normal) var(--ease-default);
+}
+
+.c-article__body .highlight .chroma .lnlinks:hover {
+  text-decoration-line: underline;
+}
