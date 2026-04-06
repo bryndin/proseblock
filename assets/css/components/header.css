@@ -33,8 +33,7 @@
   right: 0;
   z-index: var(--_z);
   /* Replicates the cubic-bezier smoothness from the design */
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-              background-color 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* State class triggered by JS */
@@ -133,4 +132,18 @@
 .c-header__icon-btn--menu svg {
   width: 1.5rem;
   height: 1.5rem;
+}
+
+/* --- Theme Toggle Icons --- */
+
+#theme-toggle .u-theme-icon-light,
+#theme-toggle .u-theme-icon-dark,
+#theme-toggle .u-theme-icon-system {
+  display: none;
+}
+
+html[data-theme-setting="system"] #theme-toggle .u-theme-icon-system,
+html[data-theme-setting="light"] #theme-toggle .u-theme-icon-light,
+html[data-theme-setting="dark"] #theme-toggle .u-theme-icon-dark {
+  display: block;
 }

@@ -6,6 +6,9 @@
 */ -}}
 {{- $page := . -}}
 <meta charset="utf-8">
+<script>
+  {{ (resources.Get "js/components/theme-switcher-head.js" | minify).Content | safeJS }}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {{- with $description := $page.Description | default site.Params.description }}
 <meta name="description" content="{{ $description }}">

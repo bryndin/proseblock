@@ -12,7 +12,7 @@
   "tokens"     (slice "css/tokens.css")
   "base"       (slice "css/base.css")
   "layout"     (slice "css/layout/*.css")
-  "components" (slice "css/components/*.css" "css/components/widgets/*.css" )
+  "components" (slice "css/components/*.css" "css/components/widgets/*.css" "css/syntax-highlighting/*.css")
   "utilities"  (slice "css/utilities.css")
 -}}
 
@@ -43,7 +43,11 @@
     {{- $layerContent := slice -}}
     {{- range $res := $currentLayerFiles -}}
       {{- /* Reading .Content directly grabs fresh text on file save */ -}}
-      {{- $layerContent = $layerContent | append (printf "/* %s */\n%s" $res.Name $res.Content) -}}
+      {{- if in $res.Name "github-dark.css" -}}
+        {{- $layerContent = $layerContent | append (printf "/* %s */\n[data-theme=\"dark\"] {\n%s\n}" $res.Name $res.Content) -}}
+      {{- else -}}
+        {{- $layerContent = $layerContent | append (printf "/* %s */\n%s" $res.Name $res.Content) -}}
+      {{- end -}}
     {{- end -}}
     
     {{- /* Append this layer to the global string */ -}}
