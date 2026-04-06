@@ -1,0 +1,44 @@
+{{- /* 
+  layouts/about/single.html 
+  About page template. 
+  Uses Home layout: Main Column (Left), Empty Sidebar (Right).
+*/ -}}
+{{- define "main" -}}
+  {{- $page := . -}}
+
+  {{- /* Hero Section (Reuses the standard hero component) */ -}}
+  <header class="c-hero c-hero--about">
+    <div class="c-hero__inner">
+      <h1 class="c-hero__title">{{ $page.Title }}</h1>
+      {{- with $description := $page.Params.description -}}
+        <p class="c-hero__subtitle">{{ $description }}</p>
+      {{- end -}}
+    </div>
+  </header>
+
+  {{- /* Two-Column Layout (Matching Home Page) */ -}}
+  <div class="l-site__columns">
+    
+    {{- /* Main Content Area (Left) */ -}}
+    <div class="l-site__main">
+      <div class="u-home-main">
+        <div class="u-home-main__sections">
+          
+          {{- /* The parsed Markdown content from the file */ -}}
+          <article class="c-about-content">
+            {{ $page.Content }}
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    {{- /* Sidebar Area (Right) */ -}}
+    <aside class="l-site__sidebar">
+      <div class="c-sidebar">
+        {{- /* Deliberately left empty for now, ready for future widgets */ -}}
+      </div>
+    </aside>
+
+  </div>
+{{- end -}}
