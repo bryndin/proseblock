@@ -9,10 +9,16 @@
     </div>
     
     {{- with $authors := $article.Params.authors }}
+        {{- $authorName := index $authors 0 }}
+        {{- $authorTerm := site.GetPage (printf "/authors/%s" ($authorName | urlize)) }}
         <span class="c-metadata__dot"></span>
         <div class="c-metadata__item">
             <span class="c-metadata__icon">{{ partial "svg/person.html" }}</span>
-            <span>{{ index $authors 0 }}</span>
+            {{- if $authorTerm }}
+                <a href="{{ $authorTerm.RelPermalink }}" class="c-metadata__link">{{ $authorName }}</a>
+            {{- else }}
+                <span>{{ $authorName }}</span>
+            {{- end }}
         </div>
     {{- end }}
     

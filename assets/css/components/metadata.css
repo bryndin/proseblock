@@ -54,3 +54,14 @@
   background-color: currentColor;
   opacity: 0.3;
 }
+
+.c-metadata__link {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.c-metadata__link:hover {
+  text-decoration: underline;
+  opacity: 1;
+}
