@@ -4,15 +4,17 @@
   Context: . (The Page)
 */ -}}
 {{- $page := . -}}
+{{- $syntaxLibHint := "github-dark.css" -}}
 
 {{- $layerNames := slice "reset" "tokens" "base" "layout" "components" "utilities" -}}
 
+{{- /* Syntax-highlighting lib must be loaded before the components */ -}}
 {{- $layerMap := dict
   "reset"      (slice "css/reset.css")
   "tokens"     (slice "css/tokens.css")
   "base"       (slice "css/base.css")
   "layout"     (slice "css/layout/*.css")
-  "components" (slice "css/components/*.css" "css/components/widgets/*.css" "css/syntax-highlighting/*.css")
+  "components" (slice "css/syntax-highlighting/*.css" "css/components/*.css" "css/components/widgets/*.css")
   "utilities"  (slice "css/utilities.css")
 -}}
 
@@ -43,7 +45,7 @@
     {{- $layerContent := slice -}}
     {{- range $res := $currentLayerFiles -}}
       {{- /* Reading .Content directly grabs fresh text on file save */ -}}
-      {{- if in $res.Name "github-dark.css" -}}
+      {{- if in $res.Name $syntaxLibHint -}}
         {{- $layerContent = $layerContent | append (printf "/* %s */\n[data-theme=\"dark\"] {\n%s\n}" $res.Name $res.Content) -}}
       {{- else -}}
         {{- $layerContent = $layerContent | append (printf "/* %s */\n%s" $res.Name $res.Content) -}}
