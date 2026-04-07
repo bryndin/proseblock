@@ -1,31 +1,39 @@
-/* --- Share section --- */
+/* ==========================================================================
+   COMPONENT: Share Section & Menu
+   .c-share-container — Layout wrapper for share button and popover
+   ========================================================================== */
 
+.c-share-container {
+    position: relative;
+}
+
+/* Sidebar Actions container */
 .c-sidebar__actions {
     margin-top: var(--space-12);
     padding-top: var(--space-12);
-    border-top: var(--border-width) solid var(--_separator);
+    border-top: var(--border-width) solid var(--border-subtle);
     padding-inline: var(--space-2);
-    opacity: 0.2;
 }
 
 .c-sidebar__share-btn {
     display: flex;
     align-items: center;
     gap: var(--space-3);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--text-primary);
 }
 
 .c-sidebar__share-btn:hover .c-sidebar__share-icon {
     transform: scale(var(--scale-subtle));
 }
 
-.c-sidebar__share-btn:hover .c-sidebar__share-label {
-    color: var(--_accent);
-}
-
 .c-sidebar__share-icon {
     width: 1.25rem;
     height: 1.25rem;
-    color: var(--_accent);
+    color: var(--accent);
     transition: transform var(--duration-normal) var(--ease-default);
 }
 
@@ -34,6 +42,172 @@
     font-weight: var(--weight-bold);
     letter-spacing: var(--tracking-ultra);
     text-transform: uppercase;
-    color: var(--_text);
+    color: var(--text-primary);
     transition: color var(--duration-normal) var(--ease-default);
+}
+
+.c-sidebar__share-btn:hover .c-sidebar__share-label {
+    color: var(--accent);
+}
+
+/* --- Share Menu Popover --- */
+
+.c-share-menu {
+    position: absolute;
+    bottom: calc(100% + var(--space-4));
+    left: 0;
+    width: 280px;
+    background-color: var(--bg-card);
+    border: var(--border-width) solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-tonal);
+    z-index: var(--z-header);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all var(--duration-normal) var(--ease-default);
+}
+
+.c-share-menu.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.c-share-menu__inner {
+    padding: var(--space-6);
+}
+
+.c-share-menu__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-6);
+}
+
+.c-share-menu__title {
+    font-size: var(--text-tiny);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.c-share-menu__close {
+    background: none;
+    border: none;
+    padding: var(--space-1);
+    cursor: pointer;
+    color: var(--text-tertiary);
+    transition: color var(--duration-fast) var(--ease-default);
+}
+
+.c-share-menu__close:hover {
+    color: var(--accent);
+}
+
+.c-share-menu__close svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* --- Menu List --- */
+
+.c-share-menu__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.c-share-menu__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-default);
+}
+
+.c-share-menu__item:hover {
+    background-color: var(--bg-elevated);
+}
+
+.c-share-menu__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--accent);
+}
+
+.c-share-menu__label {
+    font-size: 10px;
+    font-weight: var(--weight-medium);
+    color: var(--text-primary);
+}
+
+/* --- Footer & Copy --- */
+
+.c-share-menu__footer {
+    padding-top: var(--space-6);
+    border-top: var(--border-width) solid var(--border-subtle);
+}
+
+.c-share-menu__copy {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.c-share-menu__copy-input {
+    flex: 1;
+    min-width: 0;
+    height: 2.25rem;
+    padding-inline: var(--space-3);
+    background-color: var(--bg-secondary);
+    border: var(--border-width) solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    outline: none;
+}
+
+.c-share-menu__copy-btn {
+    height: 2.25rem;
+    padding-inline: var(--space-4);
+    background-color: var(--accent);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 10px;
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    color: var(--text-on-accent);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color var(--duration-fast) var(--ease-default);
+}
+
+.c-share-menu__copy-btn:hover {
+    background-color: var(--accent-dim);
+}
+
+.c-share-menu__copy-btn.is-success {
+    background-color: oklch(60% 0.15 140); /* Success green */
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .c-share-menu {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-radius: var(--radius-md) var(--radius-md) 0 0;
+        transform: translateY(100%);
+    }
+
+    .c-share-menu.is-active {
+        transform: translateY(0);
+    }
 }

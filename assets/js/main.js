@@ -4,6 +4,7 @@ import { initMenu } from "./components/menu.js";
 import { initSearchPage } from "./components/search.js";
 import { initThemeSwitcher } from "./components/theme-switcher.js";
 import { initCodeCopy } from './components/code-copy.js';
+import { initShare } from './components/share.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   initThemeSwitcher();
@@ -12,4 +13,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initMenu();
   initSearchPage();
   initCodeCopy();
+  initShare();
 });
