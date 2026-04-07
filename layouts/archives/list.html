@@ -105,7 +105,7 @@
                             {{- /* Content Block (Right) */ -}}
                             <div class="c-archive-card__content">
                               {{- with $categories := .Params.categories -}}
-                                <span class="c-archive-card__category">{{ index $categories 0 }}</span>
+                                <span class="c-archive-card__category">{{ delimit $categories " / " }}</span>
                               {{- end -}}
                               <h5 class="c-archive-card__title">{{ .Title }}</h5>
                             </div>

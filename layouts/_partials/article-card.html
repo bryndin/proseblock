@@ -5,7 +5,7 @@
         <div class="c-article-card__content">
             {{- /* Category */ -}}
             {{- with $categories := $article.Params.categories }}
-                <div class="c-article-card__category">{{ index $categories 0 }}</div>
+                <div class="c-article-card__category">{{ delimit $categories " / " }}</div>
             {{- end }}
 
             {{- /* Title */ -}}

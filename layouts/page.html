@@ -14,7 +14,7 @@
             {{- /* Category label */ -}}
             {{- with $categories := $page.Params.categories }}
                 <div class="c-hero__category">
-                    <span>{{ index $categories 0 }}</span>
+                    <span>{{ delimit $categories " / " }}</span>
                 </div>
             {{- end }}
 
