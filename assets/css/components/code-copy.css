@@ -1,0 +1,31 @@
+/*
+    Code Copy Component
+    Handles styling for the code copy button.
+*/
+
+.c-code-copy {
+  /* *** Arguments ****************************************************** */
+
+  /* *** Configuration ************************************************** */
+  --_icon-size: calc(var(--size-icon-ui) / 1.5);
+  --_icon-color: var(--icon-secondary);
+  --_icon-offset: var(--space-2);
+
+  position: relative;
+  color: var(--_icon-color);
+}
+
+.c-code-copy__button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--_icon-size);
+  width: var(--_icon-size);
+  inset-inline-end: var(--_icon-offset);
+  inset-block-start: var(--_icon-offset);
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}

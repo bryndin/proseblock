@@ -3,6 +3,7 @@ import { initHeaderScroll } from "./components/header-scroll.js";
 import { initMenu } from "./components/menu.js";
 import { initSearchPage } from "./components/search.js";
 import { initThemeSwitcher } from "./components/theme-switcher.js";
+import { initCodeCopy } from './components/code-copy.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   initThemeSwitcher();
@@ -10,4 +11,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeaderScroll();
   initMenu();
   initSearchPage();
+  initCodeCopy();
 });
