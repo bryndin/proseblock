@@ -10,10 +10,10 @@
   --_title-text: var(--featured-title-text);
   --_body-text: var(--featured-body-text);
   --_accent: var(--featured-accent);
+  --_shadow: var(--featured-shadow);
 
   /* *** Configuration (Internal Styling) ********************************* */
   --_padding: var(--space-12);
-  --_shadow: var(--shadow-tonal);
 
   position: relative;
   overflow: hidden;

@@ -314,6 +314,7 @@
    --featured-title-text: var(--text-primary);
    --featured-body-text: var(--text-secondary);
    --featured-accent: var(--accent);
+   --featured-shadow: var(--shadow-tonal);
 
    /* --- Search --- */
    --search-text: var(--text-primary);
@@ -366,10 +367,16 @@
    --accent-dim: var(--color-primary);
    --accent-container: var(--color-primary-dim);
 
-   --border-subtle: oklch(25% 0.015 230);
+   --border-subtle: var(--color-gray-650);
    --border-muted: oklch(35% 0.015 230);
    --outline: var(--color-gray-500);
 
    --icon-primary: var(--color-primary-container);
    --icon-secondary: var(--color-gray-400);
+
+   /* --- Shadows --- */
+   --shadow-editorial: 80px 0 100px -20px oklch(0% 0 0 / 0.25);
+   --shadow-tonal: 0 10px 60px 0 oklch(0% 0 0 / 0.3);
+   --shadow-ambient: 0 0 60px oklch(0% 0 0 / 0.35);
+   --shadow-inner: inset 0 2px 4px 0 oklch(0% 0 0 / 0.15);
 }

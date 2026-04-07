@@ -5,17 +5,18 @@
 
 .c-toc {
     /* *** Arguments (The Public API) *************************************** */
-    --_text: var(--color-on-surface-variant, var(--toc-text));
-    --_text-hover: var(--color-primary, var(--toc-text-hover));
-    --_accent: var(--color-primary, var(--toc-accent));
-    --_rail-bg: var(--color-outline-variant, var(--toc-rail-bg));
-    --_separator: var(--color-outline-variant, var(--toc-separator));
+    --_text: var(--toc-text);
+    --_text-hover: var(--toc-text-hover);
+    --_accent: var(--toc-accent);
+    --_rail-bg: var(--toc-rail-bg);
+    --_separator: var(--toc-separator);
 
     /* *** Configuration (Internal Styling) ********************************* */
     --_link-size: 11px; 
     --_link-weight: var(--weight-semibold);
     --_rail-width: 2px;
     --_text-transform: uppercase;
+    --_rail-opacity: 0.5;
 
     display: flex;
     gap: 0;
@@ -130,7 +131,7 @@
 .c-toc__list nav a:hover::before {
     width: 1.5rem;
     background-color: var(--_accent);
-    opacity: 1;
+    opacity: var(--_rail-opacity);
 }
 
 /* Level 2 (H3) - Longer tick creates the indent AND connects to the rail */
@@ -140,7 +141,7 @@
 .c-toc__list nav ul ul a:hover::before {
     width: 2.5rem;
     background-color: var(--_accent);
-    opacity: 1;
+    opacity: var(--_rail-opacity);
 }
 
 /* Level 3 (H4) - Even longer tick */
@@ -150,7 +151,7 @@
 .c-toc__list nav ul ul ul a:hover::before {
     width: 3.5rem;
     background-color: var(--_accent);
-    opacity: 1;
+    opacity: var(--_rail-opacity);
 }
 
 /* --- Floating Title --- */
@@ -201,7 +202,7 @@
     margin-bottom: 7px;
     
     background-color: var(--_rail-bg);
-    opacity: 0.2;
+    opacity: var(--_rail-opacity);
     
     position: relative;
     flex-shrink: 0;
