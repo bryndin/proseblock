@@ -152,6 +152,26 @@
   opacity: 0.6;
 }
 
+.c-search-widget__header--link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.c-search-widget__header--link svg,
+.c-search-widget__subtitle {
+  transition: all var(--duration-fast) var(--ease-default);
+}
+
+.c-search-widget__header--link:hover svg {
+  color: var(--accent);
+  opacity: 1;
+}
+
+.c-search-widget__header--link:hover .c-search-widget__subtitle {
+  color: var(--accent);
+  padding-left: 0.5rem;
+}
+
 .c-search-widget__subtitle {
   font-size: var(--text-tiny);
   /* text-[11px] */
@@ -160,6 +180,7 @@
   letter-spacing: var(--tracking-mega);
   /* tracking-[0.4em] */
   color: var(--text-primary);
+  transition: color var(--duration-fast) var(--ease-default), padding-left var(--duration-fast) var(--ease-default);
 }
 
 /* Filters */

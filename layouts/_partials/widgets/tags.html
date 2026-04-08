@@ -5,10 +5,10 @@
 
 {{- if eq $mode "ssr" -}}
     <div class="c-search-widget">
-        <div class="c-search-widget__header">
+        <a href="{{ "tags" | relURL }}" class="c-search-widget__header c-search-widget__header--link">
             {{ partial "svg/tags.html" }}
             <h5 class="c-search-widget__subtitle">{{ $title }}</h5>
-        </div>
+        </a>
         <ul class="c-search-suggested">
             {{- range first $limit $terms -}}
                 {{- $page := .Page -}}
@@ -24,10 +24,10 @@
     </div>
 {{- else if eq $mode "csr" -}}
     <div class="c-search-widget">
-        <div class="c-search-widget__header">
+        <a href="{{ "tags" | relURL }}" class="c-search-widget__header c-search-widget__header--link">
             {{ partial "svg/tags.html" }}
             <h5 class="c-search-widget__subtitle">{{ $title }}</h5>
-        </div>
+        </a>
         <ul class="c-search-suggested" id="dynamic-tags-container" data-limit="{{ $limit }}"></ul>
     </div>
     
