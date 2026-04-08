@@ -16,11 +16,14 @@
 }
 
 .c-featured__page-btn {
-    transition: color var(--duration-normal) var(--ease-default);
+    color: var(--_body-text);
+    opacity: 0.4;
+    transition: all var(--duration-normal) var(--ease-default);
 }
 
 .c-featured__page-btn:hover {
     color: var(--_accent);
+    opacity: 1;
 }
 
 .c-featured__page-btn svg {
