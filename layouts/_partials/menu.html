@@ -5,72 +5,72 @@
 {{- $socials := $site.Params.socials -}}
 
 <div class="c-drawer" id="site-menu" aria-hidden="true">
+  
+  <nav class="c-drawer__panel">
     
-    <nav class="c-drawer__panel">
-        
-        {{- /* Close Button */ -}}
-        <button class="c-drawer__close-btn js-menu-close" aria-label="Close menu" aria-expanded="true">
-            {{ partial "svg/close.html" }}
-        </button>
+    {{- /* Close Button */ -}}
+    <button class="c-drawer__close-btn js-menu-close" aria-label="Close menu" aria-expanded="true">
+      {{ partial "svg/close.html" }}
+    </button>
 
-        <div class="c-drawer__inner">
-            
-            <div class="c-drawer__header">
-                <span class="c-drawer__site-title">{{ $site.Title }}</span>
-                <span class="c-drawer__site-subtitle">The Digital Curator</span>
-            </div>
+    <div class="c-drawer__inner">
+      
+      <div class="c-drawer__header">
+        <span class="c-drawer__site-title">{{ $site.Title }}</span>
+        <span class="c-drawer__site-subtitle">The Digital Curator</span>
+      </div>
 
-            <div class="c-drawer__nav-scroll-wrapper">
-                <div class="c-drawer__nav-list">
-                    {{- if $menu }}
-                        {{- range $item := $menu }}
-                            <a href="{{ $item.URL | relURL }}" class="c-drawer__link group" title="{{ $item.Title }}">
-                                <span class="c-drawer__link-icon-wrapper">
-                                    {{- $iconPath := printf "svg/%s.html" ($item.Params.icon | default "circle") -}}
+      <div class="c-drawer__nav-scroll-wrapper">
+        <div class="c-drawer__nav-list">
+          {{- if $menu }}
+            {{- range $item := $menu }}
+              <a href="{{ $item.URL | relURL }}" class="c-drawer__link group" title="{{ $item.Title }}">
+                <span class="c-drawer__link-icon-wrapper">
+                  {{- $iconPath := printf "svg/%s.html" ($item.Params.icon | default "circle") -}}
 
-                                    {{- /* Checking file existence dynamically */ -}}
-                                    {{- if templates.Exists (printf "_partials/%s" $iconPath) -}}
-                                        {{ partial $iconPath }}
-                                    {{- else -}}
-                                        {{ partial "svg/circle.html" }}
-                                    {{- end -}}
-                                </span>
-                                <span class="c-drawer__link-text">{{ $item.Name }}</span>
-                            </a>
-                        {{- end }}
-                    {{- end }}
-                </div>
-            </div>
-
-            <div class="c-drawer__footer">
-                <div class="c-drawer__newsletter">
-                    <h4 class="c-drawer__newsletter-title">Newsletter</h4>
-
-                    <form class="c-drawer__newsletter-form group" action="{{ $newsletter.action }}" method="POST">
-                        <input type="email" name="email" class="c-drawer__newsletter-input" placeholder="Email Address" required>
-                        <button type="submit" class="c-drawer__newsletter-submit">
-                            Subscribe 
-                            <span class="c-drawer__newsletter-arrow">
-                                {{ partial "svg/arrow-forward.html" }}
-                            </span>
-                        </button>
-                    </form>
-                </div>
-
-                <div class="c-drawer__socials">
-                    {{- range $social := $socials }}
-                        <a href="{{ $social.url }}" class="c-drawer__social-link" target="_blank" rel="noopener noreferrer">
-                            <span class="c-drawer__social-icon" aria-hidden="true">
-                                {{ partial (printf "svg/%s.html" $social.icon) }}
-                            </span>
-                            <span class="u-sr-only">{{ $social.name }}</span>
-                        </a>
-                    {{- end }}
-                </div>
-            </div>
-            
+                  {{- /* Checking file existence dynamically */ -}}
+                  {{- if templates.Exists (printf "_partials/%s" $iconPath) -}}
+                    {{ partial $iconPath }}
+                  {{- else -}}
+                    {{ partial "svg/circle.html" }}
+                  {{- end -}}
+                </span>
+                <span class="c-drawer__link-text">{{ $item.Name }}</span>
+              </a>
+            {{- end }}
+          {{- end }}
         </div>
-    </nav>
+      </div>
 
-    <div class="c-drawer__backdrop js-menu-close" aria-label="Close menu"></div>
+      <div class="c-drawer__footer">
+        <div class="c-drawer__newsletter">
+          <h4 class="c-drawer__newsletter-title">Newsletter</h4>
+
+          <form class="c-drawer__newsletter-form group" action="{{ $newsletter.action }}" method="POST">
+            <input type="email" name="email" class="c-drawer__newsletter-input" placeholder="Email Address" required>
+            <button type="submit" class="c-drawer__newsletter-submit">
+              Subscribe 
+              <span class="c-drawer__newsletter-arrow">
+                {{ partial "svg/arrow-forward.html" }}
+              </span>
+            </button>
+          </form>
+        </div>
+
+        <div class="c-drawer__socials">
+          {{- range $social := $socials }}
+            <a href="{{ $social.url }}" class="c-drawer__social-link" target="_blank" rel="noopener noreferrer">
+              <span class="c-drawer__social-icon" aria-hidden="true">
+                {{ partial (printf "svg/%s.html" $social.icon) }}
+              </span>
+              <span class="u-sr-only">{{ $social.name }}</span>
+            </a>
+          {{- end }}
+        </div>
+      </div>
+      
+    </div>
+  </nav>
+
+  <div class="c-drawer__backdrop js-menu-close" aria-label="Close menu"></div>
 </div>

@@ -35,8 +35,8 @@
 
         {{- /* Popover menu */ -}}
         <div class="c-share__menu js-share-menu"
-             role="menu"
-             aria-label="Share options">
+            role="menu"
+            aria-label="Share options">
 
             {{- range $platform := $platforms -}}
               {{- $href := $platform.url -}}
@@ -46,10 +46,10 @@
               {{- $isEmail := hasPrefix $href "mailto:" -}}
 
               <a href="{{ $href }}"
-                 class="c-share__item js-share-item"
-                 role="menuitem"
-                 data-platform="{{ $platform.name | urlize }}"
-                 {{- if not $isEmail }} target="_blank" rel="noopener"{{ end -}}>
+                class="c-share__item js-share-item"
+                role="menuitem"
+                data-platform="{{ $platform.name | urlize }}"
+                {{- if not $isEmail }} target="_blank" rel="noopener"{{ end -}}>
                   <span class="c-share__item-icon">
                       {{- partial (printf "svg/%s.html" $icon) -}}
                   </span>

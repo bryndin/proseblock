@@ -174,11 +174,9 @@
 
 .c-search-widget__subtitle {
   font-size: var(--text-tiny);
-  /* text-[11px] */
   font-weight: var(--weight-black);
   text-transform: uppercase;
   letter-spacing: var(--tracking-mega);
-  /* tracking-[0.4em] */
   color: var(--text-primary);
   transition: color var(--duration-fast) var(--ease-default), padding-left var(--duration-fast) var(--ease-default);
 }
@@ -193,7 +191,6 @@
 
   display: block;
   font-size: var(--text-2xs);
-  /* text-[9px] */
   font-weight: var(--weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -293,8 +290,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  max-width: 200px;
   /* Designers specifically requested this wrapper restriction */
+  max-width: 200px;
 }
 
 .c-search-suggested__link {
@@ -311,7 +308,6 @@
 
 .c-search-suggested__text {
   font-size: var(--text-xs);
-  /* text-[10px] */
   font-weight: var(--weight-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-widest);
@@ -320,13 +316,12 @@
 
 .c-search-suggested__count {
   font-size: var(--text-2xs);
-  /* text-[9px] */
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-widest);
   color: var(--_count);
   opacity: 0.4;
-  margin-bottom: 1px;
   /* items-end alignment fix from designers */
+  margin-bottom: 1px;
 }
 
 .c-search-suggested__link:hover .c-search-suggested__text {

@@ -4,58 +4,61 @@
    ========================================================================== */
 
 .c-toc {
-    /* *** Arguments (The Public API) *************************************** */
-    --_text: var(--toc-text);
-    --_text-hover: var(--toc-text-hover);
-    --_accent: var(--toc-accent);
-    --_rail-bg: var(--toc-rail-bg);
-    --_separator: var(--toc-separator);
+  /* *** Arguments (The Public API) *************************************** */
+  --_text: var(--toc-text);
+  --_text-hover: var(--toc-text-hover);
+  --_accent: var(--toc-accent);
+  --_rail-bg: var(--toc-rail-bg);
+  --_separator: var(--toc-separator);
 
-    /* *** Configuration (Internal Styling) ********************************* */
-    --_link-size: 11px; 
-    --_link-weight: var(--weight-semibold);
-    --_rail-width: 2px;
-    --_text-transform: uppercase;
-    --_rail-opacity: 0.5;
+  /* *** Configuration (Internal Styling) ********************************* */
+  --_link-size: 11px;
+  --_link-weight: var(--weight-semibold);
+  --_rail-width: 2px;
+  --_text-transform: uppercase;
+  --_rail-opacity: 0.5;
 
-    display: flex;
-    gap: 0;
-    align-items: stretch;
+  display: flex;
+  gap: 0;
+  align-items: stretch;
 
-    /* Allow the ToC to fill the sidebar but shrink if it needs to */
-    flex: 1;
-    min-height: 0; 
+  /* Allow the ToC to fill the sidebar but shrink if it needs to */
+  flex: 1;
+  min-height: 0;
 }
 
 /* --- TOC body --- */
 
 .c-toc__body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    
-    /* CRITICAL FOR P1: This forces the text to scroll! */
-    overflow-y: auto;
-    min-height: 0; /* CRITICAL: Allows the scroll container to activate */
-    
-    /* Add padding so the scrollbar doesn't touch your text */
-    padding-right: 1rem; 
-    
-    /* Optional: Minimalist scrollbar styling (Firefox) */
-    scrollbar-width: thin;
-    scrollbar-color: var(--_separator) transparent;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  /* CRITICAL FOR P1: This forces the text to scroll! */
+  overflow-y: auto;
+  /* CRITICAL: Allows the scroll container to activate */
+  min-height: 0;
+
+  /* Add padding so the scrollbar doesn't touch your text */
+  padding-right: 1rem;
+
+  /* Optional: Minimalist scrollbar styling (Firefox) */
+  scrollbar-width: thin;
+  scrollbar-color: var(--_separator) transparent;
 }
 
 /* Optional: Minimalist scrollbar styling (Chrome/Safari/Edge) */
 .c-toc__body::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
+
 .c-toc__body::-webkit-scrollbar-track {
-    background: transparent;
+  background: transparent;
 }
+
 .c-toc__body::-webkit-scrollbar-thumb {
-    background-color: var(--_separator);
-    border-radius: 4px;
+  background-color: var(--_separator);
+  border-radius: 4px;
 }
 
 /* --- Hugo Generated Link List --- */
@@ -63,157 +66,162 @@
 /* Reset ALL lists so every anchor starts completely flush with the rail */
 .c-toc__list nav ul,
 .c-toc__list nav li {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Add vertical spacing between items */
 .c-toc__list nav ul,
 .c-toc__list nav li {
-    gap: var(--space-4);
+  gap: var(--space-4);
 }
 
 /* --- Hugo Generated Links --- */
 
 .c-toc__list nav a {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3); 
-    
-    /* ADDED: padding-right of 0.5rem to pre-reserve the space the animation will need */
-    padding: 0.25rem 0.5rem 0.25rem 0; 
-    
-    font-size: var(--_link-size);
-    font-weight: var(--_link-weight);
-    letter-spacing: var(--tracking-widest);
-    text-transform: var(--_text-transform);
-    text-decoration: none;
-    color: var(--_text);
-    
-    /* ADDED: animate padding-right perfectly in sync with the tick width */
-    transition: color var(--duration-normal) var(--ease-default),
-                padding-right var(--duration-normal) var(--ease-default);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+
+  /* ADDED: padding-right of 0.5rem to pre-reserve the space the animation will need */
+  padding: 0.25rem 0.5rem 0.25rem 0;
+
+  font-size: var(--_link-size);
+  font-weight: var(--_link-weight);
+  letter-spacing: var(--tracking-widest);
+  text-transform: var(--_text-transform);
+  text-decoration: none;
+  color: var(--_text);
+
+  /* ADDED: animate padding-right perfectly in sync with the tick width */
+  transition: color var(--duration-normal) var(--ease-default),
+    padding-right var(--duration-normal) var(--ease-default);
 }
 
 .c-toc__list nav a:hover {
-    color: var(--_text-hover);
-    
-    /* ADDED: Eat into the reserved right padding as the left tick pushes outward. 
+  color: var(--_text-hover);
+
+  /* ADDED: Eat into the reserved right padding as the left tick pushes outward. 
        This keeps the total width of the <a> tag absolutely perfectly identical! */
-    padding-right: 0;
+  padding-right: 0;
 }
 
 /* --- Synthesized Link Line (Now in the Document Flow) --- */
 
 .c-toc__list nav a::before {
-    content: "";
-    display: block; /* Makes it a flex item so it pushes text */
-    height: 1px;
-    background-color: var(--_separator); 
-    opacity: 0.4; 
-    flex-shrink: 0;
-    
-    /* Animation affects width, which physically pushes the flex text */
-    transition: width var(--duration-normal) var(--ease-default),
-        background-color var(--duration-normal) var(--ease-default),
-        opacity var(--duration-normal) var(--ease-default);
+  content: "";
+  /* Makes it a flex item so it pushes text */
+  display: block;
+  height: 1px;
+  background-color: var(--_separator);
+  opacity: 0.4;
+  flex-shrink: 0;
+
+  /* Animation affects width, which physically pushes the flex text */
+  transition: width var(--duration-normal) var(--ease-default),
+    background-color var(--duration-normal) var(--ease-default),
+    opacity var(--duration-normal) var(--ease-default);
 }
 
 /* --- Dynamic Indentation via Tick Width --- */
 
 /* Level 1 (H2) */
 .c-toc__list nav a::before {
-    width: 1rem;
+  width: 1rem;
 }
+
 .c-toc__list nav a:hover::before {
-    width: 1.5rem;
-    background-color: var(--_accent);
-    opacity: var(--_rail-opacity);
+  width: 1.5rem;
+  background-color: var(--_accent);
+  opacity: var(--_rail-opacity);
 }
 
 /* Level 2 (H3) - Longer tick creates the indent AND connects to the rail */
 .c-toc__list nav ul ul a::before {
-    width: 2rem;
+  width: 2rem;
 }
+
 .c-toc__list nav ul ul a:hover::before {
-    width: 2.5rem;
-    background-color: var(--_accent);
-    opacity: var(--_rail-opacity);
+  width: 2.5rem;
+  background-color: var(--_accent);
+  opacity: var(--_rail-opacity);
 }
 
 /* Level 3 (H4) - Even longer tick */
 .c-toc__list nav ul ul ul a::before {
-    width: 3rem;
+  width: 3rem;
 }
+
 .c-toc__list nav ul ul ul a:hover::before {
-    width: 3.5rem;
-    background-color: var(--_accent);
-    opacity: var(--_rail-opacity);
+  width: 3.5rem;
+  background-color: var(--_accent);
+  opacity: var(--_rail-opacity);
 }
 
 /* --- Floating Title --- */
 
 .c-toc__floating-title {
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    margin-bottom: 0;
-    /* Smooth expand/collapse matching Tailwind's duration-500 ease-in-out */
-    transition: opacity 0.5s ease-in-out, 
-                max-height 0.5s ease-in-out, 
-                margin-bottom 0.5s ease-in-out;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  margin-bottom: 0;
+  /* Smooth expand/collapse matching Tailwind's duration-500 ease-in-out */
+  transition: opacity 0.5s ease-in-out,
+    max-height 0.5s ease-in-out,
+    margin-bottom 0.5s ease-in-out;
 }
 
 /* Toggled via JS when Hero is out of view */
 .c-toc__floating-title.is-visible {
-    opacity: 1;
-    max-height: 15rem; /* Large enough to fit multiline titles */
-    margin-bottom: var(--space-4, 1rem);
+  opacity: 1;
+  /* Large enough to fit multiline titles */
+  max-height: 15rem;
+  margin-bottom: var(--space-4, 1rem);
 }
 
 .c-toc__floating-title a {
-    display: block;
-    /* padding-left matches the indentation of the ToC list items below it */
-    padding: var(--space-4, 1rem) var(--space-4, 1rem) var(--space-4, 1rem) var(--space-4, 1rem);
-    font-size: var(--_link-size);
-    font-weight: var(--_link-weight);
-    letter-spacing: var(--tracking-widest);
-    text-transform: var(--_text-transform);
-    text-decoration: none;
-    color: var(--_text);
+  display: block;
+  /* padding-left matches the indentation of the ToC list items below it */
+  padding: var(--space-4, 1rem) var(--space-4, 1rem) var(--space-4, 1rem) var(--space-4, 1rem);
+  font-size: var(--_link-size);
+  font-weight: var(--_link-weight);
+  letter-spacing: var(--tracking-widest);
+  text-transform: var(--_text-transform);
+  text-decoration: none;
+  color: var(--_text);
 
-    transition: color var(--duration-normal) var(--ease-default);
-    cursor: pointer;
+  transition: color var(--duration-normal) var(--ease-default);
+  cursor: pointer;
 }
 
 .c-toc__floating-title a:hover {
-    color: var(--_text-hover);
+  color: var(--_text-hover);
 }
 
 /* --- Reading rail --- */
 
 .c-toc__rail {
-    width: var(--_rail-width);
-    margin-left: 6px; 
-    margin-top: 7px;
-    margin-bottom: 7px;
-    
-    background-color: var(--_rail-bg);
-    opacity: var(--_rail-opacity);
-    
-    position: relative;
-    flex-shrink: 0;
+  width: var(--_rail-width);
+  margin-left: 6px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+
+  background-color: var(--_rail-bg);
+  opacity: var(--_rail-opacity);
+
+  position: relative;
+  flex-shrink: 0;
 }
 
 .c-toc__rail-fill {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0;
-    background-color: var(--_accent);
-    transition: height 0.1s var(--ease-out);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: var(--_accent);
+  transition: height 0.1s var(--ease-out);
 }

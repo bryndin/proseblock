@@ -88,6 +88,6 @@
   background-color: color-mix(in srgb, var(--accent) 15%, transparent);
 }
 
-.chroma .lntable td:last-child{
+.chroma .lntable td:last-child {
   width: 100%;
 }

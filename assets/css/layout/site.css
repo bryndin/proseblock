@@ -64,8 +64,8 @@
 }
 
 /* -----------------------------------------------------------------------
-     Article-specific 2-column (80/20 TOC sidebar)
-     ----------------------------------------------------------------------- */
+   Article-specific 2-column (80/20 TOC sidebar)
+   ----------------------------------------------------------------------- */
 
 .l-site__columns--article {
   /* *** Configuration (Internal Styling) ********************************* */
@@ -85,21 +85,21 @@
 }
 
 .l-site__article-sidebar {
-    /* 1. Make the wrapper sticky, not the ToC! */
-    position: sticky;
-    
-    /* 2. Fix the P2 Bug (Top 160): Sets it much closer to the top of the screen */
-    top: 2rem; 
-    
-    /* 3. CRITICAL FOR P1: Force the sidebar to never exceed the screen height */
-    max-height: calc(100vh - 4rem); 
-    
-    /* Ensure it doesn't stretch to the height of the article body */
-    align-self: flex-start; 
-    
-    display: flex;
-    flex-direction: column;
-    gap: 2rem; 
+  /* 1. Make the wrapper sticky, not the ToC! */
+  position: sticky;
+
+  /* 2. Fix the P2 Bug (Top 160): Sets it much closer to the top of the screen */
+  top: 2rem;
+
+  /* 3. CRITICAL FOR P1: Force the sidebar to never exceed the screen height */
+  max-height: calc(100vh - 4rem);
+
+  /* Ensure it doesn't stretch to the height of the article body */
+  align-self: flex-start;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 @media (min-width: 768px) {

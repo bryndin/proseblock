@@ -1,24 +1,24 @@
 {{ $article := . }}
 
 <article class="c-article-card">
-    <a href="{{ $article.RelPermalink }}">
-        <div class="c-article-card__content">
-            {{- /* Category */ -}}
-            {{- with $categories := $article.Params.categories }}
-                <div class="c-article-card__category">{{ delimit $categories " / " }}</div>
-            {{- end }}
+  <a href="{{ $article.RelPermalink }}">
+    <div class="c-article-card__content">
+      {{- /* Category */ -}}
+      {{- with $categories := $article.Params.categories }}
+        <div class="c-article-card__category">{{ delimit $categories " / " }}</div>
+      {{- end }}
 
-            {{- /* Title */ -}}
-            <h4 class="c-article-card__title">{{ $article.LinkTitle }}</h4>
+      {{- /* Title */ -}}
+      <h4 class="c-article-card__title">{{ $article.LinkTitle }}</h4>
 
-            {{- /* Excerpt */ -}}
-            {{- with $summary := $article.Summary }}
-                {{- /* TODO(DB): truncation limit must come from hugo.toml */ -}}
-                <p class="c-article-card__excerpt">{{ $summary | plainify | truncate 200 }}</p>
-            {{- end }}
+      {{- /* Excerpt */ -}}
+      {{- with $summary := $article.Summary }}
+        {{- /* TODO(DB): truncation limit must come from hugo.toml */ -}}
+        <p class="c-article-card__excerpt">{{ $summary | plainify | truncate 200 }}</p>
+      {{- end }}
 
-            {{- /* Metadata row */ -}}
-            {{ partial "metadata.html" (dict "article" $article) }}
-            </div>
-    </a>
+      {{- /* Metadata row */ -}}
+      {{ partial "metadata.html" (dict "article" $article) }}
+      </div>
+  </a>
 </article>

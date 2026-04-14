@@ -8,62 +8,62 @@
 {{- $paginator := .paginator -}}
 
 {{- /* =======================================================================
-     MODE: SERVER-SIDE RENDERING (Hugo Native loop)
-     ======================================================================= */ -}}
+   MODE: SERVER-SIDE RENDERING (Hugo Native loop)
+   ======================================================================= */ -}}
 {{- if eq $mode "ssr" -}}
-    {{- if $paginator }}
-        {{- if gt $paginator.TotalPages 1 }}
-            <nav class="c-paginator" aria-label="Page navigation">
-                {{- if $paginator.HasPrev }}
-                    <a class="c-paginator__btn" href="{{ $paginator.Prev.URL }}" aria-label="Previous page">{{ partial "svg/chevron-left.html" }}</a>
-                {{- else }}
-                    <span class="c-paginator__btn" aria-disabled="true">{{ partial "svg/chevron-left.html" }}</span>
-                {{- end }}
-
-                <div class="c-paginator__numbers">
-                    {{- range $pageNum := $paginator.Pagers }}
-                        {{- if eq $pageNum.PageNumber $paginator.PageNumber }}
-                            <span class="c-paginator__number c-paginator__number--active">{{ printf "%02d" $pageNum.PageNumber }}</span>
-                        {{- else }}
-                            <a href="{{ $pageNum.URL }}" class="c-paginator__number">{{ printf "%02d" $pageNum.PageNumber }}</a>
-                        {{- end }}
-                    {{- end }}
-                </div>
-
-                {{- if $paginator.HasNext }}
-                    <a class="c-paginator__btn" href="{{ $paginator.Next.URL }}" aria-label="Next page">{{ partial "svg/chevron-right.html" }}</a>
-                {{- else }}
-                    <span class="c-paginator__btn" aria-disabled="true">{{ partial "svg/chevron-right.html" }}</span>
-                {{- end }}
-            </nav>
+  {{- if $paginator }}
+    {{- if gt $paginator.TotalPages 1 }}
+      <nav class="c-paginator" aria-label="Page navigation">
+        {{- if $paginator.HasPrev }}
+          <a class="c-paginator__btn" href="{{ $paginator.Prev.URL }}" aria-label="Previous page">{{ partial "svg/chevron-left.html" }}</a>
+        {{- else }}
+          <span class="c-paginator__btn" aria-disabled="true">{{ partial "svg/chevron-left.html" }}</span>
         {{- end }}
+
+        <div class="c-paginator__numbers">
+          {{- range $pageNum := $paginator.Pagers }}
+            {{- if eq $pageNum.PageNumber $paginator.PageNumber }}
+              <span class="c-paginator__number c-paginator__number--active">{{ printf "%02d" $pageNum.PageNumber }}</span>
+            {{- else }}
+              <a href="{{ $pageNum.URL }}" class="c-paginator__number">{{ printf "%02d" $pageNum.PageNumber }}</a>
+            {{- end }}
+          {{- end }}
+        </div>
+
+        {{- if $paginator.HasNext }}
+          <a class="c-paginator__btn" href="{{ $paginator.Next.URL }}" aria-label="Next page">{{ partial "svg/chevron-right.html" }}</a>
+        {{- else }}
+          <span class="c-paginator__btn" aria-disabled="true">{{ partial "svg/chevron-right.html" }}</span>
+        {{- end }}
+      </nav>
     {{- end }}
+  {{- end }}
 
 {{- /* =======================================================================
-     MODE: CLIENT-SIDE RENDERING (Templates for Vanilla JS)
-     ======================================================================= */ -}}
+   MODE: CLIENT-SIDE RENDERING (Templates for Vanilla JS)
+   ======================================================================= */ -}}
 {{- else if eq $mode "csr" -}}
-    <template id="tpl-paginator-wrapper">
-        <nav class="c-paginator" aria-label="Page navigation">{CONTENT}</nav>
-    </template>
-    
-    <template id="tpl-paginator-numbers-wrapper">
-        <div class="c-paginator__numbers">{CONTENT}</div>
-    </template>
-    
-    <template id="tpl-paginator-number">
-        <button class="c-paginator__number c-paginator__btn--interactive" data-page="{PAGE}">{PAGE}</button>
-    </template>
-    
-    <template id="tpl-paginator-number-active">
-        <span class="c-paginator__number c-paginator__number--active">{PAGE}</span>
-    </template>
-    
-    <template id="tpl-paginator-btn">
-        <button class="c-paginator__btn c-paginator__btn--interactive" data-page="{PAGE}" aria-label="{LABEL}">{ICON}</button>
-    </template>
-    
-    <template id="tpl-paginator-btn-disabled">
-        <span class="c-paginator__btn" aria-disabled="true">{ICON}</span>
-    </template>
+  <template id="tpl-paginator-wrapper">
+    <nav class="c-paginator" aria-label="Page navigation">{CONTENT}</nav>
+  </template>
+  
+  <template id="tpl-paginator-numbers-wrapper">
+    <div class="c-paginator__numbers">{CONTENT}</div>
+  </template>
+  
+  <template id="tpl-paginator-number">
+    <button class="c-paginator__number c-paginator__btn--interactive" data-page="{PAGE}">{PAGE}</button>
+  </template>
+  
+  <template id="tpl-paginator-number-active">
+    <span class="c-paginator__number c-paginator__number--active">{PAGE}</span>
+  </template>
+  
+  <template id="tpl-paginator-btn">
+    <button class="c-paginator__btn c-paginator__btn--interactive" data-page="{PAGE}" aria-label="{LABEL}">{ICON}</button>
+  </template>
+  
+  <template id="tpl-paginator-btn-disabled">
+    <span class="c-paginator__btn" aria-disabled="true">{ICON}</span>
+  </template>
 {{- end -}}

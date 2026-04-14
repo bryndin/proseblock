@@ -5,30 +5,30 @@
 {{ $action := .action | default site.Params.newsletter.action }}
 
 {{- with $enabled }}
-    <div class="c-sidebar__widget c-sidebar__widget--newsletter" id="newsletter-widget">
-        <div class="c-sidebar__widget-header">
-            <span class="c-sidebar__widget-icon">{{ partial "svg/mail.html" }}</span>
-            <h5 class="c-sidebar__widget-title">{{ $title }}</h5>
-        </div>
-        {{- with $freqText := $frequencyText }}
-            <p class="c-sidebar__widget-body">{{ $freqText }}</p>
-        {{- end }}
-
-        <form class="c-sidebar__form js-newsletter-form" id="newsletter-form" action="{{ $action }}" method="POST">
-            <input class="c-sidebar__input" type="email" name="email" placeholder="EMAIL ADDRESS" required>
-            <button class="c-sidebar__submit" type="submit">
-                <span class="c-sidebar__submit-text">Subscribe</span>
-                <span class="c-sidebar__submit-icon">{{ partial "svg/arrow-forward.html" }}</span>
-                <span class="c-sidebar__submit-spinner" style="display: none;">{{ partial "svg/spinner.html" }}</span>
-            </button>
-        </form>
-        <div class="c-sidebar__feedback">
-            <p class="c-sidebar__feedback-message c-sidebar__feedback-message--success" style="display: none;">
-                Thanks for subscribing! Please check your inbox.
-            </p>
-            <p class="c-sidebar__feedback-message c-sidebar__feedback-message--error" style="display: none;">
-                Oops! Something went wrong. Please try again later.
-            </p>
-        </div>
+  <div class="c-sidebar__widget c-sidebar__widget--newsletter" id="newsletter-widget">
+    <div class="c-sidebar__widget-header">
+      <span class="c-sidebar__widget-icon">{{ partial "svg/mail.html" }}</span>
+      <h5 class="c-sidebar__widget-title">{{ $title }}</h5>
     </div>
+    {{- with $freqText := $frequencyText }}
+      <p class="c-sidebar__widget-body">{{ $freqText }}</p>
+    {{- end }}
+
+    <form class="c-sidebar__form js-newsletter-form" id="newsletter-form" action="{{ $action }}" method="POST">
+      <input class="c-sidebar__input" type="email" name="email" placeholder="EMAIL ADDRESS" required>
+      <button class="c-sidebar__submit" type="submit">
+        <span class="c-sidebar__submit-text">Subscribe</span>
+        <span class="c-sidebar__submit-icon">{{ partial "svg/arrow-forward.html" }}</span>
+        <span class="c-sidebar__submit-spinner" style="display: none;">{{ partial "svg/spinner.html" }}</span>
+      </button>
+    </form>
+    <div class="c-sidebar__feedback">
+      <p class="c-sidebar__feedback-message c-sidebar__feedback-message--success" style="display: none;">
+        Thanks for subscribing! Please check your inbox.
+      </p>
+      <p class="c-sidebar__feedback-message c-sidebar__feedback-message--error" style="display: none;">
+        Oops! Something went wrong. Please try again later.
+      </p>
+    </div>
+  </div>
 {{- end }}

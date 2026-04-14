@@ -1,16 +1,16 @@
 /* --- Announcement link --- */
 
 .c-sidebar__link {
-    display: inline-block;
-    font-size: var(--text-xs);
-    font-weight: var(--weight-bold);
-    letter-spacing: var(--tracking-widest);
-    text-transform: uppercase;
-    text-decoration: underline;
-    text-underline-offset: 0.5rem;
-    transition: color var(--duration-normal) var(--ease-default);
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.5rem;
+  transition: color var(--duration-normal) var(--ease-default);
 }
 
 .c-sidebar__link:hover {
-    color: var(--_accent);
+  color: var(--_accent);
 }

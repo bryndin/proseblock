@@ -3,30 +3,30 @@
 {{ $modifier := .modifier | default "" }} {{/* e.g., "c-metadata--hero" */}}
 
 <div class="c-metadata {{ $modifier }}">
+  <div class="c-metadata__item">
+    <span class="c-metadata__icon">{{ partial "svg/calendar.html" }}</span>
+    <span>{{ $article.Date | time.Format site.Params.dateFormat }}</span>
+  </div>
+  
+  {{- with $authors := $article.Params.authors }}
+    {{- $authorName := index $authors 0 }}
+    {{- $authorTerm := site.GetPage (printf "/authors/%s" ($authorName | urlize)) }}
+    <span class="c-metadata__dot"></span>
     <div class="c-metadata__item">
-        <span class="c-metadata__icon">{{ partial "svg/calendar.html" }}</span>
-        <span>{{ $article.Date | time.Format site.Params.dateFormat }}</span>
+      <span class="c-metadata__icon">{{ partial "svg/person.html" }}</span>
+      {{- if $authorTerm }}
+        <a href="{{ $authorTerm.RelPermalink }}" class="c-metadata__link">{{ $authorName }}</a>
+      {{- else }}
+        <span>{{ $authorName }}</span>
+      {{- end }}
     </div>
-    
-    {{- with $authors := $article.Params.authors }}
-        {{- $authorName := index $authors 0 }}
-        {{- $authorTerm := site.GetPage (printf "/authors/%s" ($authorName | urlize)) }}
-        <span class="c-metadata__dot"></span>
-        <div class="c-metadata__item">
-            <span class="c-metadata__icon">{{ partial "svg/person.html" }}</span>
-            {{- if $authorTerm }}
-                <a href="{{ $authorTerm.RelPermalink }}" class="c-metadata__link">{{ $authorName }}</a>
-            {{- else }}
-                <span>{{ $authorName }}</span>
-            {{- end }}
-        </div>
-    {{- end }}
-    
-    {{- with $readingTime := site.Params.enableReadingTime }}
-        <span class="c-metadata__dot"></span>
-        <div class="c-metadata__item">
-            <span class="c-metadata__icon">{{ partial "svg/schedule.html" }}</span>
-            <span>{{ $article.ReadingTime }} min</span>
-        </div>
-    {{- end }}
+  {{- end }}
+  
+  {{- with $readingTime := site.Params.enableReadingTime }}
+    <span class="c-metadata__dot"></span>
+    <div class="c-metadata__item">
+      <span class="c-metadata__icon">{{ partial "svg/schedule.html" }}</span>
+      <span>{{ $article.ReadingTime }} min</span>
+    </div>
+  {{- end }}
 </div>

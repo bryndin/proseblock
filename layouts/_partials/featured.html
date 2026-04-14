@@ -5,28 +5,28 @@
 {{- if $totalFeatured }}
 {{- $featured := site.Params.featured }}
 <section class="js-featured-carousel" 
-         data-total="{{ $totalFeatured }}"
-         data-autorotate="{{ $featured.autorotate | default false }}"
-         data-interval="{{ $featured.interval | default 5000 }}">
-    <article class="c-featured">
-        <div class="c-featured__header">
-            <span class="c-featured__label">Featured</span>
-            {{ partial "paginator-compact.html" (dict "start" 1 "total" $totalFeatured "left" "svg/chevron-left.html" "right" "svg/chevron-right.html") }}   
-        </div>
+    data-total="{{ $totalFeatured }}"
+    data-autorotate="{{ $featured.autorotate | default false }}"
+    data-interval="{{ $featured.interval | default 5000 }}">
+  <article class="c-featured">
+    <div class="c-featured__header">
+      <span class="c-featured__label">Featured</span>
+      {{ partial "paginator-compact.html" (dict "start" 1 "total" $totalFeatured "left" "svg/chevron-left.html" "right" "svg/chevron-right.html") }}   
+    </div>
 
-        <div class="c-featured__body">
-            {{- range $index, $article := $featuredArticles }}
-                <a href="{{ $article.RelPermalink }}" 
-                        class="c-featured__content js-featured-item{{ if eq $index 0 }} is-active{{ end }}" 
-                        data-index="{{ $index }}">
-                    <h3 class="c-featured__title">{{ $article.LinkTitle }}</h3>
-                    {{- with $summary := $article.Summary | default $article.Description }}
-                        {{- $limit := site.Params.featured.truncationLimit | default 200 }}
-                        <p class="c-featured__excerpt">{{ $summary | plainify | truncate $limit }}</p>
-                    {{- end }}
-                </a>
-            {{- end }}
-        </div>
-    </article>
+    <div class="c-featured__body">
+      {{- range $index, $article := $featuredArticles }}
+        <a href="{{ $article.RelPermalink }}" 
+            class="c-featured__content js-featured-item{{ if eq $index 0 }} is-active{{ end }}" 
+            data-index="{{ $index }}">
+          <h3 class="c-featured__title">{{ $article.LinkTitle }}</h3>
+          {{- with $summary := $article.Summary | default $article.Description }}
+            {{- $limit := site.Params.featured.truncationLimit | default 200 }}
+            <p class="c-featured__excerpt">{{ $summary | plainify | truncate $limit }}</p>
+          {{- end }}
+        </a>
+      {{- end }}
+    </div>
+  </article>
 </section>
 {{- end }}

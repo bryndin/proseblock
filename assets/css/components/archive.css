@@ -1,6 +1,6 @@
 /* ==========================================================================
     ARCHIVE PAGE (CHRONOLOGICAL INDEX)
-    ========================================================================== */
+========================================================================== */
 
 .c-archive {
   display: flex;
@@ -17,11 +17,11 @@
 .c-archive__year-title {
   /* *** Arguments (The Public API) *************************************** */
   --_text: var(--text-primary);
-  --_border: var(--border-muted); /* matches surface-container-high */
+  --_border: var(--border-muted);
 
-  font-size: 0.6875rem; /* ~11px */
+  font-size: 0.6875rem;
   font-weight: var(--weight-bold);
-  letter-spacing: var(--tracking-mega); /* 0.4em */
+  letter-spacing: var(--tracking-mega);
   text-transform: uppercase;
   color: var(--_text);
   text-align: right;
@@ -46,9 +46,9 @@
 .c-archive__month-title {
   --_text: var(--accent);
 
-  font-size: 0.6875rem; /* ~11px */
+  font-size: 0.6875rem;
   font-weight: var(--weight-bold);
-  letter-spacing: var(--tracking-mega); /* 0.4em */
+  letter-spacing: var(--tracking-mega);
   text-transform: uppercase;
   color: var(--_text);
   text-align: right;
@@ -65,8 +65,8 @@
 }
 
 /* ==========================================================================
-    ARCHIVE CARD (Individual Article Row)
-    ========================================================================== */
+     ARCHIVE CARD (Individual Article Row)
+========================================================================== */
 
 .c-archive-card {
   --_border: var(--border-subtle);
@@ -92,12 +92,13 @@
   flex-direction: column;
   align-items: center;
   padding-top: var(--space-1);
-  min-width: 2rem; /* 32px */
+  min-width: 2rem;
+  /* 32px */
   color: var(--_text);
 }
 
 .c-archive-card__month {
-  font-size: var(--text-2xs); /* 9px */
+  font-size: var(--text-2xs);
   font-weight: var(--weight-black);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
@@ -128,10 +129,10 @@
   --_text: var(--accent);
 
   display: block;
-  font-size: var(--text-xs); /* 10px */
+  font-size: var(--text-xs);
   font-weight: var(--weight-bold);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-widest); /* 0.2em */
+  letter-spacing: var(--tracking-widest);
   color: var(--_text);
   margin-bottom: var(--space-3);
   opacity: 0.6;

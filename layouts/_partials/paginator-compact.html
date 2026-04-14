@@ -4,13 +4,13 @@
 {{ $right_icon := .right }}
 
 <div class="c-featured__pagination">
-    <button class="c-featured__page-btn js-featured-prev" aria-label="Previous featured article">
-        {{ partial $left_icon }}
-    </button>
-    <span class="c-featured__page-indicator js-featured-indicator">
-        {{ printf "%02d" $start }} / {{ printf "%02d" $total }}
-    </span>
-    <button class="c-featured__page-btn js-featured-next" aria-label="Next featured article">
-        {{ partial $right_icon }}
-    </button>
+  <button class="c-featured__page-btn js-featured-prev" aria-label="Previous featured article">
+    {{ partial $left_icon }}
+  </button>
+  <span class="c-featured__page-indicator js-featured-indicator">
+    {{ printf "%02d" $start }} / {{ printf "%02d" $total }}
+  </span>
+  <button class="c-featured__page-btn js-featured-next" aria-label="Next featured article">
+    {{ partial $right_icon }}
+  </button>
 </div>

@@ -1,97 +1,95 @@
-@layer components {
-  /* ==========================================================================
+/* ==========================================================================
      AUTHOR INDEX PAGE
      ========================================================================== */
 
-  .c-author-index {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-24);
-  }
+.c-author-index {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
 
-  .c-author-section__title {
-    /* *** Arguments (The Public API) *************************************** */
-    --_text: var(--text-secondary);
-    --_border: var(--border-muted); /* surface-container-high */
+.c-author-section__title {
+  /* *** Arguments (The Public API) *************************************** */
+  --_text: var(--text-secondary);
+  --_border: var(--border-muted);
 
-    font-size: var(--text-xs); /* text-[10px] */
-    font-weight: var(--weight-bold);
-    letter-spacing: var(--tracking-mega); /* tracking-[0.4em] */
-    text-transform: uppercase;
-    color: var(--_text);
-    opacity: 0.4;
-    padding-bottom: var(--space-4);
-    margin-bottom: var(--space-8);
-    border-bottom: 1px solid var(--_border);
-  }
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-mega);
+  text-transform: uppercase;
+  color: var(--_text);
+  opacity: 0.4;
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-8);
+  border-bottom: 1px solid var(--_border);
+}
 
+.c-author-section__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: var(--space-12);
+  row-gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
   .c-author-section__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    column-gap: var(--space-12);
-    row-gap: var(--space-6);
+    grid-template-columns: repeat(2, 1fr);
   }
+}
 
-  @media (min-width: 640px) {
-    .c-author-section__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  /* ==========================================================================
+/* ==========================================================================
      AUTHOR CARD
      ========================================================================== */
-     
-  .c-author-card {
-    /* *** Arguments (The Public API) *************************************** */
-    --_bg: transparent;
-    --_bg-hover: var(--bg-secondary);
-    --_border: var(--border-subtle);
-    --_border-hover: var(--accent);
-    --_text: var(--text-primary);
-    --_text-hover: var(--accent);
-    --_meta: var(--text-secondary);
-    --_padding: var(--space-4);
-    --_transition: var(--duration-normal) var(--ease-default);
-    
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    padding: var(--space-2) var(--_padding);
-    margin-inline: calc(-1 * var(--_padding));
-    background-color: var(--_bg);
-    border-bottom: 1px solid oklch(from var(--_border) l c h / 0.5);
-    text-decoration: none;
-    transition: background-color var(--_transition), border-color var(--_transition), box-shadow var(--_transition);
-  }
 
-  .c-author-card:hover {
-    background-color: var(--_bg-hover);
-    border-bottom-color: var(--_border-hover);
-    box-shadow: var(--shadow-inner);
-  }
+.c-author-card {
+  /* *** Arguments (The Public API) *************************************** */
+  --_bg: transparent;
+  --_bg-hover: var(--bg-secondary);
+  --_border: var(--border-subtle);
+  --_border-hover: var(--accent);
+  --_text: var(--text-primary);
+  --_text-hover: var(--accent);
+  --_meta: var(--text-secondary);
+  --_padding: var(--space-4);
+  --_transition: var(--duration-normal) var(--ease-default);
 
-  .c-author-card__name {
-    font-size: var(--text-lg);
-    font-weight: var(--weight-bold);
-    letter-spacing: var(--tracking-tight);
-    color: var(--_text);
-    transition: color var(--duration-normal) var(--ease-default);
-  }
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: var(--space-2) var(--_padding);
+  margin-inline: calc(-1 * var(--_padding));
+  background-color: var(--_bg);
+  border-bottom: 1px solid oklch(from var(--_border) l c h / 0.5);
+  text-decoration: none;
+  transition: background-color var(--_transition), border-color var(--_transition), box-shadow var(--_transition);
+}
 
-  .c-author-card:hover .c-author-card__name {
-    color: var(--_text-hover);
-  }
+.c-author-card:hover {
+  background-color: var(--_bg-hover);
+  border-bottom-color: var(--_border-hover);
+  box-shadow: var(--shadow-inner);
+}
 
-  .c-author-card__count {
-    font-size: var(--text-xs); /* text-[10px] */
-    font-weight: var(--weight-black);
-    color: var(--_meta);
-    opacity: 0.3;
-    transition: opacity var(--_transition);
-  }
+.c-author-card__name {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--_text);
+  transition: color var(--duration-normal) var(--ease-default);
+}
 
-  .c-author-card:hover .c-author-card__count {
-    opacity: 1;
-  }
+.c-author-card:hover .c-author-card__name {
+  color: var(--_text-hover);
+}
+
+.c-author-card__count {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-black);
+  color: var(--_meta);
+  opacity: 0.3;
+  transition: opacity var(--_transition);
+}
+
+.c-author-card:hover .c-author-card__count {
+  opacity: 1;
 }

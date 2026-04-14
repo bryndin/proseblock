@@ -1,79 +1,77 @@
-@layer components {
-  /* ==========================================================================
-     ABOUT PAGE HERO (Modifier of .c-hero)
-     ========================================================================== */
-  .c-hero--about {
-    /* *** Arguments (The Public API) *************************************** */
-    --_bg: var(--hero-bg);
-    --_border: var(--border-subtle);
+/* ==========================================================================
+    ABOUT PAGE HERO (Modifier of .c-hero)
+    ========================================================================== */
+.c-hero--about {
+  /* *** Arguments (The Public API) *************************************** */
+  --_bg: var(--hero-bg);
+  --_border: var(--border-subtle);
 
-    background-color: var(--_bg);
-    border: var(--border-width) solid oklch(from var(--_border) l c h / 0.4);
-    margin-bottom: var(--space-16);
-  }
+  background-color: var(--_bg);
+  border: var(--border-width) solid oklch(from var(--_border) l c h / 0.4);
+  margin-bottom: var(--space-16);
+}
 
-  /* ==========================================================================
-     ABOUT CONTENT PROSE
-     ========================================================================== */
-  .c-about-content {
-    /* *** Arguments (The Public API) *************************************** */
-    --_text: var(--article-text);
-    --_heading: var(--article-heading-text);
-    --_accent: var(--accent);
+/* ==========================================================================
+    ABOUT CONTENT PROSE
+    ========================================================================== */
+.c-about-content {
+  /* *** Arguments (The Public API) *************************************** */
+  --_text: var(--article-text);
+  --_heading: var(--article-heading-text);
+  --_accent: var(--accent);
 
-    /* *** Configuration (Internal Styling) ********************************* */
-    --_font-size: var(--text-lg);
-    --_line-height: var(--leading-article);
-    --_gap: var(--space-8);
-    
-    display: flex;
-    flex-direction: column;
-    gap: var(--_gap);
-    font-size: var(--_font-size);
-    line-height: var(--_line-height);
-    color: var(--_text);
-    font-weight: var(--weight-light);
-  }
+  /* *** Configuration (Internal Styling) ********************************* */
+  --_font-size: var(--text-lg);
+  --_line-height: var(--leading-article);
+  --_gap: var(--space-8);
 
-  /* Target Markdown headings natively */
-  .c-about-content h2,
-  .c-about-content h3,
-  .c-about-content h4 {
-    color: var(--_heading);
-    font-weight: var(--weight-bold);
-    letter-spacing: var(--tracking-tight);
-    margin-top: var(--space-8);
-    margin-bottom: var(--space-2);
-  }
+  display: flex;
+  flex-direction: column;
+  gap: var(--_gap);
+  font-size: var(--_font-size);
+  line-height: var(--_line-height);
+  color: var(--_text);
+  font-weight: var(--weight-light);
+}
 
-  .c-about-content h2 {
-    font-size: var(--text-3xl);
-  }
+/* Target Markdown headings natively */
+.c-about-content h2,
+.c-about-content h3,
+.c-about-content h4 {
+  color: var(--_heading);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-2);
+}
 
-  .c-about-content h3 {
-    font-size: var(--text-2xl);
-  }
+.c-about-content h2 {
+  font-size: var(--text-3xl);
+}
 
-  /* Target Markdown links */
-  .c-about-content a {
-    color: var(--_accent);
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    transition: opacity var(--duration-normal) var(--ease-default);
-  }
+.c-about-content h3 {
+  font-size: var(--text-2xl);
+}
 
-  .c-about-content a:hover {
-    opacity: 0.7;
-  }
+/* Target Markdown links */
+.c-about-content a {
+  color: var(--_accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: opacity var(--duration-normal) var(--ease-default);
+}
 
-  /* Provide a sophisticated drop-cap for the opening paragraph */
-  .c-about-content > p:first-child::first-letter {
-    font-size: var(--text-6xl);
-    font-weight: var(--weight-bold);
-    float: left;
-    margin-right: var(--space-3);
-    line-height: var(--leading-none);
-    margin-top: var(--space-1);
-    color: var(--_accent);
-  }
+.c-about-content a:hover {
+  opacity: 0.7;
+}
+
+/* Provide a sophisticated drop-cap for the opening paragraph */
+.c-about-content>p:first-child::first-letter {
+  font-size: var(--text-6xl);
+  font-weight: var(--weight-bold);
+  float: left;
+  margin-right: var(--space-3);
+  line-height: var(--leading-none);
+  margin-top: var(--space-1);
+  color: var(--_accent);
 }

@@ -38,24 +38,25 @@
 
 /* State class triggered by JS */
 .c-header.is-hidden {
-    transform: translateY(-100%);
+  transform: translateY(-100%);
 }
 
 /* Reading Progress transition */
 #reading-progress {
-    transition: height 0.1s ease-out;
+  transition: height 0.1s ease-out;
 }
 
 #floating-title-container {
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: opacity 0.3s ease, max-height 0.3s ease;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
 }
 
 #floating-title-container.is-visible {
-    opacity: 1;
-    max-height: 10rem; /* roughly maps to max-h-40 */
+  opacity: 1;
+  /* roughly maps to max-h-40 */
+  max-height: 10rem;
 }
 
 /* --- Left section (menu toggle) --- */

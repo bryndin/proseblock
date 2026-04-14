@@ -8,374 +8,375 @@
    ========================================================================== */
 
 :root {
-   /* =====================================================================
+  /* =====================================================================
        TIER 1: PRIMITIVES (Global Palette)
        Raw values only. No semantic names.
        ===================================================================== */
 
-   /* --- Colors (oklch) --- */
-   --color-white: oklch(100% 0 0);
-   --color-black: oklch(0% 0 0);
+  /* --- Colors (oklch) --- */
+  --color-white: oklch(100% 0 0);
+  --color-black: oklch(0% 0 0);
 
-   /* Grays (cool-toned) */
-   --color-gray-50: oklch(98.5% 0.003 250);
-   /* #f7f9fd — surface */
-   --color-gray-100: oklch(96.5% 0.006 250);
-   /* #f0f4fa — surface-container-low */
-   --color-gray-150: oklch(95% 0.008 250);
-   /* #e8eff6 — surface-container */
-   --color-gray-200: oklch(93.5% 0.01 250);
-   /* #e0e9f2 — surface-container-high */
-   --color-gray-250: oklch(91% 0.012 250);
-   /* #d9e4ee — surface-container-highest */
-   --color-gray-300: oklch(78% 0.015 240);
-   /* #a8b3bd — outline-variant */
-   --color-gray-400: oklch(58% 0.015 240);
-   /* #717c85 — outline */
-   --color-gray-500: oklch(48% 0.02 260);
-   /* #566069 — on-surface-variant */
-   --color-gray-600: oklch(43% 0.025 260);
-   /* #575e70 — primary */
-   --color-gray-650: oklch(40% 0.025 260);
-   /* #4b5264 — primary-dim */
-   --color-gray-900: oklch(27% 0.015 230);
-   /* #29343c — on-surface */
-   --color-gray-950: oklch(15% 0.01 230);
-   /* #0b0f11 — inverse-surface */
+  /* Grays (cool-toned) */
+  /* #f7f9fd — surface */
+  --color-gray-50: oklch(98.5% 0.003 250);
+  /* #f0f4fa — surface-container-low */
+  --color-gray-100: oklch(96.5% 0.006 250);
+  /* #e8eff6 — surface-container */
+  --color-gray-150: oklch(95% 0.008 250);
+  /* #e0e9f2 — surface-container-high */
+  --color-gray-200: oklch(93.5% 0.01 250);
+  /* #d9e4ee — surface-container-highest */
+  --color-gray-250: oklch(91% 0.012 250);
+  /* #a8b3bd — outline-variant */
+  --color-gray-300: oklch(78% 0.015 240);
+  /* #717c85 — outline */
+  --color-gray-400: oklch(58% 0.015 240);
+  /* #566069 — on-surface-variant */
+  --color-gray-500: oklch(48% 0.02 260);
+  /* #575e70 — primary */
+  --color-gray-600: oklch(43% 0.025 260);
+  /* #4b5264 — primary-dim */
+  --color-gray-650: oklch(40% 0.025 260);
+  /* #29343c — on-surface */
+  --color-gray-900: oklch(27% 0.015 230);
+  /* #0b0f11 — inverse-surface */
+  --color-gray-950: oklch(15% 0.01 230);
 
-   /* Accent / Primary */
-   --color-primary: oklch(43% 0.025 260);
-   /* #575e70 */
-   --color-primary-dim: oklch(40% 0.025 260);
-   /* #4b5264 */
-   --color-primary-container: oklch(91% 0.015 260);
-   /* #dbe2f8 */
+  /* Accent / Primary */
+  /* #575e70 */
+  --color-primary: oklch(43% 0.025 260);
+  /* #4b5264 */
+  --color-primary-dim: oklch(40% 0.025 260);
+  /* #dbe2f8 */
+  --color-primary-container: oklch(91% 0.015 260);
 
-   /* Error */
-   --color-error: oklch(50% 0.12 25);
-   /* #9f403d */
-   --color-error-container: oklch(75% 0.12 20);
-   /* #fe8983 */
-   --color-on-error: oklch(98% 0.005 20);
-   /* #fff7f6 */
+  /* Error */
+  /* #9f403d */
+  --color-error: oklch(50% 0.12 25);
+  /* #fe8983 */
+  --color-error-container: oklch(75% 0.12 20);
+  /* #fff7f6 */
+  --color-on-error: oklch(98% 0.005 20);
 
-   /* Alert Additional Colors */
-   --color-success: oklch(55% 0.12 150);
-   --color-success-container: oklch(75% 0.12 150);
-   --color-purple: oklch(50% 0.15 300);
-   --color-purple-container: oklch(75% 0.15 300);
-   --color-warning: oklch(60% 0.15 70);
-   --color-warning-container: oklch(75% 0.15 70);
+  /* Alert Additional Colors */
+  --color-success: oklch(55% 0.12 150);
+  --color-success-container: oklch(75% 0.12 150);
+  --color-purple: oklch(50% 0.15 300);
+  --color-purple-container: oklch(75% 0.15 300);
+  --color-warning: oklch(60% 0.15 70);
+  --color-warning-container: oklch(75% 0.15 70);
 
-   /* --- Spacing (rem) --- */
-   --space-0: 0;
-   --space-1: 0.25rem;
-   /* 4px */
-   --space-2: 0.5rem;
-   /* 8px */
-   --space-3: 0.75rem;
-   /* 12px */
-   --space-4: 1rem;
-   /* 16px */
-   --space-5: 1.25rem;
-   /* 20px */
-   --space-6: 1.5rem;
-   /* 24px */
-   --space-8: 2rem;
-   /* 32px */
-   --space-10: 2.5rem;
-   /* 40px */
-   --space-12: 3rem;
-   /* 48px */
-   --space-16: 4rem;
-   /* 64px */
-   --space-20: 5rem;
-   /* 80px */
-   --space-24: 6rem;
-   /* 96px */
-   --space-32: 8rem;
-   /* 128px */
+  /* --- Spacing (rem) --- */
+  --space-0: 0;
+  /* 4px */
+  --space-1: 0.25rem;
+  /* 8px */
+  --space-2: 0.5rem;
+  /* 12px */
+  --space-3: 0.75rem;
+  /* 16px */
+  --space-4: 1rem;
+  /* 20px */
+  --space-5: 1.25rem;
+  /* 24px */
+  --space-6: 1.5rem;
+  /* 32px */
+  --space-8: 2rem;
+  /* 40px */
+  --space-10: 2.5rem;
+  /* 48px */
+  --space-12: 3rem;
+  /* 64px */
+  --space-16: 4rem;
+  /* 80px */
+  --space-20: 5rem;
+  /* 96px */
+  --space-24: 6rem;
+  /* 128px */
+  --space-32: 8rem;
 
-   /* --- Constraints & UI Sizes --- */
-   --size-icon-ui: 1.125rem;
-   /* 18px */
-   --size-dot: 0.25rem;
-   /* 4px */
-   --max-w-hero: 56rem;
-   /* 896px */
-   --height-toc-rail: 12rem;
-   /* 192px */
-   --scale-subtle: 1.1;
+  /* --- Constraints & UI Sizes --- */
+  /* 18px */
+  --size-icon-ui: 1.125rem;
+  /* 4px */
+  --size-dot: 0.25rem;
+  /* 896px */
+  --max-w-hero: 56rem;
+  /* 192px */
+  --height-toc-rail: 12rem;
+  --scale-subtle: 1.1;
 
-   /* --- Typography --- */
-   --font-sans: "Manrope", system-ui, sans-serif;
-   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* --- Typography --- */
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-   --text-xs: 0.625rem;
-   /* 10px */
-   --text-2xs: 0.5625rem;
-   /* 9px */
-   --text-tiny: 0.6875rem;
-   /* 11px — TOC links */
-   --text-sm: 0.75rem;
-   /* 12px */
-   --text-base: 1rem;
-   /* 16px */
-   --text-lg: 1.125rem;
-   /* 18px */
-   --text-xl: 1.25rem;
-   /* 20px */
-   --text-2xl: 1.5rem;
-   /* 24px */
-   --text-3xl: 1.875rem;
-   /* 30px */
-   --text-4xl: 2.25rem;
-   /* 36px */
-   --text-5xl: 3rem;
-   /* 48px */
-   --text-6xl: 3.75rem;
-   /* 60px */
-   --text-7xl: 4.5rem;
-   /* 72px */
-   --text-display: 3.5rem;
-   /* 56px — DESIGN.md Display-Lg */
-   --text-hero: 8rem;
-   /* 128px — menu mission text */
+  /* 10px */
+  --text-xs: 0.625rem;
+  /* 9px */
+  --text-2xs: 0.5625rem;
+  /* 11px — TOC links */
+  --text-tiny: 0.6875rem;
+  /* 12px */
+  --text-sm: 0.75rem;
+  /* 16px */
+  --text-base: 1rem;
+  /* 18px */
+  --text-lg: 1.125rem;
+  /* 20px */
+  --text-xl: 1.25rem;
+  /* 24px */
+  --text-2xl: 1.5rem;
+  /* 30px */
+  --text-3xl: 1.875rem;
+  /* 36px */
+  --text-4xl: 2.25rem;
+  /* 48px */
+  --text-5xl: 3rem;
+  /* 60px */
+  --text-6xl: 3.75rem;
+  /* 72px */
+  --text-7xl: 4.5rem;
+  /* 56px — DESIGN.md Display-Lg */
+  --text-display: 3.5rem;
+  /* 128px — menu mission text */
+  --text-hero: 8rem;
 
-   --leading-none: 1;
-   --leading-tight: 1.15;
-   --leading-snug: 1.3;
-   --leading-xl: 1.4;
-   --leading-normal: 1.5;
-   --leading-lg: 1.55;
-   --leading-relaxed: 1.625;
-   --leading-loose: 1.75;
-   --leading-article: 1.85;
+  --leading-none: 1;
+  --leading-tight: 1.15;
+  --leading-snug: 1.3;
+  --leading-xl: 1.4;
+  --leading-normal: 1.5;
+  --leading-lg: 1.55;
+  --leading-relaxed: 1.625;
+  --leading-loose: 1.75;
+  --leading-article: 1.85;
 
-   --tracking-tighter: -0.02em;
-   --tracking-tight: -0.01em;
-   --tracking-normal: 0;
-   --tracking-wide: 0.05em;
-   --tracking-wider: 0.1em;
-   --tracking-widest: 0.2em;
-   --tracking-ultra: 0.3em;
-   --tracking-mega: 0.4em;
+  --tracking-tighter: -0.02em;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+  --tracking-widest: 0.2em;
+  --tracking-ultra: 0.3em;
+  --tracking-mega: 0.4em;
 
-   --weight-extralight: 200;
-   --weight-light: 300;
-   --weight-regular: 400;
-   --weight-medium: 500;
-   --weight-semibold: 600;
-   --weight-bold: 700;
-   --weight-extrabold: 800;
-   --weight-black: 900;
+  --weight-extralight: 200;
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+  --weight-black: 900;
 
-   /* --- Borders & Radii --- */
-   --radius-sm: 0.125rem;
-   /* 2px */
-   --radius-md: 0.375rem;
-   /* 6px */
-   --radius-full: 9999px;
+  /* --- Borders & Radii --- */
+  /* 2px */
+  --radius-sm: 0.125rem;
+  /* 6px */
+  --radius-md: 0.375rem;
+  --radius-full: 9999px;
 
-   --border-width: 1px;
+  --border-width: 1px;
 
-   /* --- Shadows --- */
-   --shadow-editorial: 80px 0 100px -20px oklch(27% 0.015 230 / 0.03);
-   --shadow-tonal: 0 10px 60px 0 oklch(27% 0.015 230 / 0.04);
-   --shadow-ambient: 0 0 60px oklch(27% 0.015 230 / 0.06);
-   --shadow-inner: inset 0 2px 4px 0 oklch(0% 0 0 / 0.05);
+  /* --- Shadows --- */
+  --shadow-editorial: 80px 0 100px -20px oklch(27% 0.015 230 / 0.03);
+  --shadow-tonal: 0 10px 60px 0 oklch(27% 0.015 230 / 0.04);
+  --shadow-ambient: 0 0 60px oklch(27% 0.015 230 / 0.06);
+  --shadow-inner: inset 0 2px 4px 0 oklch(0% 0 0 / 0.05);
 
-   /* --- Transitions --- */
-   --duration-fast: 150ms;
-   --duration-normal: 300ms;
-   --duration-slow: 500ms;
-   --duration-menu: 700ms;
-   --ease-default: ease;
-   --ease-out: ease-out;
+  /* --- Transitions --- */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-menu: 700ms;
+  --ease-default: ease;
+  --ease-out: ease-out;
 
-   /* --- Breakpoints (for reference, used in media queries) --- */
-   /* md: 768px  |  lg: 1024px  |  xl: 1280px */
+  /* --- Breakpoints (for reference, used in media queries) --- */
+  /* md: 768px  |  lg: 1024px  |  xl: 1280px */
 
-   /* --- Z-index scale --- */
-   --z-header: 50;
-   --z-menu: 100;
-   --z-progress: 110;
+  /* --- Z-index scale --- */
+  --z-header: 50;
+  --z-menu: 100;
+  --z-progress: 110;
 
-   /* =====================================================================
+  /* =====================================================================
        TIER 2.1: GLOBAL SEMANTICS
        Design intent. Maps to Tier 1 Primitives only.
        Only these get reassigned in [data-theme="dark"].
        ===================================================================== */
 
-   --text-primary: var(--color-gray-900);
-   --text-secondary: var(--color-gray-500);
-   --text-tertiary: var(--color-gray-400);
-   --text-accent: var(--color-primary);
-   --text-on-accent: var(--color-white);
-   --text-error: var(--color-error);
+  --text-primary: var(--color-gray-900);
+  --text-secondary: var(--color-gray-500);
+  --text-tertiary: var(--color-gray-400);
+  --text-accent: var(--color-primary);
+  --text-on-accent: var(--color-white);
+  --text-error: var(--color-error);
 
-   --bg-primary: var(--color-gray-50);
-   --bg-secondary: var(--color-gray-100);
-   --bg-tertiary: var(--color-gray-150);
-   --bg-card: var(--color-white);
-   --bg-elevated: var(--color-gray-200);
-   --bg-highest: var(--color-gray-250);
-   --bg-inverse: var(--color-gray-950);
+  --bg-primary: var(--color-gray-50);
+  --bg-secondary: var(--color-gray-100);
+  --bg-tertiary: var(--color-gray-150);
+  --bg-card: var(--color-white);
+  --bg-elevated: var(--color-gray-200);
+  --bg-highest: var(--color-gray-250);
+  --bg-inverse: var(--color-gray-950);
 
-   --accent: var(--color-primary);
-   --accent-dim: var(--color-primary-dim);
-   --accent-container: var(--color-primary-container);
+  --accent: var(--color-primary);
+  --accent-dim: var(--color-primary-dim);
+  --accent-container: var(--color-primary-container);
 
-   --border-subtle: var(--color-gray-200);
-   --border-muted: var(--color-gray-300);
-   --outline: var(--color-gray-400);
+  --border-subtle: var(--color-gray-200);
+  --border-muted: var(--color-gray-300);
+  --outline: var(--color-gray-400);
 
-   --icon-primary: var(--color-primary);
-   --icon-secondary: var(--color-gray-500);
+  --icon-primary: var(--color-primary);
+  --icon-secondary: var(--color-gray-500);
 
-   /* --- Feedback Intents --- */
-   --intent-success: var(--color-success);
-   --intent-important: var(--color-purple);
-   --intent-warning: var(--color-warning);
-   --intent-caution: var(--color-error);
-   --intent-generic: var(--color-gray-600);
+  /* --- Feedback Intents --- */
+  --intent-success: var(--color-success);
+  --intent-important: var(--color-purple);
+  --intent-warning: var(--color-warning);
+  --intent-caution: var(--color-error);
+  --intent-generic: var(--color-gray-600);
 
-   /* =====================================================================
+  /* =====================================================================
        TIER 2.2: COMPONENT SEMANTICS
        Component-specific hooks. Maps to Tier 2.1 Global Semantics only.
        Inherits dark mode flips automatically.
        ===================================================================== */
 
-   /* --- Header --- */
-   --header-bg: var(--bg-primary);
-   --header-text: var(--text-primary);
-   --header-icon: var(--icon-primary);
+  /* --- Header --- */
+  --header-bg: var(--bg-primary);
+  --header-text: var(--text-primary);
+  --header-icon: var(--icon-primary);
 
-   /* --- Hero --- */
-   --hero-bg: var(--bg-secondary);
-   --hero-title-text: var(--text-primary);
-   --hero-body-text: var(--text-primary);
-   --hero-meta-text: var(--text-secondary);
-   --hero-accent: var(--accent);
-   --hero-border: var(--border-subtle);
+  /* --- Hero --- */
+  --hero-bg: var(--bg-secondary);
+  --hero-title-text: var(--text-primary);
+  --hero-body-text: var(--text-primary);
+  --hero-meta-text: var(--text-secondary);
+  --hero-accent: var(--accent);
+  --hero-border: var(--border-subtle);
 
-   /* --- Article Card --- */
-   --article-card-bg: transparent;
-   --article-card-bg-hover: var(--bg-secondary);
-   --article-card-title-text: var(--text-primary);
-   --article-card-body-text: var(--text-secondary);
-   --article-card-meta-text: var(--text-secondary);
-   --article-card-accent: var(--accent);
+  /* --- Article Card --- */
+  --article-card-bg: transparent;
+  --article-card-bg-hover: var(--bg-secondary);
+  --article-card-title-text: var(--text-primary);
+  --article-card-body-text: var(--text-secondary);
+  --article-card-meta-text: var(--text-secondary);
+  --article-card-accent: var(--accent);
 
-   /* --- Article Body --- */
-   --article-bg: var(--bg-card);
-   --article-text: var(--text-secondary);
-   --article-heading-text: var(--text-primary);
-   --article-accent: var(--accent);
-   --article-blockquote-bg: var(--bg-secondary);
-   --article-blockquote-border: var(--accent);
-   --article-code-bg: var(--bg-secondary);
+  /* --- Article Body --- */
+  --article-bg: var(--bg-card);
+  --article-text: var(--text-secondary);
+  --article-heading-text: var(--text-primary);
+  --article-accent: var(--accent);
+  --article-blockquote-bg: var(--bg-secondary);
+  --article-blockquote-border: var(--accent);
+  --article-code-bg: var(--bg-secondary);
 
-   /* --- TOC (Sidebar) --- */
-   --toc-text: var(--text-secondary);
-   --toc-text-hover: var(--accent);
-   --toc-accent: var(--accent);
-   --toc-rail-bg: var(--border-muted);
-   --toc-separator: var(--border-muted);
+  /* --- TOC (Sidebar) --- */
+  --toc-text: var(--text-secondary);
+  --toc-text-hover: var(--accent);
+  --toc-accent: var(--accent);
+  --toc-rail-bg: var(--border-muted);
+  --toc-separator: var(--border-muted);
 
-   /* --- Sidebar --- */
-   --sidebar-heading-text: var(--text-primary);
-   --sidebar-text: var(--text-secondary);
-   --sidebar-accent: var(--accent);
-   --sidebar-icon: var(--icon-secondary);
+  /* --- Sidebar --- */
+  --sidebar-heading-text: var(--text-primary);
+  --sidebar-text: var(--text-secondary);
+  --sidebar-accent: var(--accent);
+  --sidebar-icon: var(--icon-secondary);
 
-   /* --- Author --- */
-   --author-bg: var(--bg-highest);
-   --author-accent: var(--accent);
-   --author-name-text: var(--text-primary);
-   --author-body-text: var(--text-secondary);
+  /* --- Author --- */
+  --author-bg: var(--bg-highest);
+  --author-accent: var(--accent);
+  --author-name-text: var(--text-primary);
+  --author-body-text: var(--text-secondary);
 
-   /* --- Newsletter --- */
-   --newsletter-bg: var(--bg-secondary);
-   --newsletter-accent: var(--accent);
-   --newsletter-text: var(--text-secondary);
-   --newsletter-heading-text: var(--text-primary);
-   --newsletter-border: var(--text-secondary);
+  /* --- Newsletter --- */
+  --newsletter-bg: var(--bg-secondary);
+  --newsletter-accent: var(--accent);
+  --newsletter-text: var(--text-secondary);
+  --newsletter-heading-text: var(--text-primary);
+  --newsletter-border: var(--text-secondary);
 
-   /* --- Share --- */
-   --share-bg: var(--bg-card);
-   --share-text: var(--text-primary);
-   --share-text-secondary: var(--text-secondary);
-   --share-accent: var(--accent);
-   --share-icon: var(--icon-secondary);
-   --share-border: var(--border-subtle);
-   --share-item-bg-hover: var(--bg-secondary);
+  /* --- Share --- */
+  --share-bg: var(--bg-card);
+  --share-text: var(--text-primary);
+  --share-text-secondary: var(--text-secondary);
+  --share-accent: var(--accent);
+  --share-icon: var(--icon-secondary);
+  --share-border: var(--border-subtle);
+  --share-item-bg-hover: var(--bg-secondary);
 
-   /* --- Footer --- */
-   --footer-bg: var(--bg-primary);
-   --footer-text: var(--text-secondary);
-   --footer-text-hover: var(--accent);
-   --footer-border: var(--border-subtle);
+  /* --- Footer --- */
+  --footer-bg: var(--bg-primary);
+  --footer-text: var(--text-secondary);
+  --footer-text-hover: var(--accent);
+  --footer-border: var(--border-subtle);
 
-   /* --- Paginator --- */
-   --paginator-text: var(--text-primary);
-   --paginator-text-muted: var(--text-secondary);
-   --paginator-active-border: var(--text-primary);
-   --paginator-hover-bg: var(--bg-secondary);
-   --paginator-border: var(--bg-secondary);
+  /* --- Paginator --- */
+  --paginator-text: var(--text-primary);
+  --paginator-text-muted: var(--text-secondary);
+  --paginator-active-border: var(--text-primary);
+  --paginator-hover-bg: var(--bg-secondary);
+  --paginator-border: var(--bg-secondary);
 
-   /* --- Menu (Overlay) --- */
-   --menu-bg: var(--bg-secondary);
-   --menu-aside-bg: var(--bg-elevated);
-   --menu-text: var(--text-primary);
-   --menu-accent: var(--accent);
-   --menu-icon: var(--icon-secondary);
-   --menu-mission-text: var(--bg-highest);
+  /* --- Menu (Overlay) --- */
+  --menu-bg: var(--bg-secondary);
+  --menu-aside-bg: var(--bg-elevated);
+  --menu-text: var(--text-primary);
+  --menu-accent: var(--accent);
+  --menu-icon: var(--icon-secondary);
+  --menu-mission-text: var(--bg-highest);
 
-   /* --- Featured --- */
-   --featured-bg: var(--bg-card);
-   --featured-border: var(--bg-highest);
-   --featured-title-text: var(--text-primary);
-   --featured-body-text: var(--text-secondary);
-   --featured-accent: var(--accent);
-   --featured-shadow: var(--shadow-tonal);
+  /* --- Featured --- */
+  --featured-bg: var(--bg-card);
+  --featured-border: var(--bg-highest);
+  --featured-title-text: var(--text-primary);
+  --featured-body-text: var(--text-secondary);
+  --featured-accent: var(--accent);
+  --featured-shadow: var(--shadow-tonal);
 
-   /* --- Search --- */
-   --search-text: var(--text-primary);
-   --search-placeholder: var(--bg-elevated);
-   --search-underline: var(--bg-highest);
-   --search-accent: var(--accent);
-   --search-category-text: var(--text-primary);
-   --search-category-count: var(--border-muted);
-   --search-quote-bg: var(--bg-secondary);
-   --search-quote-text: var(--text-secondary);
+  /* --- Search --- */
+  --search-text: var(--text-primary);
+  --search-placeholder: var(--bg-elevated);
+  --search-underline: var(--bg-highest);
+  --search-accent: var(--accent);
+  --search-category-text: var(--text-primary);
+  --search-category-count: var(--border-muted);
+  --search-quote-bg: var(--bg-secondary);
+  --search-quote-text: var(--text-secondary);
 
-   /* --- Metadata --- */
-   --metadata-text: var(--text-secondary);
-   --metadata-icon: var(--icon-secondary);
-   --metadata-dot: var(--text-secondary);
-   --metadata-icon-size: var(--size-icon-ui);
-   --metadata-dot-size: var(--size-dot);
+  /* --- Metadata --- */
+  --metadata-text: var(--text-secondary);
+  --metadata-icon: var(--icon-secondary);
+  --metadata-dot: var(--text-secondary);
+  --metadata-icon-size: var(--size-icon-ui);
+  --metadata-dot-size: var(--size-dot);
 
-   /* --- 404 Error Page --- */
-   --hero-error-title-text: var(--text-primary);
-   --hero-error-subtitle-text: var(--text-secondary);
+  /* --- 404 Error Page --- */
+  --hero-error-title-text: var(--text-primary);
+  --hero-error-subtitle-text: var(--text-secondary);
 
-   --error-nav-bg: var(--bg-card); /* Maps to your 'bg-surface-container-lowest' equivalent */
-   --error-nav-text-primary: var(--text-primary);
-   --error-nav-text-secondary: var(--text-secondary);
-   --error-nav-text-accent: var(--accent);
-   --error-nav-text-heading: var(--outline);
+  /* Maps to your 'bg-surface-container-lowest' equivalent */
+  --error-nav-bg: var(--bg-card);
+  --error-nav-text-primary: var(--text-primary);
+  --error-nav-text-secondary: var(--text-secondary);
+  --error-nav-text-accent: var(--accent);
+  --error-nav-text-heading: var(--outline);
 
-   /* --- Alerts --- */
-   --alert-bg: var(--bg-secondary);
-   --alert-text: var(--text-primary);
-   --alert-border-note: var(--accent);
-   --alert-border-tip: var(--intent-success);
-   --alert-border-important: var(--intent-important);
-   --alert-border-warning: var(--intent-warning);
-   --alert-border-caution: var(--intent-caution);
-   --alert-border-generic: var(--intent-generic);
+  /* --- Alerts --- */
+  --alert-bg: var(--bg-secondary);
+  --alert-text: var(--text-primary);
+  --alert-border-note: var(--accent);
+  --alert-border-tip: var(--intent-success);
+  --alert-border-important: var(--intent-important);
+  --alert-border-warning: var(--intent-warning);
+  --alert-border-caution: var(--intent-caution);
+  --alert-border-generic: var(--intent-generic);
 }
 
 /* =====================================================================
@@ -383,41 +384,41 @@
      Tier 2.2 Component Semantics inherit these flips automatically.
      ===================================================================== */
 [data-theme="dark"] {
-   --text-primary: var(--color-gray-100);
-   --text-secondary: var(--color-gray-300);
-   --text-tertiary: var(--color-gray-400);
-   --text-accent: var(--color-primary-container);
-   --text-on-accent: var(--color-gray-900);
+  --text-primary: var(--color-gray-100);
+  --text-secondary: var(--color-gray-300);
+  --text-tertiary: var(--color-gray-400);
+  --text-accent: var(--color-primary-container);
+  --text-on-accent: var(--color-gray-900);
 
-   --bg-primary: var(--color-gray-950);
-   --bg-secondary: var(--color-gray-900);
-   --bg-tertiary: oklch(22% 0.015 230);
-   --bg-card: oklch(20% 0.015 230);
-   --bg-elevated: oklch(25% 0.015 230);
-   --bg-highest: oklch(30% 0.015 230);
-   --bg-inverse: var(--color-gray-50);
+  --bg-primary: var(--color-gray-950);
+  --bg-secondary: var(--color-gray-900);
+  --bg-tertiary: oklch(22% 0.015 230);
+  --bg-card: oklch(20% 0.015 230);
+  --bg-elevated: oklch(25% 0.015 230);
+  --bg-highest: oklch(30% 0.015 230);
+  --bg-inverse: var(--color-gray-50);
 
-   --accent: var(--color-primary-container);
-   --accent-dim: var(--color-primary);
-   --accent-container: var(--color-primary-dim);
+  --accent: var(--color-primary-container);
+  --accent-dim: var(--color-primary);
+  --accent-container: var(--color-primary-dim);
 
-   --border-subtle: var(--color-gray-650);
-   --border-muted: oklch(35% 0.015 230);
-   --outline: var(--color-gray-500);
+  --border-subtle: var(--color-gray-650);
+  --border-muted: oklch(35% 0.015 230);
+  --outline: var(--color-gray-500);
 
-   --icon-primary: var(--color-primary-container);
-   --icon-secondary: var(--color-gray-400);
+  --icon-primary: var(--color-primary-container);
+  --icon-secondary: var(--color-gray-400);
 
-   /* --- Feedback Intents --- */
-   --intent-success: var(--color-success-container);
-   --intent-important: var(--color-purple-container);
-   --intent-warning: var(--color-warning-container);
-   --intent-caution: var(--color-error-container);
-   --intent-generic: var(--color-gray-400);
+  /* --- Feedback Intents --- */
+  --intent-success: var(--color-success-container);
+  --intent-important: var(--color-purple-container);
+  --intent-warning: var(--color-warning-container);
+  --intent-caution: var(--color-error-container);
+  --intent-generic: var(--color-gray-400);
 
-   /* --- Shadows --- */
-   --shadow-editorial: 80px 0 100px -20px oklch(0% 0 0 / 0.25);
-   --shadow-tonal: 0 10px 60px 0 oklch(0% 0 0 / 0.3);
-   --shadow-ambient: 0 0 60px oklch(0% 0 0 / 0.35);
-   --shadow-inner: inset 0 2px 4px 0 oklch(0% 0 0 / 0.15);
+  /* --- Shadows --- */
+  --shadow-editorial: 80px 0 100px -20px oklch(0% 0 0 / 0.25);
+  --shadow-tonal: 0 10px 60px 0 oklch(0% 0 0 / 0.3);
+  --shadow-ambient: 0 0 60px oklch(0% 0 0 / 0.35);
+  --shadow-inner: inset 0 2px 4px 0 oklch(0% 0 0 / 0.15);
 }

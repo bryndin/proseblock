@@ -4,287 +4,303 @@
    ========================================================================== */
 
 .c-drawer {
-    position: fixed;
-    inset: 0;
-    z-index: var(--z-menu);
-    display: flex;
-    visibility: hidden;
-    pointer-events: none;
-    transition: visibility var(--duration-menu) var(--ease-default);
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  display: flex;
+  visibility: hidden;
+  pointer-events: none;
+  transition: visibility var(--duration-menu) var(--ease-default);
 }
 
 .c-drawer.is-open {
-    visibility: visible;
-    pointer-events: auto;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 /* --- Blurred Backdrop --- */
 
 .c-drawer__backdrop {
-    flex: 1;
-    background-color: oklch(from var(--bg-inverse) l c h / 0.1);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity var(--duration-menu) var(--ease-out);
+  flex: 1;
+  background-color: oklch(from var(--bg-inverse) l c h / 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--duration-menu) var(--ease-out);
 }
 
 .c-drawer.is-open .c-drawer__backdrop {
-    opacity: 1;
+  opacity: 1;
 }
 
 /* --- Sidebar Panel --- */
 
 .c-drawer__panel {
-    display: flex;
-    flex-direction: column;
-    height: 100dvh; 
-    width: 100%;
-    background-color: var(--menu-aside-bg);
-    position: relative;
-    z-index: 10;
-    box-shadow: var(--shadow-tonal);
-    
-    transform: translateX(-100%);
-    transition: transform var(--duration-menu) var(--ease-out);
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  width: 100%;
+  background-color: var(--menu-aside-bg);
+  position: relative;
+  z-index: 10;
+  box-shadow: var(--shadow-tonal);
+
+  transform: translateX(-100%);
+  transition: transform var(--duration-menu) var(--ease-out);
 }
 
-@media (min-width: 640px) { .c-drawer__panel { width: 85%; } }
-@media (min-width: 768px) { .c-drawer__panel { width: 60%; } }
-@media (min-width: 1024px) { .c-drawer__panel { width: 45%; } }
+@media (min-width: 640px) {
+  .c-drawer__panel {
+    width: 85%;
+  }
+}
+
+@media (min-width: 768px) {
+  .c-drawer__panel {
+    width: 60%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .c-drawer__panel {
+    width: 45%;
+  }
+}
 
 .c-drawer.is-open .c-drawer__panel {
-    transform: translateX(0);
+  transform: translateX(0);
 }
 
 /* --- Fixed Close Button (Kills the Huge X Bug) --- */
 
 .c-drawer__close-btn {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    padding: 0.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--menu-text);
-    opacity: 1;
-    transition: opacity var(--duration-fast) var(--ease-default);
-    z-index: 20;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--menu-text);
+  opacity: 1;
+  transition: opacity var(--duration-fast) var(--ease-default);
+  z-index: 20;
 }
 
 .c-drawer__close-btn:hover {
-    opacity: 0.6;
+  opacity: 0.6;
 }
 
 /* Hard-locks the SVG size so it cannot explode */
 .c-drawer__close-btn svg {
-    width: 32px;
-    height: 32px;
-    display: block;
+  width: 32px;
+  height: 32px;
+  display: block;
 }
 
 /* --- Flex Constraints for Dynamic Scaling --- */
 
 .c-drawer__inner {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-height: 0; 
-    /* Dynamic padding: shrinks from 4rem to 2rem on short screens */
-    padding: clamp(2rem, 5vh, 4rem); 
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  /* Dynamic padding: shrinks from 4rem to 2rem on short screens */
+  padding: clamp(2rem, 5vh, 4rem);
 }
 
 /* --- Header Branding --- */
 
 .c-drawer__header {
-    flex-shrink: 0; 
-    /* Dynamic margin: shrinks from 3rem to 1.5rem on short screens */
-    margin-bottom: clamp(1.5rem, 4vh, 3rem); 
+  flex-shrink: 0;
+  /* Dynamic margin: shrinks from 3rem to 1.5rem on short screens */
+  margin-bottom: clamp(1.5rem, 4vh, 3rem);
 }
 
 .c-drawer__site-title {
-    display: block;
-    font-size: clamp(2.25rem, 4vw, 3.75rem);
-    font-weight: var(--weight-extralight); 
-    letter-spacing: var(--tracking-mega); 
-    text-transform: uppercase;
-    color: var(--menu-text);
-    line-height: 1;
-    margin-bottom: var(--space-4);
+  display: block;
+  font-size: clamp(2.25rem, 4vw, 3.75rem);
+  font-weight: var(--weight-extralight);
+  letter-spacing: var(--tracking-mega);
+  text-transform: uppercase;
+  color: var(--menu-text);
+  line-height: 1;
+  margin-bottom: var(--space-4);
 }
 
 .c-drawer__site-subtitle {
-    display: block;
-    font-size: var(--text-xs);
-    font-weight: var(--weight-bold);
-    letter-spacing: var(--tracking-mega);
-    text-transform: uppercase;
-    color: var(--text-tertiary);
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-mega);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
 }
 
 /* --- Navigation Links (The Magic Scaling Block) --- */
 
 .c-drawer__nav-scroll-wrapper {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-height: 0; 
-    overflow-y: auto;
-    scrollbar-width: none; /* Hides scrollbar for cleaner look if needed */
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  /* Hides scrollbar for cleaner look if needed */
+  scrollbar-width: none;
 }
 
 .c-drawer__nav-scroll-wrapper::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .c-drawer__nav-list {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    justify-content: space-evenly; 
-    min-height: min-content; /* Critical: prevents items from squishing together */
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-evenly;
+  /* Critical: prevents items from squishing together */
+  min-height: min-content;
 }
 
 .c-drawer__link {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-    padding: clamp(0.25rem, 1vh, 0.5rem) 0; 
-    color: var(--menu-text);
-    text-decoration: none;
-    flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: clamp(0.25rem, 1vh, 0.5rem) 0;
+  color: var(--menu-text);
+  text-decoration: none;
+  flex-shrink: 0;
 }
 
 .c-drawer__link-icon-wrapper {
-    color: var(--menu-icon);
-    opacity: 0.4;
-    transition: opacity var(--duration-fast) var(--ease-default);
-    display: flex;
+  color: var(--menu-icon);
+  opacity: 0.4;
+  transition: opacity var(--duration-fast) var(--ease-default);
+  display: flex;
 }
 
 .c-drawer__link-icon-wrapper svg {
-    width: 1.25rem;
-    height: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .c-drawer__link:hover .c-drawer__link-icon-wrapper {
-    color: var(--menu-accent);
-    opacity: 1;
+  color: var(--menu-accent);
+  opacity: 1;
 }
 
 .c-drawer__link-text {
-    /* Magic Typography Scaling based on Viewport Height */
-    font-size: clamp(1.25rem, 4vh, 2.5rem); 
-    font-weight: var(--weight-extralight); 
-    letter-spacing: var(--tracking-tighter);
-    transition: padding-left var(--duration-fast) var(--ease-default);
+  /* Magic Typography Scaling based on Viewport Height */
+  font-size: clamp(1.25rem, 4vh, 2.5rem);
+  font-weight: var(--weight-extralight);
+  letter-spacing: var(--tracking-tighter);
+  transition: padding-left var(--duration-fast) var(--ease-default);
 }
 
 .c-drawer__link:hover .c-drawer__link-text {
-    padding-left: 0.5rem;
+  padding-left: 0.5rem;
 }
 
 /* --- Footer (Newsletter & Socials) --- */
 
 .c-drawer__footer {
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    /* Dynamic gap and margin so footer pulls up out of the way on short screens */
-    gap: clamp(1.5rem, 4vh, 3rem);
-    margin-top: clamp(2rem, 5vh, 6rem); 
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  /* Dynamic gap and margin so footer pulls up out of the way on short screens */
+  gap: clamp(1.5rem, 4vh, 3rem);
+  margin-top: clamp(2rem, 5vh, 6rem);
 }
 
 .c-drawer__newsletter {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
 }
 
 .c-drawer__newsletter-title {
-    font-size: var(--text-xs);
-    font-weight: var(--weight-bold);
-    letter-spacing: var(--tracking-ultra);
-    text-transform: uppercase;
-    color: var(--menu-accent);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-ultra);
+  text-transform: uppercase;
+  color: var(--menu-accent);
 }
 
 .c-drawer__newsletter-form {
-    display: flex;
-    align-items: flex-end;
-    gap: var(--space-2);
-    max-width: 24rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid oklch(from var(--text-tertiary) l c h / 0.2);
-    transition: border-color var(--duration-fast) var(--ease-default);
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  max-width: 24rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid oklch(from var(--text-tertiary) l c h / 0.2);
+  transition: border-color var(--duration-fast) var(--ease-default);
 }
 
 .c-drawer__newsletter-form:focus-within {
-    border-color: var(--menu-accent);
+  border-color: var(--menu-accent);
 }
 
 .c-drawer__newsletter-input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    padding: 0;
-    font-size: var(--text-sm);
-    font-weight: var(--weight-light);
-    color: var(--menu-text);
-    outline: none;
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-light);
+  color: var(--menu-text);
+  outline: none;
 }
 
 .c-drawer__newsletter-input::placeholder {
-    color: var(--text-tertiary);
+  color: var(--text-tertiary);
 }
 
 .c-drawer__newsletter-submit {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: var(--text-xs);
-    font-weight: var(--weight-bold);
-    letter-spacing: var(--tracking-widest);
-    text-transform: uppercase;
-    color: var(--menu-text);
-    white-space: nowrap;
-    transition: color var(--duration-fast) var(--ease-default);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--menu-text);
+  white-space: nowrap;
+  transition: color var(--duration-fast) var(--ease-default);
 }
 
 .c-drawer__newsletter-submit:hover {
-    color: var(--menu-accent);
+  color: var(--menu-accent);
 }
 
 .c-drawer__newsletter-arrow svg {
-    width: 16px;
-    height: 16px;
-    transition: transform var(--duration-fast) var(--ease-default);
+  width: 16px;
+  height: 16px;
+  transition: transform var(--duration-fast) var(--ease-default);
 }
 
 .c-drawer__newsletter-submit:hover .c-drawer__newsletter-arrow svg {
-    transform: translateX(4px);
+  transform: translateX(4px);
 }
 
 .c-drawer__socials {
-    display: flex;
-    gap: var(--space-8);
+  display: flex;
+  gap: var(--space-8);
 }
 
 .c-drawer__social-link {
-    color: var(--text-secondary);
-    transition: color var(--duration-fast) var(--ease-default);
+  color: var(--text-secondary);
+  transition: color var(--duration-fast) var(--ease-default);
 }
 
 .c-drawer__social-link:hover {
-    color: var(--menu-accent);
+  color: var(--menu-accent);
 }
 
 .c-drawer__social-icon svg {
-    width: 22px;
-    height: 22px;
+  width: 22px;
+  height: 22px;
 }

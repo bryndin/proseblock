@@ -6,51 +6,51 @@
 {{- with $authorName := index $authors 0 }}
 {{- $authorTerm := site.GetPage (printf "/authors/%s" ($authorName | urlize)) }}
 <div class="c-author">
-    <div class="c-author__avatar">
-        {{- $hasAvatar := false }}
-        {{- with $authorTerm }}
-            {{- with .Params.avatar }}
-                <img class="c-author__avatar-image" src="{{ . | relURL }}" alt="{{ $authorName }}">
-                {{- $hasAvatar = true }}
-            {{- end }}
-        {{- end }}
-        {{- if not $hasAvatar }}
-        <span class="c-author__avatar-icon">{{ partial "svg/person.html" }}</span>
-        {{- end }}
+  <div class="c-author__avatar">
+    {{- $hasAvatar := false }}
+    {{- with $authorTerm }}
+      {{- with .Params.avatar }}
+        <img class="c-author__avatar-image" src="{{ . | relURL }}" alt="{{ $authorName }}">
+        {{- $hasAvatar = true }}
+      {{- end }}
+    {{- end }}
+    {{- if not $hasAvatar }}
+    <span class="c-author__avatar-icon">{{ partial "svg/person.html" }}</span>
+    {{- end }}
+  </div>
+  <div class="c-author__info">
+    <div>
+      <span class="c-author__label">Author</span>
+      <h3 class="c-author__name">{{ $authorName }}</h3>
     </div>
-    <div class="c-author__info">
-        <div>
-            <span class="c-author__label">Author</span>
-            <h3 class="c-author__name">{{ $authorName }}</h3>
-        </div>
-        {{- /* Loads author bio from taxonomy term */ -}}
-        {{- with $authorTerm }}
-            {{- if .Content }}
-            <div class="c-author__bio">{{ .Content }}</div>
-            {{- else if .Params.description }}
-            <p class="c-author__bio">{{ .Params.description }}</p>
-            {{- end }}
+    {{- /* Loads author bio from taxonomy term */ -}}
+    {{- with $authorTerm }}
+      {{- if .Content }}
+      <div class="c-author__bio">{{ .Content }}</div>
+      {{- else if .Params.description }}
+      <p class="c-author__bio">{{ .Params.description }}</p>
+      {{- end }}
+    {{- end }}
+    {{- with $authorTerm }}
+    <div class="c-author__social">
+      {{- with .Params.social }}
+      <div class="c-author__social-icons">
+        {{- range . }}
+        <a class="c-author__social-link" href="{{ .url }}" rel="noopener noreferrer" target="_blank">
+          <span class="c-author__social-icon" aria-hidden="true">{{ partial (printf "svg/%s.html" .icon) }}</span>
+          <span class="u-sr-only">{{ .name }}</span>
+        </a>
         {{- end }}
-        {{- with $authorTerm }}
-        <div class="c-author__social">
-            {{- with .Params.social }}
-            <div class="c-author__social-icons">
-                {{- range . }}
-                <a class="c-author__social-link" href="{{ .url }}" rel="noopener noreferrer" target="_blank">
-                    <span class="c-author__social-icon" aria-hidden="true">{{ partial (printf "svg/%s.html" .icon) }}</span>
-                    <span class="u-sr-only">{{ .name }}</span>
-                </a>
-                {{- end }}
-            </div>
-            <div class="c-author__social-divider"></div>
-            {{- end }}
-            <a class="c-author__more-link" href="{{ .RelPermalink }}">
-                More from author
-                <span class="c-author__more-icon">{{ partial "svg/arrow-forward.html" }}</span>
-            </a>
-        </div>
-        {{- end }}
+      </div>
+      <div class="c-author__social-divider"></div>
+      {{- end }}
+      <a class="c-author__more-link" href="{{ .RelPermalink }}">
+        More from author
+        <span class="c-author__more-icon">{{ partial "svg/arrow-forward.html" }}</span>
+      </a>
     </div>
+    {{- end }}
+  </div>
 </div>
 {{- end }}
 {{- end }}

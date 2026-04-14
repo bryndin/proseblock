@@ -2,183 +2,182 @@
      CATEGORIES PAGE GRID
      ========================================================================== */
 .c-category-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    column-gap: var(--space-8);
-    row-gap: var(--space-16);
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: var(--space-8);
+  row-gap: var(--space-16);
 }
 
 @media (min-width: 640px) {
-    .c-category-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .c-category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (min-width: 1024px) {
-    .c-category-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+  .c-category-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .c-category-card {
-    --_bg: transparent;
-    --_bg-hover: var(--bg-secondary);
-    --_border: var(--border-muted);
-    --_padding: var(--space-6);
-    --_transition: var(--duration-normal) var(--ease-default);
+  --_bg: transparent;
+  --_bg-hover: var(--bg-secondary);
+  --_border: var(--border-muted);
+  --_padding: var(--space-6);
+  --_transition: var(--duration-normal) var(--ease-default);
 
-    display: block;
-    padding: var(--_padding);
-    margin-inline: calc(-1 * var(--_padding));
-    background-color: var(--_bg);
-    transition: background-color var(--_transition), box-shadow var(--_transition);
+  display: block;
+  padding: var(--_padding);
+  margin-inline: calc(-1 * var(--_padding));
+  background-color: var(--_bg);
+  transition: background-color var(--_transition), box-shadow var(--_transition);
 }
 
 .c-category-card:hover {
-    background-color: var(--_bg-hover);
-    box-shadow: var(--shadow-inner);
+  background-color: var(--_bg-hover);
+  box-shadow: var(--shadow-inner);
 }
 
 .c-category-card__link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 .c-category-card__header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    padding-bottom: var(--space-2);
-    margin-bottom: var(--space-4);
-    border-bottom: 1px solid var(--_border);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--_border);
 }
 
 .c-category-card__index {
-    color: var(--accent);
-    font-size: var(--text-xs);
-    /* text-[10px] */
-    font-weight: var(--weight-bold);
-    letter-spacing: var(--tracking-widest);
-    opacity: 0.4;
-    transition: opacity var(--_transition);
+  color: var(--accent);
+  font-size: var(--text-xs);
+  /* text-[10px] */
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-widest);
+  opacity: 0.4;
+  transition: opacity var(--_transition);
 }
 
 .c-category-card:hover .c-category-card__index {
-    opacity: 1;
+  opacity: 1;
 }
 
 .c-category-card__count {
-    color: var(--text-secondary);
-    font-size: var(--text-2xs);
-    /* text-[9px] */
-    font-weight: var(--weight-bold);
-    letter-spacing: 0.15em;
-    opacity: 0.4;
-    transition: opacity var(--_transition);
+  color: var(--text-secondary);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.15em;
+  opacity: 0.4;
+  transition: opacity var(--_transition);
 }
 
 .c-category-card:hover .c-category-card__count {
-    opacity: 1;
+  opacity: 1;
 }
 
 .c-category-card__title {
-    color: var(--text-primary);
-    font-size: var(--text-xl);
-    font-weight: var(--weight-extrabold);
-    letter-spacing: var(--tracking-tight);
-    text-transform: uppercase;
-    transition: color var(--duration-normal) var(--ease-default);
+  color: var(--text-primary);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-extrabold);
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  transition: color var(--duration-normal) var(--ease-default);
 }
 
 .c-category-card__link:hover .c-category-card__title {
-    color: var(--accent);
+  color: var(--accent);
 }
 
 /* ==========================================================================
      TAGS PAGE INDEX
      ========================================================================== */
 .c-tag-index {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
 }
 
 .c-tag-bucket__title {
-    color: var(--text-secondary);
-    font-size: var(--text-xs);
-    font-weight: var(--weight-bold);
-    letter-spacing: var(--tracking-mega);
-    text-transform: uppercase;
-    opacity: 0.4;
-    padding-bottom: var(--space-4);
-    margin-bottom: var(--space-8);
-    border-bottom: 1px solid var(--border-muted);
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-mega);
+  text-transform: uppercase;
+  opacity: 0.4;
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-8);
+  border-bottom: 1px solid var(--border-muted);
 }
 
 .c-tag-bucket__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    column-gap: var(--space-12);
-    row-gap: var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: var(--space-12);
+  row-gap: var(--space-6);
 }
 
 @media (min-width: 640px) {
-    .c-tag-bucket__grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .c-tag-bucket__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .c-tag-card {
-    --_bg: transparent;
-    --_bg-hover: var(--bg-secondary);
-    --_border: var(--border-subtle);
-    --_border-hover: var(--accent);
-    --_padding: var(--space-4);
-    --_transition: var(--duration-normal) var(--ease-default);
+  --_bg: transparent;
+  --_bg-hover: var(--bg-secondary);
+  --_border: var(--border-subtle);
+  --_border-hover: var(--accent);
+  --_padding: var(--space-4);
+  --_transition: var(--duration-normal) var(--ease-default);
 
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    padding: var(--space-2) var(--_padding);
-    margin-inline: calc(-1 * var(--_padding));
-    background-color: var(--_bg);
-    border-bottom: 1px solid oklch(from var(--_border) l c h / 0.5);
-    text-decoration: none;
-    transition: background-color var(--_transition), border-color var(--_transition), box-shadow var(--_transition);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: var(--space-2) var(--_padding);
+  margin-inline: calc(-1 * var(--_padding));
+  background-color: var(--_bg);
+  border-bottom: 1px solid oklch(from var(--_border) l c h / 0.5);
+  text-decoration: none;
+  transition: background-color var(--_transition), border-color var(--_transition), box-shadow var(--_transition);
 }
 
 .c-tag-card:hover {
-    background-color: var(--_bg-hover);
-    border-bottom-color: var(--_border-hover);
-    box-shadow: var(--shadow-inner);
+  background-color: var(--_bg-hover);
+  border-bottom-color: var(--_border-hover);
+  box-shadow: var(--shadow-inner);
 }
 
 .c-tag-card__name {
-    color: var(--text-primary);
-    font-size: var(--text-lg);
-    font-weight: var(--weight-bold);
-    letter-spacing: var(--tracking-tight);
-    text-transform: uppercase;
-    transition: color var(--duration-normal) var(--ease-default);
+  color: var(--text-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  transition: color var(--duration-normal) var(--ease-default);
 }
 
 .c-tag-card__count {
-    color: var(--text-secondary);
-    font-size: var(--text-xs);
-    font-weight: var(--weight-black);
-    opacity: 0.3;
-    transition: opacity var(--_transition);
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-black);
+  opacity: 0.3;
+  transition: opacity var(--_transition);
 }
 
 .c-tag-card:hover .c-tag-card__count {
-    opacity: 1;
+  opacity: 1;
 }
 
 .c-tag-card:hover {
-    border-bottom-color: var(--_border-hover);
+  border-bottom-color: var(--_border-hover);
 }
 
 .c-tag-card:hover .c-tag-card__name {
-    color: var(--accent);
+  color: var(--accent);
 }
