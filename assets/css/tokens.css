@@ -59,6 +59,14 @@
    --color-on-error: oklch(98% 0.005 20);
    /* #fff7f6 */
 
+   /* Alert Additional Colors */
+   --color-success: oklch(55% 0.12 150);
+   --color-success-container: oklch(75% 0.12 150);
+   --color-purple: oklch(50% 0.15 300);
+   --color-purple-container: oklch(75% 0.15 300);
+   --color-warning: oklch(60% 0.15 70);
+   --color-warning-container: oklch(75% 0.15 70);
+
    /* --- Spacing (rem) --- */
    --space-0: 0;
    --space-1: 0.25rem;
@@ -225,6 +233,13 @@
    --icon-primary: var(--color-primary);
    --icon-secondary: var(--color-gray-500);
 
+   /* --- Feedback Intents --- */
+   --intent-success: var(--color-success);
+   --intent-important: var(--color-purple);
+   --intent-warning: var(--color-warning);
+   --intent-caution: var(--color-error);
+   --intent-generic: var(--color-gray-600);
+
    /* =====================================================================
        TIER 2.2: COMPONENT SEMANTICS
        Component-specific hooks. Maps to Tier 2.1 Global Semantics only.
@@ -351,6 +366,16 @@
    --error-nav-text-secondary: var(--text-secondary);
    --error-nav-text-accent: var(--accent);
    --error-nav-text-heading: var(--outline);
+
+   /* --- Alerts --- */
+   --alert-bg: var(--bg-secondary);
+   --alert-text: var(--text-primary);
+   --alert-border-note: var(--accent);
+   --alert-border-tip: var(--intent-success);
+   --alert-border-important: var(--intent-important);
+   --alert-border-warning: var(--intent-warning);
+   --alert-border-caution: var(--intent-caution);
+   --alert-border-generic: var(--intent-generic);
 }
 
 /* =====================================================================
@@ -382,6 +407,13 @@
 
    --icon-primary: var(--color-primary-container);
    --icon-secondary: var(--color-gray-400);
+
+   /* --- Feedback Intents --- */
+   --intent-success: var(--color-success-container);
+   --intent-important: var(--color-purple-container);
+   --intent-warning: var(--color-warning-container);
+   --intent-caution: var(--color-error-container);
+   --intent-generic: var(--color-gray-400);
 
    /* --- Shadows --- */
    --shadow-editorial: 80px 0 100px -20px oklch(0% 0 0 / 0.25);

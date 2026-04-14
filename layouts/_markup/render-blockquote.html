@@ -1,0 +1,18 @@
+{{- $ctx := . -}}
+{{- if eq $ctx.Type "alert" -}}
+<div class="c-alert c-alert--{{ lower $ctx.AlertType }}">
+  <div class="c-alert__header">
+    <span class="c-alert__icon">
+      {{- partial (printf "svg/alert-%s.html" (lower $ctx.AlertType)) $ctx -}}
+    </span>
+    <span class="c-alert__title">{{ title $ctx.AlertType }}</span>
+  </div>
+  <div class="c-alert__body">
+    {{- $ctx.Text -}}
+  </div>
+</div>
+{{- else -}}
+<blockquote>
+  {{ $ctx.Text }}
+</blockquote>
+{{- end -}}

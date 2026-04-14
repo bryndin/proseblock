@@ -1,0 +1,89 @@
+/* ==========================================================================
+   ADMONITIONS (ALERTS)
+   Component for Markdown alerts: Note, Tip, Important, Warning, Caution.
+   ========================================================================== */
+
+.c-alert {
+  /* *** Arguments (The Public API) ***************************************** */
+  --_bg: var(--alert-bg);
+  --_text: var(--alert-text);
+  --_border-color: var(--alert-border-note);
+
+  /* *** Configuration (Internal Styling) *********************************** */
+  --_padding-y: var(--space-4);
+  --_padding-x: var(--space-6);
+  --_margin-block: var(--space-8);
+  --_border-width: 4px;
+  --_radius-right: var(--radius-md);
+
+  padding: var(--_padding-y) var(--_padding-x);
+  margin-block: var(--_margin-block);
+  border-left: var(--_border-width) solid var(--_border-color);
+  background-color: var(--_bg);
+  border-radius: 0 var(--_radius-right) var(--_radius-right) 0;
+  color: var(--_text);
+}
+
+.c-alert__header {
+  /* *** Configuration (Internal Styling) *********************************** */
+  --_header-gap: var(--space-2);
+  --_header-margin: var(--space-2);
+  --_header-weight: var(--weight-bold);
+  --_header-size: var(--text-base);
+
+  display: flex;
+  align-items: center;
+  gap: var(--_header-gap);
+  margin-bottom: var(--_header-margin);
+  color: var(--_border-color);
+  font-weight: var(--_header-weight);
+  font-size: var(--_header-size);
+}
+
+.c-alert__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-alert__icon svg {
+  /* *** Configuration (Internal Styling) *********************************** */
+  --_icon-size: var(--size-icon-ui);
+
+  width: var(--_icon-size);
+  height: var(--_icon-size);
+}
+
+.c-alert__body> :first-child {
+  margin-top: 0;
+}
+
+.c-alert__body> :last-child {
+  margin-bottom: 0;
+}
+
+/* --- Modifiers for Types --- */
+
+.c-alert--note {
+  --_border-color: var(--alert-border-note);
+}
+
+.c-alert--tip {
+  --_border-color: var(--alert-border-tip);
+}
+
+.c-alert--important {
+  --_border-color: var(--alert-border-important);
+}
+
+.c-alert--warning {
+  --_border-color: var(--alert-border-warning);
+}
+
+.c-alert--caution {
+  --_border-color: var(--alert-border-caution);
+}
+
+.c-alert--alert {
+  --_border-color: var(--alert-border-generic);
+}
