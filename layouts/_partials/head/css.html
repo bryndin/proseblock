@@ -12,7 +12,7 @@
 {{- $layerMap := dict
   "reset"      (slice "css/reset.css")
   "tokens"     (slice "css/tokens.css")
-  "base"       (slice "css/base.css")
+  "base"       (slice "css/base.css" "css/base/*.css")
   "layout"     (slice "css/layout/*.css")
   "components" (slice "css/syntax-highlighting/*.css" "css/components/*.css" "css/components/widgets/*.css")
   "utilities"  (slice "css/utilities.css")
