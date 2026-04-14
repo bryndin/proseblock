@@ -73,14 +73,7 @@
     {{- /* Sidebar */ -}}
     <aside class="l-site__sidebar">
       <div class="c-sidebar">
-        {{- $newsletterEnabled := false -}}
-        {{- $newsletterFreq := "Weekly" -}}
-        {{- with $nlParams := site.Params.newsletter -}}
-          {{- $newsletterFreq = index $nlParams "frequencyText" | default "Weekly" -}}
-        {{- end -}}
-        {{- with $enable := site.Params.enableNewsletter -}}{{- $newsletterEnabled = $enable -}}{{- end -}}
-        
-        {{ partial "widgets/newsletter.html" (dict "enabled" $newsletterEnabled "frequencyText" $newsletterFreq) }}
+        {{ partial "widgets/newsletter.html" }}
         
         {{- $catLimit := 10 -}}
         {{- with $widgetParams := site.Params.widgets -}}

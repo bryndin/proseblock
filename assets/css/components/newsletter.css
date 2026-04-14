@@ -115,3 +115,9 @@
 .c-newsletter__submit:hover .c-newsletter__submit-icon {
   transform: translateX(0.25rem);
 }
+
+.c-newsletter__submit-spinner {
+  width: 1rem;
+  height: 1rem;
+  color: currentColor;
+}

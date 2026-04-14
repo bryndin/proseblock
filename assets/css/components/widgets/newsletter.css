@@ -55,3 +55,29 @@
 .c-sidebar__submit:hover .c-sidebar__submit-icon {
     transform: translateX(0.25rem);
 }
+
+.c-sidebar__submit-spinner {
+    width: 1rem;
+    height: 1rem;
+    color: currentColor;
+}
+
+/* --- Feedback Messages --- */
+
+.c-sidebar__feedback {
+    margin-top: var(--space-4);
+}
+
+.c-sidebar__feedback-message {
+    font-size: var(--text-xs);
+    line-height: var(--leading-relaxed);
+    letter-spacing: var(--tracking-normal);
+}
+
+.c-sidebar__feedback-message--success {
+    color: var(--_accent);
+}
+
+.c-sidebar__feedback-message--error {
+    color: #e53e3e; /* Standard error red if no token exists */
+}

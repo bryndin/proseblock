@@ -1,20 +1,35 @@
 {{- /* Newsletter CTA */ -}}
+{{ $enabled := .enabled | default site.Params.enableNewsletter }}
+{{ $title := .title | default site.Params.newsletter.title | default "Stay Updated" }}
+{{ $frequencyText := .frequencyText | default site.Params.newsletter.frequencyText }}
+{{ $action := .action | default site.Params.newsletter.action }}
 
-{{- with $newsletterEnabled := site.Params.enableNewsletter }}
-<div class="c-newsletter">
+{{- with $enabled }}
+<div class="c-newsletter" id="newsletter-block">
     <div class="c-newsletter__inner">
-    <h3 class="c-newsletter__label">Newsletter</h3>
-    <h2 class="c-newsletter__title">Stay Updated</h2>
-    {{- with $freqText := site.Params.newsletter.frequencyText }}
-    <p class="c-newsletter__body">{{ $freqText }}</p>
-    {{- end }}
-    <form class="c-newsletter__form">
-        <input class="c-newsletter__input" type="email" placeholder="Email Address" required>
-        <button class="c-newsletter__submit" type="submit">
-        Subscribe
-        <span class="c-newsletter__submit-icon">{{ partial "svg/arrow-forward.html" }}</span>
-        </button>
-    </form>
+        <h3 class="c-newsletter__label">Newsletter</h3>
+        <h2 class="c-newsletter__title">{{ $title }}</h2>
+        {{- with $freqText := $frequencyText }}
+        <p class="c-newsletter__body">{{ $freqText }}</p>
+        {{- end }}
+
+        <form class="c-newsletter__form js-newsletter-form" id="newsletter-form-block" action="{{ $action }}" method="POST">
+            <input class="c-newsletter__input" type="email" name="email" placeholder="Email Address" required>
+            <button class="c-newsletter__submit" type="submit">
+                <span class="c-newsletter__submit-text">Subscribe</span>
+                <span class="c-newsletter__submit-icon">{{ partial "svg/arrow-forward.html" }}</span>
+                <span class="c-newsletter__submit-spinner" style="display: none;">{{ partial "svg/spinner.html" }}</span>
+            </button>
+        </form>
+        <div class="c-newsletter__feedback">
+            <p class="c-newsletter__feedback-message c-newsletter__feedback-message--success" style="display: none; margin-top: 1rem; font-size: 0.875rem; color: var(--_accent);">
+                Thanks for subscribing! Please check your inbox.
+            </p>
+            <p class="c-newsletter__feedback-message c-newsletter__feedback-message--error" style="display: none; margin-top: 1rem; font-size: 0.875rem; color: #e53e3e;">
+                Oops! Something went wrong. Please try again later.
+            </p>
+        </div>
     </div>
 </div>
 {{- end }}
+

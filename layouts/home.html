@@ -47,7 +47,7 @@
         <aside class="l-site__sidebar">
             <div class="c-sidebar">
                 {{- /* TODO(DB): Newsleter widget is badly styled */ -}}
-                {{ partial "widgets/newsletter.html" (dict "enabled" site.Params.enableNewsletter "frequencyText" site.Params.newsletter.frequencyText) }}
+                {{ partial "widgets/newsletter.html" }}
                 {{ partial "widgets/categories.html" (dict "mode" "ssr" "limit" $catLimit) }}
                 {{ partial "widgets/tags.html" (dict "mode" "ssr" "limit" $tagLimit) }}
                 {{- /* TODO(DB): Missing Announcement widget */ -}}
