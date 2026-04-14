@@ -44,23 +44,31 @@
      
   .c-author-card {
     /* *** Arguments (The Public API) *************************************** */
+    --_bg: transparent;
+    --_bg-hover: var(--bg-secondary);
     --_border: var(--border-subtle);
     --_border-hover: var(--accent);
     --_text: var(--text-primary);
     --_text-hover: var(--accent);
     --_meta: var(--text-secondary);
+    --_padding: var(--space-4);
+    --_transition: var(--duration-normal) var(--ease-default);
     
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    padding-block: var(--space-2);
+    padding: var(--space-2) var(--_padding);
+    margin-inline: calc(-1 * var(--_padding));
+    background-color: var(--_bg);
     border-bottom: 1px solid oklch(from var(--_border) l c h / 0.5);
     text-decoration: none;
-    transition: border-color var(--duration-normal) var(--ease-default);
+    transition: background-color var(--_transition), border-color var(--_transition), box-shadow var(--_transition);
   }
 
   .c-author-card:hover {
+    background-color: var(--_bg-hover);
     border-bottom-color: var(--_border-hover);
+    box-shadow: var(--shadow-inner);
   }
 
   .c-author-card__name {
@@ -80,5 +88,10 @@
     font-weight: var(--weight-black);
     color: var(--_meta);
     opacity: 0.3;
+    transition: opacity var(--_transition);
+  }
+
+  .c-author-card:hover .c-author-card__count {
+    opacity: 1;
   }
 }
