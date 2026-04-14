@@ -1,213 +1,163 @@
 /* ==========================================================================
-   COMPONENT: Share Section & Menu
-   .c-share-container — Layout wrapper for share button and popover
+   COMPONENT: Share Menu
+   .c-share — Config-driven share popover with trigger button
    ========================================================================== */
 
-.c-share-container {
+.c-share {
+    /* *** Arguments (The Public API) ****************************************** */
+    --_bg: var(--share-bg);
+    --_text: var(--share-text);
+    --_text-secondary: var(--share-text-secondary);
+    --_accent: var(--share-accent);
+    --_icon: var(--share-icon);
+    --_border: var(--share-border);
+    --_item-bg-hover: var(--share-item-bg-hover);
+
+    /* *** Configuration (Internal Styling) ************************************* */
+    --_menu-width: 13rem;
+    --_menu-max-height: 20rem;
+    --_menu-radius: var(--radius-md);
+    --_menu-shadow: var(--shadow-tonal);
+    --_item-padding: var(--space-3) var(--space-4);
+    --_item-radius: var(--radius-sm);
+    --_item-gap: var(--space-3);
+    --_icon-size: 1.125rem;
+    --_label-size: var(--text-sm);
+    --_trigger-gap: var(--space-3);
+    --_transition: var(--duration-normal) var(--ease-default);
+    --_transition-fast: var(--duration-fast) var(--ease-default);
+
     position: relative;
 }
 
-/* Sidebar Actions container */
-.c-sidebar__actions {
-    margin-top: var(--space-12);
-    padding-top: var(--space-12);
-    border-top: var(--border-width) solid var(--border-subtle);
-    padding-inline: var(--space-2);
-}
+/* ─── Trigger Button ──────────────────────────────────────────────────── */
 
-.c-sidebar__share-btn {
+.c-share__trigger {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
-    background: none;
+    gap: var(--_trigger-gap);
+    margin-top: var(--space-12);
+    padding-top: var(--space-12);
     border: none;
-    padding: 0;
+    border-top: var(--border-width) solid var(--_border);
+    background: none;
     cursor: pointer;
-    color: var(--text-primary);
+    color: var(--_text);
 }
 
-.c-sidebar__share-btn:hover .c-sidebar__share-icon {
+.c-share__trigger:hover .c-share__trigger-icon {
     transform: scale(var(--scale-subtle));
 }
 
-.c-sidebar__share-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: var(--accent);
-    transition: transform var(--duration-normal) var(--ease-default);
+.c-share__trigger:hover .c-share__trigger-label {
+    color: var(--_accent);
 }
 
-.c-sidebar__share-label {
+.c-share__trigger-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--_accent);
+    transition: transform var(--_transition);
+}
+
+.c-share__trigger-label {
     font-size: var(--text-xs);
     font-weight: var(--weight-bold);
     letter-spacing: var(--tracking-ultra);
     text-transform: uppercase;
-    color: var(--text-primary);
-    transition: color var(--duration-normal) var(--ease-default);
+    color: var(--_text);
+    transition: color var(--_transition);
 }
 
-.c-sidebar__share-btn:hover .c-sidebar__share-label {
-    color: var(--accent);
-}
+/* ─── Menu Popover ────────────────────────────────────────────────────── */
 
-/* --- Share Menu Popover --- */
-
-.c-share-menu {
+.c-share__menu {
     position: absolute;
     bottom: calc(100% + var(--space-4));
     left: 0;
-    width: 280px;
-    background-color: var(--bg-card);
-    border: var(--border-width) solid var(--border-subtle);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-tonal);
+    display: flex;
+    flex-direction: column;
+    width: var(--_menu-width);
+    max-height: var(--_menu-max-height);
+    overflow-y: auto;
+    padding: var(--space-2);
+    background-color: var(--_bg);
+    border: var(--border-width) solid var(--_border);
+    border-radius: var(--_menu-radius);
+    box-shadow: var(--_menu-shadow);
     z-index: var(--z-header);
+
+    /* Hidden state */
     opacity: 0;
     visibility: hidden;
-    transform: translateY(10px);
-    transition: all var(--duration-normal) var(--ease-default);
+    transform: translateY(0.5rem);
+    transition:
+        opacity var(--_transition),
+        visibility var(--_transition),
+        transform var(--_transition);
 }
 
-.c-share-menu.is-active {
+.c-share__menu.is-active {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
-.c-share-menu__inner {
-    padding: var(--space-6);
-}
+/* ─── Menu Item ───────────────────────────────────────────────────────── */
 
-.c-share-menu__header {
+.c-share__item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--space-6);
-}
-
-.c-share-menu__title {
-    font-size: var(--text-tiny);
-    font-weight: var(--weight-bold);
-    letter-spacing: var(--tracking-wider);
-    text-transform: uppercase;
-    color: var(--text-secondary);
-}
-
-.c-share-menu__close {
-    background: none;
-    border: none;
-    padding: var(--space-1);
-    cursor: pointer;
-    color: var(--text-tertiary);
-    transition: color var(--duration-fast) var(--ease-default);
-}
-
-.c-share-menu__close:hover {
-    color: var(--accent);
-}
-
-.c-share-menu__close svg {
-    width: 16px;
-    height: 16px;
-}
-
-/* --- Menu List --- */
-
-.c-share-menu__list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4);
-    margin-bottom: var(--space-6);
-}
-
-.c-share-menu__item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-2);
-    padding: var(--space-4);
-    background-color: var(--bg-secondary);
-    border-radius: var(--radius-sm);
+    gap: var(--_item-gap);
+    padding: var(--_item-padding);
+    border-radius: var(--_item-radius);
     text-decoration: none;
-    transition: background-color var(--duration-fast) var(--ease-default);
+    color: var(--_text);
+    transition: background-color var(--_transition-fast);
 }
 
-.c-share-menu__item:hover {
-    background-color: var(--bg-elevated);
-}
-
-.c-share-menu__icon {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: var(--accent);
-}
-
-.c-share-menu__label {
-    font-size: 10px;
-    font-weight: var(--weight-medium);
-    color: var(--text-primary);
-}
-
-/* --- Footer & Copy --- */
-
-.c-share-menu__footer {
-    padding-top: var(--space-6);
-    border-top: var(--border-width) solid var(--border-subtle);
-}
-
-.c-share-menu__copy {
-    display: flex;
-    gap: var(--space-2);
-}
-
-.c-share-menu__copy-input {
-    flex: 1;
-    min-width: 0;
-    height: 2.25rem;
-    padding-inline: var(--space-3);
-    background-color: var(--bg-secondary);
-    border: var(--border-width) solid var(--border-subtle);
-    border-radius: var(--radius-sm);
-    font-size: var(--text-xs);
-    color: var(--text-secondary);
+.c-share__item:hover,
+.c-share__item:focus-visible {
+    background-color: var(--_item-bg-hover);
     outline: none;
 }
 
-.c-share-menu__copy-btn {
-    height: 2.25rem;
-    padding-inline: var(--space-4);
-    background-color: var(--accent);
-    border: none;
-    border-radius: var(--radius-sm);
-    font-size: 10px;
-    font-weight: var(--weight-bold);
-    text-transform: uppercase;
-    color: var(--text-on-accent);
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background-color var(--duration-fast) var(--ease-default);
+.c-share__item:focus-visible {
+    box-shadow: 0 0 0 2px var(--_accent);
 }
 
-.c-share-menu__copy-btn:hover {
-    background-color: var(--accent-dim);
+.c-share__item-icon {
+    flex-shrink: 0;
+    width: var(--_icon-size);
+    height: var(--_icon-size);
+    color: var(--_icon);
 }
 
-.c-share-menu__copy-btn.is-success {
-    background-color: oklch(60% 0.15 140); /* Success green */
+.c-share__item-label {
+    font-size: var(--_label-size);
+    font-weight: var(--weight-medium);
+    color: var(--_text);
 }
 
-/* Mobile Adjustments */
+/* ─── Mobile: Bottom Sheet ────────────────────────────────────────────── */
+
 @media (max-width: 768px) {
-    .c-share-menu {
+    .c-share__menu {
         position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
-        border-radius: var(--radius-md) var(--radius-md) 0 0;
+        max-height: 60vh;
+        padding: var(--space-4);
+        border-radius: var(--_menu-radius) var(--_menu-radius) 0 0;
         transform: translateY(100%);
     }
 
-    .c-share-menu.is-active {
+    .c-share__menu.is-active {
         transform: translateY(0);
+    }
+
+    .c-share__item {
+        padding: var(--space-4) var(--space-5);
     }
 }

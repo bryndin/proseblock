@@ -1,61 +1,65 @@
-{{- /* Share button and dynamic menu */ -}}
-{{- if site.Params.enableSharing }}
-<div class="c-share-container js-share-container">
-    <div class="c-sidebar__actions">
-        <button class="c-sidebar__share-btn js-share-btn" id="share-btn" aria-label="Share this article" aria-expanded="false">
-            <span class="c-sidebar__share-icon">{{ partial "svg/share.html" }}</span>
-            <span class="c-sidebar__share-label">Share</span>
+{{- /*
+    share.html — Config-driven share menu popover.
+    Reads share platforms from site.Params.share.platforms,
+    falling back to sensible defaults if none are configured.
+
+    @context {page} . The current page context.
+*/ -}}
+{{- $page := . -}}
+
+{{- /* ─── Gate: bail if sharing is disabled ─── */ -}}
+{{- with $shareConfig := site.Params.share -}}
+  {{- if $shareConfig.enable -}}
+
+    {{- /* ─── Resolve page data for URL templates ─── */ -}}
+    {{- $title := $page.Title | safeURL -}}
+    {{- $url   := $page.Permalink | safeURL -}}
+
+    {{- /* ─── Use configured platforms ─── */ -}}
+    {{- $platforms := $shareConfig.platforms -}}
+
+    {{- /* ─── Only render if we have at least one platform ─── */ -}}
+    {{- if gt (len $platforms) 0 -}}
+
+    <div class="c-share js-share">
+        {{- /* Trigger button */ -}}
+        <button class="c-share__trigger js-share-trigger"
+                id="share-trigger"
+                type="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-label="Share this article">
+            <span class="c-share__trigger-icon">{{ partial "svg/share.html" }}</span>
+            <span class="c-share__trigger-label">Share</span>
         </button>
-    </div>
 
-    {{- /* Share Menu Popover */ -}}
-    <div class="c-share-menu js-share-menu" aria-hidden="true">
-        <div class="c-share-menu__inner">
-            <div class="c-share-menu__header">
-                <h3 class="c-share-menu__title">Share this article</h3>
-                <button class="c-share-menu__close js-share-close" aria-label="Close share menu">
-                    {{ partial "svg/close.html" }}
-                </button>
-            </div>
+        {{- /* Popover menu */ -}}
+        <div class="c-share__menu js-share-menu"
+             role="menu"
+             aria-label="Share options">
 
-            <div class="c-share-menu__list">
-                {{- $title := .Title }}
-                {{- $url := .Permalink }}
-                
-                <a href="https://twitter.com/intent/tweet?text={{ $title }}&url={{ $url }}" 
-                   class="c-share-menu__item js-share-link" data-platform="twitter" target="_blank" rel="noopener">
-                    <span class="c-share-menu__icon">{{ partial "svg/x-twitter.html" }}</span>
-                    <span class="c-share-menu__label">X (Twitter)</span>
-                </a>
+            {{- range $platform := $platforms -}}
+              {{- $href := $platform.url -}}
+              {{- $href  = replace $href "{title}" $title -}}
+              {{- $href  = replace $href "{url}" $url -}}
+              {{- $icon  := $platform.icon | default "share" -}}
+              {{- $isEmail := hasPrefix $href "mailto:" -}}
 
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ $url }}" 
-                   class="c-share-menu__item js-share-link" data-platform="linkedin" target="_blank" rel="noopener">
-                    <span class="c-share-menu__icon">{{ partial "svg/linkedin.html" }}</span>
-                    <span class="c-share-menu__label">LinkedIn</span>
-                </a>
+              <a href="{{ $href }}"
+                 class="c-share__item js-share-item"
+                 role="menuitem"
+                 data-platform="{{ $platform.name | urlize }}"
+                 {{- if not $isEmail }} target="_blank" rel="noopener"{{ end -}}>
+                  <span class="c-share__item-icon">
+                      {{- partial (printf "svg/%s.html" $icon) -}}
+                  </span>
+                  <span class="c-share__item-label">{{ $platform.name }}</span>
+              </a>
+            {{- end -}}
 
-                <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}" 
-                   class="c-share-menu__item js-share-link" data-platform="facebook" target="_blank" rel="noopener">
-                    <span class="c-share-menu__icon">{{ partial "svg/facebook.html" }}</span>
-                    <span class="c-share-menu__label">Facebook</span>
-                </a>
-
-                <a href="mailto:?subject={{ $title }}&body={{ $url }}" 
-                   class="c-share-menu__item js-share-link" data-platform="email">
-                    <span class="c-share-menu__icon">{{ partial "svg/mail.html" }}</span>
-                    <span class="c-share-menu__label">Email</span>
-                </a>
-            </div>
-
-            <div class="c-share-menu__footer">
-                <div class="c-share-menu__copy">
-                    <input type="text" class="c-share-menu__copy-input js-share-url" value="{{ $url }}" readonly aria-label="Article URL">
-                    <button class="c-share-menu__copy-btn js-share-copy" data-url="{{ $url }}">
-                        Copy Link
-                    </button>
-                </div>
-            </div>
         </div>
     </div>
-</div>
-{{- end }}
+
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

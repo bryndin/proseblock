@@ -287,6 +287,15 @@
    --newsletter-heading-text: var(--text-primary);
    --newsletter-border: var(--text-secondary);
 
+   /* --- Share --- */
+   --share-bg: var(--bg-card);
+   --share-text: var(--text-primary);
+   --share-text-secondary: var(--text-secondary);
+   --share-accent: var(--accent);
+   --share-icon: var(--icon-secondary);
+   --share-border: var(--border-subtle);
+   --share-item-bg-hover: var(--bg-secondary);
+
    /* --- Footer --- */
    --footer-bg: var(--bg-primary);
    --footer-text: var(--text-secondary);

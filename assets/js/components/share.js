@@ -1,103 +1,109 @@
 /**
- * Share Menu Logic
- * Handles social sharing, clipboard copying, and Web Share API.
+ * Share Menu
+ * Handles popover toggle, Web Share API (mobile), social sharing popups,
+ * keyboard navigation, and focus management.
  */
 export function initShare() {
-    const containers = document.querySelectorAll('.js-share-container');
+    const containers = document.querySelectorAll('.js-share');
 
     containers.forEach(container => {
-        const btn = container.querySelector('.js-share-btn');
+        const trigger = container.querySelector('.js-share-trigger');
         const menu = container.querySelector('.js-share-menu');
-        const closeBtn = container.querySelector('.js-share-close');
-        const copyBtn = container.querySelector('.js-share-copy');
-        const shareLinks = container.querySelectorAll('.js-share-link');
+        const items = container.querySelectorAll('.js-share-item');
 
-        if (!btn || !menu) return;
+        if (!trigger || !menu || items.length === 0) return;
 
-        // --- Toggle Logic ---
-        const toggleMenu = (force) => {
-            const isOpen = force !== undefined ? force : !menu.classList.contains('is-active');
-            menu.classList.toggle('is-active', isOpen);
-            btn.setAttribute('aria-expanded', isOpen);
-            menu.setAttribute('aria-hidden', !isOpen);
+        // ── State helpers ──────────────────────────────────────────────
+        const isOpen = () => menu.classList.contains('is-active');
+
+        const open = () => {
+            menu.classList.add('is-active');
+            trigger.setAttribute('aria-expanded', 'true');
+            // Focus the first item for keyboard users
+            items[0]?.focus();
         };
 
-        btn.addEventListener('click', (e) => {
+        const close = () => {
+            menu.classList.remove('is-active');
+            trigger.setAttribute('aria-expanded', 'false');
+            trigger.focus();
+        };
+
+        const toggle = () => (isOpen() ? close() : open());
+
+        // ── Trigger click ──────────────────────────────────────────────
+        trigger.addEventListener('click', (e) => {
             e.stopPropagation();
 
-            // Try Web Share API on mobile
+            // Attempt native Web Share API on narrow viewports
             if (navigator.share && window.innerWidth <= 768) {
-                const url = window.location.href;
-                const title = document.title;
-
                 navigator.share({
-                    title: title,
-                    url: url
-                }).catch(err => {
-                    console.log('Error sharing:', err);
-                    toggleMenu(true); // Fallback to custom menu
+                    title: document.title,
+                    url: window.location.href
+                }).catch(() => {
+                    // User cancelled or API failed — fall back to custom menu
+                    toggle();
                 });
-            } else {
-                toggleMenu();
+                return;
             }
+
+            toggle();
         });
 
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => toggleMenu(false));
-        }
-
-        // Close on click outside
+        // ── Close on click outside ─────────────────────────────────────
         document.addEventListener('click', (e) => {
-            if (!container.contains(e.target) && menu.classList.contains('is-active')) {
-                toggleMenu(false);
+            if (isOpen() && !container.contains(e.target)) {
+                close();
             }
         });
 
-        // Close on Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && menu.classList.contains('is-active')) {
-                toggleMenu(false);
-            }
-        });
+        // ── Keyboard handling ──────────────────────────────────────────
+        container.addEventListener('keydown', (e) => {
+            if (!isOpen()) return;
 
-        // --- Social Sharing Logic ---
-        shareLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                if (link.getAttribute('href').startsWith('mailto:')) return;
-                
+            if (e.key === 'Escape') {
                 e.preventDefault();
-                const url = link.getAttribute('href');
-                const width = 600;
-                const height = 400;
-                const left = (window.innerWidth - width) / 2;
-                const top = (window.innerHeight - height) / 2;
+                close();
+                return;
+            }
+
+            // Arrow / Tab navigation within menu items
+            const focusable = [...items];
+            const idx = focusable.indexOf(document.activeElement);
+
+            if (e.key === 'ArrowDown' || (e.key === 'Tab' && !e.shiftKey)) {
+                e.preventDefault();
+                const next = idx < focusable.length - 1 ? idx + 1 : 0;
+                focusable[next].focus();
+            } else if (e.key === 'ArrowUp' || (e.key === 'Tab' && e.shiftKey)) {
+                e.preventDefault();
+                const prev = idx > 0 ? idx - 1 : focusable.length - 1;
+                focusable[prev].focus();
+            }
+        });
+
+        // ── Social sharing popups ──────────────────────────────────────
+        items.forEach(item => {
+            item.addEventListener('click', (e) => {
+                const href = item.getAttribute('href');
+
+                // Let mailto: links open natively
+                if (href.startsWith('mailto:')) return;
+
+                e.preventDefault();
+                const w = 600;
+                const h = 500;
+                const left = (screen.width - w) / 2;
+                const top = (screen.height - h) / 2;
 
                 window.open(
-                    url,
-                    'share-window',
-                    `width=${width},height=${height},left=${left},top=${top},location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1`
+                    href,
+                    'share',
+                    `width=${w},height=${h},left=${left},top=${top},menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1`
                 );
+
+                close();
             });
         });
-
-        // --- Copy Link Logic ---
-        if (copyBtn) {
-            copyBtn.addEventListener('click', () => {
-                const url = copyBtn.dataset.url || window.location.href;
-
-                navigator.clipboard.writeText(url).then(() => {
-                    const originalText = copyBtn.textContent;
-                    copyBtn.textContent = 'Copied!';
-                    copyBtn.classList.add('is-success');
-
-                    setTimeout(() => {
-                        copyBtn.textContent = originalText;
-                        copyBtn.classList.remove('is-success');
-                    }, 2000);
-                }).catch(err => {
-                    console.error('Failed to copy: ', err);
-                });
-            });
-        }
     });
 }
