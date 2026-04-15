@@ -1,0 +1,56 @@
+{{- /*
+  list.html — Posts section template.
+  2-column layout: main area with hero and paginated article list.
+  Sidebar with newsletter, categories, tags.
+
+  @context {page} . The posts page context.
+*/ -}}
+{{ define "main" }}
+{{- $page := . -}}
+{{- $searchParams := site.Params.widgets | default dict -}}
+{{- $catLimit := index $searchParams "CategoriesLimit" | default 5 -}}
+{{- $tagLimit := index $searchParams "TagsLimit" | default 4 -}}
+
+  {{- /* ─── Hero Section ─── */ -}}
+  <header class="c-hero c-hero--home">
+    <div class="c-hero__inner">
+      <h2 class="c-hero__title">{{ $page.Title }}</h2>
+      {{- with $description := $page.Description | default $page.Params.description }}
+        <p class="c-hero__subtitle">{{ $description }}</p>
+      {{- end }}
+    </div>
+  </header>
+
+  {{- /* ─── Two-Column Layout ─── */ -}}
+  <div class="l-site__columns">
+    {{- /* Main content area */ -}}
+    <div class="l-site__main">
+      <div class="u-home-main">
+        <div class="u-home-main__sections">
+          {{- /* Article list */ -}}
+          {{- $paginator := $page.Paginate $page.Pages }}
+          {{- with $pages := $paginator.Pages }}
+            <section class="c-article-list">
+              {{- range $article := $pages }}
+                {{ partial "article-card.html" $article }}
+              {{- end }}
+            </section>
+          {{- end }}
+          {{ partial "paginator.html" (dict "mode" "ssr" "paginator" $paginator) }}
+        </div>
+      </div>
+    </div>
+
+    {{- /* ─── Sidebar ─── */ -}}
+    <aside class="l-site__sidebar">
+      <div class="c-sidebar">
+        {{- /* TODO(DB): Newsleter widget is badly styled */ -}}
+        {{ partial "widgets/newsletter.html" }}
+        {{ partial "widgets/categories.html" (dict "mode" "ssr" "limit" $catLimit) }}
+        {{ partial "widgets/tags.html" (dict "mode" "ssr" "limit" $tagLimit) }}
+        {{- /* TODO(DB): Missing Announcement widget */ -}}
+      </div>
+    </aside>
+
+  </div>
+{{ end }}
