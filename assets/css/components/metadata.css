@@ -25,12 +25,10 @@
   text-transform: uppercase;
   letter-spacing: var(--tracking-widest);
   color: var(--_text);
-  opacity: 0.6;
 }
 
 /* Variant used in article hero with reduced opacity */
 .c-metadata--hero {
-  opacity: 0.4;
   letter-spacing: var(--tracking-wider);
 }
 
@@ -52,7 +50,22 @@
   height: var(--metadata-dot-size);
   border-radius: var(--radius-full);
   background-color: currentColor;
-  opacity: 0.3;
+}
+
+/* ─── Opacity Handling ────────────────────────────────────────────────── */
+
+/* Default opacity for items and dots */
+.c-metadata__item,
+.c-metadata__dot,
+.c-metadata .c-share__trigger {
+  opacity: 0.6;
+}
+
+/* Reduced opacity for Hero variant */
+.c-metadata--hero .c-metadata__item,
+.c-metadata--hero .c-metadata__dot,
+.c-metadata--hero .c-share__trigger {
+  opacity: 0.4;
 }
 
 .c-metadata__link {
@@ -64,4 +77,8 @@
 .c-metadata__link:hover {
   text-decoration: underline;
   opacity: 1;
+}
+
+.c-metadata__share {
+  margin-left: auto;
 }

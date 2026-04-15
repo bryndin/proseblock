@@ -29,4 +29,11 @@
       <span>{{ $article.ReadingTime }} min</span>
     </div>
   {{- end }}
+  
+  {{- /* Share Button (Hero only) */ -}}
+  {{- if eq $modifier "c-metadata--hero" }}
+    <div class="c-metadata__share">
+      {{ partial "widgets/share.html" $article }}
+    </div>
+  {{- end }}
 </div>

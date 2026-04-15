@@ -21,7 +21,7 @@
   --_item-padding: var(--space-3) var(--space-4);
   --_item-radius: var(--radius-sm);
   --_item-gap: var(--space-3);
-  --_icon-size: 1.125rem;
+  --_icon-size: var(--size-icon-ui);
   --_label-size: var(--text-sm);
   --_trigger-gap: var(--space-3);
   --_transition: var(--duration-normal) var(--ease-default);
@@ -36,10 +36,7 @@
   display: flex;
   align-items: center;
   gap: var(--_trigger-gap);
-  margin-top: var(--space-12);
-  padding-top: var(--space-12);
   border: none;
-  border-top: var(--border-width) solid var(--_border);
   background: none;
   cursor: pointer;
   color: var(--_text);
@@ -49,24 +46,11 @@
   transform: scale(var(--scale-subtle));
 }
 
-.c-share__trigger:hover .c-share__trigger-label {
-  color: var(--_accent);
-}
-
 .c-share__trigger-icon {
   width: 1.25rem;
   height: 1.25rem;
   color: var(--_accent);
   transition: transform var(--_transition);
-}
-
-.c-share__trigger-label {
-  font-size: var(--text-xs);
-  font-weight: var(--weight-bold);
-  letter-spacing: var(--tracking-ultra);
-  text-transform: uppercase;
-  color: var(--_text);
-  transition: color var(--_transition);
 }
 
 /* ─── Menu Popover ────────────────────────────────────────────────────── */
@@ -86,6 +70,12 @@
   border-radius: var(--_menu-radius);
   box-shadow: var(--_menu-shadow);
   z-index: var(--z-header);
+
+  /* Reset inherited styles from metadata */
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: var(--weight-normal);
+  opacity: 1;
 
   /* Hidden state */
   opacity: 0;
