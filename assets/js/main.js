@@ -6,6 +6,7 @@ import { initThemeSwitcher } from "./components/theme-switcher.js";
 import { initCodeCopy } from './components/code-copy.js';
 import { initShare } from './components/share.js';
 import { initNewsletter } from './components/newsletter.js';
+import { initTOC } from './components/toc.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   initThemeSwitcher();
@@ -16,4 +17,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initCodeCopy();
   initShare();
   initNewsletter();
+  initTOC();
 });

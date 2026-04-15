@@ -9,26 +9,33 @@
 
 {{- /* 2. Render Widget */ -}}
 {{- if $isEnabled -}}
-  <div class="c-toc">
-    {{- /* Reading rail */ -}}
-    <div class="c-toc__rail">
-      <div class="c-toc__rail-fill" id="reading-progress"></div>
-    </div>
-
-    <div class="c-toc__body">
-      <div class="c-toc__list">
-        
-        {{- /* Floating Title */ -}}
-        <div class="c-toc__floating-title" id="floating-title-container">
-          <a href="{{ $page.RelPermalink }}" aria-label="Scroll to top of article">{{ $page.Title }}</a>
+  <details class="c-toc">
+    <summary class="c-toc__summary">
+      <span class="c-toc__summary-text">Table of Contents</span>
+      {{ partial "svg/chevron-down.html" . }}
+    </summary>
+  
+    <div class="c-toc__inner">
+      {{- /* Reading rail */ -}}
+      <div class="c-toc__rail">
+        <div class="c-toc__rail-fill" id="reading-progress"></div>
+      </div>
+  
+      <div class="c-toc__body">
+        <div class="c-toc__list">
+          
+          {{- /* Floating Title */ -}}
+          <div class="c-toc__floating-title" id="floating-title-container">
+            <a href="{{ $page.RelPermalink }}" aria-label="Scroll to top of article">{{ $page.Title }}</a>
+          </div>
+  
+          {{- /* Table of contents (Hugo-generated) */ -}}
+          {{- with $toc := $page.TableOfContents -}}
+            {{ $toc }}
+          {{- end -}}
+          
         </div>
-
-        {{- /* Table of contents (Hugo-generated) */ -}}
-        {{- with $toc := $page.TableOfContents -}}
-          {{ $toc }}
-        {{- end -}}
-        
       </div>
     </div>
-  </div>
+  </details>
 {{- end -}}

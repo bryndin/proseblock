@@ -19,12 +19,98 @@
   --_rail-opacity: 0.5;
 
   display: flex;
-  gap: 0;
-  align-items: stretch;
+  flex-direction: column;
+  gap: var(--space-4, 1rem); /* Space between summary and inner content on mobile */
 
   /* Allow the ToC to fill the sidebar but shrink if it needs to */
   flex: 1;
   min-height: 0;
+}
+
+/* --- Accordion Summary (Mobile) --- */
+
+.c-toc__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  list-style: none; /* Hide default marker */
+
+  font-size: var(--_link-size);
+  font-weight: var(--_link-weight);
+  letter-spacing: var(--tracking-widest);
+  text-transform: var(--_text-transform);
+  text-decoration: none;
+  color: var(--_text);
+  
+  /* Premium look for the mobile toggle */
+  padding: var(--space-4, 1rem);
+  background: var(--bg-secondary);
+  transition: background-color var(--duration-normal, 0.2s) var(--ease-default, ease);
+}
+
+.c-toc__summary:hover {
+  background-color: var(--bg-secondary);
+  box-shadow: var(--shadow-inner);
+}
+
+.c-toc__summary::-webkit-details-marker {
+  display: none; /* Hide Safari marker */
+}
+
+.c-toc__summary svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  flex-shrink: 0; /* Prevent the icon from being squeezed */
+  transition: transform var(--duration-normal, 0.2s) var(--ease-default, ease);
+}
+
+.c-toc[open] .c-toc__summary svg {
+  transform: rotate(180deg);
+}
+
+/* --- Inner Layout (Rail + Body) --- */
+
+.c-toc__inner {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  align-items: stretch;
+  
+  /* Ensure inner wrapper expands */
+  flex: 1;
+  min-height: 0;
+}
+
+/* --- Desktop Override (Permanently Open) --- */
+
+@media (min-width: 768px) {
+  .c-toc {
+    gap: 0; /* Remove mobile gap */
+  }
+
+  .c-toc__summary {
+    display: flex;
+    pointer-events: none; /* Disable interaction on desktop */
+    
+    /* Reset mobile-only premium styles */
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0 0 var(--space-4) 0;
+
+    /* Harmonize with .c-sidebar__widget-title */
+    font-size: var(--text-tiny, 0.6875rem);
+    font-weight: var(--weight-black, 900);
+    letter-spacing: var(--tracking-mega, 0.4em);
+    text-transform: uppercase;
+  }
+
+  .c-toc__summary svg {
+    display: none; /* Hide toggle icon on desktop */
+  }
 }
 
 /* --- TOC body --- */
