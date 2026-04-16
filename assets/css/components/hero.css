@@ -22,11 +22,11 @@
   width: 100%;
   padding: var(--_padding-y) var(--_padding-x);
   background-color: var(--_bg);
-  border: var(--border-width) solid oklch(from var(--_border) l c h / 0.4);
+  border: var(--border-width) solid oklch(from var(--_border) l c h / 40%);
   margin-bottom: var(--space-16);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-hero {
     --_padding-x: var(--space-20);
     --_title-size: var(--text-5xl);
@@ -34,7 +34,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
   .c-hero {
     --_title-size: var(--text-7xl);
     --_title-leading: var(--leading-none);
@@ -82,7 +82,7 @@
   opacity: 0.8;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-hero__subtitle {
     font-size: var(--text-xl);
     line-height: var(--leading-xl);

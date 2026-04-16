@@ -19,7 +19,7 @@
   overflow: hidden;
   padding: var(--_padding);
   background-color: var(--_bg);
-  border: var(--border-width) solid oklch(from var(--_border) l c h / 0.2);
+  border: var(--border-width) solid oklch(from var(--_border) l c h / 20%);
   box-shadow: var(--_shadow);
   transition: all var(--duration-normal) var(--ease-default);
 }

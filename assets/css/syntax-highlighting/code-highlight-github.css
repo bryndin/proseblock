@@ -2,12 +2,12 @@
 
 /* ===== Base / Layout ===== */
 
-.bg { background-color:#ffffff; }
+.bg { background-color:#fff; }
 
 .chroma {
   color:#24292f;
-  background-color:#ffffff;
-  -webkit-text-size-adjust:none;
+  background-color:#fff;
+  text-size-adjust:none;
 }
 
 .chroma .lnlinks { outline:none; text-decoration:none; color:inherit; }
@@ -80,6 +80,7 @@
 .chroma .nc { color:#953800; font-weight:bold; }
 .chroma .nd { color:#8250df; }
 .chroma .ne { color:#953800; }
+
 .chroma .nf,
 .chroma .fm { color:#8250df; font-weight:bold; }
 .chroma .nl { color:#0550ae; }
@@ -136,6 +137,7 @@
 .chroma .gi { color:#116329; background-color:#dafbe1; }
 .chroma .gh { color:#0550ae; font-weight:bold; }
 .chroma .gu { color:#0550ae; }
+
 .chroma .gp,
 .chroma .go { color:#6e7781; }
 .chroma .gr { color:#d1242f; }

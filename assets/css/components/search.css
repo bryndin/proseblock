@@ -36,6 +36,7 @@
   margin-bottom: var(--space-6);
   font-family: var(--font-sans);
   font-size: var(--text-xs);
+
   /* Designers dropped this to 10px in the new file */
   font-weight: var(--weight-bold);
   text-transform: uppercase;
@@ -45,6 +46,7 @@
 /* Target SVG directly */
 .c-hero--search__label svg {
   width: 1.5rem;
+
   /* text-2xl */
   height: 1.5rem;
   flex-shrink: 0;
@@ -99,7 +101,8 @@
      ========================================================================== */
 .c-search-results {
   --_bg: var(--bg-card);
-  --_shadow: 40px 0 60px -20px oklch(27% 0.015 230 / 0.02);
+  --_shadow: 40px 0 60px -20px oklch(27% 0.015 230deg / 2%);
+
   /* Designer's new softer shadow */
 
   background-color: var(--_bg);
@@ -108,7 +111,7 @@
   min-height: 600px;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-search-results {
     padding: var(--space-12);
   }
@@ -128,6 +131,7 @@
   --_text: var(--text-secondary);
 
   font-size: var(--text-xs);
+
   /* text-[10px] */
   font-weight: var(--weight-bold);
   text-transform: uppercase;
@@ -146,6 +150,7 @@
 
 .c-search-widget__header svg {
   width: 0.875rem;
+
   /* text-[14px] */
   height: 0.875rem;
   color: var(--text-primary);
@@ -207,8 +212,10 @@
 
 .c-dropdown__toggle {
   --_bg: var(--bg-tertiary);
+
   /* bg-surface-container */
   --_bg-hover: var(--bg-elevated);
+
   /* bg-surface-variant */
 
   display: flex;
@@ -290,6 +297,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+
   /* Designers specifically requested this wrapper restriction */
   max-width: 200px;
 }
@@ -320,6 +328,7 @@
   letter-spacing: var(--tracking-widest);
   color: var(--_count);
   opacity: 0.4;
+
   /* items-end alignment fix from designers */
   margin-bottom: 1px;
 }

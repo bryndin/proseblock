@@ -14,134 +14,182 @@
        ===================================================================== */
 
   /* --- Colors (oklch) --- */
-  --color-white: oklch(100% 0 0);
-  --color-black: oklch(0% 0 0);
+  --color-white: oklch(100% 0 0deg);
+  --color-black: oklch(0% 0 0deg);
 
   /* Grays (cool-toned) */
+
   /* #f7f9fd — surface */
-  --color-gray-50: oklch(98.5% 0.003 250);
+  --color-gray-50: oklch(98.5% 0.003 250deg);
+
   /* #f0f4fa — surface-container-low */
-  --color-gray-100: oklch(96.5% 0.006 250);
+  --color-gray-100: oklch(96.5% 0.006 250deg);
+
   /* #e8eff6 — surface-container */
-  --color-gray-150: oklch(95% 0.008 250);
+  --color-gray-150: oklch(95% 0.008 250deg);
+
   /* #e0e9f2 — surface-container-high */
-  --color-gray-200: oklch(93.5% 0.01 250);
+  --color-gray-200: oklch(93.5% 0.01 250deg);
+
   /* #d9e4ee — surface-container-highest */
-  --color-gray-250: oklch(91% 0.012 250);
+  --color-gray-250: oklch(91% 0.012 250deg);
+
   /* #a8b3bd — outline-variant */
-  --color-gray-300: oklch(78% 0.015 240);
+  --color-gray-300: oklch(78% 0.015 240deg);
+
   /* #717c85 — outline */
-  --color-gray-400: oklch(58% 0.015 240);
+  --color-gray-400: oklch(58% 0.015 240deg);
+
   /* #566069 — on-surface-variant */
-  --color-gray-500: oklch(48% 0.02 260);
+  --color-gray-500: oklch(48% 0.02 260deg);
+
   /* #575e70 — primary */
-  --color-gray-600: oklch(43% 0.025 260);
+  --color-gray-600: oklch(43% 0.025 260deg);
+
   /* #4b5264 — primary-dim */
-  --color-gray-650: oklch(40% 0.025 260);
+  --color-gray-650: oklch(40% 0.025 260deg);
+
   /* #29343c — on-surface */
-  --color-gray-900: oklch(27% 0.015 230);
+  --color-gray-900: oklch(27% 0.015 230deg);
+
   /* #0b0f11 — inverse-surface */
-  --color-gray-950: oklch(15% 0.01 230);
+  --color-gray-950: oklch(15% 0.01 230deg);
 
   /* Accent / Primary */
+
   /* #575e70 */
-  --color-primary: oklch(43% 0.025 260);
+  --color-primary: oklch(43% 0.025 260deg);
+
   /* #4b5264 */
-  --color-primary-dim: oklch(40% 0.025 260);
+  --color-primary-dim: oklch(40% 0.025 260deg);
+
   /* #dbe2f8 */
-  --color-primary-container: oklch(91% 0.015 260);
+  --color-primary-container: oklch(91% 0.015 260deg);
 
   /* Error */
+
   /* #9f403d */
-  --color-error: oklch(50% 0.12 25);
+  --color-error: oklch(50% 0.12 25deg);
+
   /* #fe8983 */
-  --color-error-container: oklch(75% 0.12 20);
+  --color-error-container: oklch(75% 0.12 20deg);
+
   /* #fff7f6 */
-  --color-on-error: oklch(98% 0.005 20);
+  --color-on-error: oklch(98% 0.005 20deg);
 
   /* Alert Additional Colors */
-  --color-success: oklch(55% 0.12 150);
-  --color-success-container: oklch(75% 0.12 150);
-  --color-purple: oklch(50% 0.15 300);
-  --color-purple-container: oklch(75% 0.15 300);
-  --color-warning: oklch(60% 0.15 70);
-  --color-warning-container: oklch(75% 0.15 70);
+  --color-success: oklch(55% 0.12 150deg);
+  --color-success-container: oklch(75% 0.12 150deg);
+  --color-purple: oklch(50% 0.15 300deg);
+  --color-purple-container: oklch(75% 0.15 300deg);
+  --color-warning: oklch(60% 0.15 70deg);
+  --color-warning-container: oklch(75% 0.15 70deg);
 
   /* --- Spacing (rem) --- */
   --space-0: 0;
+
   /* 4px */
   --space-1: 0.25rem;
+
   /* 8px */
   --space-2: 0.5rem;
+
   /* 12px */
   --space-3: 0.75rem;
+
   /* 16px */
   --space-4: 1rem;
+
   /* 20px */
   --space-5: 1.25rem;
+
   /* 24px */
   --space-6: 1.5rem;
+
   /* 32px */
   --space-8: 2rem;
+
   /* 40px */
   --space-10: 2.5rem;
+
   /* 48px */
   --space-12: 3rem;
+
   /* 64px */
   --space-16: 4rem;
+
   /* 80px */
   --space-20: 5rem;
+
   /* 96px */
   --space-24: 6rem;
+
   /* 128px */
   --space-32: 8rem;
 
   /* --- Constraints & UI Sizes --- */
+
   /* 18px */
   --size-icon-ui: 1.125rem;
+
   /* 4px */
   --size-dot: 0.25rem;
+
   /* 896px */
   --max-w-hero: 56rem;
+
   /* 192px */
   --height-toc-rail: 12rem;
   --scale-subtle: 1.1;
 
   /* --- Typography --- */
   --font-sans: "Manrope", system-ui, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
 
   /* 10px */
   --text-xs: 0.625rem;
+
   /* 9px */
   --text-2xs: 0.5625rem;
+
   /* 11px — TOC links */
   --text-tiny: 0.6875rem;
+
   /* 12px */
   --text-sm: 0.75rem;
+
   /* 16px */
   --text-base: 1rem;
+
   /* 18px */
   --text-lg: 1.125rem;
+
   /* 20px */
   --text-xl: 1.25rem;
+
   /* 24px */
   --text-2xl: 1.5rem;
+
   /* 30px */
   --text-3xl: 1.875rem;
+
   /* 36px */
   --text-4xl: 2.25rem;
+
   /* 48px */
   --text-5xl: 3rem;
+
   /* 60px */
   --text-6xl: 3.75rem;
+
   /* 72px */
   --text-7xl: 4.5rem;
+
   /* 56px — DESIGN.md Display-Lg */
   --text-display: 3.5rem;
+
   /* 128px — menu mission text */
   --text-hero: 8rem;
-
   --leading-none: 1;
   --leading-tight: 1.15;
   --leading-snug: 1.3;
@@ -151,7 +199,6 @@
   --leading-relaxed: 1.625;
   --leading-loose: 1.75;
   --leading-article: 1.85;
-
   --tracking-tighter: -0.02em;
   --tracking-tight: -0.01em;
   --tracking-normal: 0;
@@ -160,7 +207,6 @@
   --tracking-widest: 0.2em;
   --tracking-ultra: 0.3em;
   --tracking-mega: 0.4em;
-
   --weight-extralight: 200;
   --weight-light: 300;
   --weight-regular: 400;
@@ -171,19 +217,20 @@
   --weight-black: 900;
 
   /* --- Borders & Radii --- */
+
   /* 2px */
   --radius-sm: 0.125rem;
+
   /* 6px */
   --radius-md: 0.375rem;
   --radius-full: 9999px;
-
   --border-width: 1px;
 
   /* --- Shadows --- */
-  --shadow-editorial: 80px 0 100px -20px oklch(27% 0.015 230 / 0.03);
-  --shadow-tonal: 0 10px 60px 0 oklch(27% 0.015 230 / 0.04);
-  --shadow-ambient: 0 0 60px oklch(27% 0.015 230 / 0.06);
-  --shadow-inner: inset 0 2px 4px 0 oklch(0% 0 0 / 0.05);
+  --shadow-editorial: 80px 0 100px -20px oklch(27% 0.015 230deg / 3%);
+  --shadow-tonal: 0 10px 60px 0 oklch(27% 0.015 230deg / 4%);
+  --shadow-ambient: 0 0 60px oklch(27% 0.015 230deg / 6%);
+  --shadow-inner: inset 0 2px 4px 0 oklch(0% 0 0deg / 5%);
 
   /* --- Transitions --- */
   --duration-fast: 150ms;
@@ -194,6 +241,7 @@
   --ease-out: ease-out;
 
   /* --- Breakpoints (for reference, used in media queries) --- */
+
   /* md: 768px  |  lg: 1024px  |  xl: 1280px */
 
   /* --- Z-index scale --- */
@@ -213,7 +261,6 @@
   --text-accent: var(--color-primary);
   --text-on-accent: var(--color-white);
   --text-error: var(--color-error);
-
   --bg-primary: var(--color-gray-50);
   --bg-secondary: var(--color-gray-100);
   --bg-tertiary: var(--color-gray-150);
@@ -221,15 +268,12 @@
   --bg-elevated: var(--color-gray-200);
   --bg-highest: var(--color-gray-250);
   --bg-inverse: var(--color-gray-950);
-
   --accent: var(--color-primary);
   --accent-dim: var(--color-primary-dim);
   --accent-container: var(--color-primary-container);
-
   --border-subtle: var(--color-gray-200);
   --border-muted: var(--color-gray-300);
   --outline: var(--color-gray-400);
-
   --icon-primary: var(--color-primary);
   --icon-secondary: var(--color-gray-500);
 
@@ -389,23 +433,19 @@
   --text-tertiary: var(--color-gray-400);
   --text-accent: var(--color-primary-container);
   --text-on-accent: var(--color-gray-900);
-
   --bg-primary: var(--color-gray-950);
   --bg-secondary: var(--color-gray-900);
-  --bg-tertiary: oklch(22% 0.015 230);
-  --bg-card: oklch(20% 0.015 230);
-  --bg-elevated: oklch(25% 0.015 230);
-  --bg-highest: oklch(30% 0.015 230);
+  --bg-tertiary: oklch(22% 0.015 230deg);
+  --bg-card: oklch(20% 0.015 230deg);
+  --bg-elevated: oklch(25% 0.015 230deg);
+  --bg-highest: oklch(30% 0.015 230deg);
   --bg-inverse: var(--color-gray-50);
-
   --accent: var(--color-primary-container);
   --accent-dim: var(--color-primary);
   --accent-container: var(--color-primary-dim);
-
   --border-subtle: var(--color-gray-650);
-  --border-muted: oklch(35% 0.015 230);
+  --border-muted: oklch(35% 0.015 230deg);
   --outline: var(--color-gray-500);
-
   --icon-primary: var(--color-primary-container);
   --icon-secondary: var(--color-gray-400);
 
@@ -417,8 +457,8 @@
   --intent-generic: var(--color-gray-400);
 
   /* --- Shadows --- */
-  --shadow-editorial: 80px 0 100px -20px oklch(0% 0 0 / 0.25);
-  --shadow-tonal: 0 10px 60px 0 oklch(0% 0 0 / 0.3);
-  --shadow-ambient: 0 0 60px oklch(0% 0 0 / 0.35);
-  --shadow-inner: inset 0 2px 4px 0 oklch(0% 0 0 / 0.15);
+  --shadow-editorial: 80px 0 100px -20px oklch(0% 0 0deg / 25%);
+  --shadow-tonal: 0 10px 60px 0 oklch(0% 0 0deg / 30%);
+  --shadow-ambient: 0 0 60px oklch(0% 0 0deg / 35%);
+  --shadow-inner: inset 0 2px 4px 0 oklch(0% 0 0deg / 15%);
 }

@@ -7,7 +7,7 @@
 .chroma {
   color:#e6edf3;
   background-color:#0d1117;
-  -webkit-text-size-adjust:none;
+  text-size-adjust:none;
 }
 
 .chroma .lnlinks { outline:none; text-decoration:none; color:inherit; }
@@ -80,6 +80,7 @@
 .chroma .nc { color:#f0883e; font-weight:bold; }
 .chroma .nd { color:#d2a8ff; }
 .chroma .ne { color:#f0883e; }
+
 .chroma .nf,
 .chroma .fm { color:#d2a8ff; font-weight:bold; }
 .chroma .nl { color:#79c0ff; }
@@ -136,6 +137,7 @@
 .chroma .gi { color:#56d364; background-color:#0f5323; }
 .chroma .gh { color:#79c0ff; font-weight:bold; }
 .chroma .gu { color:#79c0ff; }
+
 .chroma .gp,
 .chroma .go { color:#8b949e; }
 .chroma .gr { color:#ff6a69; }

@@ -11,14 +11,12 @@
   /* *** Configuration (Internal Styling) ********************************* */
   --_padding-y: var(--space-24);
   --_padding-y-md: var(--space-32);
-
   --_title-size: var(--text-6xl);
   --_title-size-md: 6rem;
   --_title-weight: var(--weight-extrabold);
   --_title-tracking: var(--tracking-tight);
   --_title-spacing: var(--space-8);
   --_title-lh: var(--leading-tight);
-
   --_subtitle-size: var(--text-xl);
   --_subtitle-max-w: 42rem;
   --_subtitle-lh: var(--leading-relaxed);
@@ -27,7 +25,7 @@
   padding-bottom: var(--_padding-y);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-hero--error {
     padding-top: var(--_padding-y-md);
     padding-bottom: var(--_padding-y-md);
@@ -43,7 +41,7 @@
   margin-bottom: var(--_title-spacing);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-hero--error .c-hero__title {
     font-size: var(--_title-size-md);
   }
@@ -75,22 +73,18 @@
   --_gap: var(--space-16);
   --_gap-md: var(--space-32);
   --_transition: var(--duration-normal) var(--ease-default);
-
   --_home-gap: var(--space-4);
   --_home-icon-size: var(--text-3xl);
   --_home-title-size: var(--text-xl);
   --_home-title-weight: var(--weight-bold);
   --_home-title-lh: var(--leading-tight);
   --_home-subtitle-size: var(--text-sm);
-
   --_explore-heading-size: var(--text-xs);
   --_explore-heading-weight: var(--weight-black);
   --_explore-heading-tracking: var(--tracking-wider);
   --_explore-heading-spacing: var(--space-8);
-
   --_list-gap: var(--space-8);
   --_list-gap-md: var(--space-16);
-
   --_link-gap: var(--space-3);
   --_link-icon-size: var(--text-xl);
   --_link-icon-opacity: 0.4;
@@ -107,13 +101,12 @@
   max-width: var(--_max-w);
   margin: 0 auto;
   padding: var(--_padding-y) var(--_padding-x);
-
   display: flex;
   flex-direction: column;
   gap: var(--_gap);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-error-nav__inner {
     flex-direction: row;
     gap: var(--_gap-md);
@@ -195,7 +188,7 @@
   gap: var(--_list-gap);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-error-nav__list {
     flex-direction: row;
     gap: var(--_list-gap-md);

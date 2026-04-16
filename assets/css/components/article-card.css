@@ -74,7 +74,7 @@
   gap: var(--space-16);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-article-list {
     gap: var(--space-24);
   }

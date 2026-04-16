@@ -6,8 +6,10 @@
   /* *** Configuration (Internal Styling) ********************************* */
   --_gap: var(--space-12);
   --_avatar-size: 10rem;
+
   /* 160px for mobile */
   --_avatar-size-md: 14rem;
+
   /* 224px for tablet/desktop */
 
   display: flex;
@@ -17,7 +19,7 @@
   text-align: center;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-hero--author .c-hero__inner--author {
     flex-direction: row;
     align-items: flex-start;
@@ -33,7 +35,7 @@
   height: var(--_avatar-size);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-hero__avatar-wrapper {
     width: var(--_avatar-size-md);
     height: var(--_avatar-size-md);
@@ -55,6 +57,7 @@
   flex-direction: column;
   gap: var(--space-8);
   max-width: 56rem;
+
   /* Matches max-w-4xl */
 }
 
@@ -72,7 +75,7 @@
   justify-content: center;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-hero__social {
     justify-content: flex-start;
   }
@@ -88,6 +91,7 @@
   gap: var(--space-2);
   color: var(--_text);
   font-size: var(--text-xs);
+
   /* text-[10px] */
   font-weight: var(--weight-bold);
   text-transform: uppercase;

@@ -8,6 +8,7 @@
 .l-site {
   /* *** Configuration (Internal Styling) ********************************* */
   --_max-width: 80rem;
+
   /* 1280px max-w-7xl */
   --_padding-x: var(--space-8);
   --_padding-top: 0;
@@ -33,7 +34,7 @@
   padding-bottom: var(--_padding-bottom);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .l-site__columns {
     flex-direction: row;
   }
@@ -45,7 +46,7 @@
   width: 100%;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .l-site__main {
     width: 70%;
   }
@@ -57,7 +58,7 @@
   width: 100%;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .l-site__sidebar {
     width: 30%;
   }
@@ -78,7 +79,7 @@
   position: relative;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .l-site__columns--article {
     flex-direction: row;
   }
@@ -90,16 +91,19 @@
   gap: 2rem;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .l-site__article-sidebar {
     width: 20%;
     
     /* 1. Make the wrapper sticky, not the ToC! */
     position: sticky;
+
     /* 2. Fix the P2 Bug (Top 160): Sets it much closer to the top of the screen */
     top: 2rem;
+
     /* 3. CRITICAL FOR P1: Force the sidebar to never exceed the screen height */
     max-height: calc(100vh - 4rem);
+
     /* Ensure it doesn't stretch to the height of the article body */
     align-self: flex-start;
   }
@@ -109,7 +113,7 @@
   width: 100%;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .l-site__article-body {
     width: 80%;
   }

@@ -49,7 +49,7 @@
   width: var(--metadata-dot-size);
   height: var(--metadata-dot-size);
   border-radius: var(--radius-full);
-  background-color: currentColor;
+  background-color: currentcolor;
 }
 
 /* ─── Opacity Handling ────────────────────────────────────────────────── */

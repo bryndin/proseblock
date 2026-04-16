@@ -47,7 +47,7 @@
   align-items: flex-end;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-paginator__numbers {
     display: flex;
   }

@@ -22,9 +22,8 @@
 
 .c-drawer__backdrop {
   flex: 1;
-  background-color: oklch(from var(--bg-inverse) l c h / 0.1);
+  background-color: oklch(from var(--bg-inverse) l c h / 10%);
   backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
   cursor: pointer;
   opacity: 0;
   transition: opacity var(--duration-menu) var(--ease-out);
@@ -45,24 +44,23 @@
   position: relative;
   z-index: 10;
   box-shadow: var(--shadow-tonal);
-
   transform: translateX(-100%);
   transition: transform var(--duration-menu) var(--ease-out);
 }
 
-@media (min-width: 640px) {
+@media (width >= 640px) {
   .c-drawer__panel {
     width: 85%;
   }
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-drawer__panel {
     width: 60%;
   }
 }
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
   .c-drawer__panel {
     width: 45%;
   }
@@ -106,6 +104,7 @@
   flex-direction: column;
   flex: 1;
   min-height: 0;
+
   /* Dynamic padding: shrinks from 4rem to 2rem on short screens */
   padding: clamp(2rem, 5vh, 4rem);
 }
@@ -114,6 +113,7 @@
 
 .c-drawer__header {
   flex-shrink: 0;
+
   /* Dynamic margin: shrinks from 3rem to 1.5rem on short screens */
   margin-bottom: clamp(1.5rem, 4vh, 3rem);
 }
@@ -146,6 +146,7 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+
   /* Hides scrollbar for cleaner look if needed */
   scrollbar-width: none;
 }
@@ -159,6 +160,7 @@
   flex-direction: column;
   flex: 1;
   justify-content: space-evenly;
+
   /* Critical: prevents items from squishing together */
   min-height: min-content;
 }
@@ -208,6 +210,7 @@
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
+
   /* Dynamic gap and margin so footer pulls up out of the way on short screens */
   gap: clamp(1.5rem, 4vh, 3rem);
   margin-top: clamp(2rem, 5vh, 6rem);
@@ -233,7 +236,7 @@
   gap: var(--space-2);
   max-width: 24rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid oklch(from var(--text-tertiary) l c h / 0.2);
+  border-bottom: 1px solid oklch(from var(--text-tertiary) l c h / 20%);
   transition: border-color var(--duration-fast) var(--ease-default);
 }
 

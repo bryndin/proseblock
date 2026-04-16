@@ -7,7 +7,7 @@
   --_border: var(--border-subtle);
 
   background-color: var(--_bg);
-  border: var(--border-width) solid oklch(from var(--_border) l c h / 0.4);
+  border: var(--border-width) solid oklch(from var(--_border) l c h / 40%);
   margin-bottom: var(--space-16);
 }
 

@@ -75,7 +75,6 @@
   text-transform: none;
   letter-spacing: normal;
   font-weight: var(--weight-normal);
-  opacity: 1;
 
   /* Hidden state */
   opacity: 0;
@@ -131,7 +130,7 @@
 
 /* ─── Mobile: Bottom Sheet ────────────────────────────────────────────── */
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .c-share__menu {
     position: fixed;
     bottom: 0;

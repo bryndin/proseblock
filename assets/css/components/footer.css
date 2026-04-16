@@ -27,7 +27,7 @@
   gap: var(--_gap);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-footer {
     flex-direction: row;
   }

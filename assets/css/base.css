@@ -121,7 +121,7 @@ pre {
   line-height: var(--leading-relaxed);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   pre {
     padding: var(--space-6);
   }

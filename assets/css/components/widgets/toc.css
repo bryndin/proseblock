@@ -40,7 +40,6 @@
   justify-content: space-between;
   cursor: pointer;
   list-style: none; /* Hide default marker */
-
   font-size: var(--_link-size);
   font-weight: var(--_link-weight);
   letter-spacing: var(--tracking-widest);
@@ -67,7 +66,7 @@
   width: 1rem;
   height: 1rem;
   fill: none;
-  stroke: currentColor;
+  stroke: currentcolor;
   flex-shrink: 0; /* Prevent the icon from being squeezed */
   transition: transform var(--duration-normal, 0.2s) var(--ease-default, ease);
 }
@@ -91,7 +90,7 @@
 
 /* --- Desktop Override (Permanently Open) --- */
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-toc {
     gap: 0; /* Remove mobile gap */
   }
@@ -127,6 +126,7 @@
 
   /* CRITICAL FOR P1: This forces the text to scroll! */
   overflow-y: auto;
+
   /* CRITICAL: Allows the scroll container to activate */
   min-height: 0;
 
@@ -162,11 +162,6 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-}
-
-/* Add vertical spacing between items */
-.c-toc__list nav ul,
-.c-toc__list nav li {
   gap: var(--space-4);
 }
 
@@ -179,7 +174,6 @@
 
   /* ADDED: padding-right of 0.5rem to pre-reserve the space the animation will need */
   padding: 0.25rem 0.5rem 0.25rem 0;
-
   font-size: var(--_link-size);
   font-weight: var(--_link-weight);
   letter-spacing: var(--tracking-widest);
@@ -204,6 +198,7 @@
 
 .c-toc__list nav a::before {
   content: "";
+
   /* Makes it a flex item so it pushes text */
   display: block;
   height: 1px;
@@ -259,6 +254,7 @@
   max-height: 0;
   overflow: hidden;
   margin-bottom: 0;
+
   /* Smooth expand/collapse matching Tailwind's duration-500 ease-in-out */
   transition: opacity 0.5s ease-in-out,
     max-height 0.5s ease-in-out,
@@ -268,6 +264,7 @@
 /* Toggled via JS when Hero is out of view */
 .c-toc__floating-title.is-visible {
   opacity: 1;
+
   /* Large enough to fit multiline titles */
   max-height: 15rem;
   margin-bottom: var(--space-4, 1rem);
@@ -275,6 +272,7 @@
 
 .c-toc__floating-title a {
   display: block;
+
   /* padding-left matches the indentation of the ToC list items below it */
   padding: var(--space-4, 1rem) var(--space-4, 1rem) var(--space-4, 1rem) var(--space-4, 1rem);
   font-size: var(--_link-size);
@@ -283,7 +281,6 @@
   text-transform: var(--_text-transform);
   text-decoration: none;
   color: var(--_text);
-
   transition: color var(--duration-normal) var(--ease-default);
   cursor: pointer;
 }
@@ -299,10 +296,8 @@
   margin-left: 6px;
   margin-top: 7px;
   margin-bottom: 7px;
-
   background-color: var(--_rail-bg);
   opacity: var(--_rail-opacity);
-
   position: relative;
   flex-shrink: 0;
 }

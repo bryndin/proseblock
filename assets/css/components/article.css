@@ -19,13 +19,13 @@
   box-shadow: var(--_shadow);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-article {
     padding: var(--_padding-md);
   }
 }
 
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
   .c-article {
     padding: var(--_padding-lg);
   }

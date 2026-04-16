@@ -10,7 +10,7 @@
   --_table-margin: var(--space-8);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .c-article__body {
     --_code-padding: var(--space-8);
   }
@@ -20,6 +20,7 @@
 
 .c-article__body blockquote {
   font-size: inherit;
+
   /* The root blockquote uses the solid semantic token */
   background-color: var(--article-blockquote-bg, var(--bg-secondary));
 }
@@ -32,6 +33,7 @@
 .c-article__body blockquote blockquote {
   margin: 0;
   padding-inline-end: 0;
+
   /* Apply a progressive overlay tint for each level of nesting */
   background-color: color-mix(in srgb, var(--text-primary) 4%, transparent);
 }
@@ -64,7 +66,7 @@
   background-color: var(--bg-secondary);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .chroma {
     padding: var(--space-6);
   }
