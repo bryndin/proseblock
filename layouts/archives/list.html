@@ -46,14 +46,14 @@
             {{- /* Dynamic TOC Nav targeting the exact c-toc CSS */ -}}
             <nav id="TableOfContents">
               <ul>
-                {{- range $articles.GroupByDate "2006" -}}
-                  {{- $year := .Key -}}
+                {{- range $yearGroup := $articles.GroupByDate "2006" -}}
+                  {{- $year := $yearGroup.Key -}}
                   <li>
                     <a href="#year-{{ $year }}">{{ $year }}</a>
                     {{- /* Nested list triggers the longer Level 2 tick in toc.css! */ -}}
                     <ul>
-                      {{- range .Pages.GroupByDate "January" -}}
-                        {{- $month := .Key -}}
+                      {{- range $monthGroup := $yearGroup.Pages.GroupByDate "January" -}}
+                        {{- $month := $monthGroup.Key -}}
                         <li>
                           <a href="#{{ $month | lower }}-{{ $year }}">{{ $month }}</a>
                         </li>
@@ -78,36 +78,36 @@
           <div class="c-archive">
             
             {{- /* Loop Years */ -}}
-            {{- range $articles.GroupByDate "2006" -}}
-              {{- $year := .Key -}}
+            {{- range $yearGroup := $articles.GroupByDate "2006" -}}
+              {{- $year := $yearGroup.Key -}}
               <div id="year-{{ $year }}" class="c-archive__year-group">
                 <h3 class="c-archive__year-title">{{ $year }}</h3>
                 
                 <div class="c-archive__months">
                   {{- /* Loop Months within Year */ -}}
-                  {{- range .Pages.GroupByDate "January" -}}
-                    {{- $month := .Key -}}
+                  {{- range $monthGroup := $yearGroup.Pages.GroupByDate "January" -}}
+                    {{- $month := $monthGroup.Key -}}
                     <div id="{{ $month | lower }}-{{ $year }}" class="c-archive__month-group">
                       <h4 class="c-archive__month-title">{{ $month }}</h4>
                       
                       <div class="c-archive__articles">
                         {{- /* Loop Articles within Month */ -}}
-                        {{- range .Pages -}}
+                        {{- range $article := $monthGroup.Pages -}}
                           
-                          <a href="{{ .RelPermalink }}" class="c-archive-card group">
+                          <a href="{{ $article.RelPermalink }}" class="c-archive-card group">
                             
                             {{- /* Date Block (Left) */ -}}
                             <div class="c-archive-card__date">
-                              <span class="c-archive-card__month">{{ .Date.Format "Jan" }}</span>
-                              <span class="c-archive-card__day">{{ .Date.Format "02" }}</span>
+                              <span class="c-archive-card__month">{{ $article.Date.Format "Jan" }}</span>
+                              <span class="c-archive-card__day">{{ $article.Date.Format "02" }}</span>
                             </div>
                             
                             {{- /* Content Block (Right) */ -}}
                             <div class="c-archive-card__content">
-                              {{- with $categories := .Params.categories -}}
+                              {{- with $categories := $article.Params.categories -}}
                                 <span class="c-archive-card__category">{{ delimit $categories " / " }}</span>
                               {{- end -}}
-                              <h5 class="c-archive-card__title">{{ .Title }}</h5>
+                              <h5 class="c-archive-card__title">{{ $article.Title }}</h5>
                             </div>
 
                           </a>

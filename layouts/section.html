@@ -1,10 +1,11 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  {{ range .Pages }}
+  {{- $page := . -}}
+  <h1>{{ $page.Title }}</h1>
+  {{ $page.Content }}
+  {{ range $p := $page.Pages }}
     <section>
-      <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-      {{ .Summary }}
+      <h2><a href="{{ $p.RelPermalink }}">{{ $p.LinkTitle }}</a></h2>
+      {{ $p.Summary }}
     </section>
   {{ end }}
 {{ end }}

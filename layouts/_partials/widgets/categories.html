@@ -1,8 +1,9 @@
-{{- $mode := .mode | default "ssr" -}}
-{{- $title := .title | default "Categories" -}}
-{{- $limit := .limit | default 10 -}}
+{{- $kwargs := . }}
+{{- $mode := $kwargs.mode | default "ssr" -}}
+{{- $title := $kwargs.title | default "Categories" -}}
+{{- $limit := $kwargs.limit | default 10 -}}
 {{- /* Use custom passed terms, fallback to site-wide taxonomy if missing */ -}}
-{{- $terms := .terms | default site.Taxonomies.categories.ByCount -}}
+{{- $terms := $kwargs.terms | default site.Taxonomies.categories.ByCount -}}
 
 {{- if eq $mode "ssr" -}}
   <div class="c-search-widget">
@@ -11,9 +12,9 @@
       <h5 class="c-search-widget__subtitle">{{ $title }}</h5>
     </a>
     <ul class="c-search-suggested">
-      {{- range first $limit $terms -}}
-        {{- $page := .Page -}}
-        {{- $count := .Count -}}
+      {{- range $term := first $limit $terms -}}
+        {{- $page := $term.Page -}}
+        {{- $count := $term.Count -}}
         <li class="c-search-suggested__item">
           <a href="{{ $page.RelPermalink }}" class="c-search-suggested__link">
             <span class="c-search-suggested__text">{{ $page.Title }}</span>

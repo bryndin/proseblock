@@ -1,7 +1,8 @@
-{{ $start := .start }}
-{{ $total := .total }}
-{{ $left_icon := .left }}
-{{ $right_icon := .right }}
+{{- $kwargs := . }}
+{{ $start := $kwargs.start }}
+{{ $total := $kwargs.total }}
+{{ $left_icon := $kwargs.left }}
+{{ $right_icon := $kwargs.right }}
 
 <div class="c-featured__pagination">
   <button class="c-featured__page-btn js-featured-prev" aria-label="Previous featured article">

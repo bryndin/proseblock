@@ -7,16 +7,17 @@ For a given taxonomy, renders a list of terms assigned to the page.
 @example: {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
 */}}
 
-{{- $page := .page }}
-{{- $taxonomy := .taxonomy }}
+{{- $kwargs := . }}
+{{- $page := $kwargs.page }}
+{{- $taxonomy := $kwargs.taxonomy }}
 
-{{- with $page.GetTerms $taxonomy }}
-  {{- $label := (index . 0).Parent.LinkTitle }}
+{{- with $terms := $page.GetTerms $taxonomy }}
+  {{- $label := (index $terms 0).Parent.LinkTitle }}
   <div>
     <div>{{ $label }}:</div>
     <ul>
-      {{- range . }}
-        <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+      {{- range $term := $terms }}
+        <li><a href="{{ $term.RelPermalink }}">{{ $term.LinkTitle }}</a></li>
       {{- end }}
     </ul>
   </div>

@@ -1,8 +1,9 @@
 {{- /* Newsletter widget */ -}}
-{{ $enabled := .enabled | default site.Params.enableNewsletter }}
-{{ $title := .title | default site.Params.newsletter.title | default "Dispatch" }}
-{{ $frequencyText := .frequencyText | default site.Params.newsletter.frequencyText }}
-{{ $action := .action | default site.Params.newsletter.action }}
+{{- $kwargs := . }}
+{{ $enabled := $kwargs.enabled | default site.Params.enableNewsletter }}
+{{ $title := $kwargs.title | default site.Params.newsletter.title | default "Dispatch" }}
+{{ $frequencyText := $kwargs.frequencyText | default site.Params.newsletter.frequencyText }}
+{{ $action := $kwargs.action | default site.Params.newsletter.action }}
 
 {{- with $enabled }}
   <div class="c-sidebar__widget c-sidebar__widget--newsletter" id="newsletter-widget">

@@ -9,8 +9,8 @@
   <div class="c-author__avatar">
     {{- $hasAvatar := false }}
     {{- with $authorTerm }}
-      {{- with .Params.avatar }}
-        <img class="c-author__avatar-image" src="{{ . | relURL }}" alt="{{ $authorName }}">
+      {{- with $avatar := $authorTerm.Params.avatar }}
+        <img class="c-author__avatar-image" src="{{ $avatar | relURL }}" alt="{{ $authorName }}">
         {{- $hasAvatar = true }}
       {{- end }}
     {{- end }}
@@ -25,26 +25,26 @@
     </div>
     {{- /* Loads author bio from taxonomy term */ -}}
     {{- with $authorTerm }}
-      {{- if .Content }}
-      <div class="c-author__bio">{{ .Content }}</div>
-      {{- else if .Params.description }}
-      <p class="c-author__bio">{{ .Params.description }}</p>
+      {{- if $authorTerm.Content }}
+      <div class="c-author__bio">{{ $authorTerm.Content }}</div>
+      {{- else if $authorTerm.Params.description }}
+      <p class="c-author__bio">{{ $authorTerm.Params.description }}</p>
       {{- end }}
     {{- end }}
     {{- with $authorTerm }}
     <div class="c-author__social">
-      {{- with .Params.social }}
+      {{- with $social := $authorTerm.Params.social }}
       <div class="c-author__social-icons">
-        {{- range . }}
-        <a class="c-author__social-link" href="{{ .url }}" rel="noopener noreferrer" target="_blank">
-          <span class="c-author__social-icon" aria-hidden="true">{{ partial (printf "svg/%s.html" .icon) }}</span>
-          <span class="u-sr-only">{{ .name }}</span>
+        {{- range $link := $social }}
+        <a class="c-author__social-link" href="{{ $link.url }}" rel="noopener noreferrer" target="_blank">
+          <span class="c-author__social-icon" aria-hidden="true">{{ partial (printf "svg/%s.html" $link.icon) }}</span>
+          <span class="u-sr-only">{{ $link.name }}</span>
         </a>
         {{- end }}
       </div>
       <div class="c-author__social-divider"></div>
       {{- end }}
-      <a class="c-author__more-link" href="{{ .RelPermalink }}">
+      <a class="c-author__more-link" href="{{ $authorTerm.RelPermalink }}">
         More from author
         <span class="c-author__more-icon">{{ partial "svg/arrow-forward.html" }}</span>
       </a>

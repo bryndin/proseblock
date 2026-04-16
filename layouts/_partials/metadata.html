@@ -1,6 +1,7 @@
 {{/* layouts/partials/metadata.html */}}
-{{ $article := .article }}
-{{ $modifier := .modifier | default "" }} {{/* e.g., "c-metadata--hero" */}}
+{{- $kwargs := . }}
+{{- $article := $kwargs.article }}
+{{- $modifier := $kwargs.modifier | default "" }} {{/* e.g., "c-metadata--hero" */}}
 
 <div class="c-metadata {{ $modifier }}">
   <div class="c-metadata__item">

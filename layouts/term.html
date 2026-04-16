@@ -65,12 +65,12 @@
         
         {{- /* 4. Calculate Related Categories (Server-Side Logic) */ -}}
         {{- $relatedCats := slice -}}
-        {{- range site.Taxonomies.categories.ByCount -}}
-          {{- if ne .Page.Title $page.Title -}}
+        {{- range $category := site.Taxonomies.categories.ByCount -}}
+          {{- if ne $category.Page.Title $page.Title -}}
             {{- /* Intersect checks which articles share BOTH terms */ -}}
-            {{- $common := intersect $page.Pages .Pages -}}
+            {{- $common := intersect $page.Pages $category.Pages -}}
             {{- if gt (len $common) 0 -}}
-              {{- $relatedCats = $relatedCats | append (dict "Page" .Page "Count" (len $common)) -}}
+              {{- $relatedCats = $relatedCats | append (dict "Page" $category.Page "Count" (len $common)) -}}
             {{- end -}}
           {{- end -}}
         {{- end -}}
@@ -78,11 +78,11 @@
 
         {{- /* 5. Calculate Related Tags (Server-Side Logic) */ -}}
         {{- $relatedTags := slice -}}
-        {{- range site.Taxonomies.tags.ByCount -}}
-          {{- if ne .Page.Title $page.Title -}}
-            {{- $common := intersect $page.Pages .Pages -}}
+        {{- range $tag := site.Taxonomies.tags.ByCount -}}
+          {{- if ne $tag.Page.Title $page.Title -}}
+            {{- $common := intersect $page.Pages $tag.Pages -}}
             {{- if gt (len $common) 0 -}}
-              {{- $relatedTags = $relatedTags | append (dict "Page" .Page "Count" (len $common)) -}}
+              {{- $relatedTags = $relatedTags | append (dict "Page" $tag.Page "Count" (len $common)) -}}
             {{- end -}}
           {{- end -}}
         {{- end -}}

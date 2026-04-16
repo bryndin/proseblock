@@ -4,8 +4,9 @@
   @context {dict} Contains "mode" ("ssr" | "csr") and "paginator" (Hugo Paginator Object)
 */ -}}
 
-{{- $mode := .mode | default "ssr" -}}
-{{- $paginator := .paginator -}}
+{{- $kwargs := . }}
+{{- $mode := $kwargs.mode | default "ssr" }}
+{{- $paginator := $kwargs.paginator }}
 
 {{- /* =======================================================================
    MODE: SERVER-SIDE RENDERING (Hugo Native loop)
