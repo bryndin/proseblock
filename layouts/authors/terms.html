@@ -32,37 +32,19 @@
   {{- /* 3. Article Layout Grid (80/20 Split from page.html) */ -}}
   <div class="l-site__columns--article">
 
-    {{- /* Left Sidebar: Table of Contents */ -}}
+{{- /* Left Sidebar: Table of Contents */ -}}
     <aside class="l-site__article-sidebar">
-      <div class="c-toc">
-        
-        {{- /* Reading Progress Rail */ -}}
-        <div class="c-toc__rail">
-          <div class="c-toc__rail-fill" id="reading-progress"></div>
-        </div>
 
-        <div class="c-toc__body">
-          <div class="c-toc__list">
-            
-            {{- /* Floating Title (Reveals on scroll) */ -}}
-            <div class="c-toc__floating-title" id="floating-title-container">
-              <a href="{{ $page.RelPermalink }}" aria-label="Scroll to top">{{ $page.Title | default "Authors" }}</a>
-            </div>
+      {{- /* 1. Build the data array for the Generic TOC */ -}}
+      {{- $tocItems := slice -}}
 
-            {{- /* Dynamic TOC Nav targeting the exact c-toc CSS */ -}}
-            <nav id="TableOfContents">
-              <ul>
-                {{- range $letter := $letters -}}
-                  <li>
-                    <a href="#section-{{ $letter | lower }}">{{ $letter }}</a>
-                  </li>
-                {{- end -}}
-              </ul>
-            </nav>
+      {{- range $letter := $letters -}}
+        {{- $href := printf "#section-%s" ($letter | lower) -}}
+        {{- $tocItems = $tocItems | append (dict "label" $letter "href" $href) -}}
+      {{- end -}}
 
-          </div>
-        </div>
-      </div>
+      {{- /* 2. Call the Generic Partial */ -}}
+      {{ partial "widgets/toc.html" (dict "page" $page "items" $tocItems) }}
     </aside>
 
     {{- /* Right Main Column */ -}}

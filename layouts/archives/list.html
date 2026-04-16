@@ -28,45 +28,28 @@
 
     {{- /* Left Sidebar: Table of Contents */ -}}
     <aside class="l-site__article-sidebar">
-      <div class="c-toc">
-        
-        {{- /* Reading Progress Rail */ -}}
-        <div class="c-toc__rail">
-          <div class="c-toc__rail-fill" id="reading-progress"></div>
-        </div>
 
-        <div class="c-toc__body">
-          <div class="c-toc__list">
-            
-            {{- /* Floating Title (Reveals on scroll) */ -}}
-            <div class="c-toc__floating-title" id="floating-title-container">
-              <a href="{{ $page.RelPermalink }}" aria-label="Scroll to top">{{ $page.Title | default "Archives" }}</a>
-            </div>
+      {{- /* 1. Build the data array for the Generic TOC */ -}}
+      {{- $tocItems := slice -}}
 
-            {{- /* Dynamic TOC Nav targeting the exact c-toc CSS */ -}}
-            <nav id="TableOfContents">
-              <ul>
-                {{- range $yearGroup := $articles.GroupByDate "2006" -}}
-                  {{- $year := $yearGroup.Key -}}
-                  <li>
-                    <a href="#year-{{ $year }}">{{ $year }}</a>
-                    {{- /* Nested list triggers the longer Level 2 tick in toc.css! */ -}}
-                    <ul>
-                      {{- range $monthGroup := $yearGroup.Pages.GroupByDate "January" -}}
-                        {{- $month := $monthGroup.Key -}}
-                        <li>
-                          <a href="#{{ $month | lower }}-{{ $year }}">{{ $month }}</a>
-                        </li>
-                      {{- end -}}
-                    </ul>
-                  </li>
-                {{- end -}}
-              </ul>
-            </nav>
+      {{- range $yearGroup := $articles.GroupByDate "2006" -}}
+        {{- $year := $yearGroup.Key -}}
 
-          </div>
-        </div>
-      </div>
+        {{- /* Build sub-items (Months) */ -}}
+        {{- $subItems := slice -}}
+        {{- range $monthGroup := $yearGroup.Pages.GroupByDate "January" -}}
+          {{- $month := $monthGroup.Key -}}
+          {{- $href := printf "#%s-%s" ($month | lower) $year -}}
+          {{- $subItems = $subItems | append (dict "label" $month "href" $href) -}}
+        {{- end -}}
+
+        {{- /* Append Year + Months to main items array */ -}}
+        {{- $href := printf "#year-%s" $year -}}
+        {{- $tocItems = $tocItems | append (dict "label" $year "href" $href "subitems" $subItems) -}}
+      {{- end -}}
+
+      {{- /* 2. Call the Generic Partial */ -}}
+      {{ partial "widgets/toc.html" (dict "page" $page "items" $tocItems) }}
     </aside>
 
     {{- /* Right Main Column */ -}}

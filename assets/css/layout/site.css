@@ -98,10 +98,10 @@
     /* 1. Make the wrapper sticky, not the ToC! */
     position: sticky;
 
-    /* 2. Fix the P2 Bug (Top 160): Sets it much closer to the top of the screen */
+    /* 2. Sets it much closer to the top of the screen */
     top: 2rem;
 
-    /* 3. CRITICAL FOR P1: Force the sidebar to never exceed the screen height */
+    /* 3. Force the sidebar to never exceed the screen height */
     max-height: calc(100vh - 4rem);
 
     /* Ensure it doesn't stretch to the height of the article body */

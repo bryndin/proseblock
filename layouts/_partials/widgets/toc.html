@@ -1,41 +1,81 @@
-{{- /* TOC widget */ -}}
-{{- $page := . -}}
+{{- /*
+  layouts/partials/widgets/toc.html
+  Generic TOC Component.
+  Accepts a dictionary:
+    - page: The current page context (required)
+    - native: Boolean. If true, uses Hugo's .TableOfContents
+    - items: Slice of dicts. [{ label: "Year", href: "#id", subitems: [...] }]
+*/ -}}
 
-{{- /* 1. Determine if TOC is enabled (Global fallback, Local override) */ -}}
-{{- $isEnabled := site.Params.enableTOC -}}
-{{- if isset $page.Params "enabletoc" -}}
-  {{- $isEnabled = $page.Params.enabletoc -}}
+{{- $kwargs := . -}}
+{{- $page := $kwargs.page -}}
+{{- $native := $kwargs.native | default false -}}
+{{- $items := $kwargs.items | default slice -}}
+
+{{- /* Determine if TOC is enabled */ -}}
+{{- $isEnabled := true -}}
+{{- if $native -}}
+  {{- $isEnabled = site.Params.enableTOC -}}
+  {{- if isset $page.Params "enabletoc" -}}
+    {{- $isEnabled = $page.Params.enabletoc -}}
+  {{- end -}}
 {{- end -}}
 
-{{- /* 2. Render Widget */ -}}
 {{- if $isEnabled -}}
-  <details class="c-toc">
-    <summary class="c-toc__summary">
-      <span class="c-toc__summary-text">Table of Contents</span>
-      {{ partial "svg/chevron-down.html" $page }}
-    </summary>
-  
-    <div class="c-toc__inner">
-      {{- /* Reading rail */ -}}
-      <div class="c-toc__rail">
-        <div class="c-toc__rail-fill" id="reading-progress"></div>
-      </div>
-  
-      <div class="c-toc__body">
-        <div class="c-toc__list">
-          
-          {{- /* Floating Title */ -}}
-          <div class="c-toc__floating-title" id="floating-title-container">
-            <a href="{{ $page.RelPermalink }}" aria-label="Scroll to top of article">{{ $page.Title }}</a>
-          </div>
-  
-          {{- /* Table of contents (Hugo-generated) */ -}}
+<details class="c-toc">
+  <summary class="c-toc__summary">
+    <span class="c-toc__summary-text">Table of Contents</span>
+    {{ partial "svg/chevron-down.html" $page }}
+  </summary>
+
+  <div class="c-toc__inner">
+
+    {{- /* Reading Progress Rail */ -}}
+    <div class="c-toc__rail">
+      <div class="c-toc__rail-fill" id="reading-progress"></div>
+    </div>
+
+    <div class="c-toc__body">
+      <div class="c-toc__list">
+
+        {{- /* Floating Title */ -}}
+        <div class="c-toc__floating-title" id="floating-title-container">
+          <a href="{{ $page.RelPermalink }}" aria-label="Scroll to top">{{ $page.Title }}</a>
+        </div>
+
+        {{- /* 1. Render Native Hugo ToC */ -}}
+        {{- if $native -}}
           {{- with $toc := $page.TableOfContents -}}
             {{ $toc }}
           {{- end -}}
           
-        </div>
+        {{- /* 2. Render Custom ToC Data Map */ -}}
+        {{- else if $items -}}
+          <nav id="TableOfContents">
+            <ul>
+              {{- range $item := $items -}}
+                <li>
+                  <a href="{{ $item.href }}">{{ $item.label }}</a>
+
+                  {{- /* Nested Sub-items (Level 2) */ -}}
+                  {{- with $subItems := $item.subitems -}}
+                    <ul>
+                      {{- range $subitem := $subItems -}}
+                        <li>
+                          <a href="{{ $subitem.href }}">{{ $subitem.label }}</a>
+                        </li>
+                      {{- end -}}
+                    </ul>
+                  {{- end -}}
+
+                </li>
+              {{- end -}}
+            </ul>
+          </nav>
+        {{- end -}}
+
       </div>
     </div>
-  </details>
+  </div>
+</details>
 {{- end -}}

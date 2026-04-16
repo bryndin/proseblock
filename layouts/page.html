@@ -31,7 +31,7 @@
 
     {{- /* Sidebar */ -}}
     <aside class="l-site__article-sidebar">
-      {{ partial "widgets/toc.html" $page }}
+      {{ partial "widgets/toc.html" (dict "page" $page "native" true) }}
     </aside>
 
     {{- /* Main content column */ -}}
