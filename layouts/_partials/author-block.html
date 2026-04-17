@@ -1,18 +1,24 @@
 {{- /* Author block */ -}}
 {{ $page := . }}
 
-{{- with $authors := $page.Params.authors }}
-{{- if site.Params.enableAuthorBlock }}
+{{- /* === API Contract: External Dependencies ================================= */ -}}
+{{- $authors := $page.Params.authors -}}
+{{- $enableAuthorBlock := site.Params.enableAuthorBlock -}}
+{{- /* ========================================================================== */ -}}
+
+{{- with $authors }}
+{{- if $enableAuthorBlock }}
 {{- with $authorName := index $authors 0 }}
 {{- $authorTerm := site.GetPage (printf "/authors/%s" ($authorName | urlize)) }}
+{{- $avatar := $authorTerm.Params.avatar -}}
+{{- $description := $authorTerm.Params.description -}}
+{{- $socials := $authorTerm.Params.socials -}}
 <div class="c-author">
   <div class="c-author__avatar">
     {{- $hasAvatar := false }}
-    {{- with $authorTerm }}
-      {{- with $avatar := $authorTerm.Params.avatar }}
-        <img class="c-author__avatar-image" src="{{ $avatar | relURL }}" alt="{{ $authorName }}">
-        {{- $hasAvatar = true }}
-      {{- end }}
+    {{- with $avatar }}
+      <img class="c-author__avatar-image" src="{{ $avatar | relURL }}" alt="{{ $authorName }}">
+      {{- $hasAvatar = true }}
     {{- end }}
     {{- if not $hasAvatar }}
     <span class="c-author__avatar-icon">{{ partial "svg/person.html" }}</span>
@@ -27,15 +33,14 @@
     {{- with $authorTerm }}
       {{- if $authorTerm.Content }}
       <div class="c-author__bio">{{ $authorTerm.Content }}</div>
-      {{- else if $authorTerm.Params.description }}
-      <p class="c-author__bio">{{ $authorTerm.Params.description }}</p>
+      {{- else if $description }}
+      <p class="c-author__bio">{{ $description }}</p>
       {{- end }}
     {{- end }}
-    {{- with $authorTerm }}
     <div class="c-author__social">
-      {{- with $social := $authorTerm.Params.social }}
+      {{- with $socials }}
       <div class="c-author__social-icons">
-        {{- range $link := $social }}
+        {{- range $link := $socials }}
         <a class="c-author__social-link" href="{{ $link.url }}" rel="noopener noreferrer" target="_blank">
           <span class="c-author__social-icon" aria-hidden="true">{{ partial (printf "svg/%s.html" $link.icon) }}</span>
           <span class="u-sr-only">{{ $link.name }}</span>
@@ -49,7 +54,6 @@
         <span class="c-author__more-icon">{{ partial "svg/arrow-forward.html" }}</span>
       </a>
     </div>
-    {{- end }}
   </div>
 </div>
 {{- end }}

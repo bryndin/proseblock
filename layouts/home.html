@@ -7,15 +7,19 @@
 */ -}}
 {{ define "main" }}
 {{- $page := . -}}
+
+{{- /* === API Contract: External Dependencies ================================= */ -}}
 {{- $searchParams := site.Params.widgets | default dict -}}
 {{- $catLimit := index $searchParams "CategoriesLimit" | default 5 -}}
 {{- $tagLimit := index $searchParams "TagsLimit" | default 4 -}}
+{{- $description := site.Params.description -}}
+{{- /* ========================================================================== */ -}}
 
   {{- /* ─── Hero Section ─── */ -}}
   <header class="c-hero c-hero--home">
     <div class="c-hero__inner">
       <h2 class="c-hero__title">{{ site.Title }}</h2>
-      {{- with $description := site.Params.description }}
+      {{- with $description }}
         <p class="c-hero__subtitle">{{ $description }}</p>
       {{- end }}
     </div>

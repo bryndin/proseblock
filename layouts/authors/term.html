@@ -5,12 +5,20 @@
 {{- define "main" -}}
   {{- $page := . -}}
 
+  {{- /* === API Contract: External Dependencies ================================= */ -}}
+  {{- $avatar := $page.Params.avatar -}}
+  {{- $socials := $page.Params.socials -}}
+  {{- $widgetParams := site.Params.widgets | default dict -}}
+  {{- $catLimit := index $widgetParams "categoriesLimit" | default 5 -}}
+  {{- $tagLimit := index $widgetParams "tagsLimit" | default 5 -}}
+  {{- /* ========================================================================== */ -}}
+
   {{- /* 1. Author Hero (Extends .c-hero--taxonomy for border/bg, adds --author for flex layout) */ -}}
   <header class="c-hero c-hero--taxonomy c-hero--author">
     <div class="c-hero__inner c-hero__inner--author">
       
       {{- /* Avatar (Pulled from Author's _index.md front matter: `avatar: "images/julian.jpg"`) */ -}}
-      {{- with $avatar := $page.Params.avatar -}}
+      {{- with $avatar -}}
         <div class="c-hero__avatar-wrapper">
           <img src="{{ $avatar | relURL }}" alt="{{ $page.Title }}" class="c-hero__avatar">
         </div>
@@ -22,8 +30,8 @@
           <div class="c-hero__subtitle">{{ $content }}</div>
         {{- end -}}
         
-        {{- /* Social Links (Array in front matter: `social: [{name: "X", icon: "brand_awareness", url: "#"}]`) */ -}}
-        {{- with $socials := $page.Params.social -}}
+        {{- /* Social Links (Array in front matter: `socials: [{name: "X", icon: "brand_awareness", url: "#"}]`) */ -}}
+        {{- with $socials -}}
           <div class="c-hero__social">
             {{- range $social := $socials -}}
               <a href="{{ $social.url }}" class="c-hero__social-link" target="_blank" rel="noopener noreferrer">
@@ -88,14 +96,6 @@
           {{- end -}}
         {{- end -}}
         {{- $sortedTags := sort $relatedTags "Count" "desc" -}}
-
-        {{- /* Extract Limits from Config */ -}}
-        {{- $catLimit := 5 -}}
-        {{- $tagLimit := 5 -}}
-        {{- with $widgetParams := site.Params.widgets -}}
-          {{- with $limit := index $widgetParams "categoriesLimit" -}}{{- $catLimit = $limit -}}{{- end -}}
-          {{- with $limit := index $widgetParams "tagsLimit" -}}{{- $tagLimit = $limit -}}{{- end -}}
-        {{- end -}}
 
         {{- /* Render SSR Widgets using the Author's specific tally data! */ -}}
         {{ partial "widgets/categories.html" (dict "mode" "ssr" "title" "Topics" "limit" $catLimit "terms" $sortedCats) }}

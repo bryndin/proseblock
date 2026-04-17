@@ -7,6 +7,10 @@
 */ -}}
 {{- $page := . -}}
 
+{{- /* === API Contract: External Dependencies ================================= */ -}}
+{{- $enableSearch := site.Params.enableSearch -}}
+{{- /* ========================================================================== */ -}}
+
 {{- /* Left: menu toggle */ -}}
 <div class="c-header__start">
   <button class="c-header__icon-btn c-header__icon-btn--menu" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">
@@ -21,7 +25,7 @@
 
 {{- /* Right: icon actions */ -}}
 <div class="c-header__end">
-  {{- with $searchEnabled := site.Params.enableSearch }}
+  {{- with $enableSearch }}
     <a href="{{ "search/" | relURL }}" class="c-header__icon-btn" aria-label="Search" id="search-btn">
       {{ partial "svg/search.html" }}
     </a>

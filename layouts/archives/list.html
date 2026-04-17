@@ -85,9 +85,10 @@
                               <span class="c-archive-card__day">{{ $article.Date.Format "02" }}</span>
                             </div>
                             
+                            {{- $categories := $article.Params.categories -}}
                             {{- /* Content Block (Right) */ -}}
                             <div class="c-archive-card__content">
-                              {{- with $categories := $article.Params.categories -}}
+                              {{- with $categories -}}
                                 <span class="c-archive-card__category">{{ delimit $categories " / " }}</span>
                               {{- end -}}
                               <h5 class="c-archive-card__title">{{ $article.Title }}</h5>

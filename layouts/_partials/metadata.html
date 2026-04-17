@@ -3,13 +3,19 @@
 {{- $article := $kwargs.article }}
 {{- $modifier := $kwargs.modifier | default "" }} {{/* e.g., "c-metadata--hero" */}}
 
+{{- /* === API Contract: External Dependencies ================================= */ -}}
+{{- $dateFormat := site.Params.dateFormat -}}
+{{- $authors := $article.Params.authors -}}
+{{- $enableReadingTime := site.Params.enableReadingTime -}}
+{{- /* ========================================================================== */ -}}
+
 <div class="c-metadata {{ $modifier }}">
   <div class="c-metadata__item">
     <span class="c-metadata__icon">{{ partial "svg/calendar.html" }}</span>
-    <span>{{ $article.Date | time.Format site.Params.dateFormat }}</span>
+    <span>{{ $article.Date | time.Format $dateFormat }}</span>
   </div>
   
-  {{- with $authors := $article.Params.authors }}
+  {{- with $authors }}
     {{- $authorName := index $authors 0 }}
     {{- $authorTerm := site.GetPage (printf "/authors/%s" ($authorName | urlize)) }}
     <span class="c-metadata__dot"></span>
@@ -23,7 +29,7 @@
     </div>
   {{- end }}
   
-  {{- with $readingTime := site.Params.enableReadingTime }}
+  {{- with $enableReadingTime }}
     <span class="c-metadata__dot"></span>
     <div class="c-metadata__item">
       <span class="c-metadata__icon">{{ partial "svg/schedule.html" }}</span>

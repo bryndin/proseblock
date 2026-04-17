@@ -5,6 +5,11 @@
 {{- define "main" -}}
   {{- $page := . -}}
 
+  {{- /* === API Contract: External Dependencies ================================= */ -}}
+  {{- $widgetParams := site.Params.widgets | default dict -}}
+  {{- $tagLimit := index $widgetParams "tagsLimit" | default 15 -}}
+  {{- /* ========================================================================== */ -}}
+
   {{- /* Taxonomy Hero (Uses base .c-hero so header-scroll.js hooks automatically) */ -}}
   <header class="c-hero c-hero--taxonomy">
     <div class="c-hero__inner">
@@ -56,16 +61,8 @@
       <div class="c-sidebar">
         {{- /* Extract Newsletter config securely */ -}}
         {{ partial "widgets/newsletter.html" }}
-
         
-        {{- /* 
-          Re-use our Dual-Mode Widget! 
-          Limits pulled from the hugo.toml we setup earlier. 
-        */ -}}
-        {{- $tagLimit := 15 -}}
-        {{- with $widgetParams := site.Params.widgets -}}
-          {{- with $limit := index $widgetParams "tagsLimit" -}}{{- $tagLimit = $limit -}}{{- end -}}
-        {{- end -}}
+        {{- /* Re-use our Dual-Mode Widget with limit from API Contract */ -}}
         {{ partial "widgets/tags.html" (dict "mode" "ssr" "title" "Tags" "limit" $tagLimit) }}
       </div>
     </aside>

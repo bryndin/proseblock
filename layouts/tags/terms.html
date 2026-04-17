@@ -4,6 +4,11 @@
 {{- define "main" -}}
   {{- $page := . -}}
 
+  {{- /* === API Contract: External Dependencies ================================= */ -}}
+  {{- $widgetParams := site.Params.widgets | default dict -}}
+  {{- $catLimit := index $widgetParams "categoriesLimit" | default 10 -}}
+  {{- /* ========================================================================== */ -}}
+
   <header class="c-hero c-hero--taxonomy">
     <div class="c-hero__inner">
       <h2 class="c-hero__title">{{ $page.Title | default "Tags" }}</h2>
@@ -75,12 +80,7 @@
       <div class="c-sidebar">
         {{ partial "widgets/newsletter.html" }}
         
-        {{- $catLimit := 10 -}}
-        {{- with $widgetParams := site.Params.widgets -}}
-          {{- with $limit := index $widgetParams "categoriesLimit" -}}{{- $catLimit = $limit -}}{{- end -}}
-        {{- end -}}
-        
-        {{- /* Simplified partial call based on updated memory */ -}}
+        {{- /* Category limit from API Contract */ -}}
         {{ partial "widgets/categories.html" (dict "mode" "ssr" "title" "Categories" "limit" $catLimit) }}
       </div>
     </aside>

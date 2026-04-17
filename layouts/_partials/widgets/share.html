@@ -7,8 +7,12 @@
 */ -}}
 {{- $page := . -}}
 
+{{- /* === API Contract: External Dependencies ================================= */ -}}
+{{- $shareConfig := site.Params.share -}}
+{{- /* ========================================================================== */ -}}
+
 {{- /* ─── Gate: bail if sharing is disabled ─── */ -}}
-{{- with $shareConfig := site.Params.share -}}
+{{- with $shareConfig -}}
   {{- if $shareConfig.enable -}}
 
     {{- /* ─── Resolve page data for URL templates ─── */ -}}

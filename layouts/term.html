@@ -5,6 +5,12 @@
 {{- define "main" -}}
   {{- $page := . -}}
 
+  {{- /* === API Contract: External Dependencies ================================= */ -}}
+  {{- $widgetParams := site.Params.widgets | default dict -}}
+  {{- $catLimit := index $widgetParams "categoriesLimit" | default 5 -}}
+  {{- $tagLimit := index $widgetParams "tagsLimit" | default 5 -}}
+  {{- /* ========================================================================== */ -}}
+
   {{- /* 1. Determine Title Prefix Logic */ -}}
   {{- $title := $page.Title -}}
   {{- $prefix := "" -}}
@@ -87,14 +93,6 @@
           {{- end -}}
         {{- end -}}
         {{- $sortedTags := sort $relatedTags "Count" "desc" -}}
-
-        {{- /* Extract Limits from Config */ -}}
-        {{- $catLimit := 5 -}}
-        {{- $tagLimit := 5 -}}
-        {{- with $widgetParams := site.Params.widgets -}}
-          {{- with $limit := index $widgetParams "categoriesLimit" -}}{{- $catLimit = $limit -}}{{- end -}}
-          {{- with $limit := index $widgetParams "tagsLimit" -}}{{- $tagLimit = $limit -}}{{- end -}}
-        {{- end -}}
 
         {{- /* Render the SSR Widgets using our calculated data arrays! */ -}}
         {{ partial "widgets/categories.html" (dict "mode" "ssr" "title" "Related Categories" "limit" $catLimit "terms" $sortedCats) }}

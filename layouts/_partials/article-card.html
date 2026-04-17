@@ -1,10 +1,14 @@
 {{ $article := . }}
 
+{{- /* === API Contract: External Dependencies ================================= */ -}}
+{{- $categories := $article.Params.categories -}}
+{{- /* ========================================================================== */ -}}
+
 <article class="c-article-card">
   <a href="{{ $article.RelPermalink }}">
     <div class="c-article-card__content">
       {{- /* Category */ -}}
-      {{- with $categories := $article.Params.categories }}
+      {{- with $categories }}
         <div class="c-article-card__category">{{ delimit $categories " / " }}</div>
       {{- end }}
 

@@ -8,11 +8,15 @@
 {{ define "main" }}
 {{- $page := . -}}
 
+{{- /* === API Contract: External Dependencies ================================= */ -}}
+{{- $categories := $page.Params.categories -}}
+{{- /* ========================================================================== */ -}}
+
   {{- /* ─── Article Hero ─── */ -}}
   <header class="c-hero">
     <div class="c-hero__inner">
       {{- /* Category label */ -}}
-      {{- with $categories := $page.Params.categories }}
+      {{- with $categories }}
         <div class="c-hero__category">
           <span>{{ delimit $categories " / " }}</span>
         </div>

@@ -5,12 +5,17 @@
   @context {page} . The current page context.
 */ -}}
 {{- $page := . -}}
+
+{{- /* === API Contract: External Dependencies ================================= */ -}}
+{{- $siteDescription := site.Params.description -}}
+{{- /* ========================================================================== */ -}}
+
 <meta charset="utf-8">
 <script>
   {{ (resources.Get "js/components/theme-switcher-head.js" | minify).Content | safeJS }}
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{{- with $description := $page.Description | default site.Params.description }}
+{{- with $description := $page.Description | default $siteDescription }}
 <meta name="description" content="{{ $description }}">
 {{- end }}
 <title>{{ if $page.IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" $page.Title site.Title }}{{ end }}</title>
