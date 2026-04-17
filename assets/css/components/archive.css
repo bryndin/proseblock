@@ -150,6 +150,10 @@
   transition: color var(--duration-normal) var(--ease-default);
 }
 
+.c-archive-card__title:first-child {
+  margin-top: var(--space-3);
+}
+
 @media (width >= 768px) {
   .c-archive-card__title {
     font-size: var(--text-2xl);
