@@ -21,12 +21,14 @@
 /* --- Blurred Backdrop --- */
 
 .c-drawer__backdrop {
-  flex: 1;
+  position: absolute;
+  inset: 0;
   background-color: oklch(from var(--bg-inverse) l c h / 10%);
   backdrop-filter: blur(4px);
   cursor: pointer;
   opacity: 0;
   transition: opacity var(--duration-menu) var(--ease-out);
+  z-index: 1;
 }
 
 .c-drawer.is-open .c-drawer__backdrop {
@@ -42,7 +44,7 @@
   width: 100%;
   background-color: var(--menu-aside-bg);
   position: relative;
-  z-index: 10;
+  z-index: 2;
   box-shadow: var(--shadow-tonal);
   transform: translateX(-100%);
   transition: transform var(--duration-menu) var(--ease-out);
