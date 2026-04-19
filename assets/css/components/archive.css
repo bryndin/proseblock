@@ -15,7 +15,7 @@
 }
 
 .c-archive__year-title {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: text, border */
   --_text: var(--text-primary);
   --_border: var(--border-muted);
 

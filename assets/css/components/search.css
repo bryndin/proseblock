@@ -353,13 +353,3 @@
   opacity: 0.3;
   pointer-events: none;
 }
-
-/* Button resets for pagination triggers */
-button.c-paginator__btn--interactive {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  padding: 0;
-  padding-bottom: var(--space-2);
-}

@@ -5,6 +5,7 @@
    ========================================================================== */
 
 .c-article__body {
+  /* @internal: code-bg, code-padding, table-margin */
   --_code-bg: var(--bg-secondary);
   --_code-padding: var(--space-6);
   --_table-margin: var(--space-8);

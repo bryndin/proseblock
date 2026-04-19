@@ -2,7 +2,7 @@
     ABOUT PAGE HERO (Modifier of .c-hero)
     ========================================================================== */
 .c-hero--about {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: bg, border */
   --_bg: var(--hero-bg);
   --_border: var(--border-subtle);
 
@@ -15,12 +15,12 @@
     ABOUT CONTENT PROSE
     ========================================================================== */
 .c-about-content {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: text, heading, accent */
   --_text: var(--article-text);
   --_heading: var(--article-heading-text);
   --_accent: var(--accent);
 
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: font-size, line-height, gap */
   --_font-size: var(--text-lg);
   --_line-height: var(--leading-article);
   --_gap: var(--space-8);

@@ -9,7 +9,7 @@
 }
 
 .c-author-section__title {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: text, border */
   --_text: var(--text-secondary);
   --_border: var(--border-muted);
 
@@ -41,7 +41,7 @@
      ========================================================================== */
 
 .c-author-card {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: bg, bg-hover, border, border-hover, text, text-hover, meta, padding, transition */
   --_bg: transparent;
   --_bg-hover: var(--bg-secondary);
   --_border: var(--border-subtle);

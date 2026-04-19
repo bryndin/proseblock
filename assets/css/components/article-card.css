@@ -4,14 +4,14 @@
    ========================================================================== */
 
 .c-article-card {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: bg, bg-hover, title-text, body-text, accent */
   --_bg: var(--article-card-bg);
   --_bg-hover: var(--article-card-bg-hover);
   --_title-text: var(--article-card-title-text);
   --_body-text: var(--article-card-body-text);
   --_accent: var(--article-card-accent);
 
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: padding, title-size, body-size, transition */
   --_padding: var(--space-6);
   --_title-size: var(--text-4xl);
   --_body-size: var(--text-lg);

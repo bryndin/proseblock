@@ -4,13 +4,13 @@
    ========================================================================== */
 
 .c-author {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: bg, accent, name-text, body-text */
   --_bg: var(--author-bg);
   --_accent: var(--author-accent);
   --_name-text: var(--author-name-text);
   --_body-text: var(--author-body-text);
 
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: gap, avatar-size, margin-top */
   --_gap: var(--space-8);
   --_avatar-size: var(--space-20);
   --_margin-top: var(--space-20);

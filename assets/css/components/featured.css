@@ -4,7 +4,7 @@
    ========================================================================== */
 
 .c-featured {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: bg, border, title-text, body-text, accent, shadow */
   --_bg: var(--featured-bg);
   --_border: var(--featured-border);
   --_title-text: var(--featured-title-text);
@@ -12,7 +12,7 @@
   --_accent: var(--featured-accent);
   --_shadow: var(--featured-shadow);
 
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: padding */
   --_padding: var(--space-12);
 
   position: relative;

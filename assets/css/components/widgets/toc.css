@@ -4,14 +4,14 @@
    ========================================================================== */
 
 .c-toc {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: text, text-hover, accent, rail-bg, separator */
   --_text: var(--toc-text);
   --_text-hover: var(--toc-text-hover);
   --_accent: var(--toc-accent);
   --_rail-bg: var(--toc-rail-bg);
   --_separator: var(--toc-separator);
 
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: link-size, link-weight, rail-width, text-transform, rail-opacity */
   --_link-size: 11px;
   --_link-weight: var(--weight-semibold);
   --_rail-width: 2px;

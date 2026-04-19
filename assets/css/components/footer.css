@@ -4,13 +4,13 @@
    ========================================================================== */
 
 .c-footer {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: bg, text, text-hover, border */
   --_bg: var(--footer-bg);
   --_text: var(--footer-text);
   --_text-hover: var(--footer-text-hover);
   --_border: var(--footer-border);
 
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: padding-x, padding-y, gap, label-size */
   --_padding-x: var(--space-12);
   --_padding-y: var(--space-20);
   --_gap: var(--space-8);

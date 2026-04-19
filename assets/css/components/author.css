@@ -3,7 +3,7 @@
      ========================================================================== */
 
 .c-hero--author .c-hero__inner--author {
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: gap, avatar-size, avatar-size-md */
   --_gap: var(--space-12);
   --_avatar-size: 10rem;
 
@@ -82,7 +82,7 @@
 }
 
 .c-hero__social-link {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: text, hover */
   --_text: var(--text-secondary);
   --_hover: var(--accent);
 

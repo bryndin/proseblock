@@ -4,11 +4,11 @@
 
 /* --- Hero Modifier --- */
 .c-hero--error {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: title-text, subtitle-text */
   --_title-text: var(--hero-error-title-text);
   --_subtitle-text: var(--hero-error-subtitle-text);
 
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: padding-y, padding-y-md, title-size, title-size-md, title-weight, title-tracking, title-spacing, title-lh, subtitle-size, subtitle-max-w, subtitle-lh */
   --_padding-y: var(--space-24);
   --_padding-y-md: var(--space-32);
   --_title-size: var(--text-6xl);
@@ -59,14 +59,14 @@
    ========================================================================== */
 
 .c-error-nav {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: bg, text-primary, text-secondary, text-accent, text-heading */
   --_bg: var(--error-nav-bg);
   --_text-primary: var(--error-nav-text-primary);
   --_text-secondary: var(--error-nav-text-secondary);
   --_text-accent: var(--error-nav-text-accent);
   --_text-heading: var(--error-nav-text-heading);
 
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: max-w, padding-y, padding-x, gap, gap-md, transition, home-gap, home-icon-size, home-title-size, home-title-weight, home-title-lh, home-subtitle-size, explore-heading-size, explore-heading-weight, explore-heading-tracking, explore-heading-spacing, list-gap, list-gap-md, link-gap, link-icon-size, link-icon-opacity, link-title-size, link-title-weight, link-subtitle-size, link-subtitle-weight, link-subtitle-tracking */
   --_max-w: 1920px;
   --_padding-y: var(--space-24);
   --_padding-x: var(--space-12);

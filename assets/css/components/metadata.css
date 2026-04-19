@@ -5,12 +5,12 @@
    ========================================================================== */
 
 .c-metadata {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: text, icon, dot */
   --_text: var(--metadata-text);
   --_icon: var(--metadata-icon);
   --_dot: var(--metadata-dot);
 
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: font-size, icon-size, gap-x, gap-y */
   --_font-size: var(--text-xs);
   --_icon-size: var(--metadata-icon-size);
   --_gap-x: var(--space-8);

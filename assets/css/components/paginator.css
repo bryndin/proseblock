@@ -4,14 +4,14 @@
    ========================================================================== */
 
 .c-paginator {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: text, text-muted, active-border, hover-bg, border */
   --_text: var(--paginator-text);
   --_text-muted: var(--paginator-text-muted);
   --_active-border: var(--paginator-active-border);
   --_hover-bg: var(--paginator-hover-bg);
   --_border: var(--paginator-border);
 
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: padding-top */
   --_padding-top: var(--space-20);
 
   display: flex;

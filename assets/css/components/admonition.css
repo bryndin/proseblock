@@ -4,12 +4,12 @@
    ========================================================================== */
 
 .c-alert {
-  /* *** Arguments (The Public API) ***************************************** */
+  /* @api: bg, text, border-color */
   --_bg: var(--alert-bg);
   --_text: var(--alert-text);
   --_border-color: var(--alert-border-note);
 
-  /* *** Configuration (Internal Styling) *********************************** */
+  /* @internal: padding-y, padding-x, margin-block, border-width, radius-right */
   --_padding-y: var(--space-4);
   --_padding-x: var(--space-6);
   --_margin-block: var(--space-8);
@@ -25,7 +25,7 @@
 }
 
 .c-alert__header {
-  /* *** Configuration (Internal Styling) *********************************** */
+  /* @internal: header-gap, header-margin, header-weight, header-size */
   --_header-gap: var(--space-2);
   --_header-margin: var(--space-2);
   --_header-weight: var(--weight-bold);
@@ -47,7 +47,7 @@
 }
 
 .c-alert__icon svg {
-  /* *** Configuration (Internal Styling) *********************************** */
+  /* @internal: icon-size */
   --_icon-size: var(--size-icon-ui);
 
   width: var(--_icon-size);

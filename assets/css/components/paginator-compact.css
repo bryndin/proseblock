@@ -5,9 +5,7 @@
 /* TODO(DB): How to avoid hardcoding the layer name?? */
 
 .c-featured__pagination {
-  /* *** Arguments (The Public API) ****************************************************** */
-
-  /* *** Configuration (Internal Styling) ************************************************** */
+  /* @internal: font-size, gap, icon_size */
   --_font-size: var(--text-xs);
   --_gap: var(--space-6);
   --_icon_size: 1rem;

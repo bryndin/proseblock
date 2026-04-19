@@ -4,7 +4,7 @@
    ========================================================================== */
 
 .c-share {
-  /* *** Arguments (The Public API) ****************************************** */
+  /* @api: bg, text, text-secondary, accent, icon, border, item-bg-hover */
   --_bg: var(--share-bg);
   --_text: var(--share-text);
   --_text-secondary: var(--share-text-secondary);
@@ -13,7 +13,7 @@
   --_border: var(--share-border);
   --_item-bg-hover: var(--share-item-bg-hover);
 
-  /* *** Configuration (Internal Styling) ************************************* */
+  /* @internal: menu-width, menu-max-height, menu-radius, menu-shadow, item-padding, item-radius, item-gap, icon-size, label-size, trigger-gap, transition, transition-fast */
   --_menu-width: 13rem;
   --_menu-max-height: 20rem;
   --_menu-radius: var(--radius-md);

@@ -4,13 +4,13 @@
    ========================================================================== */
 
 .c-sidebar {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: heading-text, text, accent, icon */
   --_heading-text: var(--sidebar-heading-text);
   --_text: var(--sidebar-text);
   --_accent: var(--sidebar-accent);
   --_icon: var(--sidebar-icon);
 
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: gap */
   --_gap: var(--space-32);
 
   display: flex;
@@ -21,7 +21,7 @@
 /* --- Widget block --- */
 
 .c-sidebar__widget {
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: widget-gap */
   --_widget-gap: var(--space-8);
 
   display: flex;

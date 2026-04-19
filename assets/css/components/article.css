@@ -4,11 +4,11 @@
    ========================================================================== */
 
 .c-article {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: bg, text */
   --_bg: var(--article-bg);
   --_text: var(--article-text);
 
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: padding, padding-md, padding-lg, shadow */
   --_padding: var(--space-8);
   --_padding-md: var(--space-12);
   --_padding-lg: var(--space-16);

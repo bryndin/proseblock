@@ -191,6 +191,7 @@ export function initSearchPage() {
     // Attach Event Listeners
     paginationContainer.querySelectorAll('[data-page]').forEach(btn => {
       btn.addEventListener('click', (e) => {
+        e.preventDefault();
         currentPage = parseInt(e.currentTarget.getAttribute('data-page'), 10);
         renderPage(fullData);
         document.querySelector('.c-search-results').scrollIntoView({ behavior: 'smooth', block: 'start' });

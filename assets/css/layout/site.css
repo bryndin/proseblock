@@ -6,10 +6,8 @@
 /* --- Site wrapper --- */
 
 .l-site {
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: max-width, padding-x, padding-top, padding-bottom */
   --_max-width: 80rem;
-
-  /* 1280px max-w-7xl */
   --_padding-x: var(--space-8);
   --_padding-top: 0;
   --_padding-bottom: var(--space-24);
@@ -23,7 +21,7 @@
 /* --- Two-column content grid --- */
 
 .l-site__columns {
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: gap, margin-top */
   --_gap: var(--space-20);
   --_margin-top: var(--space-16);
 
@@ -69,7 +67,7 @@
    ----------------------------------------------------------------------- */
 
 .l-site__columns--article {
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: gap */
   --_gap: var(--space-16);
 
   display: flex;

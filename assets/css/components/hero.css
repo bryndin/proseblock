@@ -4,7 +4,7 @@
    ========================================================================== */
 
 .c-hero {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: bg, title-text, body-text, meta-text, accent, border */
   --_bg: var(--hero-bg);
   --_title-text: var(--hero-title-text);
   --_body-text: var(--hero-body-text);
@@ -12,7 +12,7 @@
   --_accent: var(--hero-accent);
   --_border: var(--hero-border);
 
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: padding-x, padding-y, max-width-inner, title-size, title-leading */
   --_padding-x: var(--space-12);
   --_padding-y: var(--space-24);
   --_max-width-inner: var(--max-w-hero);

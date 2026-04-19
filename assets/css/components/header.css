@@ -4,12 +4,12 @@
    ========================================================================== */
 
 .c-header {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: bg, text, icon */
   --_bg: var(--header-bg);
   --_text: var(--header-text);
   --_icon: var(--header-icon);
 
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: height, padding-x, title-size, title-weight, icon-size, z */
   --_height: var(--space-24);
   --_padding-x: var(--space-12);
   --_title-size: var(--text-xl);

@@ -4,14 +4,14 @@
    ========================================================================== */
 
 .c-newsletter {
-  /* *** Arguments (The Public API) *************************************** */
+  /* @api: bg, accent, text, heading-text, border */
   --_bg: var(--newsletter-bg);
   --_accent: var(--newsletter-accent);
   --_text: var(--newsletter-text);
   --_heading-text: var(--newsletter-heading-text);
   --_border: var(--newsletter-border);
 
-  /* *** Configuration (Internal Styling) ********************************* */
+  /* @internal: padding, margin-top, max-width */
   --_padding: var(--space-12);
   --_margin-top: var(--space-24);
   --_max-width: 36rem;
