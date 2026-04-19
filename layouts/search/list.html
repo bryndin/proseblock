@@ -27,15 +27,8 @@
         <div class="u-home-main__sections">
           
           {{- /* Search Results Container */ -}}
-          <section id="search-results-container" class="c-article-list" data-max-results="{{ $maxResults }}" data-search-url="{{ $searchUrl }}" aria-live="polite"></section>
-          
-          <div id="search-pagination-container"></div>
-          
-          {{- /* Call the EXACT same partial, but in Client-Side mode! */ -}}
-          {{ partial "paginator.html" (dict "mode" "csr") }}
-          
-          <template id="tpl-chevron-left">{{ partial "svg/chevron-left.html" }}</template>
-          <template id="tpl-chevron-right">{{ partial "svg/chevron-right.html" }}</template>
+          <section id="search-results-container" class="c-article-list" data-max-results="{{ $maxResults }}" data-search-url="{{ $searchUrl }}" aria-live="polite"></section>          
+          {{ partial "paginator-dynamic.html" }}
         </div>
       </div>
     </div>

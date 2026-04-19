@@ -1,0 +1,23 @@
+{{- /* 
+  paginator-dynamic.html 
+  Client-side pagination structure + templates for Vanilla JS
+  Used on search pages where pagination is driven by JavaScript
+*/ -}}
+
+<nav class="c-paginator" id="dynamic-paginator" aria-label="Page navigation" hidden>
+  <a class="c-paginator__btn" id="paginator-prev" href="#" data-page="prev" aria-label="Previous page">{{ partial "svg/chevron-left.html" }}</a>
+  <span class="c-paginator__btn" id="paginator-prev-disabled" aria-disabled="true" hidden>{{ partial "svg/chevron-left.html" }}</span>
+  
+  <div class="c-paginator__numbers" id="paginator-numbers"></div>
+  
+  <a class="c-paginator__btn" id="paginator-next" href="#" data-page="next" aria-label="Next page">{{ partial "svg/chevron-right.html" }}</a>
+  <span class="c-paginator__btn" id="paginator-next-disabled" aria-disabled="true" hidden>{{ partial "svg/chevron-right.html" }}</span>
+</nav>
+
+<template id="tpl-paginator-number">
+  <a href="#" class="c-paginator__number" data-page="{PAGE}">{PAGE}</a>
+</template>
+
+<template id="tpl-paginator-number-active">
+  <span class="c-paginator__number c-paginator__number--active">{PAGE}</span>
+</template>

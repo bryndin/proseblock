@@ -63,7 +63,7 @@
               {{- end -}}
             </section>
           {{- end -}}
-          {{ partial "paginator.html" (dict "mode" "ssr" "paginator" $paginator) }}
+          {{ partial "paginator-static.html" $paginator }}
 
         </div>
       </div>

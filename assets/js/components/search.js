@@ -1,3 +1,5 @@
+import { renderPaginator } from './paginator-dynamic.js';
+
 export function initSearchPage() {
   const targetElement = document.getElementById('search-input');
   const resultsContainer = document.getElementById('search-results-container');
@@ -63,7 +65,6 @@ export function initSearchPage() {
   let indexData = [];
   let currentPage = 1;
   const resultsPerPage = parseInt(resultsContainer.getAttribute('data-max-results'), 10) || 8;
-  const paginationContainer = document.getElementById('search-pagination-container');
 
   const urlParams = new URLSearchParams(window.location.search);
   targetElement.value = urlParams.get('q') || '';
@@ -112,7 +113,8 @@ export function initSearchPage() {
 
   function renderPage(data) {
     resultsContainer.innerHTML = '';
-    paginationContainer.innerHTML = '';
+    const paginationNav = document.getElementById('dynamic-paginator');
+    if (paginationNav) paginationNav.hidden = true;
 
     if (data.length === 0) {
       // Empty state uses the dedicated CSS class we added to utilities
@@ -128,75 +130,16 @@ export function initSearchPage() {
 
     const totalPages = Math.ceil(data.length / resultsPerPage);
     if (totalPages > 1) {
-      renderPagination(totalPages, data);
-    }
-  }
-
-  // ==========================================================================
-  // 3. Template-Driven Pagination
-  // ==========================================================================
-  function renderPagination(totalPages, fullData) {
-    // Read the Dual-Mode templates from the DOM
-    const tplWrapper = document.getElementById('tpl-paginator-wrapper').innerHTML;
-    const tplNumWrapper = document.getElementById('tpl-paginator-numbers-wrapper').innerHTML;
-    const tplNum = document.getElementById('tpl-paginator-number').innerHTML;
-    const tplNumActive = document.getElementById('tpl-paginator-number-active').innerHTML;
-    const tplBtn = document.getElementById('tpl-paginator-btn').innerHTML;
-    const tplBtnDisabled = document.getElementById('tpl-paginator-btn-disabled').innerHTML;
-
-    const iconLeft = document.getElementById('tpl-chevron-left').innerHTML;
-    const iconRight = document.getElementById('tpl-chevron-right').innerHTML;
-
-    // Previous Button
-    let btnPrev = '';
-    if (currentPage > 1) {
-      btnPrev = tplBtn
-        .replace(/{PAGE}/g, currentPage - 1)
-        .replace('{LABEL}', 'Previous page')
-        .replace('{ICON}', iconLeft);
-    } else {
-      btnPrev = tplBtnDisabled.replace('{ICON}', iconLeft);
-    }
-
-    // Numbered Links
-    let numbersHtml = '';
-    for (let i = 1; i <= totalPages; i++) {
-      const numStr = String(i).padStart(2, '0'); // Pad "1" to "01"
-      if (i === currentPage) {
-        numbersHtml += tplNumActive.replace(/{PAGE}/g, numStr);
-      } else {
-        // Sets data-page="{i}" and >{numStr}<
-        numbersHtml += tplNum
-          .replace(/{PAGE}/g, i)
-          .replace(`>${i}<`, `>${numStr}<`);
-      }
-    }
-    const numbersWrapper = tplNumWrapper.replace('{CONTENT}', numbersHtml);
-
-    // Next Button
-    let btnNext = '';
-    if (currentPage < totalPages) {
-      btnNext = tplBtn
-        .replace(/{PAGE}/g, currentPage + 1)
-        .replace('{LABEL}', 'Next page')
-        .replace('{ICON}', iconRight);
-    } else {
-      btnNext = tplBtnDisabled.replace('{ICON}', iconRight);
-    }
-
-    // Merge and output
-    const finalHtml = tplWrapper.replace('{CONTENT}', btnPrev + numbersWrapper + btnNext);
-    paginationContainer.innerHTML = finalHtml;
-
-    // Attach Event Listeners
-    paginationContainer.querySelectorAll('[data-page]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        currentPage = parseInt(e.currentTarget.getAttribute('data-page'), 10);
-        renderPage(fullData);
-        document.querySelector('.c-search-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      renderPaginator({
+        totalPages,
+        currentPage,
+        onPageChange: (newPage) => {
+          currentPage = newPage;
+          renderPage(data);
+          document.getElementById('search-results-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        },
       });
-    });
+    }
   }
 
   // ==========================================================================

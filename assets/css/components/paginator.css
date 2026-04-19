@@ -72,3 +72,8 @@
   padding-bottom: var(--space-2);
   line-height: var(--leading-none);
 }
+
+/* Ensure hidden attribute overrides any display properties */
+.c-paginator [hidden] {
+  display: none !important;
+}
