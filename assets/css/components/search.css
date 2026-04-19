@@ -361,4 +361,5 @@ button.c-paginator__btn--interactive {
   cursor: pointer;
   font-family: inherit;
   padding: 0;
+  padding-bottom: var(--space-2);
 }
