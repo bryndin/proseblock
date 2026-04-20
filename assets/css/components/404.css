@@ -3,7 +3,7 @@
    ========================================================================== */
 
 /* --- Hero Modifier --- */
-.c-hero--error {
+.c-hero--404 {
   /* @api: title-text, subtitle-text */
   --_title-text: var(--hero-error-title-text);
   --_subtitle-text: var(--hero-error-subtitle-text);
@@ -26,13 +26,13 @@
 }
 
 @media (width >= 768px) {
-  .c-hero--error {
+  .c-hero--404 {
     padding-top: var(--_padding-y-md);
     padding-bottom: var(--_padding-y-md);
   }
 }
 
-.c-hero--error .c-hero__title {
+.c-hero--404 .c-hero__title {
   color: var(--_title-text);
   font-size: var(--_title-size);
   font-weight: var(--_title-weight);
@@ -42,12 +42,12 @@
 }
 
 @media (width >= 768px) {
-  .c-hero--error .c-hero__title {
+  .c-hero--404 .c-hero__title {
     font-size: var(--_title-size-md);
   }
 }
 
-.c-hero--error .c-hero__subtitle {
+.c-hero--404 .c-hero__subtitle {
   color: var(--_subtitle-text);
   font-size: var(--_subtitle-size);
   max-width: var(--_subtitle-max-w);

@@ -13,22 +13,11 @@
 {{- /* ========================================================================== */ -}}
 
   {{- /* ─── Article Hero ─── */ -}}
-  <header class="c-hero">
-    <div class="c-hero__inner">
-      {{- /* Category label */ -}}
-      {{- with $categories }}
-        <div class="c-hero__category">
-          <span>{{ delimit $categories " / " }}</span>
-        </div>
-      {{- end }}
-
-      {{- /* Title */ -}}
-      <h1 class="c-hero__title">{{ $page.Title }}</h1>
-
-      {{- /* Metadata row */ -}}
-      {{ partial "metadata.html" (dict "article" $page "modifier" "c-metadata--hero") }}
-    </div>
-  </header>
+  {{ partial "hero.html" (dict
+    "categories" $categories
+    "title" $page.Title
+    "metadata" $page
+  ) }}
 
   {{- /* ─── Two-Column Article Layout ─── */ -}}
   <div class="l-site__columns--article">

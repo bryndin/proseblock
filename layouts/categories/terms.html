@@ -10,20 +10,11 @@
   {{- $tagLimit := index $widgetParams "tagsLimit" | default 15 -}}
   {{- /* ========================================================================== */ -}}
 
-  {{- /* Taxonomy Hero (Uses base .c-hero so header-scroll.js hooks automatically) */ -}}
-  <header class="c-hero c-hero--taxonomy">
-    <div class="c-hero__inner">
-      {{- /* Pulls Title and Content dynamically from content/categories/_index.md */ -}}
-      <h2 class="c-hero__title">{{ $page.Title | default "Categories" }}</h2>
-      {{- with $content := $page.Content -}}
-        <div class="c-hero__subtitle">{{ $content }}</div>
-      {{- else -}}
-        <p class="c-hero__subtitle">
-          A curated structural hierarchy of our editorial archives. Organized by discipline, medium, and philosophical intent.
-        </p>
-      {{- end -}}
-    </div>
-  </header>
+  {{ partial "hero.html" (dict
+    "modifier" "taxonomy"
+    "title" ($page.Title | default "Categories")
+    "subtitle" ($page.Content | default "A curated structural hierarchy of our editorial archives. Organized by discipline, medium, and philosophical intent.")
+  ) }}
 
   <div class="l-site__columns">
     

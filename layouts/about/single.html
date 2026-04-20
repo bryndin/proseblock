@@ -11,14 +11,11 @@
   {{- /* ========================================================================== */ -}}
 
   {{- /* Hero Section (Reuses the standard hero component) */ -}}
-  <header class="c-hero c-hero--about">
-    <div class="c-hero__inner">
-      <h1 class="c-hero__title">{{ $page.Title }}</h1>
-      {{- with $description -}}
-        <p class="c-hero__subtitle">{{ $description }}</p>
-      {{- end -}}
-    </div>
-  </header>
+  {{ partial "hero.html" (dict
+    "modifier" "about"
+    "title" $page.Title
+    "subtitle" $description
+  ) }}
 
   {{- /* Two-Column Layout (Matching Home Page) */ -}}
   <div class="l-site__columns">

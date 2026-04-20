@@ -10,18 +10,11 @@
   {{- $articles := where site.RegularPages "Type" "in" (slice "posts" "post" "articles") -}}
 
   {{- /* 2. Taxonomy Hero */ -}}
-  <header class="c-hero c-hero--taxonomy">
-    <div class="c-hero__inner">
-      <h2 class="c-hero__title">{{ $page.Title | default "Archives" }}</h2>
-      {{- with $content := $page.Content -}}
-        <div class="c-hero__subtitle">{{ $content }}</div>
-      {{- else -}}
-        <p class="c-hero__subtitle">
-          A complete chronological record of our explorations into minimalism, technology, and the evolving digital landscape.
-        </p>
-      {{- end -}}
-    </div>
-  </header>
+  {{ partial "hero.html" (dict
+    "modifier" "taxonomy"
+    "title" $page.Title
+    "subtitle" $page.Content
+  ) }}
 
   {{- /* 3. Article Layout Grid (Left Sidebar, Right Main) */ -}}
   <div class="l-site__columns--article">

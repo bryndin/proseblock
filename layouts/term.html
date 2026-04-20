@@ -13,30 +13,20 @@
 
   {{- /* 1. Determine Title Prefix Logic */ -}}
   {{- $title := $page.Title -}}
-  {{- $prefix := "" -}}
+  {{- $heroParams := dict "modifier" "taxonomy" "subtitle" ($page.Content | default "Exploring a curated collection of articles, essays, and perspectives related to this topic.") -}}
+
   {{- if eq $page.Type "tags" -}}
-    {{- $title = printf "#%s" $page.Title -}}
-    {{- $prefix = "Tag: " -}}
+    {{- $titleHtml := printf "<span style=\"opacity: 0.6; font-weight: 300;\">Tag:</span>#%s" $page.Title -}}
+    {{- $heroParams = $heroParams | merge (dict "title_html" $titleHtml) -}}
   {{- else if eq $page.Type "categories" -}}
-    {{- $prefix = "Category: " -}}
+    {{- $titleHtml := printf "<span style=\"opacity: 0.6; font-weight: 300;\">Category:</span>%s" $page.Title -}}
+    {{- $heroParams = $heroParams | merge (dict "title_html" $titleHtml) -}}
+  {{- else -}}
+    {{- $heroParams = $heroParams | merge (dict "title" $title) -}}
   {{- end -}}
 
   {{- /* 2. Taxonomy Hero (Reuses our existing component) */ -}}
-  <header class="c-hero c-hero--taxonomy">
-    <div class="c-hero__inner">
-      <h2 class="c-hero__title">
-        {{- if $prefix -}}<span style="opacity: 0.6; font-weight: 300;">{{ $prefix }}</span>{{- end -}}
-        {{- $title -}}
-      </h2>
-      {{- with $content := $page.Content -}}
-        <div class="c-hero__subtitle">{{ $content }}</div>
-      {{- else -}}
-        <p class="c-hero__subtitle">
-          Exploring a curated collection of articles, essays, and perspectives related to this topic.
-        </p>
-      {{- end -}}
-    </div>
-  </header>
+  {{ partial "hero.html" $heroParams }}
 
   {{- /* 3. Two-Column Layout (Matching Home Page) */ -}}
   <div class="l-site__columns">

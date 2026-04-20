@@ -9,18 +9,11 @@
   {{- $catLimit := index $widgetParams "categoriesLimit" | default 10 -}}
   {{- /* ========================================================================== */ -}}
 
-  <header class="c-hero c-hero--taxonomy">
-    <div class="c-hero__inner">
-      <h2 class="c-hero__title">{{ $page.Title | default "Tags" }}</h2>
-      {{- with $content := $page.Content -}}
-        <div class="c-hero__subtitle">{{ $content }}</div>
-      {{- else -}}
-        <p class="c-hero__subtitle">
-          A curated structural index of materials, aesthetics, and conceptual frameworks defining our architectural permanence.
-        </p>
-      {{- end -}}
-    </div>
-  </header>
+  {{ partial "hero.html" (dict
+    "modifier" "taxonomy"
+    "title" ($page.Title | default "Tags")
+    "subtitle" ($page.Content | default "A curated structural index of materials, aesthetics, and conceptual frameworks defining our architectural permanence.")
+  ) }}
 
   <div class="l-site__columns">
     <div class="l-site__main">

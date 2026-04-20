@@ -1,0 +1,56 @@
+{{- /*
+  hero.html — Reusable Hero Section Component
+
+  API Contract (Optional Parameters):
+    - modifier: BEM suffix for c-hero class (e.g., "taxonomy" → "c-hero--taxonomy")
+    - categories: List of category strings to render as category label
+    - title: Hero title text
+    - subtitle: Hero subtitle/content (can be HTML)
+    - metadata: Page object for metadata partial (if provided, renders metadata row)
+*/ -}}
+{{- $kwargs := . -}}
+{{- $modifier := $kwargs.modifier -}}
+{{- $categories := $kwargs.categories -}}
+{{- $title := $kwargs.title -}}
+{{- $titleHtml := $kwargs.title_html -}}
+{{- $subtitle := $kwargs.subtitle -}}
+{{- $metadata := $kwargs.metadata -}}
+
+
+{{- /* Build BEM class string */ -}}
+{{- $heroClass := "c-hero" -}}
+{{- with $modifier -}}
+  {{- $heroClass = printf "%s %s" $heroClass $modifier -}}
+{{- end -}}
+
+<header class="{{ $heroClass }}">
+  <div class="c-hero__inner">
+
+    {{- /* Category label (if categories provided) */ -}}
+    {{- with $categories -}}
+      <div class="c-hero__category">
+        <span>{{ delimit $categories " / " }}</span>
+      </div>
+    {{- end -}}
+
+    {{- /* Title */ -}}
+    <h2 class="c-hero__title">
+      {{- if $titleHtml -}}
+        {{ $titleHtml | safeHTML }}
+      {{- else -}}
+        {{ $title }}
+      {{- end -}}
+    </h2>
+
+    {{- /* Subtitle/Content */ -}}
+    {{- with $subtitle -}}
+      <span class="c-hero__subtitle">{{ $subtitle }}</span>
+    {{- end -}}
+
+    {{- /* Metadata row (if metadata object provided) */ -}}
+    {{- with $metadata -}}
+      {{ partial "metadata.html" (dict "article" $metadata "modifier" "c-metadata--hero") }}
+    {{- end -}}
+
+  </div>
+</header>
