@@ -13,19 +13,21 @@
   --_border: var(--share-border);
   --_item-bg-hover: var(--share-item-bg-hover);
 
-  /* @internal: menu-width, menu-max-height, menu-radius, menu-shadow, item-padding, item-radius, item-gap, icon-size, label-size, trigger-gap, transition, transition-fast */
-  --_menu-width: 13rem;
-  --_menu-max-height: 20rem;
+  /* @internal: menu-width, menu-max-height, menu-radius, menu-shadow, item-padding, item-radius, item-gap, icon-size, label-size, trigger-gap, transition, transition-fast, offset-y, offset-y-full */
+  --_menu-width: var(--space-48);
+  --_menu-max-height: var(--space-80);
   --_menu-radius: var(--radius-md);
   --_menu-shadow: var(--shadow-tonal);
   --_item-padding: var(--space-3) var(--space-4);
   --_item-radius: var(--radius-sm);
   --_item-gap: var(--space-3);
-  --_icon-size: var(--size-icon-ui);
+  --_icon-size: var(--text-lg);
   --_label-size: var(--text-sm);
   --_trigger-gap: var(--space-3);
   --_transition: var(--duration-normal) var(--ease-default);
   --_transition-fast: var(--duration-fast) var(--ease-default);
+  --_offset-y: var(--space-2);
+  --_offset-y-full: 100%;
 
   position: relative;
 }
@@ -79,7 +81,7 @@
   /* Hidden state */
   opacity: 0;
   visibility: hidden;
-  transform: translateY(0.5rem);
+  transform: translateY(var(--_offset-y));
   transition:
     opacity var(--_transition),
     visibility var(--_transition),
@@ -139,7 +141,7 @@
     max-height: 60vh;
     padding: var(--space-4);
     border-radius: var(--_menu-radius) var(--_menu-radius) 0 0;
-    transform: translateY(100%);
+    transform: translateY(var(--_offset-y-full));
   }
 
   .c-share__menu.is-active {
