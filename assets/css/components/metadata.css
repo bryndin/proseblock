@@ -5,16 +5,18 @@
    ========================================================================== */
 
 .c-metadata {
-  /* @api: text, icon, dot */
-  --_text: var(--metadata-text);
-  --_icon: var(--metadata-icon);
-  --_dot: var(--metadata-dot);
+  /* @api: Ingested Semantics */
+  --_color: var(--metadata-text);
 
   /* @internal: font-size, icon-size, gap-x, gap-y */
   --_font-size: var(--text-xs);
-  --_icon-size: var(--metadata-icon-size);
+  --_icon-size: var(--text-lg);
+  --_dot-size: var(--text-min);
   --_gap-x: var(--space-8);
   --_gap-y: var(--space-4);
+  /* Make icons and dots less prominent */
+  --_icon-color: oklch(from var(--_color) l c h / var(--metadata-icon-opacity));
+  --_dot-color: oklch(from var(--_color) l c h / var(--metadata-icon-opacity));
 
   display: flex;
   flex-wrap: wrap;
@@ -24,7 +26,7 @@
   font-weight: var(--weight-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-widest);
-  color: var(--_text);
+  color: var(--_color);
 }
 
 /* Variant used in article hero with reduced opacity */
@@ -39,44 +41,22 @@
 }
 
 .c-metadata__icon {
+  display: inline-flex;
   width: var(--_icon-size);
   height: var(--_icon-size);
-  opacity: 0.6;
-  color: var(--_icon);
+  color: var(--_icon-color);
+}
+
+.c-metadata__icon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .c-metadata__dot {
-  width: var(--metadata-dot-size);
-  height: var(--metadata-dot-size);
+  width: var(--_dot-size);
+  height: var(--_dot-size);
   border-radius: var(--radius-full);
-  background-color: currentcolor;
-}
-
-/* ─── Opacity Handling ────────────────────────────────────────────────── */
-
-/* Default opacity for items and dots */
-.c-metadata__item,
-.c-metadata__dot,
-.c-metadata .c-share__trigger {
-  opacity: 0.6;
-}
-
-/* Reduced opacity for Hero variant */
-.c-metadata--hero .c-metadata__item,
-.c-metadata--hero .c-metadata__dot,
-.c-metadata--hero .c-share__trigger {
-  opacity: 0.4;
-}
-
-.c-metadata__link {
-  color: inherit;
-  text-decoration: none;
-  transition: opacity var(--duration-fast) var(--ease-out);
-}
-
-.c-metadata__link:hover {
-  text-decoration: underline;
-  opacity: 1;
+  background-color: var(--_dot-color);
 }
 
 .c-metadata__share {

@@ -4,12 +4,16 @@
    ========================================================================== */
 
 .c-article-card {
-  /* @api: bg, bg-hover, title-text, body-text, accent */
+  /* @api: bg, bg-hover, title-text, body-text, meta-text, accent */
   --_bg: var(--article-card-bg);
   --_bg-hover: var(--article-card-bg-hover);
   --_title-text: var(--article-card-title-text);
   --_body-text: var(--article-card-body-text);
+  --_meta-color: var(--article-card-meta-color);
   --_accent: var(--article-card-accent);
+
+  /* @provides: Contextual Overrides */
+  --metadata-color: var(--_meta-color);
 
   /* @internal: padding, title-size, body-size, transition */
   --_padding: var(--space-6);
@@ -47,7 +51,7 @@
 
 .c-article-card__title {
   font-size: var(--_title-size);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-normal);
   letter-spacing: var(--tracking-tight);
   line-height: var(--leading-tight);
   color: var(--_title-text);
