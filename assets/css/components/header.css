@@ -4,18 +4,33 @@
    ========================================================================== */
 
 .c-header {
-  /* @api: bg, text, icon */
+  /* @api: Ingested Semantics */
   --_bg: var(--header-bg);
   --_text: var(--header-text);
   --_icon: var(--header-icon);
+  --_transition: var(--header-transition-smooth);
+  --_float-duration: var(--header-floating-duration);
 
-  /* @internal: height, padding-x, title-size, title-weight, icon-size, z */
+  /* @internal: Metadata & Structural configuration */
   --_height: var(--space-24);
   --_padding-x: var(--space-12);
   --_title-size: var(--text-xl);
   --_title-weight: var(--weight-bold);
+  --_title-leading: var(--leading-xl);
+  --_title-tracking: var(--header-title-tracking);
+  --_title-tracking-md: var(--header-title-tracking-md);
+  --_title-tracking-lg: var(--header-title-tracking-lg);
+
+  /* Offsets for transform centering during tracking increases */
+  --_title-offset-md: 0.3em;
+  --_title-offset-lg: 0.6em;
+
   --_icon-size: var(--text-xl);
-  --_z: var(--z-header);
+  --_icon-size-menu: 1.5rem;
+  --_z-index: var(--z-header);
+
+  --_progress-transition: height 0.1s var(--ease-out);
+  --_float-max-h: 10rem;
 
   display: flex;
   justify-content: space-between;
@@ -26,42 +41,32 @@
   background-color: var(--_bg);
   color: var(--_text);
 
-  /* Ensure the header is sticky and has a transition */
   position: sticky;
   top: 0;
   left: 0;
   right: 0;
-  z-index: var(--_z);
-
-  /* Replicates the cubic-bezier smoothness from the design */
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: var(--_z-index);
+  transition: transform var(--_transition);
 }
 
-/* State class triggered by JS */
 .c-header.is-hidden {
   transform: translateY(-100%);
-}
-
-/* Reading Progress transition */
-#reading-progress {
-  transition: height 0.1s ease-out;
 }
 
 #floating-title-container {
   opacity: 0;
   max-height: 0;
   overflow: hidden;
-  transition: opacity 0.3s ease, max-height 0.3s ease;
+  transition: opacity var(--_float-duration) var(--ease-default),
+    max-height var(--_float-duration) var(--ease-default);
 }
 
 #floating-title-container.is-visible {
   opacity: 1;
-
-  /* roughly maps to max-h-40 */
-  max-height: 10rem;
+  max-height: var(--_float-max-h);
 }
 
-/* --- Left section (menu toggle) --- */
+/* --- Layout Sections --- */
 
 .c-header__start {
   flex: 1;
@@ -70,39 +75,11 @@
   align-items: center;
 }
 
-/* --- Center section (site title) --- */
-
 .c-header__center {
   flex: 2;
   display: flex;
   justify-content: center;
 }
-
-.c-header__title {
-  font-size: var(--_title-size);
-  font-weight: var(--_title-weight);
-  text-transform: uppercase;
-  font-family: var(--font-sans);
-  letter-spacing: var(--tracking-normal);
-  line-height: var(--leading-xl);
-  color: var(--_text);
-}
-
-@media (width >= 768px) {
-  .c-header__title {
-    letter-spacing: 0.6em;
-    transform: translateX(0.3em);
-  }
-}
-
-@media (width >= 1024px) {
-  .c-header__title {
-    letter-spacing: 1.2em;
-    transform: translateX(0.6em);
-  }
-}
-
-/* --- Right section (action icons) --- */
 
 .c-header__end {
   flex: 1;
@@ -112,7 +89,34 @@
   gap: var(--space-10);
 }
 
-/* --- Icon buttons --- */
+/* --- Brand Title --- */
+
+.c-header__title {
+  font-size: var(--_title-size);
+  font-weight: var(--_title-weight);
+  text-transform: uppercase;
+  font-family: var(--font-sans);
+  letter-spacing: var(--_title-tracking);
+  line-height: var(--_title-leading);
+  color: var(--_text);
+  transition: transform var(--_transition), letter-spacing var(--_transition);
+}
+
+@media (width >= 768px) {
+  .c-header__title {
+    letter-spacing: var(--_title-tracking-md);
+    transform: translateX(var(--_title-offset-md));
+  }
+}
+
+@media (width >= 1024px) {
+  .c-header__title {
+    letter-spacing: var(--_title-tracking-lg);
+    transform: translateX(var(--_title-offset-lg));
+  }
+}
+
+/* --- Action Icons --- */
 
 .c-header__icon-btn {
   color: var(--_icon);
@@ -128,16 +132,16 @@
 }
 
 .c-header__icon-btn svg {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: var(--_icon-size);
+  height: var(--_icon-size);
 }
 
 .c-header__icon-btn--menu svg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: var(--_icon-size-menu);
+  height: var(--_icon-size-menu);
 }
 
-/* --- Theme Toggle Icons --- */
+/* --- Theme Toggle State --- */
 
 #theme-toggle .u-theme-icon-light,
 #theme-toggle .u-theme-icon-dark,
