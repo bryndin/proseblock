@@ -2,21 +2,41 @@
     HERO SEARCH (Modifier of .c-hero)
     ========================================================================== */
 .c-hero--search {
+  /* @api: Ingested Semantics */
   --_bg: var(--bg-secondary);
   --_text: var(--search-text);
   --_placeholder: var(--search-placeholder);
   --_accent: var(--search-accent);
   --_underline: var(--search-underline);
-  --_border: var(--hero-border);
+  --_border-color: var(--hero-border);
+  --_label-muted: var(--search-label-text);
+  --_indicator-bar: var(--search-indicator-accent);
+
+  /* @internal: Metadata & Layout */
+  --_padding: var(--space-24);
+  --_icon-size: var(--text-lg);
+  --_label-size: var(--text-xs);
+  --_label-weight: var(--weight-bold);
+  --_label-tracking: var(--tracking-widest);
+  --_label-svg-size: var(--text-xl);
+
+  --_input-size: var(--text-5xl);
+  --_input-size-md: var(--text-7xl);
+  --_input-weight: var(--weight-extralight);
+  --_input-tracking: var(--tracking-tight);
+
+  --_indicator-h: 1px;
+  --_indicator-bar-w: 6rem;
+  --_indicator-duration: 1s;
 
   background-color: var(--_bg);
   color: var(--_text);
-  border: var(--border-width) solid oklch(from var(--_border) l c h / 40%);
+  border: var(--border-width) solid oklch(from var(--_border-color) l c h / var(--opacity-subtle));
 }
 
 @media (width >= 768px) {
   .c-hero--search {
-    padding: var(--space-24);
+    padding: var(--_padding);
   }
 }
 
@@ -32,23 +52,18 @@
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  opacity: 0.6;
+  color: var(--_label-muted);
   margin-bottom: var(--space-6);
   font-family: var(--font-sans);
-  font-size: var(--text-xs);
-
-  /* Designers dropped this to 10px in the new file */
-  font-weight: var(--weight-bold);
+  font-size: var(--_label-size);
+  font-weight: var(--_label-weight);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-widest);
+  letter-spacing: var(--_label-tracking);
 }
 
-/* Target SVG directly */
 .c-hero--search__label svg {
-  width: 1.5rem;
-
-  /* text-2xl */
-  height: 1.5rem;
+  width: var(--_label-svg-size);
+  height: var(--_label-svg-size);
   flex-shrink: 0;
 }
 
@@ -57,9 +72,9 @@
   background: transparent;
   border: none;
   padding: 0;
-  font-size: var(--text-5xl);
-  font-weight: var(--weight-extralight);
-  letter-spacing: var(--tracking-tight);
+  font-size: var(--_input-size);
+  font-weight: var(--_input-weight);
+  letter-spacing: var(--_input-tracking);
   color: var(--_text);
   outline: none;
 }
@@ -70,12 +85,12 @@
 
 @media (width >= 768px) {
   .c-hero--search__input {
-    font-size: var(--text-7xl);
+    font-size: var(--_input-size-md);
   }
 }
 
 .c-hero--search__indicator {
-  height: 1px;
+  height: var(--_indicator-h);
   width: 100%;
   background-color: var(--_underline);
   margin-top: var(--space-8);
@@ -86,10 +101,10 @@
 .c-hero--search__indicator-bar {
   position: absolute;
   inset: 0;
-  width: 6rem;
-  background-color: var(--_accent);
+  width: var(--_indicator-bar-w);
+  background-color: var(--_indicator-bar);
   transform: translateX(-100%);
-  transition: transform 1s var(--ease-default);
+  transition: transform var(--_indicator-duration) var(--ease-default);
 }
 
 .c-hero--search__group:focus-within .c-hero--search__indicator-bar {
@@ -100,15 +115,17 @@
      SEARCH RESULTS (Main Area)
      ========================================================================== */
 .c-search-results {
+  /* @api */
   --_bg: var(--bg-card);
-  --_shadow: 40px 0 60px -20px oklch(27% 0.015 230deg / 2%);
+  --_shadow: var(--search-modal-shadow);
 
-  /* Designer's new softer shadow */
+  /* @internal */
+  --_min-h: 600px;
 
   background-color: var(--_bg);
   box-shadow: var(--_shadow);
   padding: var(--space-8);
-  min-height: 600px;
+  min-height: var(--_min-h);
 }
 
 @media (width >= 768px) {
@@ -126,13 +143,9 @@
   gap: var(--space-16);
 }
 
-/* General Title (Filter Results) */
 .c-search-widget__title {
   --_text: var(--text-secondary);
-
   font-size: var(--text-xs);
-
-  /* text-[10px] */
   font-weight: var(--weight-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-widest);
@@ -140,8 +153,13 @@
   margin-bottom: var(--space-6);
 }
 
-/* New Taxonomy Title Header */
 .c-search-widget__header {
+  /* @api */
+  --_icon-color: var(--search-icon-muted);
+
+  /* @internal */
+  --_icon-size: 0.875rem;
+
   display: flex;
   align-items: center;
   gap: var(--space-4);
@@ -149,12 +167,9 @@
 }
 
 .c-search-widget__header svg {
-  width: 0.875rem;
-
-  /* text-[14px] */
-  height: 0.875rem;
-  color: var(--text-primary);
-  opacity: 0.6;
+  width: var(--_icon-size);
+  height: var(--_icon-size);
+  color: var(--_icon-color);
 }
 
 .c-search-widget__header--link {
@@ -174,7 +189,7 @@
 
 .c-search-widget__header--link:hover .c-search-widget__subtitle {
   color: var(--accent);
-  padding-left: 0.5rem;
+  padding-left: var(--space-2);
 }
 
 .c-search-widget__subtitle {
@@ -188,41 +203,41 @@
 
 /* Filters */
 .c-search-filter {
+  /* @internal */
+  --_label-opacity: var(--opacity-medium);
   margin-bottom: var(--space-5);
 }
 
 .c-search-filter__label {
   --_text: var(--text-secondary);
-
   display: block;
   font-size: var(--text-2xs);
   font-weight: var(--weight-bold);
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: var(--tracking-mega);
   color: var(--_text);
-  opacity: 0.5;
+  opacity: var(--_label-opacity);
   margin-bottom: var(--space-2);
 }
 
 /* Dropdown System */
 .c-dropdown {
+  /* @internal */
+  --_toggle-bg: var(--bg-tertiary);
+  --_toggle-hover: var(--bg-elevated);
+  --_icon-opacity: var(--opacity-subtle);
+  --_icon-size: var(--text-lg);
+
   position: relative;
   width: 100%;
 }
 
 .c-dropdown__toggle {
-  --_bg: var(--bg-tertiary);
-
-  /* bg-surface-container */
-  --_bg-hover: var(--bg-elevated);
-
-  /* bg-surface-variant */
-
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background-color: var(--_bg);
+  background-color: var(--_toggle-bg);
   border: none;
   padding: var(--space-2) var(--space-4);
   font-family: var(--font-sans);
@@ -235,13 +250,13 @@
 }
 
 .c-dropdown__toggle:hover {
-  background-color: var(--_bg-hover);
+  background-color: var(--_toggle-hover);
 }
 
 .c-dropdown__toggle svg {
-  width: var(--size-icon-ui);
-  height: var(--size-icon-ui);
-  opacity: 0.4;
+  width: var(--_icon-size);
+  height: var(--_icon-size);
+  opacity: var(--_icon-opacity);
   transition: transform var(--duration-fast);
 }
 
@@ -289,17 +304,19 @@
   background-color: var(--_bg-hover);
 }
 
-/* Suggested Links (New Typography) */
+/* Suggested Links */
 .c-search-suggested {
+  /* @internal */
+  --_max-w: 200px;
+  --_count-opacity: var(--opacity-subtle);
+
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-
-  /* Designers specifically requested this wrapper restriction */
-  max-width: 200px;
+  max-width: var(--_max-w);
 }
 
 .c-search-suggested__link {
@@ -327,9 +344,7 @@
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-widest);
   color: var(--_count);
-  opacity: 0.4;
-
-  /* items-end alignment fix from designers */
+  opacity: var(--_count-opacity);
   margin-bottom: 1px;
 }
 
@@ -337,19 +352,17 @@
   color: var(--_accent);
 }
 
-
 /* ==========================================================================
-    SEARCH UTILITIES (Replaces inline JS styling)
+    SEARCH UTILITIES
     ========================================================================== */
 .c-search-empty {
   font-size: var(--text-xl);
   color: var(--text-secondary);
-  opacity: 0.6;
+  opacity: var(--opacity-medium);
   margin-top: var(--space-8);
 }
 
-/* Disabled state for paginator chevron generated by JS */
 .c-paginator__btn[aria-disabled="true"] {
-  opacity: 0.3;
+  opacity: var(--opacity-subtle);
   pointer-events: none;
 }
