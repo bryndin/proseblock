@@ -9,18 +9,16 @@
   --_text: var(--alert-text);
   --_border-color: var(--alert-border-note);
 
-  /* @internal: padding-y, padding-x, margin-block, border-width, radius-right */
+  /* @internal: padding-y, padding-x, margin-block, border-width */
   --_padding-y: var(--space-4);
   --_padding-x: var(--space-6);
   --_margin-block: var(--space-8);
-  --_border-width: 4px;
-  --_radius-right: var(--radius-md);
+  --_border-width: var(--border-width-thick);
 
   padding: var(--_padding-y) var(--_padding-x);
   margin-block: var(--_margin-block);
   border-left: var(--_border-width) solid var(--_border-color);
   background-color: var(--_bg);
-  border-radius: 0 var(--_radius-right) var(--_radius-right) 0;
   color: var(--_text);
 }
 
@@ -48,7 +46,7 @@
 
 .c-alert__icon svg {
   /* @internal: icon-size */
-  --_icon-size: var(--size-icon-ui);
+  --_icon-size: var(--text-lg);
 
   width: var(--_icon-size);
   height: var(--_icon-size);
