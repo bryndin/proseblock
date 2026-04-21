@@ -3,9 +3,26 @@
 ========================================================================== */
 
 .c-archive {
+  /* @api: Ingested Semantics */
+  --_year-color: var(--archive-year-text);
+  --_month-color: var(--archive-month-text);
+
+  /* @internal: Structural & Nested configuration */
+  --_gap: var(--space-24);
+  --_year-mb: var(--space-12);
+  --_year-pb: var(--space-8);
+  --_year-font: var(--text-tiny);
+  --_year-border-w: var(--border-width-minimal);
+
+  --_month-font: var(--text-tiny);
+  --_month-gap: var(--space-16);
+  --_month-mb: var(--space-12);
+
+  --_articles-gap: var(--space-8);
+
   display: flex;
   flex-direction: column;
-  gap: var(--space-24);
+  gap: var(--_gap);
 }
 
 /* --- Year Groupings --- */
@@ -15,20 +32,15 @@
 }
 
 .c-archive__year-title {
-  /* @api: text, border */
-  --_text: var(--text-primary);
-  --_border: var(--border-muted);
-
-  font-size: 0.6875rem;
+  font-size: var(--_year-font);
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-mega);
   text-transform: uppercase;
-  color: var(--_text);
+  color: var(--_year-color);
   text-align: right;
-  margin-bottom: var(--space-12);
-  padding-bottom: var(--space-8);
-  border-bottom: 1px solid var(--_border);
-  opacity: 0.4;
+  margin-bottom: var(--_year-mb);
+  padding-bottom: var(--_year-pb);
+  border-bottom: var(--_year-border-w) solid var(--border-muted);
 }
 
 /* --- Month Groupings --- */
@@ -36,7 +48,7 @@
 .c-archive__months {
   display: flex;
   flex-direction: column;
-  gap: var(--space-16);
+  gap: var(--_month-gap);
 }
 
 .c-archive__month-group {
@@ -44,16 +56,13 @@
 }
 
 .c-archive__month-title {
-  --_text: var(--accent);
-
-  font-size: 0.6875rem;
+  font-size: var(--_month-font);
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-mega);
   text-transform: uppercase;
-  color: var(--_text);
+  color: var(--_month-color);
   text-align: right;
-  margin-bottom: var(--space-12);
-  opacity: 0.4;
+  margin-bottom: var(--_month-mb);
 }
 
 /* --- Articles List --- */
@@ -61,7 +70,7 @@
 .c-archive__articles {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: var(--_articles-gap);
 }
 
 /* ==========================================================================
@@ -69,45 +78,71 @@
 ========================================================================== */
 
 .c-archive-card {
-  --_border: var(--border-subtle);
-  --_border-hover: var(--accent);
+  /* @api: Ingested Semantics */
+  --_title-text: var(--archive-card-title-text);
+  --_cat-text: var(--archive-card-category-text);
+  --_date-muted: var(--archive-card-date-muted);
+  --_accent: var(--archive-card-accent);
+  --_border-color: var(--archive-card-border);
+
+  /* @internal: Configuration & Layout */
+  --_gap: var(--space-8);
+  --_gap-md: var(--space-16);
+  --_transition: var(--duration-normal) var(--ease-default);
+
+  /* Date Badge */
+  --_date-pt: var(--space-1);
+  --_date-min-w: var(--space-8);
+  --_day-font: var(--text-xl);
+
+  /* Month tag inside card */
+  --_card-month-font: var(--text-2xs);
+
+  /* Content */
+  --_content-pb: var(--space-8);
+  --_border-width: var(--border-width-minimal);
+
+  /* Category */
+  --_cat-font: var(--text-xs);
+  --_cat-mb: var(--space-3);
+
+  /* Title */
+  --_title-font: var(--text-xl);
+  --_title-font-md: var(--text-2xl);
+  --_title-mt: var(--space-3);
 
   display: flex;
-  gap: var(--space-8);
+  gap: var(--_gap);
   align-items: flex-start;
   text-decoration: none;
 }
 
 @media (width >= 768px) {
   .c-archive-card {
-    gap: var(--space-16);
+    gap: var(--_gap-md);
   }
 }
 
 /* Date Badge (Left) */
 .c-archive-card__date {
-  --_text: var(--text-secondary);
-
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: var(--space-1);
-  min-width: 2rem;
-
-  /* 32px */
-  color: var(--_text);
+  padding-top: var(--_date-pt);
+  min-width: var(--_date-min-w);
+  color: var(--text-secondary);
 }
 
 .c-archive-card__month {
-  font-size: var(--text-2xs);
+  font-size: var(--_card-month-font);
   font-weight: var(--weight-black);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  opacity: 0.3;
+  color: var(--_date-muted);
 }
 
 .c-archive-card__day {
-  font-size: var(--text-xl);
+  font-size: var(--_day-font);
   font-weight: var(--weight-light);
   line-height: var(--leading-none);
   color: var(--text-primary);
@@ -116,50 +151,44 @@
 /* Content Wrapper (Right) */
 .c-archive-card__content {
   flex-grow: 1;
-  padding-bottom: var(--space-8);
-  border-bottom: 1px solid oklch(from var(--_border) l c h / 50%);
-  transition: border-color var(--duration-normal) var(--ease-default);
+  padding-bottom: var(--_content-pb);
+  border-bottom: var(--_border-width) solid var(--_border-color);
+  transition: border-color var(--_transition);
 }
 
 .c-archive-card:hover .c-archive-card__content {
-  border-bottom-color: var(--_border-hover);
+  border-bottom-color: var(--_accent);
 }
 
 /* Content Details */
 .c-archive-card__category {
-  --_text: var(--accent);
-
   display: block;
-  font-size: var(--text-xs);
+  font-size: var(--_cat-font);
   font-weight: var(--weight-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-widest);
-  color: var(--_text);
-  margin-bottom: var(--space-3);
-  opacity: 0.6;
+  color: var(--_cat-text);
+  margin-bottom: var(--_cat-mb);
 }
 
 .c-archive-card__title {
-  --_text: var(--text-primary);
-  --_text-hover: var(--accent);
-
-  font-size: var(--text-xl);
+  font-size: var(--_title-font);
   font-weight: var(--weight-semibold);
   line-height: var(--leading-tight);
-  color: var(--_text);
-  transition: color var(--duration-normal) var(--ease-default);
+  color: var(--_title-text);
+  transition: color var(--_transition);
 }
 
 .c-archive-card__title:first-child {
-  margin-top: var(--space-3);
+  margin-top: var(--_title-mt);
 }
 
 @media (width >= 768px) {
   .c-archive-card__title {
-    font-size: var(--text-2xl);
+    font-size: var(--_title-font-md);
   }
 }
 
 .c-archive-card:hover .c-archive-card__title {
-  color: var(--_text-hover);
+  color: var(--_accent);
 }
