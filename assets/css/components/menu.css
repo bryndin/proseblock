@@ -4,13 +4,56 @@
    ========================================================================== */
 
 .c-drawer {
+  /* @api: backdrop-bg, aside-bg, text, accent, icon, close-opacity-hover, link-icon-opacity, newsletter-border */
+  --_backdrop-bg: var(--menu-backdrop-bg);
+  --_aside-bg: var(--menu-aside-bg);
+  --_text: var(--menu-text);
+  --_accent: var(--menu-accent);
+  --_icon: var(--menu-icon);
+  --_close-opacity-hover: var(--menu-close-opacity-hover);
+  --_link-icon-opacity: var(--menu-link-icon-opacity);
+  --_newsletter-border: var(--menu-newsletter-border);
+
+  /* @internal: Z-index, transitions, clamps, dimensions */
+  --_z-backdrop: 1;
+  --_z-panel: 2;
+  --_z-close: 20;
+  --_duration-menu: var(--duration-slow);
+  --_duration-fast: var(--duration-fast);
+  --_ease-out: var(--ease-editorial);
+  --_ease-default: var(--ease-editorial);
+
+  /* Scaling units */
+  --_inner-padding: clamp(2rem, 5vh, 4rem);
+  --_header-mb: clamp(1.5rem, 4vh, 3rem);
+  --_site-title-font: clamp(2.25rem, 4vw, 3.75rem);
+  --_footer-gap: clamp(1.5rem, 4vh, 3rem);
+  --_footer-mt: clamp(2rem, 5vh, 6rem);
+  --_nav-link-padding: clamp(0.25rem, 1vh, 0.5rem);
+  --_nav-link-font: clamp(1.25rem, 4vh, 2.5rem);
+  --_social-size: clamp(1.25rem, 4vh, 2.5rem);
+
+
+  /* Fixed values */
+  --_backdrop-blur: var(--blur);
+  --_close-pos: var(--space-8);
+  --_close-size: var(--space-8);
+  --_nav-icon-size: var(--text-xl);
+  --_link-hover-offset: calc(var(--_nav-icon-size) * var(--motion-shift-sm));
+  --_newsletter-max-w: 24rem;
+  --_newsletter-pb: var(--space-3);
+  --_submit-gap: var(--space-2);
+  --_arrow-size: var(--text-base);
+  --_arrow-hover-offset: calc(var(--_arrow-size) * var(--motion-shift-sm));
+  --_social-gap: var(--space-8);
+
   position: fixed;
   inset: 0;
   z-index: var(--z-menu);
   display: flex;
   visibility: hidden;
   pointer-events: none;
-  transition: visibility var(--duration-menu) var(--ease-default);
+  transition: visibility var(--_duration-menu) var(--_ease-default);
 }
 
 .c-drawer.is-open {
@@ -23,12 +66,12 @@
 .c-drawer__backdrop {
   position: absolute;
   inset: 0;
-  background-color: oklch(from var(--bg-inverse) l c h / 10%);
-  backdrop-filter: blur(4px);
+  background-color: var(--_backdrop-bg);
+  backdrop-filter: blur(var(--_backdrop-blur));
   cursor: pointer;
   opacity: 0;
-  transition: opacity var(--duration-menu) var(--ease-out);
-  z-index: 1;
+  transition: opacity var(--_duration-menu) var(--_ease-out);
+  z-index: var(--_z-backdrop);
 }
 
 .c-drawer.is-open .c-drawer__backdrop {
@@ -42,12 +85,12 @@
   flex-direction: column;
   height: 100dvh;
   width: 100%;
-  background-color: var(--menu-aside-bg);
+  background-color: var(--_aside-bg);
   position: relative;
-  z-index: 2;
+  z-index: var(--_z-panel);
   box-shadow: var(--shadow-tonal);
   transform: translateX(-100%);
-  transition: transform var(--duration-menu) var(--ease-out);
+  transition: transform var(--_duration-menu) var(--_ease-out);
 }
 
 @media (width >= 640px) {
@@ -76,26 +119,25 @@
 
 .c-drawer__close-btn {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
-  padding: 0.5rem;
+  top: var(--_close-pos);
+  right: var(--_close-pos);
+  padding: var(--space-2);
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--menu-text);
+  color: var(--_text);
   opacity: 1;
-  transition: opacity var(--duration-fast) var(--ease-default);
-  z-index: 20;
+  transition: opacity var(--_duration-fast) var(--_ease-default);
+  z-index: var(--_z-close);
 }
 
 .c-drawer__close-btn:hover {
-  opacity: 0.6;
+  opacity: var(--_close-opacity-hover);
 }
 
-/* Hard-locks the SVG size so it cannot explode */
 .c-drawer__close-btn svg {
-  width: 32px;
-  height: 32px;
+  width: var(--_close-size);
+  height: var(--_close-size);
   display: block;
 }
 
@@ -106,28 +148,24 @@
   flex-direction: column;
   flex: 1;
   min-height: 0;
-
-  /* Dynamic padding: shrinks from 4rem to 2rem on short screens */
-  padding: clamp(2rem, 5vh, 4rem);
+  padding: var(--_inner-padding);
 }
 
 /* --- Header Branding --- */
 
 .c-drawer__header {
   flex-shrink: 0;
-
-  /* Dynamic margin: shrinks from 3rem to 1.5rem on short screens */
-  margin-bottom: clamp(1.5rem, 4vh, 3rem);
+  margin-bottom: var(--_header-mb);
 }
 
 .c-drawer__site-title {
   display: block;
-  font-size: clamp(2.25rem, 4vw, 3.75rem);
-  font-weight: var(--weight-extralight);
+  font-size: var(--_site-title-font);
+  font-weight: var(--weight-light);
   letter-spacing: var(--tracking-mega);
   text-transform: uppercase;
-  color: var(--menu-text);
-  line-height: 1;
+  color: var(--_text);
+  line-height: var(--leading-none);
   margin-bottom: var(--space-4);
 }
 
@@ -148,8 +186,6 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-
-  /* Hides scrollbar for cleaner look if needed */
   scrollbar-width: none;
 }
 
@@ -162,8 +198,6 @@
   flex-direction: column;
   flex: 1;
   justify-content: space-evenly;
-
-  /* Critical: prevents items from squishing together */
   min-height: min-content;
 }
 
@@ -171,39 +205,38 @@
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  padding: clamp(0.25rem, 1vh, 0.5rem) 0;
-  color: var(--menu-text);
+  padding: var(--_nav-link-padding) 0;
+  color: var(--_text);
   text-decoration: none;
   flex-shrink: 0;
 }
 
 .c-drawer__link-icon-wrapper {
-  color: var(--menu-icon);
-  opacity: 0.4;
-  transition: opacity var(--duration-fast) var(--ease-default);
+  color: var(--_icon);
+  opacity: var(--_link-icon-opacity);
+  transition: opacity var(--_duration-fast) var(--_ease-default);
   display: flex;
 }
 
 .c-drawer__link-icon-wrapper svg {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: var(--_nav-icon-size);
+  height: var(--_nav-icon-size);
 }
 
 .c-drawer__link:hover .c-drawer__link-icon-wrapper {
-  color: var(--menu-accent);
+  color: var(--_accent);
   opacity: 1;
 }
 
 .c-drawer__link-text {
-  /* Magic Typography Scaling based on Viewport Height */
-  font-size: clamp(1.25rem, 4vh, 2.5rem);
-  font-weight: var(--weight-extralight);
+  font-size: var(--_nav-link-font);
+  font-weight: var(--weight-light);
   letter-spacing: var(--tracking-tighter);
-  transition: padding-left var(--duration-fast) var(--ease-default);
+  transition: padding-left var(--_duration-fast) var(--_ease-default);
 }
 
 .c-drawer__link:hover .c-drawer__link-text {
-  padding-left: 0.5rem;
+  padding-left: var(--_link-hover-offset);
 }
 
 /* --- Footer (Newsletter & Socials) --- */
@@ -212,10 +245,8 @@
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-
-  /* Dynamic gap and margin so footer pulls up out of the way on short screens */
-  gap: clamp(1.5rem, 4vh, 3rem);
-  margin-top: clamp(2rem, 5vh, 6rem);
+  gap: var(--_footer-gap);
+  margin-top: var(--_footer-mt);
 }
 
 .c-drawer__newsletter {
@@ -229,21 +260,21 @@
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-ultra);
   text-transform: uppercase;
-  color: var(--menu-accent);
+  color: var(--_accent);
 }
 
 .c-drawer__newsletter-form {
   display: flex;
   align-items: flex-end;
   gap: var(--space-2);
-  max-width: 24rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid oklch(from var(--text-tertiary) l c h / 20%);
-  transition: border-color var(--duration-fast) var(--ease-default);
+  max-width: var(--_newsletter-max-w);
+  padding-bottom: var(--_newsletter-pb);
+  border-bottom: 1px solid var(--_newsletter-border);
+  transition: border-color var(--_duration-fast) var(--_ease-default);
 }
 
 .c-drawer__newsletter-form:focus-within {
-  border-color: var(--menu-accent);
+  border-color: var(--_accent);
 }
 
 .c-drawer__newsletter-input {
@@ -253,7 +284,7 @@
   padding: 0;
   font-size: var(--text-sm);
   font-weight: var(--weight-light);
-  color: var(--menu-text);
+  color: var(--_text);
   outline: none;
 }
 
@@ -264,7 +295,7 @@
 .c-drawer__newsletter-submit {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--_submit-gap);
   background: none;
   border: none;
   cursor: pointer;
@@ -272,40 +303,40 @@
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--menu-text);
+  color: var(--_text);
   white-space: nowrap;
-  transition: color var(--duration-fast) var(--ease-default);
+  transition: color var(--_duration-fast) var(--_ease-default);
 }
 
 .c-drawer__newsletter-submit:hover {
-  color: var(--menu-accent);
+  color: var(--_accent);
 }
 
 .c-drawer__newsletter-arrow svg {
-  width: 16px;
-  height: 16px;
-  transition: transform var(--duration-fast) var(--ease-default);
+  width: var(--_arrow-size);
+  height: var(--_arrow-size);
+  transition: transform var(--_duration-fast) var(--_ease-default);
 }
 
 .c-drawer__newsletter-submit:hover .c-drawer__newsletter-arrow svg {
-  transform: translateX(4px);
+  transform: translateX(var(--_arrow-hover-offset));
 }
 
 .c-drawer__socials {
   display: flex;
-  gap: var(--space-8);
+  gap: var(--_social-gap);
 }
 
 .c-drawer__social-link {
   color: var(--text-secondary);
-  transition: color var(--duration-fast) var(--ease-default);
+  transition: color var(--_duration-fast) var(--_ease-default);
 }
 
 .c-drawer__social-link:hover {
-  color: var(--menu-accent);
+  color: var(--_accent);
 }
 
 .c-drawer__social-icon svg {
-  width: 22px;
-  height: 22px;
+  width: var(--_social-size);
+  height: var(--_social-size);
 }
