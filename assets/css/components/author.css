@@ -3,14 +3,21 @@
      ========================================================================== */
 
 .c-hero--author .c-hero__inner--author {
-  /* @internal: gap, avatar-size, avatar-size-md */
+  /* @internal: gap, sizes and colors */
   --_gap: var(--space-12);
-  --_avatar-size: 10rem;
 
-  /* 160px for mobile */
-  --_avatar-size-md: 14rem;
+  --_avatar-filter: var(--filter);
+  --_avatar-size-mobile: 10rem;
+  --_avatar-size: 14rem;
 
-  /* 224px for tablet/desktop */
+  --_content-max-width: 56rem;
+
+  --_bio-text: var(--text-secondary);
+
+  --_social-icon-size: var(--text-xl);
+  --_social-icon-color: var(--hero-meta-text);
+  --_social_text: var(--text-tertiary);
+  --_social_hover: var(--accent);
 
   display: flex;
   flex-direction: column;
@@ -19,7 +26,7 @@
   text-align: center;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
   .c-hero--author .c-hero__inner--author {
     flex-direction: row;
     align-items: flex-start;
@@ -31,14 +38,14 @@
 
 .c-hero__avatar-wrapper {
   flex-shrink: 0;
-  width: var(--_avatar-size);
-  height: var(--_avatar-size);
+  width: var(--_avatar-size-mobile);
+  height: var(--_avatar-size-mobile);
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
   .c-hero__avatar-wrapper {
-    width: var(--_avatar-size-md);
-    height: var(--_avatar-size-md);
+    width: var(--_avatar-size);
+    height: var(--_avatar-size);
   }
 }
 
@@ -47,7 +54,7 @@
   height: 100%;
   object-fit: cover;
   border-radius: var(--radius-full);
-  filter: grayscale(100%) brightness(1.05);
+  filter: var(--_avatar-filter);
 }
 
 /* --- Author Details Content --- */
@@ -56,14 +63,18 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
-  max-width: 56rem;
-
-  /* Matches max-w-4xl */
+  max-width: var(--_content-max-width);
 }
 
 /* Override the inherited taxonomy subtitle spacing */
 .c-hero--author .c-hero__subtitle {
   margin-bottom: 0;
+}
+
+/* Override the inherited colors */
+.c-hero--author .c-hero__subtitle,
+.c-hero--author .c-hero__subtitle > p {
+  color: var(--_bio-text);
 }
 
 /* --- Social Links --- */
@@ -75,24 +86,19 @@
   justify-content: center;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
   .c-hero__social {
     justify-content: flex-start;
   }
 }
 
 .c-hero__social-link {
-  /* @api: text, hover */
-  --_text: var(--text-secondary);
-  --_hover: var(--accent);
-
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  color: var(--_text);
+  color: var(--_social_text);
   font-size: var(--text-xs);
 
-  /* text-[10px] */
   font-weight: var(--weight-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-widest);
@@ -101,11 +107,17 @@
 }
 
 .c-hero__social-link:hover {
-  color: var(--_hover);
+  color: var(--_social_hover);
+}
+
+.c-hero__social-icon {
+  display: inline-flex;
+  width: var(--_social-icon-size);
+  height: var(--_social-icon-size);
+  color: var(--_social-icon-color);
 }
 
 .c-hero__social-icon svg {
-  width: 1.125rem;
-  height: 1.125rem;
-  opacity: 0.6;
+  width: 100%;
+  height: 100%;
 }
