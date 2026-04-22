@@ -18,12 +18,17 @@
   --_text-transform: uppercase;
   --_rail-opacity: 0.5;
 
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: var(--space-4);
+  flex: 1;
+  min-height: 0;
+}
+
+/* Fix for details inner wrapper in modern WebKit/Blink */
+.c-toc::details-content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4, 1rem); /* Space between summary and inner content on mobile */
-
-  /* Allow the ToC to fill the sidebar but shrink if it needs to */
-  flex: 1;
   min-height: 0;
 }
 
