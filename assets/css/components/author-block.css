@@ -4,16 +4,27 @@
    ========================================================================== */
 
 .c-author {
-  /* @api: bg, accent, name-text, body-text */
+  /* @api: Ingested Semantics */
   --_bg: var(--author-bg);
   --_accent: var(--author-accent);
   --_name-text: var(--author-name-text);
   --_body-text: var(--author-body-text);
+  --_avatar-icon-color: var(--author-avatar-icon);
 
-  /* @internal: gap, avatar-size, margin-top */
+  /* @internal: Metadata & Structural configuration */
   --_gap: var(--space-8);
   --_avatar-size: var(--space-20);
   --_margin-top: var(--space-20);
+
+  /* Proportional internal scaling */
+  --_avatar-image-size: 100%;
+  --_avatar-icon-size: 45%; /* Centered glyph look */
+
+  --_bio-max-w: 42rem;
+  --_more-icon-size: var(--text-base);
+  --_more-hover-offset: calc(var(--_more-icon-size) * var(--motion-shift-sm));
+
+  --_transition: var(--duration-normal) var(--ease-default);
 
   display: flex;
   flex-direction: column;
@@ -39,18 +50,18 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  overflow: hidden; /* Ensures image/icon doesn't bleed out */
 }
 
 .c-author__avatar-icon {
-  width: 2.25rem;
-  height: 2.25rem;
-  color: var(--_body-text);
-  opacity: 0.4;
+  width: var(--_avatar-icon-size);
+  height: var(--_avatar-icon-size);
+  color: var(--_avatar-icon-color);
 }
 
 .c-author__avatar-image {
-  width: 100%;
-  height: 100%;
+  width: var(--_avatar-image-size);
+  height: var(--_avatar-image-size);
   object-fit: cover;
   border-radius: inherit;
 }
@@ -84,7 +95,7 @@
   font-weight: var(--weight-light);
   line-height: var(--leading-relaxed);
   color: var(--_body-text);
-  max-width: 42rem;
+  max-width: var(--_bio-max-w);
 }
 
 /* --- Social links --- */
@@ -103,7 +114,7 @@
 
 .c-author__social-link {
   color: var(--_body-text);
-  transition: color var(--duration-normal) var(--ease-default);
+  transition: color var(--_transition);
 }
 
 .c-author__social-link:hover {
@@ -111,14 +122,14 @@
 }
 
 .c-author__social-link svg {
-  width: 1rem;
-  height: 1rem;
+  width: var(--text-base);
+  height: var(--text-base);
   fill: currentcolor;
 }
 
 .c-author__social-divider {
-  width: 1px;
-  height: 1rem;
+  width: var(--border-width-minimal);
+  height: var(--text-base);
   background-color: var(--_bg);
 }
 
@@ -131,7 +142,7 @@
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--_accent);
-  transition: color var(--duration-normal) var(--ease-default);
+  transition: color var(--_transition);
 }
 
 .c-author__more-link:hover {
@@ -139,11 +150,11 @@
 }
 
 .c-author__more-icon {
-  width: 0.875rem;
-  height: 0.875rem;
-  transition: transform var(--duration-normal) var(--ease-default);
+  width: var(--_more-icon-size);
+  height: var(--_more-icon-size);
+  transition: transform var(--_transition);
 }
 
 .c-author__more-link:hover .c-author__more-icon {
-  transform: translateX(0.25rem);
+  transform: translateX(var(--_more-hover-offset));
 }
