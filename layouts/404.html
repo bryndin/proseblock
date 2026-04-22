@@ -13,53 +13,53 @@
   ) }}
 
   {{- /* ─── Post-Hero Navigation ─── */ -}}
-  <section class="c-error-nav">
-    <div class="c-error-nav__inner">
+  <section class="c-404-nav">
+    <div class="c-404-nav__inner">
       
       {{- /* Left: Return Home */ -}}
-      <div class="c-error-nav__primary">
-        <a href="{{ site.Home.RelPermalink }}" class="c-error-nav__home-link group">
-          <span class="c-error-nav__home-icon">
+      <div class="c-404-nav__primary">
+        <a href="{{ site.Home.RelPermalink }}" class="c-404-nav__home-link group">
+          <span class="c-404-nav__home-icon">
             {{ partial "svg/arrow-back.html" }}
           </span>
-          <div class="c-error-nav__home-text">
-            <h4 class="c-error-nav__home-title">Return Home</h4>
-            <p class="c-error-nav__home-subtitle">Back to the primary index</p>
+          <div class="c-404-nav__home-text">
+            <h4 class="c-404-nav__home-title">Return Home</h4>
+            <p class="c-404-nav__home-subtitle">Back to the primary index</p>
           </div>
         </a>
       </div>
 
       {{- /* Right: Continue Exploring */ -}}
-      <div class="c-error-nav__secondary">
-        <div class="c-error-nav__heading-wrapper">
-          <h2 class="c-error-nav__heading">Continue Exploring</h2>
+      <div class="c-404-nav__secondary">
+        <div class="c-404-nav__heading-wrapper">
+          <h2 class="c-404-nav__heading">Continue Exploring</h2>
         </div>
         
-        <ul class="c-error-nav__list">
+        <ul class="c-404-nav__list">
           <li>
-            <a href="{{ "archives/" | relURL }}" class="c-error-nav__link group">
-              <span class="c-error-nav__link-icon">{{ partial "svg/archive.html" }}</span>
-              <div class="c-error-nav__link-text">
-                <span class="c-error-nav__link-title">Archives</span>
-                <span class="c-error-nav__link-subtitle">Past Records</span>
+            <a href="{{ "archives/" | relURL }}" class="c-404-nav__link group">
+              <span class="c-404-nav__link-icon">{{ partial "svg/archive.html" }}</span>
+              <div class="c-404-nav__link-text">
+                <span class="c-404-nav__link-title">Archives</span>
+                <span class="c-404-nav__link-subtitle">Past Records</span>
               </div>
             </a>
           </li>
           <li>
-            <a href="{{ "categories/" | relURL }}" class="c-error-nav__link group">
-              <span class="c-error-nav__link-icon">{{ partial "svg/categories.html" }}</span>
-              <div class="c-error-nav__link-text">
-                <span class="c-error-nav__link-title">Categories</span>
-                <span class="c-error-nav__link-subtitle">By Subject</span>
+            <a href="{{ "categories/" | relURL }}" class="c-404-nav__link group">
+              <span class="c-404-nav__link-icon">{{ partial "svg/categories.html" }}</span>
+              <div class="c-404-nav__link-text">
+                <span class="c-404-nav__link-title">Categories</span>
+                <span class="c-404-nav__link-subtitle">By Subject</span>
               </div>
             </a>
           </li>
           <li>
-            <a href="{{ "tags/" | relURL }}" class="c-error-nav__link group">
-              <span class="c-error-nav__link-icon">{{ partial "svg/tags.html" }}</span>
-              <div class="c-error-nav__link-text">
-                <span class="c-error-nav__link-title">Tags</span>
-                <span class="c-error-nav__link-subtitle">By Keywords</span>
+            <a href="{{ "tags/" | relURL }}" class="c-404-nav__link group">
+              <span class="c-404-nav__link-icon">{{ partial "svg/tags.html" }}</span>
+              <div class="c-404-nav__link-text">
+                <span class="c-404-nav__link-title">Tags</span>
+                <span class="c-404-nav__link-subtitle">By Keywords</span>
               </div>
             </a>
           </li>
