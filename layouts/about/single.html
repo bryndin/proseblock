@@ -1,7 +1,7 @@
 {{- /* 
   layouts/about/single.html 
   About page template. 
-  Uses Home layout: Main Column (Left), Empty Sidebar (Right).
+  Uses a mix of Article layout (main column) and Home layout (sidebar).
 */ -}}
 {{- define "main" -}}
   {{- $page := . -}}
@@ -19,18 +19,14 @@
 
   {{- /* Two-Column Layout (Matching Home Page) */ -}}
   <div class="l-site__columns">
-    
-    {{- /* Main Content Area (Left) */ -}}
-    <div class="l-site__main">
-      <div class="u-home-main">
-        <div class="u-home-main__sections">
-          
-          {{- /* The parsed Markdown content from the file */ -}}
-          <article class="c-about-content">
-            {{ $page.Content }}
-          </article>
 
-        </div>
+    {{- /* Main content column */ -}}
+    <div class="l-site__article-body">
+      <div class="l-article-content" id="article-container">
+        {{- /* The parsed Markdown content from the file */ -}}
+        <article class="c-article c-prose c-about">
+          {{ $page.Content }}
+        </article>
       </div>
     </div>
 
