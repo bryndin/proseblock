@@ -32,10 +32,8 @@
       <div class="l-article-content" id="article-container">
 
         {{- /* Article body */ -}}
-        <article class="c-article">
-          <div class="c-article__body">
-            {{ $page.Content }}
-          </div>
+        <article class="c-article c-prose">
+          {{ $page.Content }}
         </article>
 
         {{ partial "author-block.html" $page }}
