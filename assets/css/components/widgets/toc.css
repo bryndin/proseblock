@@ -23,6 +23,10 @@
   --_rail-offset-l: 6px;
   --_rail-offset-v: 7px;
 
+  --_separator-muted-opacity: var(--opacity-subtle);
+  --_indent-base: var(--text-base);
+  --_indent-hover-extra: var(--space-2);
+
   --_transition: var(--duration-normal) var(--ease-editorial);
   --_progress-transition: 0.1s var(--ease-editorial);
   --_float-duration: var(--duration-slow) var(--ease-editorial);
@@ -170,36 +174,33 @@
   content: "";
   display: block;
   height: 1px;
-  background-color: var(--_separator);
-  opacity: var(--opacity-subtle);
+  background-color: oklch(from var(--_separator) l c h / var(--_separator-muted-opacity));
   flex-shrink: 0;
   transition: width var(--_transition),
-    background-color var(--_transition),
-    opacity var(--_transition);
+    background-color var(--_transition);
 }
 
 /* Indentation via width increase */
 .c-toc__list nav a::before {
-  width: 1rem;
+  width: var(--_indent-base);
 }
 .c-toc__list nav a:hover::before {
-  width: 1.5rem;
-  background-color: var(--_accent);
-  opacity: var(--_rail-opacity);
+  width: calc(var(--_indent-base) + var(--_indent-hover-extra));
+  background-color: oklch(from var(--_accent) l c h / var(--_rail-opacity));
 }
 
 .c-toc__list nav ul ul a::before {
-  width: 2rem;
+  width: calc(var(--_indent-base) * 2);
 }
 .c-toc__list nav ul ul a:hover::before {
-  width: 2.5rem;
+  width: calc(var(--_indent-base) * 2 + var(--_indent-hover-extra));
 }
 
 .c-toc__list nav ul ul ul a::before {
-  width: 3rem;
+  width: calc(var(--_indent-base) * 3);
 }
 .c-toc__list nav ul ul ul a:hover::before {
-  width: 3.5rem;
+  width: calc(var(--_indent-base) * 3 + var(--_indent-hover-extra));
 }
 
 /* --- Floating Title (Toggled via JS) --- */
@@ -242,8 +243,7 @@
   margin-left: var(--_rail-offset-l);
   margin-top: var(--_rail-offset-v);
   margin-bottom: var(--_rail-offset-v);
-  background-color: var(--_rail-bg);
-  opacity: var(--_rail-opacity);
+  background-color: oklch(from var(--_rail-bg) l c h / var(--_rail-opacity));
   position: relative;
   flex-shrink: 0;
 }

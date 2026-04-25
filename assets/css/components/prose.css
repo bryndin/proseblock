@@ -4,44 +4,57 @@
    Provides a centralized place for typography fixes (tables, blockquotes, code).
    ========================================================================== */
 
-.c-article__body {
-  /* @internal: code-bg, code-padding, table-margin */
-  --_code-bg: var(--bg-secondary);
+.c-prose {
+  /* @api: blockquote-bg, code-bg, highlight-bg, nested-tint */
+  --_blockquote-bg: var(--prose-blockquote-bg);
+  --_code-bg: var(--prose-code-bg);
+
+  /* @internal: code-padding, table-margin, nested-tint-opacity, highlight-opacity */
   --_code-padding: var(--space-6);
   --_table-margin: var(--space-8);
+  --_blockquote_bg: oklch(from var(--text-primary) l c h / var(0.04));
+  --_code_highlighted_lines_bg: oklch(from var(--accent) l c h / var(--opacity-minimal));
 }
 
-@media (width >= 768px) {
-  .c-article__body {
+@media (width >=768px) {
+  .c-prose {
     --_code-padding: var(--space-8);
   }
 }
 
-/* --- Blockquotes --- */
+/* --- Drop cap on first paragraph --- */
 
-.c-article__body blockquote {
-  font-size: inherit;
-
-  /* The root blockquote uses the solid semantic token */
-  background-color: var(--article-blockquote-bg, var(--bg-secondary));
+.c-prose>p:first-child::first-letter {
+  font-size: var(--text-6xl);
+  font-weight: var(--weight-bold);
+  float: left;
+  margin-right: var(--space-3);
+  line-height: var(--leading-none);
+  margin-top: var(--space-1);
+  color: var(--accent);
 }
 
-.c-article__body blockquote p:last-child {
+/* --- Blockquotes --- */
+
+.c-prose blockquote {
+  font-size: inherit;
+  background-color: var(--_blockquote-bg);
+}
+
+.c-prose blockquote p:last-child {
   margin: 0;
 }
 
 /* Nested blockquotes form continuous lines and backgrounds */
-.c-article__body blockquote blockquote {
+.c-prose blockquote blockquote {
   margin: 0;
   padding-inline-end: 0;
-
-  /* Apply a progressive overlay tint for each level of nesting */
-  background-color: color-mix(in srgb, var(--text-primary) 4%, transparent);
+  background-color: var(--_blockquote_bg);
 }
 
 /* --- Tables --- */
 
-.c-article__body table {
+.c-prose table {
   display: block;
   width: 100%;
   max-width: 100%;
@@ -50,8 +63,8 @@
   border-collapse: collapse;
 }
 
-.c-article__body table th,
-.c-article__body table td {
+.c-prose table th,
+.c-prose table td {
   /* Prevent aggressive wrapping of small cells */
   white-space: nowrap;
 }
@@ -64,10 +77,10 @@
   border: none;
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
-  background-color: var(--bg-secondary);
+  background-color: var(--_code-bg);
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
   .chroma {
     padding: var(--space-6);
   }
@@ -83,12 +96,10 @@
   background-color: transparent;
 }
 
-/* - Highlighting specific lines - */
+/* --- Highlighting specific lines --- */
 
-/* Highlighting specific code lines via the hl attribute array */
 .chroma .hl {
-  /* Use a brand-tinted overlay for featured code lines */
-  background-color: color-mix(in srgb, var(--accent) 15%, transparent);
+  background-color: var(--_code_highlighted_lines_bg);
 }
 
 .chroma .lntable td:last-child {

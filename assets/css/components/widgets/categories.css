@@ -1,10 +1,19 @@
-/* --- Category list --- */
+/* ==========================================================================
+   WIDGET: Sidebar Categories
+   .c-sidebar__category-list — Category listing in sidebar context.
+   ========================================================================== */
 
 .c-sidebar__category-list {
+  /* @internal: gap, max-w, muted-opacity, count-nudge */
+  --_gap: var(--space-4);
+  --_max-w: 12.5rem;
+  --_count: oklch(from var(--_text) l c h / var(--opacity-subtle));
+  --_count-nudge: 1px;
+
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  max-width: 12.5rem;
+  gap: var(--_gap);
+  max-width: var(--_max-w);
 }
 
 .c-sidebar__category-link {
@@ -29,7 +38,6 @@
   font-size: var(--text-2xs);
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-widest);
-  color: var(--_text);
-  opacity: 0.4;
-  margin-bottom: 1px;
+  color: var(--_count);
+  margin-bottom: var(--_count-nudge);
 }

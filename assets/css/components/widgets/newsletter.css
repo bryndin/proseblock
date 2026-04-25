@@ -1,25 +1,36 @@
-/* --- Sidebar newsletter form --- */
+/* ==========================================================================
+   WIDGET: Sidebar Newsletter Form
+   .c-sidebar__form — Newsletter subscription form in sidebar context.
+   ========================================================================== */
 
 .c-sidebar__form {
+  /* @internal: gap, border-w, input-border-opacity, placeholder-opacity, submit-icon-size, submit-hover-offset, spinner-size, transition */
+  --_gap: var(--space-6);
+  --_placeholder: oklch(from var(--_text) l c h / var(--opacity-low));
+  --_submit-icon-size: var(--text-base);
+  --_submit-hover-offset: var(--space-1);
+  --_spinner-size: var(--text-base);
+  --_transition: var(--duration-normal) var(--ease-default);
+  --_input-border: var(--border-width-minimal) solid oklch(from var(--_heading-text) l c h / var(--opacity-minimal));
+
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--_gap);
 }
 
 .c-sidebar__input {
   width: 100%;
   background: transparent;
   border: 0;
-  border-bottom: var(--border-width) solid oklch(from var(--_heading-text) l c h / 10%);
+  border-bottom: var(--_input-border);
   padding-block: var(--space-4);
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-widest);
-  transition: border-color var(--duration-normal) var(--ease-default);
+  transition: border-color var(--_transition);
 }
 
 .c-sidebar__input::placeholder {
-  color: var(--_text);
-  opacity: 0.3;
+  color: var(--_placeholder);
 }
 
 .c-sidebar__input:focus {
@@ -39,7 +50,7 @@
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--_heading-text);
-  transition: color var(--duration-normal) var(--ease-default);
+  transition: color var(--_transition);
 }
 
 .c-sidebar__submit:hover {
@@ -47,18 +58,18 @@
 }
 
 .c-sidebar__submit-icon {
-  width: 1rem;
-  height: 1rem;
-  transition: transform var(--duration-normal) var(--ease-default);
+  width: var(--_submit-icon-size);
+  height: var(--_submit-icon-size);
+  transition: transform var(--_transition);
 }
 
 .c-sidebar__submit:hover .c-sidebar__submit-icon {
-  transform: translateX(0.25rem);
+  transform: translateX(var(--_submit-hover-offset));
 }
 
 .c-sidebar__submit-spinner {
-  width: 1rem;
-  height: 1rem;
+  width: var(--_spinner-size);
+  height: var(--_spinner-size);
   color: currentcolor;
 }
 
@@ -79,6 +90,5 @@
 }
 
 .c-sidebar__feedback-message--error {
-  /* Standard error red if no token exists */
-  color: #e53e3e;
+  color: var(--text-error);
 }

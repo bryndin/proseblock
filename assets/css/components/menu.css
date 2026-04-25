@@ -23,21 +23,21 @@
   --_ease-out: var(--ease-editorial);
   --_ease-default: var(--ease-editorial);
 
-  /* Scaling units */
-  --_inner-padding: clamp(2rem, 5vh, 4rem);
-  --_header-mb: clamp(1.5rem, 4vh, 3rem);
-  --_site-title-font: clamp(2.25rem, 4vw, 3.75rem);
-  --_footer-gap: clamp(1.5rem, 4vh, 3rem);
-  --_footer-mt: clamp(2rem, 5vh, 6rem);
-  --_nav-link-padding: clamp(0.25rem, 1vh, 0.5rem);
-  --_nav-link-font: clamp(1.25rem, 4vh, 2.5rem);
-  --_social-size: clamp(1.25rem, 4vh, 2.5rem);
-
+  /* Scaling units (fluid clamps using Tier 1 tokens) */
+  --_inner-padding: clamp(var(--space-8), 5vh, var(--space-16));
+  --_header-mb: clamp(var(--space-6), 4vh, var(--space-12));
+  --_site-title-font: clamp(var(--space-10), 4vw, var(--text-6xl));
+  --_footer-gap: clamp(var(--space-6), 4vh, var(--space-12));
+  --_footer-mt: clamp(var(--space-8), 5vh, var(--space-24));
+  --_nav-link-padding: clamp(var(--space-1), 1vh, var(--space-2));
+  --_nav-link-font: clamp(var(--text-xl), 4vh, var(--text-4xl));
+  --_social-size: clamp(var(--text-xl), 4vh, var(--text-4xl));
 
   /* Fixed values */
   --_backdrop-blur: var(--blur);
-  --_close-pos: var(--space-8);
-  --_close-size: var(--space-8);
+  --_close-btn-hover: oklch(from var(--_text) l c h / var(--_close-opacity-hover)); 
+  --_close-btn-pos: var(--space-8);
+  --_close-btn-size: var(--space-8);
   --_nav-icon-size: var(--text-xl);
   --_link-hover-offset: calc(var(--_nav-icon-size) * var(--motion-shift-sm));
   --_newsletter-max-w: 24rem;
@@ -115,29 +115,28 @@
   transform: translateX(0);
 }
 
-/* --- Fixed Close Button (Kills the Huge X Bug) --- */
+/* --- Fixed Close Button --- */
 
 .c-drawer__close-btn {
   position: absolute;
-  top: var(--_close-pos);
-  right: var(--_close-pos);
+  top: var(--_close-btn-pos);
+  right: var(--_close-btn-pos);
   padding: var(--space-2);
   background: none;
   border: none;
   cursor: pointer;
   color: var(--_text);
-  opacity: 1;
-  transition: opacity var(--_duration-fast) var(--_ease-default);
+  transition: color var(--_duration-fast) var(--_ease-default);
   z-index: var(--_z-close);
 }
 
 .c-drawer__close-btn:hover {
-  opacity: var(--_close-opacity-hover);
+  color: var(--_close-btn-hover);
 }
 
 .c-drawer__close-btn svg {
-  width: var(--_close-size);
-  height: var(--_close-size);
+  width: var(--_close-btn-size);
+  height: var(--_close-btn-size);
   display: block;
 }
 
@@ -211,10 +210,10 @@
   flex-shrink: 0;
 }
 
+/* TODO(DB): Dead code, figure out what is it for and why is it here */
 .c-drawer__link-icon-wrapper {
-  color: var(--_icon);
-  opacity: var(--_link-icon-opacity);
-  transition: opacity var(--_duration-fast) var(--_ease-default);
+  color: oklch(from var(--_icon) l c h / var(--_link-icon-opacity));
+  transition: color var(--_duration-fast) var(--_ease-default);
   display: flex;
 }
 
@@ -225,7 +224,6 @@
 
 .c-drawer__link:hover .c-drawer__link-icon-wrapper {
   color: var(--_accent);
-  opacity: 1;
 }
 
 .c-drawer__link-text {
@@ -269,7 +267,7 @@
   gap: var(--space-2);
   max-width: var(--_newsletter-max-w);
   padding-bottom: var(--_newsletter-pb);
-  border-bottom: 1px solid var(--_newsletter-border);
+  border-bottom: var(--border-width-minimal) solid var(--_newsletter-border);
   transition: border-color var(--_duration-fast) var(--_ease-default);
 }
 

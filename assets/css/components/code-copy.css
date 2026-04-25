@@ -5,7 +5,7 @@
 
 .c-code-copy {
   /* @internal: icon-size, icon-color, icon-offset */
-  --_icon-size: calc(var(--size-icon-ui) / 1.5);
+  --_icon-size: var(--text-sm);
   --_icon-color: var(--icon-secondary);
   --_icon-offset: var(--space-2);
 

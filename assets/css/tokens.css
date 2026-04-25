@@ -123,6 +123,7 @@
   --radius-md: 0.375rem;
   --radius-full: 9999px;
   --border-width-minimal: 1px;
+  --border-width-thin: 2px;
   --border-width-thick: 4px;
 
   /* --- Shadow Primitives --- */
@@ -314,7 +315,7 @@
   --newsletter-accent: var(--accent);
   --newsletter-text: var(--text-secondary);
   --newsletter-heading-text: var(--text-primary);
-  --newsletter-border: var(--border-muted);
+  --newsletter-border: oklch(from var(--border-muted) l c h / var(--opacity-low));
 
   /* Share */
   --share-bg: var(--bg-card);

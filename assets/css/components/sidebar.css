@@ -1,16 +1,17 @@
 /* ==========================================================================
-   COMPONENT: SIDEBAR — @layer components
-   .c-sidebar — Sidebar section with widget blocks.
-   ========================================================================== */
+    COMPONENT: SIDEBAR — @layer components
+    .c-sidebar — Sidebar section with widget blocks.
+    ========================================================================== */
 
 .c-sidebar {
-  /* @api: heading-text, text, accent, icon */
+  /* @api: Ingested Semantics */
   --_heading-text: var(--sidebar-heading-text);
   --_text: var(--sidebar-text);
   --_accent: var(--sidebar-accent);
   --_icon: var(--sidebar-icon);
+  --_widget-icon-color: var(--sidebar-widget-icon);
 
-  /* @internal: gap */
+  /* @internal: Metadata & Structural configuration */
   --_gap: var(--space-32);
 
   display: flex;
@@ -21,8 +22,16 @@
 /* --- Widget block --- */
 
 .c-sidebar__widget {
-  /* @internal: widget-gap */
+  /* @internal: Structural overrides */
   --_widget-gap: var(--space-8);
+  --_header-gap: var(--space-4);
+  --_icon-size: 0.875rem;
+  --_title-size: var(--text-tiny);
+  --_title-weight: var(--weight-black);
+  --_title-tracking: var(--tracking-mega);
+
+  --_body-size: var(--text-sm);
+  --_body-leading: var(--leading-relaxed);
 
   display: flex;
   flex-direction: column;
@@ -44,26 +53,25 @@
 .c-sidebar__widget-header {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--_header-gap);
 }
 
 .c-sidebar__widget-icon {
-  width: 0.875rem;
-  height: 0.875rem;
-  color: var(--_heading-text);
-  opacity: 0.6;
+  width: var(--_icon-size);
+  height: var(--_icon-size);
+  color: var(--_widget-icon-color);
 }
 
 .c-sidebar__widget-title {
-  font-size: 0.6875rem;
-  font-weight: var(--weight-black);
-  letter-spacing: var(--tracking-mega);
+  font-size: var(--_title-size);
+  font-weight: var(--_title-weight);
+  letter-spacing: var(--_title-tracking);
   text-transform: uppercase;
   color: var(--_heading-text);
 }
 
 .c-sidebar__widget-body {
-  font-size: var(--text-sm);
-  line-height: var(--leading-relaxed);
+  font-size: var(--_body-size);
+  line-height: var(--_body-leading);
   color: var(--_text);
 }

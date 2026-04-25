@@ -1,14 +1,20 @@
-/* TODO(DB): Refactor this module to use arguments and configurations */
-
-/* TODO(DB): Should the class names be renamed? */
-
-/* TODO(DB): How to avoid hardcoding the layer name?? */
+/* ==========================================================================
+   COMPONENT: FEATURED PAGINATION — @layer components
+   .c-featured__pagination — Compact paginator for featured carousel.
+   ========================================================================== */
 
 .c-featured__pagination {
-  /* @internal: font-size, gap, icon_size */
+  /* @api: body-text, accent */
+  --_body-text: var(--featured-body-text);
+  --_accent: var(--featured-accent);
+
+  /* @internal: font-size, gap, icon-size, muted-opacity, transition */
   --_font-size: var(--text-xs);
   --_gap: var(--space-6);
-  --_icon_size: 1rem;
+  --_icon-size: var(--text-base);
+  --_btn: oklch(from var(--_body-text) l c h / var(--opacity-subtle));
+  --_indicator: oklch(from var(--_body-text) l c h / var(--opacity-subtle));
+  --_transition: var(--duration-normal) var(--ease-default);
 
   display: flex;
   align-items: center;
@@ -16,25 +22,22 @@
 }
 
 .c-featured__page-btn {
-  color: var(--_body-text);
-  opacity: 0.4;
-  transition: all var(--duration-normal) var(--ease-default);
+  color: var(--_btn);
+  transition: color var(--_transition);
 }
 
 .c-featured__page-btn:hover {
   color: var(--_accent);
-  opacity: 1;
 }
 
 .c-featured__page-btn svg {
-  width: var(--_icon_size);
-  height: var(--_icon_size);
+  width: var(--_icon-size);
+  height: var(--_icon-size);
 }
 
 .c-featured__page-indicator {
-  font-size: var(--text-xs);
+  font-size: var(--_font-size);
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-widest);
-  color: var(--_body-text);
-  opacity: 0.4;
+  color: var(--_indicator);
 }

@@ -11,10 +11,16 @@
   --_heading-text: var(--newsletter-heading-text);
   --_border: var(--newsletter-border);
 
-  /* @internal: padding, margin-top, max-width */
+  /* @internal: padding, padding-md, margin-top, max-width, border-w, border-opacity, submit-icon-size, submit-hover-offset, spinner-size, transition */
   --_padding: var(--space-12);
+  --_padding-md: var(--space-16);
   --_margin-top: var(--space-24);
   --_max-width: 36rem;
+  --_placeholder: oklch(from var(--_text) l c h / var(--opacity-subtle));
+  --_submit-icon-size: var(--text-base);
+  --_submit-hover-offset: var(--space-1);
+  --_spinner-size: var(--text-base);
+  --_transition: var(--duration-normal) var(--ease-default);
 
   padding: var(--_padding);
   background-color: var(--_bg);
@@ -23,7 +29,7 @@
 
 @media (width >= 768px) {
   .c-newsletter {
-    padding: var(--space-16);
+    padding: var(--_padding-md);
   }
 }
 
@@ -42,7 +48,7 @@
 
 .c-newsletter__title {
   font-size: var(--text-3xl);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-normal);
   color: var(--_heading-text);
   margin-bottom: var(--space-6);
 }
@@ -58,8 +64,8 @@
 .c-newsletter__form {
   display: flex;
   flex-direction: column;
-  border-bottom: var(--border-width) solid oklch(from var(--_border) l c h / 20%);
-  transition: border-color var(--duration-normal) var(--ease-default);
+  border-bottom: var(--border-width-minimal) solid var(--_border);
+  transition: border-color var(--_transition);
 }
 
 @media (width >= 640px) {
@@ -70,7 +76,6 @@
 
 .c-newsletter__form:focus-within {
   border-color: var(--_accent);
-  opacity: 1;
 }
 
 .c-newsletter__input {
@@ -84,8 +89,7 @@
 }
 
 .c-newsletter__input::placeholder {
-  color: var(--_text);
-  opacity: 0.4;
+  color: var(--_placeholder);
 }
 
 .c-newsletter__submit {
@@ -99,7 +103,7 @@
   text-transform: uppercase;
   color: var(--_heading-text);
   background: transparent;
-  transition: color var(--duration-normal) var(--ease-default);
+  transition: color var(--_transition);
 }
 
 .c-newsletter__submit:hover {
@@ -107,17 +111,17 @@
 }
 
 .c-newsletter__submit-icon {
-  width: 1rem;
-  height: 1rem;
-  transition: transform var(--duration-normal) var(--ease-default);
+  width: var(--_submit-icon-size);
+  height: var(--_submit-icon-size);
+  transition: transform var(--_transition);
 }
 
 .c-newsletter__submit:hover .c-newsletter__submit-icon {
-  transform: translateX(0.25rem);
+  transform: translateX(var(--_submit-hover-offset));
 }
 
 .c-newsletter__submit-spinner {
-  width: 1rem;
-  height: 1rem;
+  width: var(--_spinner-size);
+  height: var(--_spinner-size);
   color: currentcolor;
 }

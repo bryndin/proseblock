@@ -10,11 +10,16 @@
   --_text-hover: var(--footer-text-hover);
   --_border: var(--footer-border);
 
-  /* @internal: padding-x, padding-y, gap, label-size */
+  /* @internal: padding-x, padding-y, gap, label-size, copyright-opacity, link-opacity, border-w, transition */
   --_padding-x: var(--space-12);
   --_padding-y: var(--space-20);
   --_gap: var(--space-8);
   --_label-size: var(--text-xs);
+  --_copyright: oklch(from var(--_text) l c h / var(--opacity-subtle));
+  --_link: oklch(from var(--_text) l c h / var( --_link-opacity));
+  --_link-opacity: var(--opacity-subtle);
+  --_border-w: var(--border-width-minimal);
+  --_transition: var(--duration-normal) var(--ease-default);
 
   display: flex;
   flex-direction: column;
@@ -23,7 +28,7 @@
   width: 100%;
   padding: var(--_padding-y) var(--_padding-x);
   background-color: var(--_bg);
-  border-top: var(--border-width) solid var(--_border);
+  border-top: var(--_border-w) solid var(--_border);
   gap: var(--_gap);
 }
 
@@ -38,8 +43,7 @@
   font-weight: var(--weight-black);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--_text);
-  opacity: 0.4;
+  color: var(--_copyright)
 }
 
 .c-footer__nav {
@@ -52,13 +56,10 @@
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--_text);
-  opacity: 0.4;
-  transition: opacity var(--duration-normal) var(--ease-default),
-    color var(--duration-normal) var(--ease-default);
+  color: var(--_link);
+  transition: color var(--_transition);
 }
 
 .c-footer__link:hover {
-  opacity: 1;
   color: var(--_text-hover);
 }

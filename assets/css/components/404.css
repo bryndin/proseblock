@@ -5,14 +5,12 @@
 /* --- Hero Modifier --- */
 .c-hero--404 {
   /* @api: title-text, subtitle-text */
-  --_title-text: var(--hero-error-title-text);
-  --_subtitle-text: var(--hero-error-subtitle-text);
+  --_title-text: var(--hero-404-title-text);
+  --_subtitle-text: var(--hero-404-subtitle-text);
 
-  /* @internal: padding-y, padding-y-md, title-size, title-size-md, title-weight, title-tracking, title-spacing, title-lh, subtitle-size, subtitle-max-w, subtitle-lh */
-  --_padding-y: var(--space-24);
-  --_padding-y-md: var(--space-32);
+  /* @internal: padding-y (fluid), title-size (fluid), title-weight, title-tracking, title-spacing, title-lh, subtitle-size, subtitle-max-w, subtitle-lh */
   --_title-size: var(--text-6xl);
-  --_title-size-md: 6rem;
+  --_title-size-fluid: 6rem;
   --_title-weight: var(--weight-extrabold);
   --_title-tracking: var(--tracking-tight);
   --_title-spacing: var(--space-8);
@@ -21,30 +19,19 @@
   --_subtitle-max-w: 42rem;
   --_subtitle-lh: var(--leading-relaxed);
 
-  padding-top: var(--_padding-y);
-  padding-bottom: var(--_padding-y);
-}
-
-@media (width >= 768px) {
-  .c-hero--404 {
-    padding-top: var(--_padding-y-md);
-    padding-bottom: var(--_padding-y-md);
-  }
+  /* fluid: space-24 → space-32 */
+  padding-top: clamp(var(--space-24), 5vw + 0.5rem, var(--space-32));
+  padding-bottom: clamp(var(--space-24), 5vw + 0.5rem, var(--space-32));
 }
 
 .c-hero--404 .c-hero__title {
   color: var(--_title-text);
-  font-size: var(--_title-size);
+  /* fluid: text-6xl → 6rem */
+  font-size: clamp(var(--_title-size), 8vw + 0.5rem, var(--_title-size-fluid));
   font-weight: var(--_title-weight);
   letter-spacing: var(--_title-tracking);
   line-height: var(--_title-lh);
   margin-bottom: var(--_title-spacing);
-}
-
-@media (width >= 768px) {
-  .c-hero--404 .c-hero__title {
-    font-size: var(--_title-size-md);
-  }
 }
 
 .c-hero--404 .c-hero__subtitle {
@@ -55,23 +42,23 @@
 }
 
 /* ==========================================================================
-   COMPONENT: Error Navigation (.c-error-nav)
+   COMPONENT: Error Navigation (.c-404-nav)
    ========================================================================== */
 
-.c-error-nav {
+.c-404-nav {
   /* @api: bg, text-primary, text-secondary, text-accent, text-heading */
-  --_bg: var(--error-nav-bg);
-  --_text-primary: var(--error-nav-text-primary);
-  --_text-secondary: var(--error-nav-text-secondary);
-  --_text-accent: var(--error-nav-text-accent);
-  --_text-heading: var(--error-nav-text-heading);
+  --_bg: var(--nav-404-bg);
+  --_text-primary: var(--nav-404-text-primary);
+  --_text-secondary: var(--nav-404-text-secondary);
+  --_text-accent: var(--nav-404-text-accent);
+  --_text-heading: var(--nav-404-text-heading);
 
-  /* @internal: max-w, padding-y, padding-x, gap, gap-md, transition, home-gap, home-icon-size, home-title-size, home-title-weight, home-title-lh, home-subtitle-size, explore-heading-size, explore-heading-weight, explore-heading-tracking, explore-heading-spacing, list-gap, list-gap-md, link-gap, link-icon-size, link-icon-opacity, link-title-size, link-title-weight, link-subtitle-size, link-subtitle-weight, link-subtitle-tracking */
+  /* @internal: max-w, padding-y, padding-x, gap, gap-md, transition, home-gap, home-icon-size, home-title-size, home-title-weight, home-title-lh, home-subtitle-size, explore-heading-size, explore-heading-weight, explore-heading-tracking, explore-heading-spacing, list-gap, list-gap-md, link-gap, link-icon-size, link-icon-muted-opacity, link-title-size, link-title-weight, link-subtitle-size, link-subtitle-weight, link-subtitle-tracking, icon-hover-offset */
   --_max-w: 1920px;
   --_padding-y: var(--space-24);
   --_padding-x: var(--space-12);
-  --_gap: var(--space-16);
-  --_gap-md: var(--space-32);
+  --_gap-fluid: var(--space-16);
+  --_gap-fluid-max: var(--space-32);
   --_transition: var(--duration-normal) var(--ease-default);
   --_home-gap: var(--space-4);
   --_home-icon-size: var(--text-3xl);
@@ -83,43 +70,44 @@
   --_explore-heading-weight: var(--weight-black);
   --_explore-heading-tracking: var(--tracking-wider);
   --_explore-heading-spacing: var(--space-8);
-  --_list-gap: var(--space-8);
-  --_list-gap-md: var(--space-16);
+  --_list-gap-fluid: var(--space-8);
+  --_list-gap-fluid-max: var(--space-16);
   --_link-gap: var(--space-3);
   --_link-icon-size: var(--text-xl);
-  --_link-icon-opacity: 0.4;
+  --_link-icon: oklch(from var(--_text-secondary) l c h / var(--opacity-subtle));
   --_link-title-size: var(--text-2xl);
   --_link-title-weight: var(--weight-bold);
   --_link-subtitle-size: var(--text-xs);
   --_link-subtitle-weight: var(--weight-bold);
   --_link-subtitle-tracking: var(--tracking-tight);
+  --_home-icon-hover-offset: calc(var(--_home-icon-size) * var(--motion-shift-sm));
 
   background-color: var(--_bg);
 }
 
-.c-error-nav__inner {
+.c-404-nav__inner {
   max-width: var(--_max-w);
   margin: 0 auto;
   padding: var(--_padding-y) var(--_padding-x);
   display: flex;
   flex-direction: column;
-  gap: var(--_gap);
+  /* fluid: space-16 → space-32 */
+  gap: clamp(var(--_gap-fluid), 4vw + 0.5rem, var(--_gap-fluid-max));
 }
 
 @media (width >= 768px) {
-  .c-error-nav__inner {
+  .c-404-nav__inner {
     flex-direction: row;
-    gap: var(--_gap-md);
   }
 }
 
 /* --- Return Home (Left Column) --- */
 
-.c-error-nav__primary {
+.c-404-nav__primary {
   flex-shrink: 0;
 }
 
-.c-error-nav__home-link {
+.c-404-nav__home-link {
   display: inline-flex;
   align-items: center;
   gap: var(--_home-gap);
@@ -128,33 +116,33 @@
   transition: color var(--_transition);
 }
 
-.c-error-nav__home-link:hover {
+.c-404-nav__home-link:hover {
   color: var(--_text-accent);
 }
 
-.c-error-nav__home-icon {
+.c-404-nav__home-icon {
   font-size: var(--_home-icon-size);
   transition: transform var(--_transition);
   display: flex;
 }
 
-.c-error-nav__home-link:hover .c-error-nav__home-icon {
-  transform: translateX(-0.25rem);
+.c-404-nav__home-link:hover .c-404-nav__home-icon {
+  transform: translateX(calc(-1 * var(--_home-icon-hover-offset)));
 }
 
-.c-error-nav__home-text {
+.c-404-nav__home-text {
   display: flex;
   flex-direction: column;
 }
 
-.c-error-nav__home-title {
+.c-404-nav__home-title {
   font-size: var(--_home-title-size);
   font-weight: var(--_home-title-weight);
   line-height: var(--_home-title-lh);
   margin: 0;
 }
 
-.c-error-nav__home-subtitle {
+.c-404-nav__home-subtitle {
   font-size: var(--_home-subtitle-size);
   color: var(--_text-secondary);
   margin-top: var(--space-1);
@@ -162,15 +150,15 @@
 
 /* --- Continue Exploring (Right Column) --- */
 
-.c-error-nav__secondary {
+.c-404-nav__secondary {
   flex: 1;
 }
 
-.c-error-nav__heading-wrapper {
+.c-404-nav__heading-wrapper {
   margin-bottom: var(--_explore-heading-spacing);
 }
 
-.c-error-nav__heading {
+.c-404-nav__heading {
   font-size: var(--_explore-heading-size);
   font-weight: var(--_explore-heading-weight);
   letter-spacing: var(--_explore-heading-tracking);
@@ -179,60 +167,57 @@
   margin: 0;
 }
 
-.c-error-nav__list {
+.c-404-nav__list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--_list-gap);
+  /* fluid: space-8 → space-16 */
+  gap: clamp(var(--_list-gap-fluid), 2vw + 0.25rem, var(--_list-gap-fluid-max));
 }
 
 @media (width >= 768px) {
-  .c-error-nav__list {
+  .c-404-nav__list {
     flex-direction: row;
-    gap: var(--_list-gap-md);
   }
 }
 
-.c-error-nav__link {
+.c-404-nav__link {
   display: flex;
   align-items: center;
   gap: var(--_link-gap);
   text-decoration: none;
 }
 
-.c-error-nav__link-icon {
+.c-404-nav__link-icon {
   font-size: var(--_link-icon-size);
-  color: var(--_text-secondary);
-  opacity: var(--_link-icon-opacity);
-  transition: color var(--_transition), opacity var(--_transition);
+  color: var(--_link-icon);
+  transition: color var(--_transition);
   display: flex;
 }
 
-.c-error-nav__link:hover .c-error-nav__link-icon {
+.c-404-nav__link:hover .c-404-nav__link-icon {
   color: var(--_text-accent);
-  opacity: 1;
 }
 
-.c-error-nav__link-text {
-  /* Critical constraint to prevent spans from stacking inline incorrectly */
+.c-404-nav__link-text {
   display: flex;
   flex-direction: column;
 }
 
-.c-error-nav__link-title {
+.c-404-nav__link-title {
   font-size: var(--_link-title-size);
   font-weight: var(--_link-title-weight);
   color: var(--_text-primary);
   transition: color var(--_transition);
 }
 
-.c-error-nav__link:hover .c-error-nav__link-title {
+.c-404-nav__link:hover .c-404-nav__link-title {
   color: var(--_text-accent);
 }
 
-.c-error-nav__link-subtitle {
+.c-404-nav__link-subtitle {
   font-size: var(--_link-subtitle-size);
   font-weight: var(--_link-subtitle-weight);
   text-transform: uppercase;

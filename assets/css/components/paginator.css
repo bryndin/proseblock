@@ -11,14 +11,18 @@
   --_hover-bg: var(--paginator-hover-bg);
   --_border: var(--paginator-border);
 
-  /* @internal: padding-top */
+  /* @internal: padding-top, border-w, icon-size, number-opacity, ellipsis-opacity, active-border-w, transition */
   --_padding-top: var(--space-20);
+  --_icon-size: var(--text-lg);
+  --_number: oklch(from var(--_text-muted) l c h / var(--opacity-low));
+  --_ellipsis: oklch(from var(--_text-muted) l c h / var(--opacity-low));
+  --_transition: var(--duration-normal) var(--ease-default);
 
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: var(--_padding-top);
-  border-top: var(--border-width) solid var(--_border);
+  border-top: var(--border-width-minimal) solid var(--_border);
 }
 
 .c-paginator__btn {
@@ -26,7 +30,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--space-4);
-  transition: background-color var(--duration-normal) var(--ease-default);
+  transition: background-color var(--_transition);
 }
 
 .c-paginator__btn:hover {
@@ -34,8 +38,8 @@
 }
 
 .c-paginator__btn svg {
-  width: 1.125rem;
-  height: 1.125rem;
+  width: var(--_icon-size);
+  height: var(--_icon-size);
 }
 
 .c-paginator__numbers {
@@ -56,19 +60,16 @@
 .c-paginator__number {
   padding-bottom: var(--space-2);
   line-height: var(--leading-none);
-  color: var(--_text-muted);
-  opacity: 0.3;
+  color: var(--_number);
 }
 
 .c-paginator__number--active {
   color: var(--_text);
-  opacity: 1;
-  border-bottom: 2px solid var(--_active-border);
+  border-bottom: var(--border-width-thin) solid var(--_active-border);
 }
 
 .c-paginator__ellipsis {
-  color: var(--_text-muted);
-  opacity: 0.2;
+  color: var(--_ellipsis);
   padding-bottom: var(--space-2);
   line-height: var(--leading-none);
 }

@@ -15,7 +15,7 @@
   flex-direction: column;
   gap: var(--space-8);
   font-size: var(--text-base);
-  line-height: var(--leading-article);
+  line-height: var(--leading-normal);
   color: var(--_text);
   font-weight: var(--weight-light);
 

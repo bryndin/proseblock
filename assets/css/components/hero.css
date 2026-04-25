@@ -28,7 +28,7 @@
   width: 100%;
   padding: var(--_padding-y) var(--_padding-x);
   background-color: var(--_bg);
-  border: var(--border-width) solid var(--_border);
+  border: var(--border-width-minimal) solid var(--_border);
   margin-bottom: var(--space-16);
 }
 
@@ -75,7 +75,6 @@
   color: var(--_title-text);
   margin-bottom: var(--space-10);
 }
-
 
 /* --- Home hero subtitle --- */
 
