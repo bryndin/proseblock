@@ -10,7 +10,7 @@
   --_submit-icon-size: var(--text-base);
   --_submit-hover-offset: var(--space-1);
   --_spinner-size: var(--text-base);
-  --_transition: var(--duration-normal) var(--ease-default);
+  --_transition: var(--transition-normal-ease-default);
   --_input-border: var(--border-width-minimal) solid oklch(from var(--_heading-text) l c h / var(--opacity-minimal));
 
   display: flex;

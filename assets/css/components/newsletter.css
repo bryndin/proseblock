@@ -20,7 +20,7 @@
   --_submit-icon-size: var(--text-base);
   --_submit-hover-offset: var(--space-1);
   --_spinner-size: var(--text-base);
-  --_transition: var(--duration-normal) var(--ease-default);
+  --_transition: var(--transition-normal-ease-default);
 
   padding: var(--_padding);
   background-color: var(--_bg);

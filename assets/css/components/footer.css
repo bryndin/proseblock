@@ -19,7 +19,7 @@
   --_link: oklch(from var(--_text) l c h / var( --_link-opacity));
   --_link-opacity: var(--opacity-subtle);
   --_border-w: var(--border-width-minimal);
-  --_transition: var(--duration-normal) var(--ease-default);
+  --_transition: var(--transition-normal-ease-default);
 
   display: flex;
   flex-direction: column;

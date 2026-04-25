@@ -15,7 +15,7 @@
   /* @internal: padding, border-w, border-opacity, content-max-w, transition */
   --_padding: var(--space-12);
   --_content-max-w: 32rem;
-  --_transition: var(--duration-normal) var(--ease-default);
+  --_transition: var(--transition-normal-ease-default);
 
   position: relative;
   overflow: hidden;

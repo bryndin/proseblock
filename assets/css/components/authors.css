@@ -73,7 +73,7 @@
   --_padding-x: var(--space-4);
   --_padding-y: var(--space-2);
   --_border-w: var(--border-width-minimal);
-  --_transition: var(--duration-normal) var(--ease-default);
+  --_transition: var(--transition-normal-ease-default);
 
   display: flex;
   align-items: baseline;

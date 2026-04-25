@@ -88,7 +88,7 @@
   /* @internal: Configuration & Layout */
   --_gap: var(--space-8);
   --_gap-md: var(--space-16);
-  --_transition: var(--duration-normal) var(--ease-default);
+  --_transition: var(--transition-normal-ease-default);
 
   /* Date Badge */
   --_date-pt: var(--space-1);

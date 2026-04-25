@@ -16,7 +16,7 @@
   --_icon-size: var(--text-lg);
   --_number: oklch(from var(--_text-muted) l c h / var(--opacity-low));
   --_ellipsis: oklch(from var(--_text-muted) l c h / var(--opacity-low));
-  --_transition: var(--duration-normal) var(--ease-default);
+  --_transition: var(--transition-normal-ease-default);
 
   display: flex;
   justify-content: space-between;

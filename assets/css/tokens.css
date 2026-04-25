@@ -229,6 +229,9 @@
   --blur: var(--space-1);
   --filter: grayscale(100%) brightness(1.05);
 
+  /* Transition */
+  --transition-normal-ease-default: var(--duration-normal) var(--ease-default);
+
   /* =====================================================================
      TIER 2.2: COMPONENT SEMANTICS
      Component-specific hooks. Inherits Dark Mode via Tier 2.1 mapping.
@@ -418,7 +421,7 @@
   --accent-dim: var(--color-primary);
   --accent-container: var(--color-primary-dim);
   
-  --border-subtle: var(--color-gray-875);
+  --border-subtle: var(--color-gray-850);
   --border-muted: var(--color-gray-700);
   --outline: var(--color-gray-500);
 

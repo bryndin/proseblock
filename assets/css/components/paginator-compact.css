@@ -14,7 +14,7 @@
   --_icon-size: var(--text-base);
   --_btn: oklch(from var(--_body-text) l c h / var(--opacity-subtle));
   --_indicator: oklch(from var(--_body-text) l c h / var(--opacity-subtle));
-  --_transition: var(--duration-normal) var(--ease-default);
+  --_transition: var(--transition-normal-ease-default);
 
   display: flex;
   align-items: center;

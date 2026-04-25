@@ -26,7 +26,7 @@
   --_cat-size: var(--text-xs);
   --_cat-tracking: var(--tracking-widest);
   --_excerpt-max-w: 42rem;
-  --_transition: var(--duration-normal) var(--ease-default);
+  --_transition: var(--transition-normal-ease-default);
 
   padding: var(--_padding);
   margin-inline: calc(-1 * var(--_padding));

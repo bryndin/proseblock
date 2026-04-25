@@ -68,7 +68,7 @@ p {
 
 a:hover {
   color: var(--accent);
-  transition: color var(--duration-normal) var(--ease-default);
+  transition: color var(--transition-normal-ease-default);
 }
 
 /* --- Lists (Markdown output) --- */

@@ -124,7 +124,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color var(--duration-normal) var(--ease-default);
+  transition: color var(--transition-normal-ease-default);
 }
 
 .c-header__icon-btn:hover {

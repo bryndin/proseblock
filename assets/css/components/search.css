@@ -227,7 +227,7 @@
   --_toggle-hover: var(--bg-elevated);
   --_icon-opacity: var(--opacity-subtle);
   --_icon-size: var(--text-lg);
-  --_transition: var(--duration-normal) var(--ease-default);
+  --_transition: var(--transition-normal-ease-default);
 
   position: relative;
   width: 100%;
@@ -301,7 +301,7 @@
   font-weight: var(--weight-light);
   color: var(--text-primary);
   cursor: pointer;
-  transition: background-color var(--duration-normal) var(--ease-default);
+  transition: background-color var(--transition-normal-ease-default);
 }
 
 .c-dropdown__option:hover,
@@ -343,7 +343,7 @@
   font-weight: var(--weight-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-widest);
-  transition: color var(--duration-normal) var(--ease-default);
+  transition: color var(--transition-normal-ease-default);
 }
 
 .c-search-suggested__count {

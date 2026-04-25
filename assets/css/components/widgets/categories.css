@@ -31,7 +31,7 @@
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  transition: color var(--duration-normal) var(--ease-default);
+  transition: color var(--transition-normal-ease-default);
 }
 
 .c-sidebar__category-count {

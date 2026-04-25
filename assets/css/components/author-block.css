@@ -24,7 +24,7 @@
   --_more-icon-size: var(--text-base);
   --_more-hover-offset: calc(var(--_more-icon-size) * var(--motion-shift-sm));
 
-  --_transition: var(--duration-normal) var(--ease-default);
+  --_transition: var(--transition-normal-ease-default);
 
   display: flex;
   flex-direction: column;

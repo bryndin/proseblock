@@ -59,7 +59,7 @@
   --_padding-x: var(--space-12);
   --_gap-fluid: var(--space-16);
   --_gap-fluid-max: var(--space-32);
-  --_transition: var(--duration-normal) var(--ease-default);
+  --_transition: var(--transition-normal-ease-default);
   --_home-gap: var(--space-4);
   --_home-icon-size: var(--text-3xl);
   --_home-title-size: var(--text-xl);

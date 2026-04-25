@@ -6,7 +6,7 @@
 .c-sidebar__link {
   /* @internal: underline-offset, transition */
   --_underline-offset: var(--space-2);
-  --_transition: var(--duration-normal) var(--ease-default);
+  --_transition: var(--transition-normal-ease-default);
 
   display: inline-block;
   font-size: var(--text-xs);

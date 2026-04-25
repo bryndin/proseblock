@@ -25,7 +25,7 @@
   --_label-size: var(--text-sm);
   --_trigger-gap: var(--space-3);
   --_trigger-icon-size: var(--text-xl);
-  --_transition: var(--duration-normal) var(--ease-default);
+  --_transition: var(--transition-normal-ease-default);
   --_transition-fast: var(--duration-fast) var(--ease-default);
   --_offset-y: var(--space-2);
   --_offset-y-full: 100%;
