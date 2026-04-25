@@ -29,7 +29,7 @@
   --_icon-size-menu: 1.5rem;
   --_z-index: var(--z-header);
 
-  --_progress-transition: height 0.1s var(--ease-out);
+  --_progress-transition: height var(--duration-faster) var(--ease-out);
   --_float-max-h: 10rem;
 
   display: flex;

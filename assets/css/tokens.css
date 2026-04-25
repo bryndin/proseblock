@@ -149,6 +149,7 @@
   --opacity-full: 1;
 
   /* --- Transitions --- */
+  --duration-faster: 100ms;
   --duration-fast: 150ms;
   --duration-normal: 300ms;
   --duration-slow: 600ms;
