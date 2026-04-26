@@ -1,7 +1,7 @@
 {{- /* Newsletter CTA */ -}}
 {{- $kwargs := . }}
 {{ $enabled := $kwargs.enabled | default site.Params.enableNewsletter }}
-{{ $title := $kwargs.title | default site.Params.newsletter.title | default "Stay Updated" }}
+{{ $title := $kwargs.title | default site.Params.newsletter.title }}
 {{ $frequencyText := $kwargs.frequencyText | default site.Params.newsletter.frequencyText }}
 {{ $action := $kwargs.action | default site.Params.newsletter.action }}
 

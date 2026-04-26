@@ -12,8 +12,8 @@
 
   {{ partial "hero.html" (dict
     "modifier" "taxonomy"
-    "title" ($page.Title | default "Categories")
-    "subtitle" ($page.Content | default "A curated structural hierarchy of our editorial archives. Organized by discipline, medium, and philosophical intent.")
+    "title" $page.Title
+    "subtitle" $page.Content
   ) }}
 
   <div class="l-site__columns">

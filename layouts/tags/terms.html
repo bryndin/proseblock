@@ -11,8 +11,8 @@
 
   {{ partial "hero.html" (dict
     "modifier" "taxonomy"
-    "title" ($page.Title | default "Tags")
-    "subtitle" ($page.Content | default "A curated structural index of materials, aesthetics, and conceptual frameworks defining our architectural permanence.")
+    "title" $page.Title
+    "subtitle" $page.Content
   ) }}
 
   <div class="l-site__columns">

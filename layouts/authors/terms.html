@@ -18,8 +18,8 @@
   {{- /* 2. Taxonomy Hero */ -}}
   {{ partial "hero.html" (dict
     "modifier" "taxonomy"
-    "title" ($page.Title | default "Authors")
-    "subtitle" ($page.Content | default "Meet the minds behind the curation. A collective of minimalists and digital architects focused on high-density information and structural clarity.")
+    "title" $page.Title
+    "subtitle" $page.Content
   ) }}
 
   {{- /* 3. Article Layout Grid (80/20 Split from page.html) */ -}}
