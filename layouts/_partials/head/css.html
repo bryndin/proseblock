@@ -6,15 +6,17 @@
 {{- $page := . -}}
 {{- $syntaxLibHint := "github-dark.css" -}}
 
-{{- $layerNames := slice "reset" "tokens" "base" "layout" "components" "utilities" -}}
+{{- $layerNames := slice "reset" "tokens" "vendor" "base" "prose" "layout" "components" "utilities" -}}
 
 {{- /* Syntax-highlighting lib must be loaded before the components */ -}}
 {{- $layerMap := dict
   "reset"      (slice "css/reset.css")
   "tokens"     (slice "css/tokens.css")
+  "vendor"     (slice "vendor/**/*.css")
   "base"       (slice "css/base.css" "css/base/*.css")
+  "prose"      (slice "css/prose/*.css")
   "layout"     (slice "css/layout/*.css")
-  "components" (slice "css/syntax-highlighting/*.css" "css/components/*.css" "css/components/widgets/*.css")
+  "components" (slice "css/components/*.css" "css/components/widgets/*.css")
   "utilities"  (slice "css/utilities.css")
 -}}
 
