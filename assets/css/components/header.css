@@ -10,6 +10,9 @@
   --_icon: var(--header-icon);
   --_transition: var(--header-transition-smooth);
   --_float-duration: var(--header-floating-duration);
+  --_title-tracking: var(--header-title-tracking);
+  --_title-tracking-md: var(--header-title-tracking-md);
+  --_title-tracking-lg: var(--header-title-tracking-lg);
 
   /* @internal: Metadata & Structural configuration */
   --_height: var(--space-24);
@@ -17,9 +20,6 @@
   --_title-size: var(--text-xl);
   --_title-weight: var(--weight-bold);
   --_title-leading: var(--leading-xl);
-  --_title-tracking: var(--header-title-tracking);
-  --_title-tracking-md: var(--header-title-tracking-md);
-  --_title-tracking-lg: var(--header-title-tracking-lg);
 
   /* Offsets for transform centering during tracking increases */
   --_title-offset-md: 0.3em;

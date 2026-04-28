@@ -3,20 +3,19 @@
      ========================================================================== */
 
 .c-hero--author .c-hero__inner--author {
+  /* @api: sizing and colors */
+  --_avatar-filter: var(--author-hero-avatar-filter);
+  --_avatar-size: var(--author-hero-avatar-size);
+  --_avatar-size-mobile: var(--author-hero-avatar-size-mobile);
+  --_content-max-width: var(--author-hero-content-max-width);
+  --_bio-text: var(--author-bio-text);
+  --_social_text: var(--author-social-text);
+  
   /* @internal: gap, sizes and colors */
-  --_gap: var(--space-12);
-
-  --_avatar-filter: var(--filter);
-  --_avatar-size-mobile: 10rem;
-  --_avatar-size: 14rem;
-
-  --_content-max-width: 56rem;
-
-  --_bio-text: var(--text-secondary);
+  --_gap: var(--author-hero-gap);
 
   --_social-icon-size: var(--text-xl);
-  --_social-icon-color: var(--hero-meta-text);
-  --_social_text: var(--text-tertiary);
+  --_social-icon-color: var(--_social_text);
   --_social_hover: var(--accent);
 
   display: flex;

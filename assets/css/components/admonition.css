@@ -63,25 +63,31 @@
 /* --- Modifiers for Types --- */
 
 .c-alert--note {
+  /* @api: border-color */
   --_border-color: var(--alert-border-note);
 }
 
 .c-alert--tip {
+  /* @api: border-color */
   --_border-color: var(--alert-border-tip);
 }
 
 .c-alert--important {
+  /* @api: border-color */
   --_border-color: var(--alert-border-important);
 }
 
 .c-alert--warning {
+  /* @api: border-color */
   --_border-color: var(--alert-border-warning);
 }
 
 .c-alert--caution {
+  /* @api: border-color */
   --_border-color: var(--alert-border-caution);
 }
 
 .c-alert--alert {
+  /* @api: border-color */
   --_border-color: var(--alert-border-generic);
 }

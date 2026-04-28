@@ -39,14 +39,17 @@
 }
 
 .c-sidebar__widget--newsletter {
+  /* @internal: gap */
   --_widget-gap: var(--space-8);
 }
 
 .c-sidebar__widget--notice {
+  /* @internal: gap */
   --_widget-gap: var(--space-6);
 }
 
 .c-sidebar__widget--categories {
+  /* @internal: gap */
   --_widget-gap: var(--space-10);
 }
 

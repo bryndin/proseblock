@@ -4,7 +4,6 @@
 
 .c-hero--search {
   /* @api: Ingested Semantics */
-  --_bg: var(--bg-secondary);
   --_text: var(--search-text);
   --_placeholder: var(--search-placeholder);
   --_accent: var(--search-accent);
@@ -14,6 +13,7 @@
   --_indicator-bar: var(--search-indicator-accent);
 
   /* @internal: Metadata & Layout */
+  --_bg: var(--bg-secondary);
   --_padding: var(--space-24);
   --_icon-size: var(--text-lg);
   --_label-size: var(--text-xs);
@@ -108,10 +108,10 @@
 
 .c-search-results {
   /* @api: bg, shadow */
-  --_bg: var(--bg-card);
   --_shadow: var(--search-modal-shadow);
 
   /* @internal: min-h, padding, padding-md */
+  --_bg: var(--bg-card);
   --_min-h: 600px;
   --_padding: var(--space-8);
   --_padding-md: var(--space-12);
@@ -139,7 +139,7 @@
 }
 
 .c-search-widget__title {
-  /* @api: text */
+  /* @internal: text */
   --_text: var(--text-secondary);
 
   font-size: var(--text-xs);
@@ -207,7 +207,7 @@
 }
 
 .c-search-filter__label {
-  /* @api: text */
+  /* @internal: text */
   --_text: var(--text-secondary);
 
   display: block;
@@ -326,7 +326,7 @@
 }
 
 .c-search-suggested__link {
-  /* @api: text, accent, count */
+  /* @internal: text, accent, count */
   --_text: var(--text-primary);
   --_accent: var(--accent);
   --_count: var(--text-secondary);

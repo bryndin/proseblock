@@ -12,9 +12,6 @@
   --_accent: var(--hero-accent);
   --_border: var(--hero-border);
 
-  /* @provides: Contextual Overrides */
-  --metadata-text: var(--_meta-color);
-
   /* @internal: Geometry & Layout */
   --_padding-x: var(--space-12);
   --_padding-y: var(--space-24);
@@ -32,7 +29,7 @@
   margin-bottom: var(--space-16);
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
   .c-hero {
     --_padding-x: var(--space-20);
     --_title-size: var(--text-5xl);
@@ -40,7 +37,7 @@
   }
 }
 
-@media (width >= 1024px) {
+@media (width >=1024px) {
   .c-hero {
     --_title-size: var(--text-7xl);
     --_title-leading: var(--leading-none);
@@ -79,7 +76,7 @@
 /* --- Home hero subtitle --- */
 
 .c-hero__subtitle,
-.c-hero__subtitle > p {
+.c-hero__subtitle>p {
   font-size: var(--_subtitle-size);
   font-weight: var(--weight-normal);
   line-height: var(--_subtitle-leading);
@@ -87,10 +84,16 @@
   max-width: var(--_max-width-subtitle);
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
+
   .c-hero__subtitle,
-  .c-hero__subtitle > p {
+  .c-hero__subtitle>p {
     --_subtitle-size: var(--text-xl);
     --_subtitle-leading: var(--leading-xl);
   }
+}
+
+/* @provides: Contextual child overrides */
+.c-hero .c-metadata {
+  --metadata-text: var(--_meta-color);
 }

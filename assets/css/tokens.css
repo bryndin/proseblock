@@ -314,6 +314,14 @@
   --author-body-text: var(--text-secondary);
   --author-avatar-icon: oklch(from var(--text-secondary) l c h / var(--opacity-subtle));
 
+  /* Author Page */
+  --author-hero-avatar-filter: var(--filter);
+  --author-hero-avatar-size-mobile: 10rem;
+  --author-hero-avatar-size: 14rem;
+  --author-hero-content-max-width: 56rem;
+  --author-bio-text: var(--text-secondary);
+  --author-social-text: var(--text-tertiary);
+
   /* Newsletter */
   --newsletter-bg: var(--bg-secondary);
   --newsletter-accent: var(--accent);

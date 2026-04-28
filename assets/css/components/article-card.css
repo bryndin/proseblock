@@ -12,9 +12,6 @@
   --_meta-color: var(--article-card-meta-text);
   --_accent: var(--article-card-accent);
 
-  /* @provides: Contextual Overrides */
-  --metadata-text: var(--_meta-color);
-
   /* @internal: padding, spacing, sizes, defaults */
   --_padding: var(--space-6);
   --_content-gap: var(--space-6);
@@ -88,8 +85,13 @@
   gap: var(--_gap);
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
   .c-article-list {
     gap: var(--_gap-md);
   }
+}
+
+/* @provides: Contextual child overrides */
+.c-article-card .c-metadata {
+  --metadata-text: var(--_meta-color);
 }

@@ -116,11 +116,9 @@
 }
 
 .c-tag-bucket__title {
-  /* @api: text, border */
+  /* @internal: font-size, font-weight, tracking, muted-opacity, border-w */
   --_text: var(--text-secondary);
   --_border: var(--border-muted);
-
-  /* @internal: font-size, font-weight, tracking, muted-opacity, border-w */
   --_font-size: var(--text-xs);
   --_font-weight: var(--weight-bold);
   --_tracking: var(--tracking-mega);
