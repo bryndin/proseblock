@@ -17,6 +17,10 @@
   max-width: var(--_max-w);
 }
 
+.c-widget-categories[hidden] {
+  display: none !important;
+}
+
 /* Header */
 
 .c-widget-categories__header {

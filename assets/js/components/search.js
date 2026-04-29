@@ -5,6 +5,8 @@ export function initSearchPage() {
   const resultsContainer = document.getElementById('search-results-container');
   const catContainer = document.getElementById('dynamic-categories-container');
   const tagContainer = document.getElementById('dynamic-tags-container');
+  const catWidget = catContainer?.closest('.c-widget-categories');
+  const tagWidget = tagContainer?.closest('.c-widget-tags');
   if (!targetElement || !resultsContainer) return;
 
   // ==========================================================================
@@ -180,6 +182,10 @@ export function initSearchPage() {
         .replace(/{NAME_LOWER}/g, name.toLowerCase())
         .replace(/{COUNT}/g, String(count).padStart(2, '0'));
     }).join('');
+
+    // Hide widgets when empty
+    if (catWidget) catWidget.hidden = sortedCats.length === 0;
+    if (tagWidget) tagWidget.hidden = sortedTags.length === 0;
   }
 
   // Attach delegated click events once (works for dynamically added buttons)

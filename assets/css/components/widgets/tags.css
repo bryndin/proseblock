@@ -17,6 +17,10 @@
   max-width: var(--_max-w);
 }
 
+.c-widget-tags[hidden] {
+  display: none !important;
+}
+
 /* Header */
 
 .c-widget-tags__header {
