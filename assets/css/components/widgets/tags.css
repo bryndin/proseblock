@@ -72,10 +72,14 @@
   --_item-name: var(--_text-secondary);
   --_item-count: oklch(from var(--_text-secondary) l c h / var(--opacity-subtle));
 
+  /* Reset button styles when used as a filter trigger */
+  all: unset;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  text-decoration: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
 }
 
 .c-widget-tags__link:hover {

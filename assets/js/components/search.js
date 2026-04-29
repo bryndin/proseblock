@@ -174,10 +174,11 @@ export function initSearchPage() {
         .replace(/{COUNT}/g, String(count).padStart(2, '0')); // Match designer's zero-padded counts
     }).join('');
 
-    tagContainer.innerHTML = sortedTags.map(([name]) => {
+    tagContainer.innerHTML = sortedTags.map(([name, count]) => {
       return tagTpl
         .replace(/{NAME}/g, name)
-        .replace(/{NAME_LOWER}/g, name.toLowerCase());
+        .replace(/{NAME_LOWER}/g, name.toLowerCase())
+        .replace(/{COUNT}/g, String(count).padStart(2, '0'));
     }).join('');
 
     // Attach dynamic click events
@@ -185,7 +186,7 @@ export function initSearchPage() {
       btn.addEventListener('click', (e) => {
         const val = e.currentTarget.getAttribute('data-filter-category');
         const dropdownValueSpan = document.querySelector('#dropdown-category .c-dropdown__value');
-        if (dropdownValueSpan) dropdownValueSpan.textContent = e.currentTarget.querySelector('.c-search-suggested__text').textContent;
+        if (dropdownValueSpan) dropdownValueSpan.textContent = e.currentTarget.querySelector('.c-widget-categories__name').textContent;
 
         filterCategory.value = val;
         applyFiltersAndSearch();
@@ -196,7 +197,7 @@ export function initSearchPage() {
     tagContainer.querySelectorAll('button').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const val = e.currentTarget.getAttribute('data-filter-tag');
-        targetElement.value = val;
+        targetElement.value = '#' + val;
         applyFiltersAndSearch();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
