@@ -88,10 +88,17 @@ export function initSearchPage() {
     const currentUnixTime = Math.floor(Date.now() / 1000);
 
     const filteredData = indexData.filter(item => {
-      const matchesText = !query ||
-        (item.title && item.title.toLowerCase().includes(query)) ||
-        (item.summary && item.summary.toLowerCase().includes(query)) ||
-        (item.content && item.content.toLowerCase().includes(query));
+      let matchesText = !query;
+      if (!matchesText) {
+        if (query.startsWith('#')) {
+          const tagQuery = query.slice(1);
+          matchesText = item.tags && item.tags.some(t => t.toLowerCase() === tagQuery);
+        } else {
+          matchesText = (item.title && item.title.toLowerCase().includes(query)) ||
+            (item.summary && item.summary.toLowerCase().includes(query)) ||
+            (item.content && item.content.toLowerCase().includes(query));
+        }
+      }
 
       const matchesCat = selectedCat === 'all' ||
         (item.categories && item.categories.map(c => c.toLowerCase()).includes(selectedCat));
