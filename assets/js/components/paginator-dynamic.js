@@ -19,8 +19,9 @@ export function renderPaginator(config) {
   const nav = document.getElementById('dynamic-paginator');
   if (!nav) return;
 
-  // Toggle visibility
+  // Toggle visibility and store current page
   nav.hidden = totalPages <= 1;
+  nav.dataset.currentPage = currentPage;
   if (totalPages <= 1) return;
 
   // Get hardcoded elements
@@ -60,8 +61,10 @@ export function renderPaginator(config) {
     if (!btn) return;
     e.preventDefault();
     const page = btn.dataset.page;
-    const newPage = page === 'prev' ? currentPage - 1
-                  : page === 'next' ? currentPage + 1
+    // Read current page from nav data attribute to avoid stale closure
+    const navCurrentPage = parseInt(nav.dataset.currentPage, 10) || currentPage;
+    const newPage = page === 'prev' ? navCurrentPage - 1
+                  : page === 'next' ? navCurrentPage + 1
                   : parseInt(page, 10);
     onPageChange(newPage);
   };

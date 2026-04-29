@@ -43,18 +43,12 @@
 }
 
 .c-paginator__numbers {
-  display: none;
+  display: flex;
   gap: var(--space-12);
   font-size: var(--text-xs);
   font-weight: var(--weight-black);
   letter-spacing: var(--tracking-widest);
   align-items: flex-end;
-}
-
-@media (width >= 768px) {
-  .c-paginator__numbers {
-    display: flex;
-  }
 }
 
 .c-paginator__number {
@@ -75,6 +69,7 @@
 }
 
 /* Ensure hidden attribute overrides any display properties */
+.c-paginator[hidden],
 .c-paginator [hidden] {
   display: none !important;
 }

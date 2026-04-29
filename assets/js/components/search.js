@@ -3,6 +3,8 @@ import { renderPaginator } from './paginator-dynamic.js';
 export function initSearchPage() {
   const targetElement = document.getElementById('search-input');
   const resultsContainer = document.getElementById('search-results-container');
+  const catContainer = document.getElementById('dynamic-categories-container');
+  const tagContainer = document.getElementById('dynamic-tags-container');
   if (!targetElement || !resultsContainer) return;
 
   // ==========================================================================
@@ -146,8 +148,6 @@ export function initSearchPage() {
   // 4. Intelligent Suggestions
   // ==========================================================================
   function updateSuggestions(data) {
-    const catContainer = document.getElementById('dynamic-categories-container');
-    const tagContainer = document.getElementById('dynamic-tags-container');
     if (!catContainer || !tagContainer) return;
 
     const catLimit = parseInt(catContainer.getAttribute('data-limit'), 10) || 5;
@@ -180,27 +180,31 @@ export function initSearchPage() {
         .replace(/{NAME_LOWER}/g, name.toLowerCase())
         .replace(/{COUNT}/g, String(count).padStart(2, '0'));
     }).join('');
+  }
 
-    // Attach dynamic click events
-    catContainer.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const val = e.currentTarget.getAttribute('data-filter-category');
-        const dropdownValueSpan = document.querySelector('#dropdown-category .c-dropdown__value');
-        if (dropdownValueSpan) dropdownValueSpan.textContent = e.currentTarget.querySelector('.c-widget-categories__name').textContent;
+  // Attach delegated click events once (works for dynamically added buttons)
+  if (catContainer) {
+    catContainer.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-filter-category]');
+      if (!btn) return;
+      const val = btn.getAttribute('data-filter-category');
+      const dropdownValueSpan = document.querySelector('#dropdown-category .c-dropdown__value');
+      if (dropdownValueSpan) dropdownValueSpan.textContent = btn.querySelector('.c-widget-categories__name').textContent;
 
-        filterCategory.value = val;
-        applyFiltersAndSearch();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+      filterCategory.value = val;
+      applyFiltersAndSearch();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+  }
 
-    tagContainer.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const val = e.currentTarget.getAttribute('data-filter-tag');
-        targetElement.value = '#' + val;
-        applyFiltersAndSearch();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+  if (tagContainer) {
+    tagContainer.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-filter-tag]');
+      if (!btn) return;
+      const val = btn.getAttribute('data-filter-tag');
+      targetElement.value = '#' + val;
+      applyFiltersAndSearch();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
