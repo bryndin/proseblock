@@ -12,7 +12,7 @@
   --_social_text: var(--author-social-text);
   
   /* @internal: gap, sizes and colors */
-  --_gap: var(--author-hero-gap);
+  --_gap: var(--space-8);
 
   --_social-icon-size: var(--text-xl);
   --_social-icon-color: var(--_social_text);

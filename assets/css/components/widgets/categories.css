@@ -7,7 +7,7 @@
   /* @internal: gap, max-w, muted-opacity, count-nudge */
   --_gap: var(--space-4);
   --_max-w: 12.5rem;
-  --_count: oklch(from var(--_text) l c h / var(--opacity-subtle));
+  --_count: oklch(from var(--text-secondary) l c h / var(--opacity-subtle));
   --_count-nudge: 1px;
 
   display: flex;
@@ -23,7 +23,7 @@
 }
 
 .c-sidebar__category-link:hover .c-sidebar__category-name {
-  color: var(--_accent);
+  color: var(--accent);
 }
 
 .c-sidebar__category-name {

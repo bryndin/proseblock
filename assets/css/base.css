@@ -38,7 +38,7 @@ h2 {
 h3 {
   font-size: var(--text-2xl);
   font-weight: var(--weight-semibold);
-  line-height: var(--leading-snug);
+  line-height: var(--leading-tight);
   color: var(--text-primary);
 }
 
@@ -61,7 +61,7 @@ h6 {
 
 p {
   color: var(--text-secondary);
-  line-height: var(--leading-loose);
+  line-height: var(--leading-relaxed);
 }
 
 /* --- Links (in article body context) --- */
@@ -77,7 +77,7 @@ article ul,
 article ol {
   padding-left: var(--space-6);
   color: var(--text-secondary);
-  line-height: var(--leading-loose);
+  line-height: var(--leading-relaxed);
 }
 
 article ul {
@@ -152,7 +152,7 @@ figcaption {
 
 hr {
   border: none;
-  border-top: var(--border-width) solid var(--border-subtle);
+  border-top: var(--border-width-minimal) solid var(--border-subtle);
   margin-block: var(--space-12);
 }
 
@@ -168,10 +168,10 @@ th {
   text-align: left;
   font-weight: var(--weight-bold);
   padding: var(--space-3) var(--space-4);
-  border-bottom: 2px solid var(--border-subtle);
+  border-bottom: var(--border-width-thin) solid var(--border-subtle);
 }
 
 td {
   padding: var(--space-3) var(--space-4);
-  border-bottom: var(--border-width) solid var(--border-subtle);
+  border-bottom: var(--border-width-minimal) solid var(--border-subtle);
 }
