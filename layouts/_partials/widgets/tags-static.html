@@ -1,0 +1,31 @@
+{{- /*
+  tags-static.html
+  Server-side rendered tags widget for Hugo
+  @context {Object} Widget configuration
+*/ -}}
+
+{{- $kwargs := . }}
+{{- $title := $kwargs.title | default "Tags" -}}
+{{- $limit := $kwargs.limit | default 15 -}}
+{{- $terms := $kwargs.terms | default site.Taxonomies.tags.ByCount -}}
+
+<div class="c-widget-tags">
+  <a href="{{ "tags" | relURL }}" class="c-widget-tags__header c-widget-tags__header--link">
+    {{ partial "svg/tags.html" }}
+    <h5 class="c-widget-tags__title">{{ $title }}</h5>
+  </a>
+  <ul class="c-widget-tags__list">
+    {{- range $term := first $limit $terms -}}
+      {{- $page := $term.Page -}}
+      {{- $count := $term.Count -}}
+      <li class="c-widget-tags__item">
+        <a href="{{ $page.RelPermalink }}" class="c-widget-tags__link">
+          <span class="c-widget-tags__name">#{{ $page.Title }}</span>
+          <span class="c-widget-tags__count">
+            <span class="u-sr-only">Articles: </span>{{ printf "%02d" $count }}
+          </span>
+        </a>
+      </li>
+    {{- end -}}
+  </ul>
+</div>

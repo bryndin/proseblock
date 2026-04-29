@@ -85,8 +85,8 @@
         {{- $sortedTags := sort $relatedTags "Count" "desc" -}}
 
         {{- /* Render the SSR Widgets using our calculated data arrays! */ -}}
-        {{ partial "widgets/categories.html" (dict "mode" "ssr" "title" "Related Categories" "limit" $catLimit "terms" $sortedCats) }}
-        {{ partial "widgets/tags.html" (dict "mode" "ssr" "title" "Related Tags" "limit" $tagLimit "terms" $sortedTags) }}
+        {{ partial "widgets/categories-static.html" (dict "title" "Related Categories" "limit" $catLimit "terms" $sortedCats) }}
+        {{ partial "widgets/tags-static.html" (dict "title" "Related Tags" "limit" $tagLimit "terms" $sortedTags) }}
 
       </div>
     </aside>

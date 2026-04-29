@@ -78,8 +78,8 @@
         </div>
 
         {{- /* Inject the Dual-Mode Partials for Search! */ -}}
-        {{ partial "widgets/categories.html" (dict "mode" "csr" "title" "Suggested Categories" "limit" $catLimit) }}
-        {{ partial "widgets/tags.html" (dict "mode" "csr" "title" "Suggested Tags" "limit" $tagLimit) }}
+        {{ partial "widgets/categories-dynamic.html" (dict "title" "Suggested Categories" "limit" $catLimit) }}
+        {{ partial "widgets/tags-dynamic.html" (dict "title" "Suggested Tags" "limit" $tagLimit) }}
 
       </div>
     </aside>

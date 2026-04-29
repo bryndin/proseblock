@@ -1,0 +1,31 @@
+{{- /*
+  categories-static.html
+  Server-side rendered categories widget for Hugo
+  @context {Object} Widget configuration
+*/ -}}
+
+{{- $kwargs := . }}
+{{- $title := $kwargs.title | default "Categories" -}}
+{{- $limit := $kwargs.limit | default 10 -}}
+{{- $terms := $kwargs.terms | default site.Taxonomies.categories.ByCount -}}
+
+<div class="c-widget-categories">
+  <a href="{{ "categories" | relURL }}" class="c-widget-categories__header c-widget-categories__header--link">
+    {{ partial "svg/categories.html" }}
+    <h5 class="c-widget-categories__title">{{ $title }}</h5>
+  </a>
+  <ul class="c-widget-categories__list">
+    {{- range $term := first $limit $terms -}}
+      {{- $page := $term.Page -}}
+      {{- $count := $term.Count -}}
+      <li class="c-widget-categories__item">
+        <a href="{{ $page.RelPermalink }}" class="c-widget-categories__link">
+          <span class="c-widget-categories__name">{{ $page.Title }}</span>
+          <span class="c-widget-categories__count">
+            <span class="u-sr-only">Articles: </span>{{ printf "%02d" $count }}
+          </span>
+        </a>
+      </li>
+    {{- end -}}
+  </ul>
+</div>

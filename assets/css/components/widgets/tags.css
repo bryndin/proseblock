@@ -1,9 +1,9 @@
 /* ==========================================================================
-   WIDGET: Categories
-   .c-widget-categories — Category listing in sidebar context.
+   WIDGET: Tags
+   .c-widget-tags — Tag listing in sidebar context.
    ========================================================================== */
 
-.c-widget-categories {
+.c-widget-tags {
   /* @api */
   --_max-w: var(--widget-max-w);
   --_text-primary: var(--widget-taxonomy-text-primary);
@@ -19,7 +19,7 @@
 
 /* Header */
 
-.c-widget-categories__header {
+.c-widget-tags__header {
   /* @internal */
   --_header-icon: var(--_text-secondary);
   --_header-title: var(--_text-primary);
@@ -30,25 +30,25 @@
   gap: var(--space-4);
 }
 
-.c-widget-categories__header svg {
+.c-widget-tags__header svg {
   width: var(--_header-icon-size);
   height: var(--_header-icon-size);
   color: var(--_header-icon);
   transition: color var(--duration-fast) var(--ease-default);
 }
 
-.c-widget-categories__header--link {
+.c-widget-tags__header--link {
   text-decoration: none;
   cursor: pointer;
 }
 
-.c-widget-categories__header--link:hover {
+.c-widget-tags__header--link:hover {
   --_header-icon: var(--_text-hover);
   --_header-title: var(--_text-hover);
   --_header-title-transform: translateX(var(--space-2));
 }
 
-.c-widget-categories__title {
+.c-widget-tags__title {
   font-size: var(--text-tiny);
   font-weight: var(--weight-black);
   text-transform: uppercase;
@@ -61,13 +61,13 @@
 
 /* List */
 
-.c-widget-categories__list {
+.c-widget-tags__list {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
 }
 
-.c-widget-categories__link {
+.c-widget-tags__link {
   /* @internal */
   --_item-name: var(--_text-secondary);
   --_item-count: oklch(from var(--_text-secondary) l c h / var(--opacity-subtle));
@@ -78,12 +78,12 @@
   text-decoration: none;
 }
 
-.c-widget-categories__link:hover {
+.c-widget-tags__link:hover {
   --_item-name: var(--_text-hover);
   --_item-count: var(--_text-hover);
 }
 
-.c-widget-categories__name {
+.c-widget-tags__name {
   font-size: var(--text-xs);
   font-weight: var(--weight-bold);
   text-transform: uppercase;
@@ -92,7 +92,7 @@
   transition: color var(--duration-fast) var(--ease-default);
 }
 
-.c-widget-categories__count {
+.c-widget-tags__count {
   font-size: var(--text-2xs);
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-widest);

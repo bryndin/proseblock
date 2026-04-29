@@ -74,7 +74,7 @@
         {{ partial "widgets/newsletter.html" }}
         
         {{- /* Category limit from API Contract */ -}}
-        {{ partial "widgets/categories.html" (dict "mode" "ssr" "title" "Categories" "limit" $catLimit) }}
+        {{ partial "widgets/categories-static.html" (dict "title" "Categories" "limit" $catLimit) }}
       </div>
     </aside>
 

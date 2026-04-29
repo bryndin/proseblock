@@ -49,8 +49,8 @@
       <div class="c-sidebar">
         {{- /* TODO(DB): Newsleter widget is badly styled */ -}}
         {{ partial "widgets/newsletter.html" }}
-        {{ partial "widgets/categories.html" (dict "mode" "ssr" "limit" $catLimit) }}
-        {{ partial "widgets/tags.html" (dict "mode" "ssr" "limit" $tagLimit) }}
+        {{ partial "widgets/categories-static.html" (dict "limit" $catLimit) }}
+        {{ partial "widgets/tags-static.html" (dict "limit" $tagLimit) }}
         {{- /* TODO(DB): Missing Announcement widget */ -}}
       </div>
     </aside>

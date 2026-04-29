@@ -187,7 +187,9 @@
   --text-accent: var(--color-primary);
   --text-on-accent: var(--color-white);
   --text-error: var(--color-error);
-  
+
+  --interactive-hover: var(--color-black);
+
   --bg-primary: var(--color-gray-50);
   --bg-secondary: var(--color-gray-100);
   --bg-tertiary: var(--color-gray-150);
@@ -307,6 +309,15 @@
   --sidebar-icon: var(--icon-secondary);
   --sidebar-widget-icon: oklch(from var(--text-primary) l c h / var(--opacity-medium));
 
+  /* Widget */
+  --widget-max-w: 12.5rem;
+  --widget-header-icon-size: 0.875rem;
+
+  /* Widget: Taxonomy (Categories & Tags) */
+  --widget-taxonomy-text-primary: var(--text-secondary);
+  --widget-taxonomy-text-secondary: var(--text-tertiary);
+  --widget-taxonomy-text-hover: var(--accent);
+
   /* Author Block */
   --author-bg: var(--bg-highest);
   --author-accent: var(--accent);
@@ -417,6 +428,8 @@
   --text-tertiary: var(--color-gray-400);
   --text-accent: var(--color-primary-container);
   --text-on-accent: var(--color-gray-900);
+
+  --interactive-hover: var(--color-white);
   
   --bg-primary: var(--color-gray-950);
   --bg-secondary: var(--color-gray-925);

@@ -17,17 +17,17 @@
   ) }}
 
   <div class="l-site__columns">
-    
+
     {{- /* Main Column (Inherits white card shadow exactly like Home) */ -}}
     <div class="l-site__main">
       <div class="u-home-main">
         <div class="u-home-main__sections">
-          
+
           <div class="c-category-grid">
             {{- /* Get Categories sorted by highest count */ -}}
             {{- $taxonomies := $page.Data.Terms.ByCount -}}
             {{- range $index, $term := $taxonomies -}}
-              
+
               {{- /* BEM Card Component */ -}}
               <div class="c-category-card">
                 <a href="{{ $term.Page.RelPermalink }}" class="c-category-card__link">
@@ -52,9 +52,9 @@
       <div class="c-sidebar">
         {{- /* Extract Newsletter config securely */ -}}
         {{ partial "widgets/newsletter.html" }}
-        
+
         {{- /* Re-use our Dual-Mode Widget with limit from API Contract */ -}}
-        {{ partial "widgets/tags.html" (dict "mode" "ssr" "title" "Tags" "limit" $tagLimit) }}
+        {{ partial "widgets/tags-static.html" (dict "title" "Tags" "limit" $tagLimit) }}
       </div>
     </aside>
 
