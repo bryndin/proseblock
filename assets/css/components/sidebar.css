@@ -92,4 +92,9 @@
   overflow-y: auto;
   overscroll-behavior: contain;
   padding-right: var(--_padding-right);
+  scrollbar-width: none;
+}
+
+.c-sidebar--scrollable::-webkit-scrollbar {
+  display: none;
 }

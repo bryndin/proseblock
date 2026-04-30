@@ -35,10 +35,8 @@
   --_scrollbar-w: 4px;
 
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
   gap: var(--space-4);
-  flex: 1;
-  min-height: 0;
 }
 
 /* Fix for details inner wrapper in modern WebKit/Blink */
@@ -91,8 +89,6 @@
   flex-direction: row;
   gap: 0;
   align-items: stretch;
-  flex: 1;
-  min-height: 0;
 }
 
 @media (width >= 768px) {
@@ -113,24 +109,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  min-height: 0;
   padding-right: var(--space-4);
-  scrollbar-width: thin;
-  scrollbar-color: var(--_separator) transparent;
-}
-
-.c-toc__body::-webkit-scrollbar {
-  width: var(--_scrollbar-w);
-}
-
-.c-toc__body::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.c-toc__body::-webkit-scrollbar-thumb {
-  background-color: var(--_separator);
-  border-radius: var(--_scrollbar-w);
 }
 
 /* --- Hugo Generated Links --- */
