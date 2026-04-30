@@ -11,30 +11,35 @@
   --_padding-x: var(--space-8);
   --_padding-top: 0;
   --_padding-bottom: var(--space-24);
+  --_margin-top: var(--space-16);
 
   max-width: var(--_max-width);
   margin-inline: auto;
   padding-inline: var(--_padding-x);
   padding-top: var(--_padding-top);
+  margin-top: var(--_margin-top);
 }
 
 /* --- Two-column content grid --- */
 
 .l-site__columns {
-  /* @internal: gap, margin-top */
-  --_gap: var(--space-20);
-  --_margin-top: var(--space-16);
+  /* @internal: gap, sidebar-width */
+  --_gap: var(--space-16);
+  --_sidebar-width: 20rem;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--_gap);
   margin-top: var(--_margin-top);
   padding-bottom: var(--_padding-bottom);
+  position: relative;
 }
 
 @media (width >=768px) {
   .l-site__columns {
-    flex-direction: row;
+    /* Default: content left, sidebar right */
+    grid-template-columns: minmax(0, 1fr) var(--_sidebar-width);
+    align-items: stretch;
   }
 }
 
@@ -51,38 +56,12 @@
 }
 
 /* -----------------------------------------------------------------------
-   Article-specific 2-column (80/20 TOC sidebar)
+   Sidebar positioning modifiers
    ----------------------------------------------------------------------- */
 
-.l-site__columns--article {
-  /* @internal: gap, sidebar-width */
-  --_gap: var(--space-16);
-  --_sidebar-width: 20rem;
-
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--_gap);
-  padding-bottom: var(--_padding-bottom);
-  position: relative;
-}
-
 @media (width >=768px) {
-  .l-site__columns--article {
-    grid-template-columns: minmax(0, 1fr) var(--_sidebar-width);
-    align-items: stretch;
-  }
-}
-
-/* --- Sidebar positioning modifiers --- */
-
-@media (width >=768px) {
-  .l-site__columns--sidebar-right {
-    /* Default: content first, sidebar second */
-    grid-template-columns: minmax(0, 1fr) var(--_sidebar-width);
-  }
-
   .l-site__columns--sidebar-left {
-    /* Sidebar first, content second */
+    /* Sidebar left, content right */
     grid-template-columns: var(--_sidebar-width) minmax(0, 1fr);
   }
 }
