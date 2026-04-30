@@ -81,20 +81,20 @@
 
 /* --- Scrollable modifier for sticky sidebar behavior --- */
 
-.c-sidebar--scrollable {
-  /* @internal: top offset, max-height, padding */
-  --_sticky-offset: var(--space-8);
-  --_padding-right: var(--space-4);
+@media (width >= 768px) {
+  .c-sidebar--scrollable {
+    /* @internal: top offset, max-height */
+    --_sticky-offset: var(--space-8);
 
-  position: sticky;
-  top: var(--_sticky-offset);
-  max-height: calc(100vh - calc(var(--_sticky-offset) * 2));
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding-right: var(--_padding-right);
-  scrollbar-width: none;
-}
+    position: sticky;
+    top: var(--_sticky-offset);
+    max-height: calc(100vh - calc(var(--_sticky-offset) * 2));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+  }
 
-.c-sidebar--scrollable::-webkit-scrollbar {
-  display: none;
+  .c-sidebar--scrollable::-webkit-scrollbar {
+    display: none;
+  }
 }
