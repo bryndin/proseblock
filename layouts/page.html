@@ -20,19 +20,21 @@
   ) }}
 
   {{- /* ─── Two-Column Article Layout ─── */ -}}
-  <div class="l-site__columns--article">
+  <div class="l-site__columns l-site__columns--article l-site__columns--sidebar-left">
 
     {{- /* Sidebar */ -}}
     <aside class="l-site__article-sidebar">
-      {{ partial "widgets/toc.html" (dict "page" $page "native" true) }}
+      <div class="c-sidebar c-sidebar--scrollable">
+        {{ partial "widgets/toc.html" (dict "page" $page "native" true) }}
 
-      {{- /* Normalize tags for the widget */ -}}
-      {{- $normalizedTags := slice -}}
-      {{- range $tag := $page.GetTerms "tags" -}}
-        {{- $normalizedTags = $normalizedTags | append (dict "Page" $tag "Count" 0) -}}
-      {{- end -}}
+        {{- /* Normalize tags for the widget */ -}}
+        {{- $normalizedTags := slice -}}
+        {{- range $tag := $page.GetTerms "tags" -}}
+          {{- $normalizedTags = $normalizedTags | append (dict "Page" $tag "Count" 0) -}}
+        {{- end -}}
 
-      {{ partial "widgets/tags-static.html" (dict "terms" $normalizedTags) }}
+        {{ partial "widgets/tags-static.html" (dict "terms" $normalizedTags) }}
+      </div>
     </aside>
 
     {{- /* Main content column */ -}}

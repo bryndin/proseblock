@@ -23,21 +23,23 @@
   ) }}
 
   {{- /* 3. Article Layout Grid (80/20 Split from page.html) */ -}}
-  <div class="l-site__columns--article">
+  <div class="l-site__columns l-site__columns--article l-site__columns--sidebar-left">
 
 {{- /* Left Sidebar: Table of Contents */ -}}
     <aside class="l-site__article-sidebar">
+      <div class="c-sidebar c-sidebar--scrollable">
 
-      {{- /* 1. Build the data array for the Generic TOC */ -}}
-      {{- $tocItems := slice -}}
+        {{- /* 1. Build the data array for the Generic TOC */ -}}
+        {{- $tocItems := slice -}}
 
-      {{- range $letter := $letters -}}
-        {{- $href := printf "#section-%s" ($letter | lower) -}}
-        {{- $tocItems = $tocItems | append (dict "label" $letter "href" $href) -}}
-      {{- end -}}
+        {{- range $letter := $letters -}}
+          {{- $href := printf "#section-%s" ($letter | lower) -}}
+          {{- $tocItems = $tocItems | append (dict "label" $letter "href" $href) -}}
+        {{- end -}}
 
-      {{- /* 2. Call the Generic Partial */ -}}
-      {{ partial "widgets/toc.html" (dict "page" $page "items" $tocItems) }}
+        {{- /* 2. Call the Generic Partial */ -}}
+        {{ partial "widgets/toc.html" (dict "page" $page "items" $tocItems) }}
+      </div>
     </aside>
 
     {{- /* Right Main Column */ -}}

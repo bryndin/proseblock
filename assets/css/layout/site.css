@@ -41,25 +41,13 @@
 /* --- Main content area --- */
 
 .l-site__main {
-  width: 100%;
-}
-
-@media (width >=768px) {
-  .l-site__main {
-    width: 70%;
-  }
+  min-width: 0;
 }
 
 /* --- Sidebar --- */
 
 .l-site__sidebar {
-  width: 100%;
-}
-
-@media (width >=768px) {
-  .l-site__sidebar {
-    width: 30%;
-  }
+  min-width: 0;
 }
 
 /* -----------------------------------------------------------------------
@@ -67,11 +55,12 @@
    ----------------------------------------------------------------------- */
 
 .l-site__columns--article {
-  /* @internal: gap */
+  /* @internal: gap, sidebar-width */
   --_gap: var(--space-16);
+  --_sidebar-width: 20rem;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--_gap);
   padding-bottom: var(--_padding-bottom);
   position: relative;
@@ -79,46 +68,39 @@
 
 @media (width >=768px) {
   .l-site__columns--article {
-    flex-direction: row;
+    grid-template-columns: minmax(0, 1fr) var(--_sidebar-width);
+    align-items: stretch;
+  }
+}
+
+/* --- Sidebar positioning modifiers --- */
+
+@media (width >=768px) {
+  .l-site__columns--sidebar-right {
+    /* Default: content first, sidebar second */
+    grid-template-columns: minmax(0, 1fr) var(--_sidebar-width);
+  }
+
+  .l-site__columns--sidebar-left {
+    /* Sidebar first, content second */
+    grid-template-columns: var(--_sidebar-width) minmax(0, 1fr);
   }
 }
 
 .l-site__article-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  display: none;
 }
 
 @media (width >=768px) {
   .l-site__article-sidebar {
-    width: 20%;
-
-    /* 1. Make the wrapper sticky, not the ToC! */
-    position: sticky;
-
-    /* 2. Sets it much closer to the top of the screen */
-    top: 2rem;
-
-    /* 3. Force the sidebar to never exceed the screen height */
-    max-height: calc(100vh - 4rem);max-height: calc(100vh - 4rem); height: 100%;
-
-    /* Ensure it doesn't stretch to the height of the article body */
-    align-self: flex-start;
-
-    /* Contains the ToC overflow */
-    overflow: hidden;
-
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 }
 
 .l-site__article-body {
-  width: 100%;
-}
-
-@media (width >=768px) {
-  .l-site__article-body {
-    width: 80%;
-  }
+  min-width: 0;
 }
 
 /* --- Main content area (wraps article + author + newsletter) on pages --- */

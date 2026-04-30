@@ -17,32 +17,34 @@
   ) }}
 
   {{- /* 3. Article Layout Grid (Left Sidebar, Right Main) */ -}}
-  <div class="l-site__columns--article">
+  <div class="l-site__columns l-site__columns--article l-site__columns--sidebar-left">
 
     {{- /* Left Sidebar: Table of Contents */ -}}
     <aside class="l-site__article-sidebar">
+      <div class="c-sidebar c-sidebar--scrollable">
 
-      {{- /* 1. Build the data array for the Generic TOC */ -}}
-      {{- $tocItems := slice -}}
+        {{- /* 1. Build the data array for the Generic TOC */ -}}
+        {{- $tocItems := slice -}}
 
-      {{- range $yearGroup := $articles.GroupByDate "2006" -}}
-        {{- $year := $yearGroup.Key -}}
+        {{- range $yearGroup := $articles.GroupByDate "2006" -}}
+          {{- $year := $yearGroup.Key -}}
 
-        {{- /* Build sub-items (Months) */ -}}
-        {{- $subItems := slice -}}
-        {{- range $monthGroup := $yearGroup.Pages.GroupByDate "January" -}}
-          {{- $month := $monthGroup.Key -}}
-          {{- $href := printf "#%s-%s" ($month | lower) $year -}}
-          {{- $subItems = $subItems | append (dict "label" $month "href" $href) -}}
+          {{- /* Build sub-items (Months) */ -}}
+          {{- $subItems := slice -}}
+          {{- range $monthGroup := $yearGroup.Pages.GroupByDate "January" -}}
+            {{- $month := $monthGroup.Key -}}
+            {{- $href := printf "#%s-%s" ($month | lower) $year -}}
+            {{- $subItems = $subItems | append (dict "label" $month "href" $href) -}}
+          {{- end -}}
+
+          {{- /* Append Year + Months to main items array */ -}}
+          {{- $href := printf "#year-%s" $year -}}
+          {{- $tocItems = $tocItems | append (dict "label" $year "href" $href "subitems" $subItems) -}}
         {{- end -}}
 
-        {{- /* Append Year + Months to main items array */ -}}
-        {{- $href := printf "#year-%s" $year -}}
-        {{- $tocItems = $tocItems | append (dict "label" $year "href" $href "subitems" $subItems) -}}
-      {{- end -}}
-
-      {{- /* 2. Call the Generic Partial */ -}}
-      {{ partial "widgets/toc.html" (dict "page" $page "items" $tocItems) }}
+        {{- /* 2. Call the Generic Partial */ -}}
+        {{ partial "widgets/toc.html" (dict "page" $page "items" $tocItems) }}
+      </div>
     </aside>
 
     {{- /* Right Main Column */ -}}
