@@ -1,5 +1,5 @@
 {{- /* Newsletter widget */ -}}
-{{- $kwargs := . }}
+{{- $kwargs := . | default dict }}
 {{ $enabled := $kwargs.enabled | default site.Params.enableNewsletter }}
 {{ $title := $kwargs.title | default site.Params.newsletter.title | default "Dispatch" }}
 {{ $frequencyText := $kwargs.frequencyText | default site.Params.newsletter.frequencyText }}

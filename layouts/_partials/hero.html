@@ -8,7 +8,7 @@
     - subtitle: Hero subtitle/content (can be HTML)
     - metadata: Page object for metadata partial (if provided, renders metadata row)
 */ -}}
-{{- $kwargs := . -}}
+{{- $kwargs := . | default dict -}}
 {{- $modifier := $kwargs.modifier -}}
 {{- $categories := $kwargs.categories -}}
 {{- $title := $kwargs.title -}}

@@ -4,7 +4,7 @@
   @context {Object} Widget configuration
 */ -}}
 
-{{- $kwargs := . }}
+{{- $kwargs := . | default dict }}
 {{- $title := $kwargs.title | default "Categories" -}}
 {{- $limit := $kwargs.limit | default 10 -}}
 

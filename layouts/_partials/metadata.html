@@ -1,5 +1,5 @@
 {{/* layouts/partials/metadata.html */}}
-{{- $kwargs := . }}
+{{- $kwargs := . | default dict }}
 {{- $article := $kwargs.article }}
 {{- $modifier := $kwargs.modifier | default "" }} {{/* e.g., "c-metadata--hero" */}}
 

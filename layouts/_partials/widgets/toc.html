@@ -7,7 +7,7 @@
     - items: Slice of dicts. [{ label: "Year", href: "#id", subitems: [...] }]
 */ -}}
 
-{{- $kwargs := . -}}
+{{- $kwargs := . | default dict -}}
 {{- $page := $kwargs.page -}}
 {{- $native := $kwargs.native | default false -}}
 {{- $items := $kwargs.items | default slice -}}

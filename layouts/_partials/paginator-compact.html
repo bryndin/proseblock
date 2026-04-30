@@ -1,4 +1,4 @@
-{{- $kwargs := . }}
+{{- $kwargs := . | default dict }}
 {{ $start := $kwargs.start }}
 {{ $total := $kwargs.total }}
 {{ $left_icon := $kwargs.left }}
