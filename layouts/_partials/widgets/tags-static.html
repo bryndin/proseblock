@@ -4,7 +4,7 @@
   @context {Object} Widget configuration
 */ -}}
 
-{{- $kwargs := . }}
+{{- $kwargs := . | default dict }}
 {{- $title := $kwargs.title | default "Tags" -}}
 {{- $limit := $kwargs.limit | default 15 -}}
 {{- $terms := $kwargs.terms | default site.Taxonomies.tags.ByCount -}}
@@ -21,9 +21,11 @@
       <li class="c-widget-tags__item">
         <a href="{{ $page.RelPermalink }}" class="c-widget-tags__link">
           <span class="c-widget-tags__name">#{{ $page.Title }}</span>
+          {{- if gt $count 0 }}
           <span class="c-widget-tags__count">
             <span class="u-sr-only">Articles: </span>{{ printf "%02d" $count }}
           </span>
+          {{- end }}
         </a>
       </li>
     {{- end -}}

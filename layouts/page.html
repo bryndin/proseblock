@@ -25,6 +25,14 @@
     {{- /* Sidebar */ -}}
     <aside class="l-site__article-sidebar">
       {{ partial "widgets/toc.html" (dict "page" $page "native" true) }}
+
+      {{- /* Normalize tags for the widget */ -}}
+      {{- $normalizedTags := slice -}}
+      {{- range $tag := $page.GetTerms "tags" -}}
+        {{- $normalizedTags = $normalizedTags | append (dict "Page" $tag "Count" 0) -}}
+      {{- end -}}
+
+      {{ partial "widgets/tags-static.html" (dict "terms" $normalizedTags) }}
     </aside>
 
     {{- /* Main content column */ -}}
