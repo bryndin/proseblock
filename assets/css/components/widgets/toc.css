@@ -101,14 +101,7 @@
   }
 
   .c-toc__summary {
-    display: flex;
-    pointer-events: none;
-    background: none;
-    border: none;
-    padding: 0 0 var(--space-4) 0;
-    font-size: var(--text-tiny);
-    font-weight: var(--weight-black);
-    letter-spacing: var(--tracking-mega);
+    display: none;
   }
 
   .c-toc__summary svg {
