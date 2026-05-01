@@ -240,6 +240,12 @@
      Component-specific hooks. Inherits Dark Mode via Tier 2.1 mapping.
      ===================================================================== */
 
+  /* Sidebar */
+  --sidebar-w-left: 20%;
+  --sidebar-w-right: 30%;
+  --sidebar-max-w-left: 10rem;
+  --sidebar-max-w-right: 20rem;
+
   /* Header */
   --header-bg: var(--bg-primary);
   --header-text: var(--text-primary);
