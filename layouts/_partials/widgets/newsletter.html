@@ -6,13 +6,13 @@
 {{ $action := $kwargs.action | default site.Params.newsletter.action }}
 
 {{- with $enabled }}
-  <div class="c-sidebar__widget c-sidebar__widget--newsletter" id="newsletter-widget">
-    <div class="c-sidebar__widget-header">
-      <span class="c-sidebar__widget-icon">{{ partial "svg/mail.html" }}</span>
-      <h5 class="c-sidebar__widget-title">{{ $title }}</h5>
+  <div class="c-widget c-widget--newsletter" id="newsletter-widget">
+    <div class="c-widget__header">
+      <span class="c-widget__icon">{{ partial "svg/mail.html" }}</span>
+      <h5 class="c-widget__title">{{ $title }}</h5>
     </div>
     {{- with $freqText := $frequencyText }}
-      <p class="c-sidebar__widget-body">{{ $freqText }}</p>
+      <p class="c-widget__body">{{ $freqText }}</p>
     {{- end }}
 
     <form class="c-sidebar__form js-newsletter-form" id="newsletter-form" action="{{ $action }}" method="POST">

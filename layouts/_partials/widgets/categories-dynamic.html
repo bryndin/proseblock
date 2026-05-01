@@ -8,10 +8,10 @@
 {{- $title := $kwargs.title | default "Categories" -}}
 {{- $limit := $kwargs.limit | default 10 -}}
 
-<div class="c-widget-categories">
-  <a href="{{ "categories" | relURL }}" class="c-widget-categories__header c-widget-categories__header--link">
-    {{ partial "svg/categories.html" }}
-    <h5 class="c-widget-categories__title">{{ $title }}</h5>
+<div class="c-widget c-widget--categories">
+  <a href="{{ "categories" | relURL }}" class="c-widget__header c-widget__header--link c-widget-categories__header">
+    <span class="c-widget__icon">{{ partial "svg/categories.html" }}</span>
+    <h5 class="c-widget__title c-widget-categories__title">{{ $title }}</h5>
   </a>
   <ul class="c-widget-categories__list" id="dynamic-categories-container" data-limit="{{ $limit }}"></ul>
 </div>

@@ -4,63 +4,13 @@
    ========================================================================== */
 
 .c-widget-tags {
-  /* @api */
-  --_max-w: var(--widget-max-w);
-  --_text-primary: var(--widget-taxonomy-text-primary);
-  --_text-secondary: var(--widget-taxonomy-text-secondary);
-  --_text-hover: var(--widget-taxonomy-text-hover);
-  --_header-icon-size: var(--widget-header-icon-size);
-
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  max-width: var(--_max-w);
+  /* @internal */
+  --_text-secondary: var(--widget-text);
+  --_text-hover: var(--widget-hover);
 }
 
 .c-widget-tags[hidden] {
   display: none !important;
-}
-
-/* Header */
-
-.c-widget-tags__header {
-  /* @internal */
-  --_header-icon: var(--_text-secondary);
-  --_header-title: var(--_text-primary);
-  --_header-title-transform: translateX(0);
-
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-.c-widget-tags__header svg {
-  width: var(--_header-icon-size);
-  height: var(--_header-icon-size);
-  color: var(--_header-icon);
-  transition: color var(--duration-fast) var(--ease-default);
-}
-
-.c-widget-tags__header--link {
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.c-widget-tags__header--link:hover {
-  --_header-icon: var(--_text-hover);
-  --_header-title: var(--_text-hover);
-  --_header-title-transform: translateX(var(--space-2));
-}
-
-.c-widget-tags__title {
-  font-size: var(--text-tiny);
-  font-weight: var(--weight-black);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-mega);
-  color: var(--_header-title);
-  transform: var(--_header-title-transform);
-  transition: color var(--duration-fast) var(--ease-default),
-    transform var(--duration-fast) var(--ease-default);
 }
 
 /* List */
@@ -112,7 +62,7 @@
 /* ==========================================================================
    Mobile Layout Overrides (< 768px)
    ========================================================================== */
-
+/* TODO(DB): Check that .c-widget CSS is not taking priority */
 @media (max-width: 767px) {
   .c-widget-tags {
     flex-direction: row;

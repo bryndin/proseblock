@@ -240,7 +240,7 @@
      Component-specific hooks. Inherits Dark Mode via Tier 2.1 mapping.
      ===================================================================== */
 
-  /* Sidebar */
+  /* Site Layout */
   --sidebar-w-left: 20%;
   --sidebar-w-right: 30%;
   --sidebar-max-w-left: 10rem;
@@ -308,16 +308,14 @@
   --toc-rail-bg: var(--border-muted);
   --toc-separator: var(--border-muted);
 
-  /* Sidebar */
-  --sidebar-heading-text: var(--text-primary);
-  --sidebar-text: var(--text-secondary);
-  --sidebar-accent: var(--accent);
-  --sidebar-icon: var(--icon-secondary);
-  --sidebar-widget-icon: oklch(from var(--text-primary) l c h / var(--opacity-medium));
-
   /* Widget */
   --widget-max-w: 12.5rem;
-  --widget-header-icon-size: 0.875rem;
+  --widget-title-icon: var(--icon-secondary);
+  --widget-title-icon-size: 0.875rem;
+  --widget-title: var(--text-secondary);
+  --widget-text: var(--text-secondary);
+  --widget-hover: var(--accent);
+  --sidebar-widget-icon: oklch(from var(--text-primary) l c h / var(--opacity-medium));
 
   /* Widget: Taxonomy (Categories & Tags) */
   --widget-taxonomy-text-primary: var(--text-secondary);

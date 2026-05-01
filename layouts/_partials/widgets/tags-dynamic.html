@@ -8,10 +8,10 @@
 {{- $title := $kwargs.title | default "Tags" -}}
 {{- $limit := $kwargs.limit | default 15 -}}
 
-<div class="c-widget-tags">
-  <a href="{{ "tags" | relURL }}" class="c-widget-tags__header c-widget-tags__header--link">
-    {{ partial "svg/tags.html" }}
-    <h5 class="c-widget-tags__title">{{ $title }}</h5>
+<div class="c-widget c-widget-tags">
+  <a href="{{ "tags" | relURL }}" class="c-widget__header c-widget__header--link c-widget-tags__header">
+    <span class="c-widget__icon">{{ partial "svg/tags.html" }}</span>
+    <h5 class="c-widget__title c-widget-tags__title">{{ $title }}</h5>
   </a>
   <ul class="c-widget-tags__list" id="dynamic-tags-container" data-limit="{{ $limit }}"></ul>
 </div>

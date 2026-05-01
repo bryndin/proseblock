@@ -1,0 +1,68 @@
+/* ==========================================================================
+    COMPONENT: WIDGET — @layer components
+    .c-widget — Widget block for sidebar content.
+    ========================================================================== */
+
+.c-widget {
+  /* @api: Ingested Semantics */
+  --_max-w: var(--widget-max-w);
+  --_title: var(--widget-title);
+  --_text: var(--widget-text);
+  --_hover: var(--widget-hover);
+  --_icon: var(--widget-title-icon);
+  --_icon-size: var(--widget-title-icon-size);
+
+  /* @internal */
+  --_title-size: var(--text-tiny);
+  --_title-weight: var(--weight-black);
+  --_title-tracking: var(--tracking-mega);
+  --_body-size: var(--text-sm);
+  --_body-leading: var(--leading-relaxed);
+  --_title-transform: none;
+
+  max-width: var(--_max-w);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.c-widget__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.c-widget__icon {
+  width: var(--_icon-size);
+  height: var(--_icon-size);
+  color: var(--_icon);
+  transition: color var(--duration-fast) var(--ease-default);
+}
+
+.c-widget__header--link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.c-widget__title {
+  font-size: var(--_title-size);
+  font-weight: var(--_title-weight);
+  text-transform: uppercase;
+  letter-spacing: var(--_title-tracking);
+  color: var(--_title);
+  transform: var(--_title-transform);
+  transition: color var(--duration-fast) var(--ease-default),
+    transform var(--duration-fast) var(--ease-default);
+}
+
+.c-widget__header:hover {
+  --_icon: var(--_hover);
+  --_title: var(--_hover);
+  --_title-transform: translateX(var(--space-2));
+}
+
+.c-widget__body {
+  font-size: var(--_body-size);
+  line-height: var(--_body-leading);
+  color: var(--_text);
+}
