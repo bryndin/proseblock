@@ -12,7 +12,7 @@
   --_widget-icon-color: var(--sidebar-widget-icon);
 
   /* @internal: Metadata & Structural configuration */
-  --_gap: var(--space-10);  
+  --_gap: var(--space-10);
 
   display: flex;
   flex-direction: column;
@@ -22,14 +22,12 @@
 /* --- Widget block --- */
 
 .c-sidebar__widget {
-  /* @internal: Structural overrides */
   --_widget-gap: var(--space-8);
   --_header-gap: var(--space-4);
   --_icon-size: 0.875rem;
   --_title-size: var(--text-tiny);
   --_title-weight: var(--weight-black);
   --_title-tracking: var(--tracking-mega);
-
   --_body-size: var(--text-sm);
   --_body-leading: var(--leading-relaxed);
 
@@ -39,17 +37,14 @@
 }
 
 .c-sidebar__widget--newsletter {
-  /* @internal: gap */
   --_widget-gap: var(--space-8);
 }
 
 .c-sidebar__widget--notice {
-  /* @internal: gap */
   --_widget-gap: var(--space-6);
 }
 
 .c-sidebar__widget--categories {
-  /* @internal: gap */
   --_widget-gap: var(--space-10);
 }
 
@@ -81,20 +76,24 @@
 
 /* --- Scrollable modifier for sticky sidebar behavior --- */
 
-@media (width >= 768px) {
+@media (width >=768px) {
   .c-sidebar {
     --_gap: var(--space-24);
   }
-  
+
   .c-sidebar--scrollable {
-    /* @internal: top offset, max-height */
-    --_sticky-offset: var(--space-8);
+    --_sticky-offset: var(--space-8, 2rem);
 
     position: sticky;
     top: var(--_sticky-offset);
-    max-height: calc(100vh - calc(var(--_sticky-offset) * 2));
+
+    /* Constrain the maximum height relative to the viewport so it can overflow */
+    max-height: calc(100vh - (var(--_sticky-offset) * 2));
+
+    /* Enable internal scrolling if content exceeds the max-height */
     overflow-y: auto;
-    overscroll-behavior: contain;
+
+    /* Hide scrollbars */
     scrollbar-width: none;
   }
 

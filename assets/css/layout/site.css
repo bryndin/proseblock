@@ -6,7 +6,6 @@
 /* --- Site wrapper --- */
 
 .l-site {
-  /* @internal: max-width, padding-x, padding-top, padding-bottom */
   --_max-width: 80rem;
   --_padding-x: var(--space-8);
   --_padding-top: 0;
@@ -23,62 +22,44 @@
 /* --- Two-column content grid --- */
 
 .l-site__columns {
-  /* @internal: gap, sidebar-width */
   --_gap: var(--space-16);
-  --_sidebar-width: 20rem;
 
   display: grid;
   grid-template-columns: 1fr;
+  /* Single column on mobile */
   gap: var(--_gap);
   margin-top: var(--_margin-top);
   padding-bottom: var(--_padding-bottom);
   position: relative;
 }
 
+/* -----------------------------------------------------------------------
+   Sidebar positioning modifiers (Desktop)
+   ----------------------------------------------------------------------- */
+
 @media (width >=768px) {
-  .l-site__columns {
-    /* Default: content left, sidebar right */
-    grid-template-columns: minmax(0, 1fr) var(--_sidebar-width);
+  /* BOTH layouts must stretch so the sticky child has a tall track to slide down */
+
+  /* Left Sidebar: 80/20 layout (Capped at 20rem) */
+  .l-site__columns--sidebar-left {
+    grid-template-columns: min(20%, 20rem) minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  /* Right Sidebar: 70/30 layout (Capped at 20rem) */
+  .l-site__columns--sidebar-right {
+    grid-template-columns: minmax(0, 1fr) min(30%, 20rem);
     align-items: stretch;
   }
 }
 
-/* --- Main content area --- */
+/* --- Grid Items --- */
 
 .l-site__main {
   min-width: 0;
 }
 
-/* --- Sidebar --- */
-
 .l-site__sidebar {
-  min-width: 0;
-}
-
-/* -----------------------------------------------------------------------
-   Sidebar positioning modifiers
-   ----------------------------------------------------------------------- */
-
-@media (width >=768px) {
-  .l-site__columns--sidebar-left {
-    /* Sidebar left, content right */
-    grid-template-columns: var(--_sidebar-width) minmax(0, 1fr);
-  }
-}
-
-.l-site__article-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-}
-
-@media (width >=768px) {
-  .l-site__article-sidebar {
-    gap: 2rem;
-  }
-}
-
-.l-site__article-body {
   min-width: 0;
 }
 

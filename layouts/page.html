@@ -22,8 +22,8 @@
   {{- /* ─── Two-Column Article Layout ─── */ -}}
   <div class="l-site__columns l-site__columns--sidebar-left">
 
-    {{- /* Sidebar */ -}}
-    <aside class="l-site__article-sidebar">
+    {{- /* Sidebar (Comes FIRST in HTML for Left Sidebar) */ -}}
+    <aside class="l-site__sidebar">
       <div class="c-sidebar c-sidebar--scrollable">
         {{ partial "widgets/toc.html" (dict "page" $page "native" true) }}
 
@@ -37,8 +37,8 @@
       </div>
     </aside>
 
-    {{- /* Main content column */ -}}
-    <div class="l-site__article-body">
+    {{- /* Main content column (Comes SECOND in HTML for Left Sidebar) */ -}}
+    <div class="l-site__main">
       <div class="l-article-content" id="article-container">
 
         {{- /* Article body */ -}}

@@ -23,8 +23,9 @@
   ) }}
 
   {{- /* ─── Two-Column Layout ─── */ -}}
-  <div class="l-site__columns">
-    {{- /* Main content area */ -}}
+  <div class="l-site__columns l-site__columns--sidebar-right">
+
+    {{- /* Main content area (Comes FIRST in HTML for Right Sidebar) */ -}}
     <div class="l-site__main">
       <div class="u-home-main">
         <div class="u-home-main__sections">
@@ -44,7 +45,7 @@
       </div>
     </div>
 
-    {{- /* ─── Sidebar ─── */ -}}
+    {{- /* ─── Sidebar (Comes SECOND in HTML for Right Sidebar) ─── */ -}}
     <aside class="l-site__sidebar">
       <div class="c-sidebar">
         {{- /* TODO(DB): Newsleter widget is badly styled */ -}}
