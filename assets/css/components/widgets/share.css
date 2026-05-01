@@ -7,7 +7,6 @@
   /* @api: bg, text, text-secondary, accent, icon, border, item-bg-hover */
   --_bg: var(--share-bg);
   --_text: var(--share-text);
-  --_text-secondary: var(--share-text-secondary);
   --_accent: var(--share-accent);
   --_icon: var(--share-icon);
   --_border: var(--share-border);

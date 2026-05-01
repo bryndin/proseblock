@@ -315,12 +315,6 @@
   --widget-title: var(--text-secondary);
   --widget-text: var(--text-secondary);
   --widget-hover: var(--accent);
-  --sidebar-widget-icon: oklch(from var(--text-primary) l c h / var(--opacity-medium));
-
-  /* Widget: Taxonomy (Categories & Tags) */
-  --widget-taxonomy-text-primary: var(--text-secondary);
-  --widget-taxonomy-text-secondary: var(--text-tertiary);
-  --widget-taxonomy-text-hover: var(--accent);
 
   /* Author Block */
   --author-bg: var(--bg-highest);

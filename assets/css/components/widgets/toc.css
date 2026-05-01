@@ -31,9 +31,6 @@
   --_progress-transition: var(--duration-faster) var(--ease-editorial);
   --_float-duration: var(--duration-slow) var(--ease-editorial);
 
-  /* Scrollbar override */
-  --_scrollbar-w: 4px;
-
   display: grid;
   grid-template-rows: auto auto;
   gap: var(--space-4);

@@ -155,7 +155,6 @@
   --_count-text: var(--text-secondary);
   --_accent: var(--accent);
   --_padding: var(--space-4);
-  --_border-opacity: var(--opacity-medium);
   --_transition: var(--transition-normal-ease-default);
   --_count: oklch(from var(--_count-text) l c h / var(--opacity-low));
 
