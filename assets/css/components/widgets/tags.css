@@ -108,3 +108,41 @@
   margin-bottom: 1px;
   transition: color var(--duration-fast) var(--ease-default);
 }
+
+/* ==========================================================================
+   Mobile Layout Overrides (< 768px)
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .c-widget-tags {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: var(--space-4);
+    background: var(--bg-secondary);
+    /* Ensure the widget spans the full width of its parent container on mobile */
+    max-width: none;
+  }
+
+  .c-widget-tags__header {
+    flex-shrink: 0;
+  }
+
+  .c-widget-tags__title {
+    display: none;
+  }
+
+  .c-widget-tags__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* Force the list to fill the remaining horizontal space to the right of the icon */
+    flex: 1;
+    /* Prevent the nested wrapping flex container from collapsing its width */
+    min-width: 0; 
+  }
+
+  .c-widget-tags__link {
+    width: auto;
+    /* Reset space-between since it's an auto-width inline element now */
+    justify-content: flex-start;
+  }
+}
