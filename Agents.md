@@ -60,7 +60,7 @@ Files **must NOT** contain `@layer` wrappers—assignment happens in `layouts/_p
 /* Parent overrides child's Tier 2.2 API only */
 /* @provides: Contextual child overrides */
 .c-hero > .c-metadata {
-  --metadata-text: var(--_text);  /* OK: mutates child API */
+  --metadata: var(--_text);  /* OK: mutates child API */
   /* display: none; */            /* FORBIDDEN: no standard properties */
   /* --_color: red; */            /* FORBIDDEN: no Tier 3 vars */
 }

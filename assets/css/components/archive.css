@@ -4,8 +4,8 @@
 
 .c-archive {
   /* @api: Ingested Semantics */
-  --_year-color: var(--archive-year-text);
-  --_month-color: var(--archive-month-text);
+  --_year-color: var(--archive-year);
+  --_month-color: var(--archive-month);
 
   /* @internal: Structural & Nested configuration */
   --_gap: var(--space-24);
@@ -79,8 +79,8 @@
 
 .c-archive-card {
   /* @api: Ingested Semantics */
-  --_title-text: var(--archive-card-title-text);
-  --_cat-text: var(--archive-card-category-text);
+  --_title: var(--archive-card-title);
+  --_cat: var(--archive-card-category);
   --_date-muted: var(--archive-card-date-muted);
   --_accent: var(--archive-card-accent);
   --_border-color: var(--archive-card-border);
@@ -167,7 +167,7 @@
   font-weight: var(--weight-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-widest);
-  color: var(--_cat-text);
+  color: var(--_cat);
   margin-bottom: var(--_cat-mb);
 }
 
@@ -175,7 +175,7 @@
   font-size: var(--_title-font);
   font-weight: var(--weight-semibold);
   line-height: var(--leading-tight);
-  color: var(--_title-text);
+  color: var(--_title);
   transition: color var(--_transition);
 }
 

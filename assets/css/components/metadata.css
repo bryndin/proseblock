@@ -6,7 +6,7 @@
 
 .c-metadata {
   /* @api: Ingested Semantics */
-  --_color: var(--metadata-text);
+  --_color: var(--metadata);
 
   /* @internal: font-size, icon-size, gap-x, gap-y */
   --_font-size: var(--text-xs);

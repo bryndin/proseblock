@@ -8,14 +8,14 @@
   --_avatar-size: var(--author-hero-avatar-size);
   --_avatar-size-mobile: var(--author-hero-avatar-size-mobile);
   --_content-max-width: var(--author-hero-content-max-width);
-  --_bio-text: var(--author-bio-text);
-  --_social_text: var(--author-social-text);
+  --_bio: var(--author-bio);
+  --_social: var(--author-social);
   
   /* @internal: gap, sizes and colors */
   --_gap: var(--space-8);
 
   --_social-icon-size: var(--text-xl);
-  --_social-icon-color: var(--_social_text);
+  --_social-icon-color: var(--_social);
   --_social_hover: var(--accent);
 
   display: flex;
@@ -73,7 +73,7 @@
 /* Override the inherited colors */
 .c-hero--author .c-hero__subtitle,
 .c-hero--author .c-hero__subtitle > p {
-  color: var(--_bio-text);
+  color: var(--_bio);
 }
 
 /* --- Social Links --- */
@@ -95,7 +95,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  color: var(--_social_text);
+  color: var(--_social);
   font-size: var(--text-xs);
 
   font-weight: var(--weight-bold);

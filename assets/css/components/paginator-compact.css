@@ -4,16 +4,16 @@
    ========================================================================== */
 
 .c-featured__pagination {
-  /* @api: body-text, accent */
-  --_body-text: var(--featured-body-text);
+  /* @api: body, accent */
+  --_body: var(--featured-body);
   --_accent: var(--featured-accent);
 
   /* @internal: font-size, gap, icon-size, muted-opacity, transition */
   --_font-size: var(--text-xs);
   --_gap: var(--space-6);
   --_icon-size: var(--text-base);
-  --_btn: oklch(from var(--_body-text) l c h / var(--opacity-subtle));
-  --_indicator: oklch(from var(--_body-text) l c h / var(--opacity-subtle));
+  --_btn: oklch(from var(--_body) l c h / var(--opacity-subtle));
+  --_indicator: oklch(from var(--_body) l c h / var(--opacity-subtle));
   --_transition: var(--transition-normal-ease-default);
 
   display: flex;

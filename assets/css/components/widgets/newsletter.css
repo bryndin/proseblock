@@ -4,15 +4,15 @@
    ========================================================================== */
 
 .c-sidebar__form {
-  /* @internal: gap, border-w, input-border-opacity, placeholder-opacity, submit-icon-size, submit-hover-offset, spinner-size, transition */
+  /* @internal */
   --_gap: var(--space-6);
   --_placeholder: oklch(from var(--text-secondary) l c h / var(--opacity-low));
   --_submit-icon-size: var(--text-base);
   --_submit-hover-offset: var(--space-1);
   --_spinner-size: var(--text-base);
   --_transition: var(--transition-normal-ease-default);
-  --_heading-text: var(--text-secondary);
-  --_input-border: var(--border-width-minimal) solid oklch(from var(--_heading-text) l c h / var(--opacity-minimal));
+  --_heading: var(--text-secondary);
+  --_input-border: var(--border-width-minimal) solid oklch(from var(--_heading) l c h / var(--opacity-minimal));
 
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@
 
 .c-sidebar__input:focus {
   outline: none;
-  border-color: var(--_heading-text);
+  border-color: var(--_heading);
 }
 
 .c-sidebar__submit {
@@ -50,7 +50,7 @@
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--_heading-text);
+  color: var(--_heading);
   transition: color var(--_transition);
 }
 

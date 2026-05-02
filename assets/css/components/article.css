@@ -6,7 +6,7 @@
 .c-article {
   /* @api: bg, text */
   --_bg: var(--article-bg);
-  --_text: var(--article-text);
+  --_text: var(--article);
 
   /* @internal: padding (fluid), shadow */
   --_shadow: var(--shadow-editorial);

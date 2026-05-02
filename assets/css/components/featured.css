@@ -4,11 +4,11 @@
    ========================================================================== */
 
 .c-featured {
-  /* @api: bg, border, title-text, body-text, accent, shadow */
+  /* @api: bg, border, title, body, accent, shadow */
   --_bg: var(--featured-bg);
   --_border: var(--featured-border);
-  --_title-text: var(--featured-title-text);
-  --_body-text: var(--featured-body-text);
+  --_title: var(--featured-title);
+  --_body: var(--featured-body);
   --_accent: var(--featured-accent);
   --_shadow: var(--featured-shadow);
 
@@ -73,12 +73,12 @@
   font-weight: var(--weight-normal);
   letter-spacing: var(--tracking-tight);
   line-height: var(--leading-tight);
-  color: var(--_title-text);
+  color: var(--_title);
 }
 
 .c-featured__excerpt {
   font-size: var(--text-base);
   font-weight: var(--weight-light);
   line-height: var(--leading-relaxed);
-  color: var(--_body-text);
+  color: var(--_body);
 }

@@ -5,8 +5,8 @@
 
 .c-toc {
   /* @api: text, text-hover, accent, rail-bg, separator */
-  --_text: var(--toc-text);
-  --_text-hover: var(--toc-text-hover);
+  --_text: var(--toc);
+  --_text-hover: var(--toc-hover);
   --_accent: var(--toc-accent);
   --_rail-bg: var(--toc-rail-bg);
   --_separator: var(--toc-separator);

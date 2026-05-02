@@ -4,12 +4,12 @@
    ========================================================================== */
 
 .c-article-card {
-  /* @api: bg, bg-hover, title-text, body-text, meta-color, accent */
+  /* @api: bg, bg-hover, title, body, meta-color, accent */
   --_bg: var(--article-card-bg);
   --_bg-hover: var(--article-card-bg-hover);
-  --_title-text: var(--article-card-title-text);
-  --_body-text: var(--article-card-body-text);
-  --_meta-color: var(--article-card-meta-text);
+  --_title: var(--article-card-title);
+  --_body: var(--article-card-body);
+  --_meta: var(--article-card-meta);
   --_accent: var(--article-card-accent);
 
   /* @internal: padding, spacing, sizes, defaults */
@@ -49,7 +49,7 @@
   font-weight: var(--weight-bold);
   letter-spacing: var(--_cat-tracking);
   text-transform: uppercase;
-  color: var(--_meta-color);
+  color: var(--_meta);
 }
 
 .c-article-card__title {
@@ -57,7 +57,7 @@
   font-weight: var(--weight-normal);
   letter-spacing: var(--_title-tracking);
   line-height: var(--_title-leading);
-  color: var(--_title-text);
+  color: var(--_title);
   transition: color var(--_transition);
 }
 
@@ -69,7 +69,7 @@
   font-size: var(--_body-size);
   font-weight: var(--weight-light);
   line-height: var(--_body-leading);
-  color: var(--_body-text);
+  color: var(--_body);
   max-width: var(--_excerpt-max-w);
 }
 
@@ -93,5 +93,5 @@
 
 /* @provides: Contextual child overrides */
 .c-article-card .c-metadata {
-  --metadata-text: var(--_meta-color);
+  --metadata: var(--_meta);
 }

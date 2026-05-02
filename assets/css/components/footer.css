@@ -6,8 +6,8 @@
 .c-footer {
   /* @api: bg, text, text-hover, border */
   --_bg: var(--footer-bg);
-  --_text: var(--footer-text);
-  --_text-hover: var(--footer-text-hover);
+  --_text: var(--footer);
+  --_text-hover: var(--footer-hover);
   --_border: var(--footer-border);
 
   /* @internal: padding-x, padding-y, gap, label-size, copyright-opacity, link-opacity, border-w, transition */

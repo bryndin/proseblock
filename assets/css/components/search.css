@@ -4,12 +4,12 @@
 
 .c-hero--search {
   /* @api: Ingested Semantics */
-  --_text: var(--search-text);
+  --_text: var(--search);
   --_placeholder: var(--search-placeholder);
   --_accent: var(--search-accent);
   --_underline: var(--search-underline);
   --_border-color: var(--hero-border);
-  --_label-muted: var(--search-label-text);
+  --_label-muted: var(--search-label);
   --_indicator-bar: var(--search-indicator-accent);
 
   /* @internal: Metadata & Layout */

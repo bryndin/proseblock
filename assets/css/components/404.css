@@ -4,9 +4,9 @@
 
 /* --- Hero Modifier --- */
 .c-hero--404 {
-  /* @api: title-text, subtitle-text */
-  --_title-text: var(--hero-404-title-text);
-  --_subtitle-text: var(--hero-404-subtitle-text);
+  /* @api: title, subtitle */
+  --_title: var(--hero-404-title);
+  --_subtitle: var(--hero-404-subtitle);
 
   /* @internal: padding-y (fluid), title-size (fluid), title-weight, title-tracking, title-spacing, title-lh, subtitle-size, subtitle-max-w, subtitle-lh */
   --_title-size: var(--text-6xl);
@@ -25,7 +25,7 @@
 }
 
 .c-hero--404 .c-hero__title {
-  color: var(--_title-text);
+  color: var(--_title);
   /* fluid: text-6xl → 6rem */
   font-size: clamp(var(--_title-size), 8vw + 0.5rem, var(--_title-size-fluid));
   font-weight: var(--_title-weight);
@@ -35,7 +35,7 @@
 }
 
 .c-hero--404 .c-hero__subtitle {
-  color: var(--_subtitle-text);
+  color: var(--_subtitle);
   font-size: var(--_subtitle-size);
   max-width: var(--_subtitle-max-w);
   line-height: var(--_subtitle-lh);

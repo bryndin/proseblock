@@ -6,7 +6,7 @@
 .c-header {
   /* @api: Ingested Semantics */
   --_bg: var(--header-bg);
-  --_text: var(--header-text);
+  --_text: var(--header);
   --_icon: var(--header-icon);
   --_transition: var(--header-transition-smooth);
   --_float-duration: var(--header-floating-duration);

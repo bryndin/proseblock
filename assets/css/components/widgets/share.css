@@ -6,7 +6,7 @@
 .c-share {
   /* @api: bg, text, text-secondary, accent, icon, border, item-bg-hover */
   --_bg: var(--share-bg);
-  --_text: var(--share-text);
+  --_text: var(--share);
   --_accent: var(--share-accent);
   --_icon: var(--share-icon);
   --_border: var(--share-border);

@@ -4,11 +4,11 @@
    ========================================================================== */
 
 .c-newsletter {
-  /* @api: bg, accent, text, heading-text, border */
+  /* @api: bg, accent, text, heading, border */
   --_bg: var(--newsletter-bg);
   --_accent: var(--newsletter-accent);
-  --_text: var(--newsletter-text);
-  --_heading-text: var(--newsletter-heading-text);
+  --_text: var(--newsletter);
+  --_heading: var(--newsletter-heading);
   --_border: var(--newsletter-border);
 
   /* @internal: padding, padding-md, margin-top, max-width, border-w, border-opacity, submit-icon-size, submit-hover-offset, spinner-size, transition */
@@ -49,7 +49,7 @@
 .c-newsletter__title {
   font-size: var(--text-3xl);
   font-weight: var(--weight-normal);
-  color: var(--_heading-text);
+  color: var(--_heading);
   margin-bottom: var(--space-6);
 }
 
@@ -101,7 +101,7 @@
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--_heading-text);
+  color: var(--_heading);
   background: transparent;
   transition: color var(--_transition);
 }

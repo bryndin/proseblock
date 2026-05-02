@@ -14,7 +14,7 @@
 
 .c-author-section__title {
   /* @api: Ingested Semantics */
-  --_text: var(--author-section-title-text);
+  --_text: var(--author-section-title);
   --_border: var(--author-section-title-border);
 
   /* @internal: Typography & Layout */
@@ -65,9 +65,9 @@
   --_bg-hover: var(--author-card-bg-hover);
   --_border: var(--author-card-border);
   --_border-hover: var(--author-card-border-hover);
-  --_text: var(--author-card-text);
-  --_text-hover: var(--author-card-text-hover);
-  --_meta: var(--author-card-meta-text);
+  --_text: var(--author-card);
+  --_text-hover: var(--author-card-hover);
+  --_meta: var(--author-card-meta);
 
   /* @internal: Configuration & Layout */
   --_padding-x: var(--space-4);

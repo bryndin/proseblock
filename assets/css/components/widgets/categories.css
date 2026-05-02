@@ -5,7 +5,7 @@
 
 .c-widget-categories {
   /* @internal */
-  --_text-secondary: var(--widget-text);
+  --_text-secondary: var(--widget);
   --_text-hover: var(--widget-hover);
 }
 

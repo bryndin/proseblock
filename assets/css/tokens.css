@@ -248,7 +248,7 @@
 
   /* Header */
   --header-bg: var(--bg-primary);
-  --header-text: var(--text-primary);
+  --header: var(--text-primary);
   --header-icon: var(--icon-primary);
   --header-title-tracking: var(--tracking-normal);
   --header-title-tracking-md: 0.6em;
@@ -258,52 +258,52 @@
 
   /* Hero */
   --hero-bg: var(--bg-secondary);
-  --hero-title-text: var(--text-primary);
-  --hero-body-text: var(--text-tertiary);
-  --hero-meta-text: var(--text-tertiary);
+  --hero-title: var(--text-primary);
+  --hero-body: var(--text-tertiary);
+  --hero-meta: var(--text-tertiary);
   --hero-accent: var(--accent);
   --hero-border: oklch(from var(--border-subtle) l c h / var(--opacity-subtle));
 
   /* Article Card */
   --article-card-bg: var(--bg-transparent);
   --article-card-bg-hover: var(--bg-secondary);
-  --article-card-title-text: var(--text-primary);
-  --article-card-body-text: var(--text-secondary);
-  --article-card-meta-text: oklch(from var(--text-secondary) l c h / var(--opacity-medium));
+  --article-card-title: var(--text-primary);
+  --article-card-body: var(--text-secondary);
+  --article-card-meta: oklch(from var(--text-secondary) l c h / var(--opacity-medium));
   --article-card-accent: var(--accent);
 
   /* Archive */
-  --archive-year-text: oklch(from var(--text-primary) l c h / var(--opacity-subtle));
-  --archive-month-text: oklch(from var(--accent) l c h / var(--opacity-subtle));
-  --archive-card-title-text: var(--text-primary);
-  --archive-card-category-text: oklch(from var(--accent) l c h / var(--opacity-medium));
+  --archive-year: oklch(from var(--text-primary) l c h / var(--opacity-subtle));
+  --archive-month: oklch(from var(--accent) l c h / var(--opacity-subtle));
+  --archive-card-title: var(--text-primary);
+  --archive-card-category: oklch(from var(--accent) l c h / var(--opacity-medium));
   --archive-card-date-muted: oklch(from var(--text-primary) l c h / var(--opacity-low));
   --archive-card-accent: var(--accent);
   --archive-card-border: oklch(from var(--border-subtle) l c h / var(--opacity-medium));
 
   /* Author Index */
-  --author-section-title-text: var(--text-secondary);
+  --author-section-title: var(--text-secondary);
   --author-section-title-border: var(--border-muted);
 
   --author-card-bg: var(--bg-transparent);
   --author-card-bg-hover: var(--bg-secondary);
   --author-card-border: var(--border-subtle);
   --author-card-border-hover: var(--accent);
-  --author-card-text: var(--text-primary);
-  --author-card-text-hover: var(--accent);
-  --author-card-meta-text: var(--text-secondary);
+  --author-card: var(--text-primary);
+  --author-card-hover: var(--accent);
+  --author-card-meta: var(--text-secondary);
 
   /* Article */
   --article-bg: var(--bg-card);
-  --article-text: var(--text-secondary);
+  --article: var(--text-secondary);
 
   /* Prose */
   --prose-blockquote-bg: var(--bg-secondary);
   --prose-code-bg: var(--bg-secondary);
 
   /* Table of Contents */
-  --toc-text: var(--text-secondary);
-  --toc-text-hover: var(--accent);
+  --toc: var(--text-secondary);
+  --toc-hover: var(--accent);
   --toc-accent: var(--accent);
   --toc-rail-bg: var(--border-muted);
   --toc-separator: var(--border-muted);
@@ -313,14 +313,14 @@
   --widget-title-icon: var(--icon-secondary);
   --widget-title-icon-size: 0.875rem;
   --widget-title: var(--text-secondary);
-  --widget-text: var(--text-secondary);
+  --widget: var(--text-secondary);
   --widget-hover: var(--accent);
 
   /* Author Block */
   --author-bg: var(--bg-highest);
   --author-accent: var(--accent);
-  --author-name-text: var(--text-primary);
-  --author-body-text: var(--text-secondary);
+  --author-name: var(--text-primary);
+  --author-body: var(--text-secondary);
   --author-avatar-icon: oklch(from var(--text-secondary) l c h / var(--opacity-subtle));
 
   /* Author Page */
@@ -328,20 +328,20 @@
   --author-hero-avatar-size-mobile: 10rem;
   --author-hero-avatar-size: 14rem;
   --author-hero-content-max-width: 56rem;
-  --author-bio-text: var(--text-secondary);
-  --author-social-text: var(--text-tertiary);
+  --author-bio: var(--text-secondary);
+  --author-social: var(--text-tertiary);
 
   /* Newsletter */
   --newsletter-bg: var(--bg-secondary);
   --newsletter-accent: var(--accent);
-  --newsletter-text: var(--text-secondary);
-  --newsletter-heading-text: var(--text-primary);
+  --newsletter: var(--text-secondary);
+  --newsletter-heading: var(--text-primary);
   --newsletter-border: oklch(from var(--border-muted) l c h / var(--opacity-low));
 
   /* Share */
   --share-bg: var(--bg-card);
-  --share-text: var(--text-primary);
-  --share-text-secondary: var(--text-secondary);
+  --share: var(--text-primary);
+  --share-secondary: var(--text-secondary);
   --share-accent: var(--accent);
   --share-icon: var(--icon-secondary);
   --share-border: var(--border-subtle);
@@ -349,13 +349,13 @@
 
   /* Footer */
   --footer-bg: var(--bg-primary);
-  --footer-text: var(--text-secondary);
-  --footer-text-hover: var(--accent);
+  --footer: var(--text-secondary);
+  --footer-hover: var(--accent);
   --footer-border: var(--border-subtle);
 
   /* Paginator */
-  --paginator-text: var(--text-primary);
-  --paginator-text-muted: var(--text-secondary);
+  --paginator: var(--text-primary);
+  --paginator-muted: var(--text-secondary);
   --paginator-active-border: var(--text-primary);
   --paginator-hover-bg: var(--bg-secondary);
   --paginator-border: var(--bg-secondary);
@@ -363,10 +363,10 @@
   /* Menu */
   --menu-bg: var(--bg-secondary);
   --menu-aside-bg: var(--bg-elevated);
-  --menu-text: var(--text-primary);
+  --menu: var(--text-primary);
   --menu-accent: var(--accent);
   --menu-icon: var(--icon-secondary);
-  --menu-mission-text: var(--text-tertiary);
+  --menu-mission: var(--text-tertiary);
   --menu-backdrop-bg: oklch(from var(--bg-inverse) l c h / var(--opacity-minimal));
   --menu-close-opacity-hover: var(--opacity-medium);
   --menu-link-icon-opacity: var(--opacity-subtle);
@@ -375,30 +375,30 @@
   /* Featured */
   --featured-bg: var(--bg-card);
   --featured-border: var(--border-subtle);
-  --featured-title-text: var(--text-primary);
-  --featured-body-text: var(--text-secondary);
+  --featured-title: var(--text-primary);
+  --featured-body: var(--text-secondary);
   --featured-accent: var(--accent);
   --featured-shadow: var(--shadow-tonal);
 
   /* Search */
-  --search-text: var(--text-primary);
+  --search: var(--text-primary);
   --search-placeholder: var(--text-tertiary);
   --search-underline: var(--border-muted);
   --search-accent: var(--accent);
   --search-quote-bg: var(--bg-secondary);
-  --search-quote-text: var(--text-secondary);
-  --search-label-text: oklch(from var(--text-primary) l c h / var(--opacity-medium));
+  --search-quote: var(--text-secondary);
+  --search-label: oklch(from var(--text-primary) l c h / var(--opacity-medium));
   --search-icon-muted: oklch(from var(--text-primary) l c h / var(--opacity-medium));
   --search-indicator-accent: var(--accent);
   --search-modal-shadow: var(--shadow-tonal);
 
   /* Metadata */
-  --metadata-text: var(--text-tertiary);
+  --metadata: var(--text-tertiary);
   --metadata-icon-opacity: var(--opacity-subtle);
 
   /* 404 */
-  --hero-404-title-text: var(--text-primary);
-  --hero-404-subtitle-text: var(--text-secondary);
+  --hero-404-title: var(--text-primary);
+  --hero-404-subtitle: var(--text-secondary);
   --nav-404-bg: var(--bg-card);
   --nav-404-text-primary: var(--text-primary);
   --nav-404-text-secondary: var(--text-secondary);
@@ -407,7 +407,7 @@
 
   /* Alerts */
   --alert-bg: var(--bg-secondary);
-  --alert-text: var(--text-primary);
+  --alert: var(--text-primary);
   --alert-border-note: var(--accent);
   --alert-border-tip: var(--intent-success);
   --alert-border-important: var(--intent-important);

@@ -7,7 +7,7 @@
   /* @api: backdrop-bg, aside-bg, text, accent, icon, close-opacity-hover, link-icon-opacity, newsletter-border */
   --_backdrop-bg: var(--menu-backdrop-bg);
   --_aside-bg: var(--menu-aside-bg);
-  --_text: var(--menu-text);
+  --_text: var(--menu);
   --_accent: var(--menu-accent);
   --_icon: var(--menu-icon);
   --_close-opacity-hover: var(--menu-close-opacity-hover);

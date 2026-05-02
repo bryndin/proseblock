@@ -29,14 +29,14 @@
   --_bg: var(--bg-transparent);
   --_bg-hover: var(--bg-secondary);
   --_border: var(--border-muted);
-  --_title-text: var(--text-primary);
-  --_index-text: var(--accent);
-  --_count-text: var(--text-secondary);
+  --_title: var(--text-primary);
+  --_index: var(--accent);
+  --_count: var(--text-secondary);
   --_accent: var(--accent);
   --_padding: var(--space-6);
   --_transition: var(--transition-normal-ease-default);
-  --_index: oklch(from var(--_index-text) l c h / var(--opacity-subtle));
-  --_count: oklch(from var(--_count-text) l c h / var(--opacity-subtle));
+  --_index: oklch(from var(--_index) l c h / var(--opacity-subtle));
+  --_count: oklch(from var(--_count) l c h / var(--opacity-subtle));
 
   display: block;
   padding: var(--_padding);
@@ -74,7 +74,7 @@
 }
 
 .c-category-card:hover .c-category-card__index {
-  color: var(--_index-text);
+  color: var(--_index);
 }
 
 .c-category-card__count {
@@ -86,11 +86,11 @@
 }
 
 .c-category-card:hover .c-category-card__count {
-  color: var(--_count-text);
+  color: var(--_count);
 }
 
 .c-category-card__title {
-  color: var(--_title-text);
+  color: var(--_title);
   font-size: var(--text-xl);
   font-weight: var(--weight-extrabold);
   letter-spacing: var(--tracking-tight);
@@ -151,12 +151,12 @@
   --_bg-hover: var(--bg-secondary);
   --_border: oklch(from var(--border-subtle) l c h / var(--opacity-medium));
   --_border-hover: var(--accent);
-  --_name-text: var(--text-primary);
-  --_count-text: var(--text-secondary);
+  --_name: var(--text-primary);
+  --_count: var(--text-secondary);
   --_accent: var(--accent);
   --_padding: var(--space-4);
   --_transition: var(--transition-normal-ease-default);
-  --_count: oklch(from var(--_count-text) l c h / var(--opacity-low));
+  --_count: oklch(from var(--_count) l c h / var(--opacity-low));
 
   display: flex;
   align-items: baseline;
@@ -176,7 +176,7 @@
 }
 
 .c-tag-card__name {
-  color: var(--_name-text);
+  color: var(--_name);
   font-size: var(--text-lg);
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-tight);
@@ -192,7 +192,7 @@
 }
 
 .c-tag-card:hover .c-tag-card__count {
-  color: var(--_count-text);
+  color: var(--_count);
 }
 
 .c-tag-card:hover .c-tag-card__name {

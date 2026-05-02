@@ -7,8 +7,8 @@
   /* @api: Ingested Semantics */
   --_bg: var(--author-bg);
   --_accent: var(--author-accent);
-  --_name-text: var(--author-name-text);
-  --_body-text: var(--author-body-text);
+  --_name: var(--author-name);
+  --_body: var(--author-body);
   --_avatar-icon-color: var(--author-avatar-icon);
 
   /* @internal: Metadata & Structural configuration */
@@ -87,14 +87,14 @@
   font-size: var(--text-xl);
   font-weight: var(--weight-bold);
   line-height: var(--leading-xl);
-  color: var(--_name-text);
+  color: var(--_name);
 }
 
 .c-author__bio {
   font-size: var(--text-sm);
   font-weight: var(--weight-light);
   line-height: var(--leading-relaxed);
-  color: var(--_body-text);
+  color: var(--_body);
   max-width: var(--_bio-max-w);
 }
 
@@ -113,7 +113,7 @@
 }
 
 .c-author__social-link {
-  color: var(--_body-text);
+  color: var(--_body);
   transition: color var(--_transition);
 }
 
@@ -146,7 +146,7 @@
 }
 
 .c-author__more-link:hover {
-  color: var(--_name-text);
+  color: var(--_name);
 }
 
 .c-author__more-icon {

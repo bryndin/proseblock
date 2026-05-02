@@ -4,11 +4,11 @@
    ========================================================================== */
 
 .c-hero {
-  /* @api: bg, title-text, body-text, meta-text, accent, border */
+  /* @api: bg, title, body, meta, accent, border */
   --_bg: var(--hero-bg);
-  --_title-text: var(--hero-title-text);
-  --_body-text: var(--hero-body-text);
-  --_meta-color: var(--hero-meta-text);
+  --_title: var(--hero-title);
+  --_body: var(--hero-body);
+  --_meta: var(--hero-meta);
   --_accent: var(--hero-accent);
   --_border: var(--hero-border);
 
@@ -69,7 +69,7 @@
   font-weight: var(--weight-normal);
   letter-spacing: var(--tracking-tight);
   line-height: var(--_title-leading);
-  color: var(--_title-text);
+  color: var(--_title);
   margin-bottom: var(--space-10);
 }
 
@@ -80,7 +80,7 @@
   font-size: var(--_subtitle-size);
   font-weight: var(--weight-normal);
   line-height: var(--_subtitle-leading);
-  color: var(--_body-text);
+  color: var(--_body);
   max-width: var(--_max-width-subtitle);
 }
 
@@ -95,5 +95,5 @@
 
 /* @provides: Contextual child overrides */
 .c-hero .c-metadata {
-  --metadata-text: var(--_meta-color);
+  --metadata: var(--_meta);
 }
