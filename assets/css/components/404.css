@@ -73,14 +73,9 @@
   --_list-gap-fluid: var(--space-8);
   --_list-gap-fluid-max: var(--space-16);
   --_link-gap: var(--space-3);
-  --_link-icon-size: var(--text-xl);
-  --_link-icon: oklch(from var(--_text-secondary) l c h / var(--opacity-subtle));
-  --_link-title-size: var(--text-2xl);
-  --_link-title-weight: var(--weight-bold);
   --_link-subtitle-size: var(--text-xs);
   --_link-subtitle-weight: var(--weight-bold);
   --_link-subtitle-tracking: var(--tracking-tight);
-  --_home-icon-hover-offset: calc(var(--_home-icon-size) * var(--motion-shift-sm));
 
   background-color: var(--_bg);
 }
@@ -108,26 +103,34 @@
 }
 
 .c-404-nav__home-link {
+  /* @internal */
+  --_home-link: var(--_text-primary);
+
   display: inline-flex;
   align-items: center;
   gap: var(--_home-gap);
-  color: var(--_text-primary);
+  color: var(--_home-link);
   text-decoration: none;
   transition: color var(--_transition);
 }
 
 .c-404-nav__home-link:hover {
-  color: var(--_text-accent);
+  --_home-link: var(--_text-accent);
 }
 
 .c-404-nav__home-icon {
+  /* @internal */
+  --_home-icon-transform: none;
+  --_home-icon-hover-offset: calc(var(--_home-icon-size) * var(--motion-shift-sm));
+
   font-size: var(--_home-icon-size);
+  transform: var(--_home-icon-transform);
   transition: transform var(--_transition);
   display: flex;
 }
 
 .c-404-nav__home-link:hover .c-404-nav__home-icon {
-  transform: translateX(calc(-1 * var(--_home-icon-hover-offset)));
+  --_home-icon-transform: translateX(calc(-1 * var(--_home-icon-hover-offset)));
 }
 
 .c-404-nav__home-text {
@@ -191,6 +194,10 @@
 }
 
 .c-404-nav__link-icon {
+  /* @internal */
+  --_link-icon-size: var(--text-xl);
+  --_link-icon: oklch(from var(--_text-secondary) l c h / var(--opacity-subtle));
+
   font-size: var(--_link-icon-size);
   color: var(--_link-icon);
   transition: color var(--_transition);
@@ -198,7 +205,7 @@
 }
 
 .c-404-nav__link:hover .c-404-nav__link-icon {
-  color: var(--_text-accent);
+  --_link-icon: var(--_text-accent);
 }
 
 .c-404-nav__link-text {
@@ -207,14 +214,19 @@
 }
 
 .c-404-nav__link-title {
+  /* @internal */
+  --_link-title: var(--_text-primary);
+  --_link-title-size: var(--text-2xl);
+  --_link-title-weight: var(--weight-bold);
+
   font-size: var(--_link-title-size);
   font-weight: var(--_link-title-weight);
-  color: var(--_text-primary);
+  color: var(--_link-title);
   transition: color var(--_transition);
 }
 
 .c-404-nav__link:hover .c-404-nav__link-title {
-  color: var(--_text-accent);
+  --_link-title: var(--_text-accent);
 }
 
 .c-404-nav__link-subtitle {
