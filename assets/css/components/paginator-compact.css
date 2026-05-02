@@ -27,7 +27,7 @@
 }
 
 .c-featured__page-btn:hover {
-  color: var(--_accent);
+  color: var(--interactive-hover);
 }
 
 .c-featured__page-btn svg {

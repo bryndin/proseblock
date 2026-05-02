@@ -20,5 +20,5 @@
 }
 
 .c-sidebar__link:hover {
-  color: var(--_accent);
+  color: var(--interactive-hover);
 }

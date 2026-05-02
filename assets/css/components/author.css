@@ -106,7 +106,7 @@
 }
 
 .c-hero__social-link:hover {
-  color: var(--_social_hover);
+  color: var(--interactive-hover);
 }
 
 .c-hero__social-icon {

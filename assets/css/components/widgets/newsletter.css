@@ -55,7 +55,7 @@
 }
 
 .c-sidebar__submit:hover {
-  color: var(--accent);
+  color: var(--interactive-hover);
 }
 
 .c-sidebar__submit-icon {

@@ -190,5 +190,5 @@
 }
 
 .c-archive-card:hover .c-archive-card__title {
-  color: var(--_accent);
+  color: var(--interactive-hover);
 }

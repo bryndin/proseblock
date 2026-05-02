@@ -135,7 +135,7 @@
 }
 
 .c-toc__list nav a:hover {
-  color: var(--_text-hover);
+  color: var(--interactive-hover);
   padding-right: 0;
 }
 
@@ -202,7 +202,7 @@
 }
 
 .c-toc__floating-title a:hover {
-  color: var(--_text-hover);
+  color: var(--interactive-hover);
 }
 
 /* --- Reading rail --- */

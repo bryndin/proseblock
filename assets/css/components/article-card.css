@@ -62,7 +62,7 @@
 }
 
 .c-article-card:hover .c-article-card__title {
-  color: var(--_accent);
+  color: var(--interactive-hover);
 }
 
 .c-article-card__excerpt {

@@ -107,7 +107,7 @@
 }
 
 .c-newsletter__submit:hover {
-  color: var(--_accent);
+  color: var(--interactive-hover);
 }
 
 .c-newsletter__submit-icon {

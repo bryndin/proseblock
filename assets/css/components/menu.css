@@ -131,7 +131,7 @@
 }
 
 .c-drawer__close-btn:hover {
-  color: var(--_close-btn-hover);
+  color: var(--interactive-hover);
 }
 
 .c-drawer__close-btn svg {
@@ -223,7 +223,7 @@
 }
 
 .c-drawer__link:hover .c-drawer__link-icon-wrapper {
-  color: var(--_accent);
+  color: var(--interactive-hover);
 }
 
 .c-drawer__link-text {
@@ -307,7 +307,7 @@
 }
 
 .c-drawer__newsletter-submit:hover {
-  color: var(--_accent);
+  color: var(--interactive-hover);
 }
 
 .c-drawer__newsletter-arrow svg {
@@ -331,7 +331,7 @@
 }
 
 .c-drawer__social-link:hover {
-  color: var(--_accent);
+  color: var(--interactive-hover);
 }
 
 .c-drawer__social-icon svg {

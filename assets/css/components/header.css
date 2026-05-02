@@ -127,7 +127,7 @@
 }
 
 .c-header__icon-btn:hover {
-  color: var(--_text);
+  color: var(--interactive-hover);
 }
 
 .c-header__icon-btn svg {

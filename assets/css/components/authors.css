@@ -111,7 +111,7 @@
 }
 
 .c-author-card:hover .c-author-card__name {
-  color: var(--_text-hover);
+  color: var(--interactive-hover);
 }
 
 .c-author-card__count {
@@ -128,6 +128,5 @@
 }
 
 .c-author-card:hover .c-author-card__count {
-  /* Full opacity mapped back to the raw meta color on hover */
-  color: var(--_meta);
+  color: var(--interactive-hover);
 }

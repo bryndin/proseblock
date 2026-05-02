@@ -180,11 +180,11 @@
 }
 
 .c-search-widget__header--link:hover svg {
-  color: var(--accent);
+  color: var(--interactive-hover);
 }
 
 .c-search-widget__header--link:hover .c-search-widget__subtitle {
-  color: var(--accent);
+  color: var(--interactive-hover);
   padding-left: var(--space-2);
 }
 
@@ -358,7 +358,7 @@
 }
 
 .c-search-suggested__link:hover .c-search-suggested__text {
-  color: var(--_accent);
+  color: var(--interactive-hover);
 }
 
 /* ==========================================================================

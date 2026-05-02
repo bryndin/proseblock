@@ -74,7 +74,7 @@
 }
 
 .c-category-card:hover .c-category-card__index {
-  color: var(--_index);
+  color: var(--interactive-hover);
 }
 
 .c-category-card__count {
@@ -86,7 +86,7 @@
 }
 
 .c-category-card:hover .c-category-card__count {
-  color: var(--_count);
+  color: var(--interactive-hover);
 }
 
 .c-category-card__title {
@@ -99,7 +99,7 @@
 }
 
 .c-category-card__link:hover .c-category-card__title {
-  color: var(--_accent);
+  color: var(--interactive-hover);
 }
 
 /* ==========================================================================
@@ -192,9 +192,9 @@
 }
 
 .c-tag-card:hover .c-tag-card__count {
-  color: var(--_count);
+  color: var(--interactive-hover);
 }
 
 .c-tag-card:hover .c-tag-card__name {
-  color: var(--_accent);
+  color: var(--interactive-hover);
 }

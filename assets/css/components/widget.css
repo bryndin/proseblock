@@ -56,8 +56,8 @@
 }
 
 .c-widget__header:hover {
-  --_icon: var(--_hover);
-  --_title: var(--_hover);
+  --_icon: var(--interactive-hover);
+  --_title: var(--interactive-hover);
   --_title-transform: translateX(var(--space-2));
 }
 

@@ -6,7 +6,6 @@
 .c-widget-categories {
   /* @internal */
   --_text-secondary: var(--widget);
-  --_text-hover: var(--widget-hover);
 }
 
 .c-widget-categories[hidden] {
@@ -37,8 +36,8 @@
 }
 
 .c-widget-categories__link:hover {
-  --_item-name: var(--_text-hover);
-  --_item-count: var(--_text-hover);
+  --_item-name: var(--interactive-hover);
+  --_item-count: var(--interactive-hover);
 }
 
 .c-widget-categories__name {

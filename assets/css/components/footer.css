@@ -61,5 +61,5 @@
 }
 
 .c-footer__link:hover {
-  color: var(--_text-hover);
+  color: var(--interactive-hover);
 }

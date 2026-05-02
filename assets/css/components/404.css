@@ -115,7 +115,7 @@
 }
 
 .c-404-nav__home-link:hover {
-  --_home-link: var(--_text-accent);
+  --_home-link: var(--interactive-hover);
 }
 
 .c-404-nav__home-icon {
@@ -205,7 +205,7 @@
 }
 
 .c-404-nav__link:hover .c-404-nav__link-icon {
-  --_link-icon: var(--_text-accent);
+  --_link-icon: var(--interactive-hover);
 }
 
 .c-404-nav__link-text {
@@ -226,7 +226,7 @@
 }
 
 .c-404-nav__link:hover .c-404-nav__link-title {
-  --_link-title: var(--_text-accent);
+  --_link-title: var(--interactive-hover);
 }
 
 .c-404-nav__link-subtitle {
