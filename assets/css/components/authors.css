@@ -14,7 +14,7 @@
 
 .c-author-section__title {
   /* @api: Ingested Semantics */
-  --_text: var(--author-section-title);
+  --_title: var(--author-section-title);
   --_border: var(--author-section-title-border);
 
   /* @internal: Typography & Layout */
@@ -30,9 +30,8 @@
   letter-spacing: var(--_tracking);
   text-transform: uppercase;
 
-  /* Replaced CSS opacity with Relative Color Syntax + Tier 1 Opacity primitives */
-  color: oklch(from var(--_text) l c h / var(--opacity-subtle));
-  border-bottom: var(--_border-w) solid oklch(from var(--_border) l c h / var(--opacity-subtle));
+  color: var(--_title);
+  border-bottom: var(--_border-w) solid var(--_border);
 
   padding-bottom: var(--_padding-b);
   margin-bottom: var(--_margin-b);
@@ -61,12 +60,12 @@
 
 .c-author-card {
   /* @api: Ingested Semantics */
+  --_card: var(--author-card);
+  --_count: var(--author-card-count);
   --_bg: var(--author-card-bg);
   --_bg-hover: var(--author-card-bg-hover);
   --_border: var(--author-card-border);
   --_border-hover: var(--author-card-border-hover);
-  --_text: var(--author-card);
-  --_meta: var(--author-card-meta);
 
   /* @internal: Configuration & Layout */
   --_padding-x: var(--space-4);
@@ -91,8 +90,8 @@
 }
 
 .c-author-card:hover {
-  background-color: var(--_bg-hover);
-  border-bottom-color: var(--_border-hover);
+  --_bg: var(--_bg-hover);
+  --_border: var(--_border-hover);
   box-shadow: var(--shadow-inner);
 }
 
@@ -105,12 +104,12 @@
   font-size: var(--_font-size);
   font-weight: var(--_font-weight);
   letter-spacing: var(--_tracking);
-  color: var(--_text);
+  color: var(--_card);
   transition: color var(--_transition);
 }
 
 .c-author-card:hover .c-author-card__name {
-  color: var(--interactive-hover);
+  --_card: var(--interactive-hover);
 }
 
 .c-author-card__count {
@@ -121,11 +120,10 @@
   font-size: var(--_font-size);
   font-weight: var(--_font-weight);
 
-  /* Replaced CSS opacity transition with a color transition using RCS */
-  color: oklch(from var(--_meta) l c h / var(--opacity-low));
+  color: var(--_count);
   transition: color var(--_transition);
 }
 
 .c-author-card:hover .c-author-card__count {
-  color: var(--interactive-hover);
+  --_count: var(--interactive-hover);
 }

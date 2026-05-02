@@ -277,15 +277,15 @@
   --archive-card-border: oklch(from var(--border-subtle) l c h / var(--opacity-medium));
 
   /* Author Index */
-  --author-section-title: var(--text-secondary);
-  --author-section-title-border: var(--border-muted);
+  --author-section-title: oklch(from var(--text-secondary) l c h / var(--opacity-subtle));
+  --author-section-title-border: oklch(from var(--border-muted) l c h / var(--opacity-subtle));
 
   --author-card-bg: var(--bg-transparent);
   --author-card-bg-hover: var(--bg-secondary);
   --author-card-border: var(--border-subtle);
   --author-card-border-hover: var(--accent);
   --author-card: var(--text-primary);
-  --author-card-meta: var(--text-secondary);
+  --author-card-count: oklch(from var(--text-secondary) l c h / var(--opacity-low));
 
   /* Article */
   --article-bg: var(--bg-card);
