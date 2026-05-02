@@ -372,9 +372,7 @@
   --search-placeholder: var(--text-tertiary);
   --search-underline: var(--border-muted);
   --search-label: oklch(from var(--text-primary) l c h / var(--opacity-medium));
-  --search-icon-muted: oklch(from var(--text-primary) l c h / var(--opacity-medium));
   --search-indicator-accent: var(--accent);
-  --search-modal-shadow: var(--shadow-tonal);
 
   /* Metadata */
   --metadata: var(--text-tertiary);

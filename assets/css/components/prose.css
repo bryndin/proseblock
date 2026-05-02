@@ -65,6 +65,7 @@
 
 /* --- Code Block Overrides (includes syntax highlighting) --- */
 
+/* @lint-ignore: used in markdown content */
 .c-prose .chroma {
   overflow-x: auto;
   padding: var(--_code-padding);
@@ -80,22 +81,20 @@
   }
 }
 
+/* @lint-ignore: used in markdown content */
 .c-prose .chroma pre {
   overflow-x: unset;
   padding: 0;
 }
 
-/* Disable the background output by the Chroma syntax stylesheet */
-.c-prose .chroma .bg {
-  background-color: transparent;
-}
-
 /* --- Highlighting specific lines --- */
 
+/* @lint-ignore: used in markdown content */
 .c-prose .chroma .hl {
   background-color: var(--_code_highlighted_lines_bg);
 }
 
+/* @lint-ignore: used in markdown content */
 .c-prose .chroma .lntable td:last-child {
   width: 100%;
 }

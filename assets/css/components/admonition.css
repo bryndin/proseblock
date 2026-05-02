@@ -62,31 +62,37 @@
 
 /* --- Modifiers for Types --- */
 
+/* @lint-ignore: used in markdown content */
 .c-alert--note {
   /* @api: border-color */
   --_border-color: var(--alert-border-note);
 }
 
+/* @lint-ignore: used in markdown content */
 .c-alert--tip {
   /* @api: border-color */
   --_border-color: var(--alert-border-tip);
 }
 
+/* @lint-ignore: used in markdown content */
 .c-alert--important {
   /* @api: border-color */
   --_border-color: var(--alert-border-important);
 }
 
+/* @lint-ignore: used in markdown content */
 .c-alert--warning {
   /* @api: border-color */
   --_border-color: var(--alert-border-warning);
 }
 
+/* @lint-ignore: used in markdown content */
 .c-alert--caution {
   /* @api: border-color */
   --_border-color: var(--alert-border-caution);
 }
 
+/* @lint-ignore: used in markdown content */
 .c-alert--alert {
   /* @api: border-color */
   --_border-color: var(--alert-border-generic);
