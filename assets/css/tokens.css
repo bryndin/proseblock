@@ -351,12 +351,12 @@
   --paginator-border: var(--bg-secondary);
 
   /* Menu */
-  --menu-aside-bg: var(--bg-elevated);
-  --menu: var(--text-primary);
+  --menu-primary: var(--text-primary);
+  --menu-secondary: var(--text-tertiary);
   --menu-accent: var(--accent);
-  --menu-icon: var(--icon-secondary);
+
+  --menu-bg: var(--bg-elevated);
   --menu-backdrop-bg: oklch(from var(--bg-inverse) l c h / var(--opacity-minimal));
-  --menu-link-icon-opacity: var(--opacity-subtle);
   --menu-newsletter-border: oklch(from var(--text-tertiary) l c h / var(--opacity-low));
 
   /* Featured */
