@@ -10,7 +10,7 @@
   --_code-bg: var(--prose-code-bg);
 
   /* @internal: code-padding, table-margin, nested-tint-opacity, highlight-opacity */
-  --_code-padding: var(--space-6);
+  --_code-padding: var(--space-4);
   --_table-margin: var(--space-8);
   --_blockquote_bg: oklch(from var(--text-primary) l c h / var(0.04));
   --_code_highlighted_lines_bg: oklch(from var(--accent) l c h / var(--opacity-minimal));
@@ -77,8 +77,13 @@
 
 @media (width >=768px) {
   .c-prose .chroma {
-    --_code-padding: var(--space-8);
+    --_code-padding: var(--space-6);
   }
+}
+
+/* @lint-ignore: used in markdown content */
+.c-prose .chroma .lntable {
+  margin: 0;
 }
 
 /* @lint-ignore: used in markdown content */
@@ -88,6 +93,12 @@
 }
 
 /* --- Highlighting specific lines --- */
+
+/* @lint-ignore: used in markdown content */
+.c-prose .chroma .lntd {
+  padding: 0;
+  border: none;
+}
 
 /* @lint-ignore: used in markdown content */
 .c-prose .chroma .hl {
