@@ -28,7 +28,9 @@ export function initCodeCopy() {
         table.closest(".highlight") ||
         table.parentElement;
     } else {
-      container = pre;
+      // Use the pre's parent (e.g., .highlight div) so button stays fixed
+      // when the pre scrolls horizontally
+      container = pre.parentElement || pre;
     }
 
     // Prevent duplicate buttons (e.g. two <pre>s in the same table)
