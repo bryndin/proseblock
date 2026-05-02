@@ -54,6 +54,8 @@ Files **must NOT** contain `@layer` wrappers—assignment happens in `layouts/_p
 }
 ```
 
+**BEM Modifier vs Base Component:** A selector like `.c-hero--search` is a **base component** (not a modifier) if it declares `@api`/`@internal` blocks or standard CSS properties. Modifiers must ONLY reassign Tier 3 variables.
+
 ### @provides Pattern (Parent → Child Overrides)
 
 ```css
