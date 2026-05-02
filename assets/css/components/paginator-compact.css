@@ -6,7 +6,6 @@
 .c-featured__pagination {
   /* @api: body, accent */
   --_body: var(--featured-body);
-  --_accent: var(--featured-accent);
 
   /* @internal: font-size, gap, icon-size, muted-opacity, transition */
   --_font-size: var(--text-xs);

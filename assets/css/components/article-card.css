@@ -10,7 +10,6 @@
   --_title: var(--article-card-title);
   --_body: var(--article-card-body);
   --_meta: var(--article-card-meta);
-  --_accent: var(--article-card-accent);
 
   /* @internal: padding, spacing, sizes, defaults */
   --_padding: var(--space-6);

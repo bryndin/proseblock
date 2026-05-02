@@ -10,7 +10,6 @@
   --_text: var(--menu);
   --_accent: var(--menu-accent);
   --_icon: var(--menu-icon);
-  --_close-opacity-hover: var(--menu-close-opacity-hover);
   --_link-icon-opacity: var(--menu-link-icon-opacity);
   --_newsletter-border: var(--menu-newsletter-border);
 
@@ -35,7 +34,6 @@
 
   /* Fixed values */
   --_backdrop-blur: var(--blur);
-  --_close-btn-hover: oklch(from var(--_text) l c h / var(--_close-opacity-hover)); 
   --_close-btn-pos: var(--space-8);
   --_close-btn-size: var(--space-8);
   --_nav-icon-size: var(--text-xl);

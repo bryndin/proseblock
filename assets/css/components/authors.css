@@ -66,7 +66,6 @@
   --_border: var(--author-card-border);
   --_border-hover: var(--author-card-border-hover);
   --_text: var(--author-card);
-  --_text-hover: var(--author-card-hover);
   --_meta: var(--author-card-meta);
 
   /* @internal: Configuration & Layout */

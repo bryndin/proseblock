@@ -8,7 +8,6 @@
   --_max-w: var(--widget-max-w);
   --_title: var(--widget-title);
   --_text: var(--widget);
-  --_hover: var(--widget-hover);
   --_icon: var(--widget-title-icon);
   --_icon-size: var(--widget-title-icon-size);
 

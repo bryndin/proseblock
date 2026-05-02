@@ -184,8 +184,6 @@
   --text-primary: var(--color-gray-650);
   --text-secondary: var(--color-gray-500);
   --text-tertiary: var(--color-gray-400);
-  --text-accent: var(--color-primary);
-  --text-on-accent: var(--color-white);
   --text-error: var(--color-error);
 
   --interactive-hover: var(--color-black);
@@ -200,8 +198,6 @@
   --bg-transparent: var(--color-transparent);
 
   --accent: var(--color-primary);
-  --accent-dim: var(--color-primary-dim);
-  --accent-container: var(--color-primary-container);
   
   --border-subtle: var(--color-gray-200);
   --border-muted: var(--color-gray-300);
@@ -270,7 +266,6 @@
   --article-card-title: var(--text-primary);
   --article-card-body: var(--text-secondary);
   --article-card-meta: oklch(from var(--text-secondary) l c h / var(--opacity-medium));
-  --article-card-accent: var(--accent);
 
   /* Archive */
   --archive-year: oklch(from var(--text-primary) l c h / var(--opacity-subtle));
@@ -290,7 +285,6 @@
   --author-card-border: var(--border-subtle);
   --author-card-border-hover: var(--accent);
   --author-card: var(--text-primary);
-  --author-card-hover: var(--accent);
   --author-card-meta: var(--text-secondary);
 
   /* Article */
@@ -303,7 +297,6 @@
 
   /* Table of Contents */
   --toc: var(--text-secondary);
-  --toc-hover: var(--accent);
   --toc-accent: var(--accent);
   --toc-rail-bg: var(--border-muted);
   --toc-separator: var(--border-muted);
@@ -314,7 +307,6 @@
   --widget-title-icon-size: 0.875rem;
   --widget-title: var(--text-secondary);
   --widget: var(--text-secondary);
-  --widget-hover: var(--accent);
 
   /* Author Block */
   --author-bg: var(--bg-highest);
@@ -341,7 +333,6 @@
   /* Share */
   --share-bg: var(--bg-card);
   --share: var(--text-primary);
-  --share-secondary: var(--text-secondary);
   --share-accent: var(--accent);
   --share-icon: var(--icon-secondary);
   --share-border: var(--border-subtle);
@@ -350,7 +341,6 @@
   /* Footer */
   --footer-bg: var(--bg-primary);
   --footer: var(--text-secondary);
-  --footer-hover: var(--accent);
   --footer-border: var(--border-subtle);
 
   /* Paginator */
@@ -361,14 +351,11 @@
   --paginator-border: var(--bg-secondary);
 
   /* Menu */
-  --menu-bg: var(--bg-secondary);
   --menu-aside-bg: var(--bg-elevated);
   --menu: var(--text-primary);
   --menu-accent: var(--accent);
   --menu-icon: var(--icon-secondary);
-  --menu-mission: var(--text-tertiary);
   --menu-backdrop-bg: oklch(from var(--bg-inverse) l c h / var(--opacity-minimal));
-  --menu-close-opacity-hover: var(--opacity-medium);
   --menu-link-icon-opacity: var(--opacity-subtle);
   --menu-newsletter-border: oklch(from var(--text-tertiary) l c h / var(--opacity-low));
 
@@ -384,9 +371,6 @@
   --search: var(--text-primary);
   --search-placeholder: var(--text-tertiary);
   --search-underline: var(--border-muted);
-  --search-accent: var(--accent);
-  --search-quote-bg: var(--bg-secondary);
-  --search-quote: var(--text-secondary);
   --search-label: oklch(from var(--text-primary) l c h / var(--opacity-medium));
   --search-icon-muted: oklch(from var(--text-primary) l c h / var(--opacity-medium));
   --search-indicator-accent: var(--accent);
@@ -402,7 +386,6 @@
   --nav-404-bg: var(--bg-card);
   --nav-404-text-primary: var(--text-primary);
   --nav-404-text-secondary: var(--text-secondary);
-  --nav-404-text-accent: var(--accent);
   --nav-404-text-heading: var(--outline);
 
   /* Alerts */
@@ -424,8 +407,6 @@
   --text-primary: var(--color-gray-100);
   --text-secondary: var(--color-gray-300);
   --text-tertiary: var(--color-gray-400);
-  --text-accent: var(--color-primary-container);
-  --text-on-accent: var(--color-gray-900);
 
   --interactive-hover: var(--color-white);
   
@@ -438,8 +419,6 @@
   --bg-inverse: var(--color-gray-50);
   
   --accent: var(--color-primary-container);
-  --accent-dim: var(--color-primary);
-  --accent-container: var(--color-primary-dim);
   
   --border-subtle: var(--color-gray-850);
   --border-muted: var(--color-gray-700);

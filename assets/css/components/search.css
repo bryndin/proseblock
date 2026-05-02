@@ -6,7 +6,6 @@
   /* @api: Ingested Semantics */
   --_text: var(--search);
   --_placeholder: var(--search-placeholder);
-  --_accent: var(--search-accent);
   --_underline: var(--search-underline);
   --_border-color: var(--hero-border);
   --_label-muted: var(--search-label);
@@ -326,9 +325,8 @@
 }
 
 .c-search-suggested__link {
-  /* @internal: text, accent, count */
+  /* @internal: text, count */
   --_text: var(--text-primary);
-  --_accent: var(--accent);
   --_count: var(--text-secondary);
 
   display: flex;

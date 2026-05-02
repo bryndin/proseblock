@@ -32,7 +32,6 @@
   --_title: var(--text-primary);
   --_index: var(--accent);
   --_count: var(--text-secondary);
-  --_accent: var(--accent);
   --_padding: var(--space-6);
   --_transition: var(--transition-normal-ease-default);
   --_index: oklch(from var(--_index) l c h / var(--opacity-subtle));
@@ -153,7 +152,6 @@
   --_border-hover: var(--accent);
   --_name: var(--text-primary);
   --_count: var(--text-secondary);
-  --_accent: var(--accent);
   --_padding: var(--space-4);
   --_transition: var(--transition-normal-ease-default);
   --_count: oklch(from var(--_count) l c h / var(--opacity-low));

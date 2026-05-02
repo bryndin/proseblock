@@ -16,7 +16,6 @@
 
   --_social-icon-size: var(--text-xl);
   --_social-icon-color: var(--_social);
-  --_social_hover: var(--accent);
 
   display: flex;
   flex-direction: column;

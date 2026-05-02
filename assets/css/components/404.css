@@ -46,11 +46,10 @@
    ========================================================================== */
 
 .c-404-nav {
-  /* @api: bg, text-primary, text-secondary, text-accent, text-heading */
+  /* @api: bg, text-primary, text-secondary, text-heading */
   --_bg: var(--nav-404-bg);
   --_text-primary: var(--nav-404-text-primary);
   --_text-secondary: var(--nav-404-text-secondary);
-  --_text-accent: var(--nav-404-text-accent);
   --_text-heading: var(--nav-404-text-heading);
 
   /* @internal: max-w, padding-y, padding-x, gap, gap-md, transition, home-gap, home-icon-size, home-title-size, home-title-weight, home-title-lh, home-subtitle-size, explore-heading-size, explore-heading-weight, explore-heading-tracking, explore-heading-spacing, list-gap, list-gap-md, link-gap, link-icon-size, link-icon-muted-opacity, link-title-size, link-title-weight, link-subtitle-size, link-subtitle-weight, link-subtitle-tracking, icon-hover-offset */
