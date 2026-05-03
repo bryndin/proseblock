@@ -310,13 +310,6 @@
   --toc-rail-bg: var(--border-muted);
   --toc-separator: var(--border-muted);
 
-  /* Widget */
-  --widget-max-w: 12.5rem;
-  --widget-title-icon: var(--icon-secondary);
-  --widget-title-icon-size: 0.875rem;
-  --widget-title: var(--text-secondary);
-  --widget: var(--text-secondary);
-
   /* Author Block */
   --author-bg: var(--bg-highest);
   --author-accent: var(--accent);
@@ -404,6 +397,23 @@
   --alert-border-warning: var(--intent-warning);
   --alert-border-caution: var(--intent-caution);
   --alert-border-generic: var(--intent-neutral);
+
+  /* Widget */
+  --widget-max-w: 12.5rem;
+  --widget-title-icon: var(--icon-secondary);
+  --widget-title-icon-size: 0.875rem;
+  --widget-title: var(--text-secondary);
+  --widget: var(--text-tertiary);
+
+  /* Widget: Tags */
+  --widget-tags-name: var(--text-tertiary);
+  --widget-tags-count: oklch(from var(--text-tertiary) l c h / var(--opacity-subtle));
+  --widget-tags-hover: var(--interactive-hover);
+
+  /* Widget: Categories */
+  --widget-categories-name: var(--text-tertiary);
+  --widget-categories-count: oklch(from var(--text-tertiary) l c h / var(--opacity-subtle));
+  --widget-categories-hover: var(--interactive-hover);
 }
 
 /* =====================================================================

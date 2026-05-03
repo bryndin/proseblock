@@ -4,8 +4,10 @@
    ========================================================================== */
 
 .c-widget-categories {
-  /* @internal */
-  --_text-secondary: var(--widget);
+  /* @api */
+  --_name: var(--widget-categories-name);
+  --_count: var(--widget-categories-count);
+  --_hover: var(--widget-categories-hover);
 }
 
 .c-widget-categories[hidden] {
@@ -21,10 +23,6 @@
 }
 
 .c-widget-categories__link {
-  /* @internal */
-  --_item-name: var(--_text-secondary);
-  --_item-count: oklch(from var(--_text-secondary) l c h / var(--opacity-subtle));
-
   /* Reset button styles when used as a filter trigger */
   all: unset;
   display: flex;
@@ -36,8 +34,8 @@
 }
 
 .c-widget-categories__link:hover {
-  --_item-name: var(--interactive-hover);
-  --_item-count: var(--interactive-hover);
+  --_name: var(--_hover);
+  --_count: var(--_hover);
 }
 
 .c-widget-categories__name {
@@ -45,7 +43,7 @@
   font-weight: var(--weight-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-widest);
-  color: var(--_item-name);
+  color: var(--_name);
   transition: color var(--duration-fast) var(--ease-default);
 }
 
@@ -53,7 +51,7 @@
   font-size: var(--text-2xs);
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-widest);
-  color: var(--_item-count);
+  color: var(--_count);
   margin-bottom: 1px;
   transition: color var(--duration-fast) var(--ease-default);
 }
