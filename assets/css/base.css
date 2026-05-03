@@ -44,12 +44,17 @@ button {
 button:focus-visible {
   outline: var(--border-width-thin) solid var(--accent);
   outline-offset: var(--border-width-thin);
-  border-radius: var(--border-width-thin);
+  /* border-radius: var(--radius-sm); */
 }
 
 /* --- Headings (Global) --- */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   /* Note: text-wrap: balance and line-height: 1.1 are handled by reset */
   color: var(--text-primary);
 }
@@ -76,7 +81,8 @@ h4 {
   font-weight: var(--weight-semibold);
 }
 
-h5, h6 {
+h5,
+h6 {
   font-size: var(--text-lg);
   font-weight: var(--weight-semibold);
 }
@@ -86,187 +92,18 @@ h5, h6 {
 p {
   color: var(--text-secondary);
   line-height: var(--leading-relaxed);
-  /* Note: text-wrap: pretty is handled by reset */
 }
 
-
-/* ==========================================================================
-   2. ARTICLE / MARKDOWN DEFAULTS (The Content Baseline)
-   Restores spacing and mechanics specifically inside Hugo Markdown
-   ========================================================================== */
-
-/* --- Vertical Rhythm --- */
-
-article p,
-article ul,
-article ol,
-article pre,
-article table,
-article blockquote,
-article figure,
-article hr {
-  margin-block-end: var(--space-6);
+img {
+  height: auto;
 }
-
-article h2, 
-article h3, 
-article h4, 
-article h5, 
-article h6 {
-  margin-block-start: var(--space-12);
-  margin-block-end: var(--space-4);
-}
-
-/* Prevent double-spacing at the start/end of the article block */
-article > *:first-child {
-  margin-block-start: 0;
-}
-article > *:last-child {
-  margin-block-end: 0;
-}
-
-/* --- Links --- */
-
-article a {
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-  text-decoration-thickness: 1px;
-}
-
-article a:hover {
-  color: var(--accent);
-  transition: color var(--transition-normal-ease-default);
-}
-
-article a:focus-visible {
-  color: var(--accent);
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: 2px;
-}
-
-/* --- Lists --- */
-
-article ul,
-article ol {
-  padding-left: var(--space-6);
-  color: var(--text-secondary);
-}
-
-article ul {
-  list-style: disc;
-}
-
-article ol {
-  list-style: decimal;
-}
-
-article li + li {
-  margin-top: var(--space-2);
-}
-
-/* Fix for nested Markdown lists */
-article li > ul,
-article li > ol {
-  margin-block-start: var(--space-2);
-  margin-block-end: 0; /* Prevents nested lists from blowing up line height */
-}
-
-/* --- Blockquotes --- */
-
-article blockquote {
-  padding: var(--space-8);
-  margin-block-start: var(--space-12);
-  background-color: var(--bg-secondary);
-  border-left: var(--border-width-thick) solid var(--accent);
-  font-style: italic;
-  font-size: var(--text-xl);
-  color: var(--text-primary);
-}
-
-/* Prevents the <p> tag inside the blockquote from creating uneven bottom padding */
-article blockquote > *:last-child {
-  margin-block-end: 0;
-}
-
-/* --- Code --- */
 
 code {
   font-family: var(--font-mono);
   font-size: var(--text-sm);
 }
 
-/* Highlight inline markdown code slightly */
-article p code, 
-article li code {
-  background-color: var(--bg-secondary);
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-}
-
-pre {
-  overflow-x: auto;
-  padding: var(--space-4);
-  background-color: var(--bg-secondary);
-  font-size: var(--text-sm);
-  line-height: var(--leading-relaxed);
-}
-
-@media (width >= 768px) {
-  pre {
-    padding: var(--space-6);
-  }
-}
-
-pre code {
-  white-space: pre;
-  background-color: transparent;
-  padding: 0;
-}
-
-/* --- Images & Figures --- */
-
-img {
-  height: auto;
-}
-
-figcaption {
-  margin-top: var(--space-2);
-  font-size: var(--text-sm);
-  font-style: italic;
-  color: var(--text-secondary);
-}
-
-/* --- Horizontal rule --- */
-
 hr {
   border: none;
   border-top: var(--border-width-minimal) solid var(--border-subtle);
-}
-
-/* --- Tables (Markdown) --- */
-
-/* Wrapper logic for mobile scrolling */
-article table {
-  display: block; 
-  overflow-x: auto;
-  /* white-space: nowrap; REMOVED (See review) */
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: var(--text-sm);
-}
-
-th {
-  text-align: left;
-  font-weight: var(--weight-bold);
-  padding: var(--space-3) var(--space-4);
-  border-bottom: var(--border-width-thin) solid var(--border-subtle);
-}
-
-td {
-  padding: var(--space-3) var(--space-4);
-  border-bottom: var(--border-width-minimal) solid var(--border-subtle);
 }

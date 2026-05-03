@@ -1,0 +1,58 @@
+/* --- Drop cap on first paragraph --- */
+
+:where(.c-prose) > p:first-child::first-letter {
+  font-size: var(--text-6xl);
+  font-weight: var(--weight-bold);
+  float: left;
+  margin-right: var(--space-3);
+  line-height: var(--leading-none);
+  margin-top: var(--space-1);
+  color: var(--accent);
+}
+
+/* --- Code Block Overrides (includes syntax highlighting) --- */
+
+/* @lint-ignore: used in markdown content */
+:where(.c-prose) .chroma {
+  overflow-x: auto;
+  padding: var(--_code-padding);
+  border: none;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  background-color: var(--_code-bg);
+}
+
+@media (width >= 768px) {
+  :where(.c-prose) .chroma {
+    --_code-padding: var(--space-6);
+  }
+}
+
+/* @lint-ignore: used in markdown content */
+:where(.c-prose) .chroma .lntable {
+  margin: 0;
+}
+
+/* @lint-ignore: used in markdown content */
+:where(.c-prose) .chroma pre {
+  overflow-x: unset;
+  padding: 0;
+}
+
+/* --- Highlighting specific lines --- */
+
+/* @lint-ignore: used in markdown content */
+:where(.c-prose) .chroma .lntd {
+  padding: 0;
+  border: none;
+}
+
+/* @lint-ignore: used in markdown content */
+:where(.c-prose) .chroma .hl {
+  background-color: var(--_code-highlighted-lines-bg);
+}
+
+/* @lint-ignore: used in markdown content */
+:where(.c-prose) .chroma .lntable td:last-child {
+  width: 100%;
+}

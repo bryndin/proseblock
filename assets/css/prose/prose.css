@@ -1,0 +1,178 @@
+/* ==========================================================================
+   COMPONENT: PROSE — @layer components
+   Overrides and enhancements for Markdown-rendered content.
+   Provides a centralized place for typography fixes (tables, blockquotes, code).
+   ========================================================================== */
+
+/* The root class doesn't need :where() because it just sets variables */
+.c-prose {
+  /* @api */
+  --_blockquote-bg: var(--prose-blockquote-bg);
+  --_code-bg: var(--prose-code-bg);
+
+  /* @internal */
+  --_code-padding: var(--space-4);
+  --_table-margin: var(--space-8);
+
+  --_blockquote-bg-nested: oklch(from var(--text-primary) l c h / var(0.04));
+  --_code-highlighted-lines-bg: oklch(from var(--accent) l c h / var(--opacity-minimal));
+}
+
+/* --- Vertical Rhythm --- */
+
+:where(.c-prose) p,
+:where(.c-prose) ul,
+:where(.c-prose) ol,
+:where(.c-prose) pre,
+:where(.c-prose) table,
+:where(.c-prose) blockquote,
+:where(.c-prose) figure,
+:where(.c-prose) hr {
+  margin-block-end: var(--space-6);
+}
+
+:where(.c-prose) h2,
+:where(.c-prose) h3,
+:where(.c-prose) h4,
+:where(.c-prose) h5,
+:where(.c-prose) h6 {
+  margin-block-start: var(--space-12);
+  margin-block-end: var(--space-4);
+}
+
+/* Prevent double-spacing at the start/end of the prose block */
+:where(.c-prose) > *:first-child {
+  margin-block-start: 0;
+}
+:where(.c-prose) > *:last-child {
+  margin-block-end: 0;
+}
+
+/* --- Links --- */
+
+:where(.c-prose) a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: var(--border-width-minimal);
+}
+
+:where(.c-prose) a:hover {
+  color: var(--interactive-hover);
+  transition: color var(--transition-normal-ease-default);
+}
+
+:where(.c-prose) a:focus-visible {
+  color: var(--interactive-focus);
+  outline: var(--border-width-thin) solid var(--interactive-focus);
+  outline-offset: var(--border-width-thin);
+}
+
+/* --- Lists --- */
+
+:where(.c-prose) ul,
+:where(.c-prose) ol {
+  padding-left: var(--space-6);
+  color: var(--text-secondary);
+}
+
+:where(.c-prose) ul {
+  list-style: disc;
+}
+
+:where(.c-prose) ol {
+  list-style: decimal;
+}
+
+:where(.c-prose) li + li {
+  margin-top: var(--space-2);
+}
+
+/* Fix for nested Markdown lists */
+:where(.c-prose) li > ul,
+:where(.c-prose) li > ol {
+  margin-block-start: var(--space-2);
+  /* Prevents nested lists from blowing up line height */
+  margin-block-end: 0;
+}
+
+
+/* --- Blockquotes --- */
+
+:where(.c-prose) blockquote {
+  padding: var(--space-8);
+  margin-block-start: var(--space-12);
+  background-color: var(--_blockquote-bg);
+  border-left: var(--border-width-thick) solid var(--accent);
+  font-style: italic;
+  font-size: inherit;
+}
+
+/* Prevents the <p> tag inside the blockquote from creating uneven bottom padding */
+:where(.c-prose) blockquote > *:last-child {
+  margin-block-end: 0;
+}
+
+/* Nested blockquotes form continuous lines and backgrounds */
+:where(.c-prose) blockquote blockquote {
+  margin: 0;
+  padding-inline-end: 0;
+  background-color: var(--_blockquote-bg-nested);
+}
+
+/* --- Code --- */
+
+:where(.c-prose) p code,
+:where(.c-prose) li code {
+  background-color: var(--bg-secondary);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+/* Pre-formatted code blocks */
+:where(.c-prose) pre {
+  overflow-x: auto;
+  padding: var(--space-4);
+  background-color: var(--bg-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+@media (width >= 768px) {
+  :where(.c-prose) pre { padding: var(--space-6); }
+}
+
+:where(.c-prose) pre code {
+  white-space: pre;
+  background-color: transparent;
+  padding: 0;
+}
+
+/* --- Tables --- */
+
+:where(.c-prose) table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  margin-block: var(--_table-margin);
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+:where(.c-prose) th {
+  text-align: left;
+  font-weight: var(--weight-bold);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: var(--border-width-thin) solid var(--border-subtle);
+}
+
+:where(.c-prose) td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: var(--border-width-minimal) solid var(--border-subtle);
+}
+
+:where(.c-prose) table th,
+:where(.c-prose) table td {
+  /* Prevent aggressive wrapping of small cells */
+  white-space: nowrap;
+}
