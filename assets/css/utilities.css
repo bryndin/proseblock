@@ -29,19 +29,17 @@
 /* --- Content wrapper for the home main column --- */
 
 .u-home-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+
   background-color: var(--bg-card);
   padding: var(--space-12);
-  box-shadow: 80px 0 100px -20px oklch(27% 0.015 230deg / 3%);
+  box-shadow: var(--shadow-editorial);
 }
 
 @media (width >= 768px) {
   .u-home-main {
     padding: var(--space-20);
   }
-}
-
-.u-home-main__sections {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-32);
 }

@@ -28,20 +28,18 @@
     {{- /* Main content area (Comes FIRST in HTML for Right Sidebar) */ -}}
     <div class="l-site__main">
       <div class="u-home-main">
-        <div class="u-home-main__sections">
-          {{ partial "featured.html"}}
+        {{ partial "featured.html"}}
 
-          {{- /* Article list */ -}}
-          {{- $paginator := $page.Paginate site.RegularPages }}
-          {{- with $pages := $paginator.Pages }}
-            <section class="c-article-list">
-              {{- range $article := $pages }}
-                {{ partial "article-card.html" $article }}
-              {{- end }}
-            </section>
-          {{- end }}
-          {{ partial "paginator-static.html" $paginator }}
-        </div>
+        {{- /* Article list */ -}}
+        {{- $paginator := $page.Paginate site.RegularPages }}
+        {{- with $pages := $paginator.Pages }}
+          <section class="c-article-list">
+            {{- range $article := $pages }}
+              {{ partial "article-card.html" $article }}
+            {{- end }}
+          </section>
+        {{- end }}
+        {{ partial "paginator-static.html" $paginator }}
       </div>
     </div>
 

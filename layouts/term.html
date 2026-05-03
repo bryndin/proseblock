@@ -34,20 +34,17 @@
     {{- /* Main Content Area */ -}}
     <div class="l-site__main">
       <div class="u-home-main">
-        <div class="u-home-main__sections">
-          
-          {{- /* Reuses Home Page Pagination Logic */ -}}
-          {{- $paginator := $page.Paginate $page.Pages -}}
-          {{- with $pages := $paginator.Pages -}}
-            <section class="c-article-list">
-              {{- range $article := $pages -}}
-                {{ partial "article-card.html" $article }}
-              {{- end -}}
-            </section>
-          {{- end -}}
-          {{ partial "paginator-static.html" $paginator }}
+        {{- /* Reuses Home Page Pagination Logic */ -}}
+        {{- $paginator := $page.Paginate $page.Pages -}}
+        {{- with $pages := $paginator.Pages -}}
+          <section class="c-article-list">
+            {{- range $article := $pages -}}
+              {{ partial "article-card.html" $article }}
+            {{- end -}}
+          </section>
+        {{- end -}}
+        {{ partial "paginator-static.html" $paginator }}
 
-        </div>
       </div>
     </div>
 
