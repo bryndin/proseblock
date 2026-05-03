@@ -1,8 +1,9 @@
 /* ==========================================================================
    BASE — @layer base
    Bare HTML tag styling. Critical for Hugo-rendered Markdown output.
-   Uses only Tier 2.1 Global Semantics or Tier 1 Primitives.
    ========================================================================== */
+
+/* --- 1. GLOBAL THEME DEFAULTS (The UI Baseline) --- */
 
 body {
   font-family: var(--font-sans);
@@ -17,67 +18,139 @@ body {
   background-color: var(--bg-highest);
 }
 
-/* --- Headings --- */
+/* Strip underlines globally for layout/UI links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Strip bullets globally for layout/UI lists (navs, footers, grids) */
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+/* Strip formatting globally for layout/UI buttons (icons, toggles) */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+/* Optional: Provide a basic focus state for accessibility on naked buttons */
+button:focus-visible {
+  outline: var(--border-width-thin) solid var(--accent);
+  outline-offset: var(--border-width-thin);
+  border-radius: var(--border-width-thin);
+}
+
+/* --- Headings (Global) --- */
+
+h1, h2, h3, h4, h5, h6 {
+  /* Note: text-wrap: balance and line-height: 1.1 are handled by reset */
+  color: var(--text-primary);
+}
 
 h1 {
   font-size: var(--text-4xl);
   font-weight: var(--weight-normal);
-  line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
-  color: var(--text-primary);
 }
 
 h2 {
   font-size: var(--text-3xl);
   font-weight: var(--weight-normal);
-  line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
-  color: var(--text-primary);
 }
 
 h3 {
   font-size: var(--text-2xl);
   font-weight: var(--weight-semibold);
-  line-height: var(--leading-tight);
-  color: var(--text-primary);
 }
 
 h4 {
   font-size: var(--text-xl);
   font-weight: var(--weight-semibold);
-  line-height: var(--leading-xl);
-  color: var(--text-primary);
 }
 
-h5,
-h6 {
+h5, h6 {
   font-size: var(--text-lg);
   font-weight: var(--weight-semibold);
-  line-height: var(--leading-lg);
-  color: var(--text-primary);
 }
 
-/* --- Body text --- */
+/* --- Body text (Global) --- */
 
 p {
   color: var(--text-secondary);
   line-height: var(--leading-relaxed);
+  /* Note: text-wrap: pretty is handled by reset */
 }
 
-/* --- Links (in article body context) --- */
 
-a:hover {
+/* ==========================================================================
+   2. ARTICLE / MARKDOWN DEFAULTS (The Content Baseline)
+   Restores spacing and mechanics specifically inside Hugo Markdown
+   ========================================================================== */
+
+/* --- Vertical Rhythm --- */
+
+article p,
+article ul,
+article ol,
+article pre,
+article table,
+article blockquote,
+article figure,
+article hr {
+  margin-block-end: var(--space-6);
+}
+
+article h2, 
+article h3, 
+article h4, 
+article h5, 
+article h6 {
+  margin-block-start: var(--space-12);
+  margin-block-end: var(--space-4);
+}
+
+/* Prevent double-spacing at the start/end of the article block */
+article > *:first-child {
+  margin-block-start: 0;
+}
+article > *:last-child {
+  margin-block-end: 0;
+}
+
+/* --- Links --- */
+
+article a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 1px;
+}
+
+article a:hover {
   color: var(--accent);
   transition: color var(--transition-normal-ease-default);
 }
 
-/* --- Lists (Markdown output) --- */
+article a:focus-visible {
+  color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* --- Lists --- */
 
 article ul,
 article ol {
   padding-left: var(--space-6);
   color: var(--text-secondary);
-  line-height: var(--leading-relaxed);
 }
 
 article ul {
@@ -88,21 +161,32 @@ article ol {
   list-style: decimal;
 }
 
-article li+li {
+article li + li {
   margin-top: var(--space-2);
+}
+
+/* Fix for nested Markdown lists */
+article li > ul,
+article li > ol {
+  margin-block-start: var(--space-2);
+  margin-block-end: 0; /* Prevents nested lists from blowing up line height */
 }
 
 /* --- Blockquotes --- */
 
-blockquote {
-  padding: var(--space-12) var(--space-8);
-  margin-block: var(--space-12);
+article blockquote {
+  padding: var(--space-8);
+  margin-block-start: var(--space-12);
   background-color: var(--bg-secondary);
   border-left: var(--border-width-thick) solid var(--accent);
   font-style: italic;
-  font-size: var(--text-2xl);
-  font-weight: var(--weight-normal);
+  font-size: var(--text-xl);
   color: var(--text-primary);
+}
+
+/* Prevents the <p> tag inside the blockquote from creating uneven bottom padding */
+article blockquote > *:last-child {
+  margin-block-end: 0;
 }
 
 /* --- Code --- */
@@ -112,11 +196,18 @@ code {
   font-size: var(--text-sm);
 }
 
+/* Highlight inline markdown code slightly */
+article p code, 
+article li code {
+  background-color: var(--bg-secondary);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
 pre {
   overflow-x: auto;
   padding: var(--space-4);
   background-color: var(--bg-secondary);
-  border: none;
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
 }
@@ -129,16 +220,14 @@ pre {
 
 pre code {
   white-space: pre;
+  background-color: transparent;
+  padding: 0;
 }
 
-/* --- Images --- */
+/* --- Images & Figures --- */
 
 img {
   height: auto;
-}
-
-figure {
-  margin-block: var(--space-8);
 }
 
 figcaption {
@@ -153,10 +242,16 @@ figcaption {
 hr {
   border: none;
   border-top: var(--border-width-minimal) solid var(--border-subtle);
-  margin-block: var(--space-12);
 }
 
 /* --- Tables (Markdown) --- */
+
+/* Wrapper logic for mobile scrolling */
+article table {
+  display: block; 
+  overflow-x: auto;
+  /* white-space: nowrap; REMOVED (See review) */
+}
 
 table {
   width: 100%;
