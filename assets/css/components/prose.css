@@ -4,6 +4,7 @@
    Provides a centralized place for typography fixes (tables, blockquotes, code).
    ========================================================================== */
 
+/* The root class doesn't need :where() because it just sets variables */
 .c-prose {
   /* @api: blockquote-bg, code-bg, highlight-bg, nested-tint */
   --_blockquote-bg: var(--prose-blockquote-bg);
@@ -12,13 +13,14 @@
   /* @internal: code-padding, table-margin, nested-tint-opacity, highlight-opacity */
   --_code-padding: var(--space-4);
   --_table-margin: var(--space-8);
-  --_blockquote_bg: oklch(from var(--text-primary) l c h / var(0.04));
-  --_code_highlighted_lines_bg: oklch(from var(--accent) l c h / var(--opacity-minimal));
+
+  --_blockquote-bg-nested: oklch(from var(--text-primary) l c h / var(0.04));
+  --_code-highlighted-lines-bg: oklch(from var(--accent) l c h / var(--opacity-minimal));
 }
 
 /* --- Drop cap on first paragraph --- */
 
-.c-prose>p:first-child::first-letter {
+:where(.c-prose) > p:first-child::first-letter {
   font-size: var(--text-6xl);
   font-weight: var(--weight-bold);
   float: left;
@@ -30,25 +32,25 @@
 
 /* --- Blockquotes --- */
 
-.c-prose blockquote {
+:where(.c-prose) blockquote {
   font-size: inherit;
   background-color: var(--_blockquote-bg);
 }
 
-.c-prose blockquote p:last-child {
+:where(.c-prose) blockquote p:last-child {
   margin: 0;
 }
 
 /* Nested blockquotes form continuous lines and backgrounds */
-.c-prose blockquote blockquote {
+:where(.c-prose) blockquote blockquote {
   margin: 0;
   padding-inline-end: 0;
-  background-color: var(--_blockquote_bg);
+  background-color: var(--_blockquote-bg-nested);
 }
 
 /* --- Tables --- */
 
-.c-prose table {
+:where(.c-prose) table {
   display: block;
   width: 100%;
   max-width: 100%;
@@ -57,8 +59,8 @@
   border-collapse: collapse;
 }
 
-.c-prose table th,
-.c-prose table td {
+:where(.c-prose) table th,
+:where(.c-prose) table td {
   /* Prevent aggressive wrapping of small cells */
   white-space: nowrap;
 }
@@ -66,7 +68,7 @@
 /* --- Code Block Overrides (includes syntax highlighting) --- */
 
 /* @lint-ignore: used in markdown content */
-.c-prose .chroma {
+:where(.c-prose) .chroma {
   overflow-x: auto;
   padding: var(--_code-padding);
   border: none;
@@ -75,19 +77,19 @@
   background-color: var(--_code-bg);
 }
 
-@media (width >=768px) {
-  .c-prose .chroma {
+@media (width >= 768px) {
+  :where(.c-prose) .chroma {
     --_code-padding: var(--space-6);
   }
 }
 
 /* @lint-ignore: used in markdown content */
-.c-prose .chroma .lntable {
+:where(.c-prose) .chroma .lntable {
   margin: 0;
 }
 
 /* @lint-ignore: used in markdown content */
-.c-prose .chroma pre {
+:where(.c-prose) .chroma pre {
   overflow-x: unset;
   padding: 0;
 }
@@ -95,17 +97,17 @@
 /* --- Highlighting specific lines --- */
 
 /* @lint-ignore: used in markdown content */
-.c-prose .chroma .lntd {
+:where(.c-prose) .chroma .lntd {
   padding: 0;
   border: none;
 }
 
 /* @lint-ignore: used in markdown content */
-.c-prose .chroma .hl {
-  background-color: var(--_code_highlighted_lines_bg);
+:where(.c-prose) .chroma .hl {
+  background-color: var(--_code-highlighted-lines-bg);
 }
 
 /* @lint-ignore: used in markdown content */
-.c-prose .chroma .lntable td:last-child {
+:where(.c-prose) .chroma .lntable td:last-child {
   width: 100%;
 }
