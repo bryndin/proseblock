@@ -382,8 +382,6 @@
   --metadata-icon-opacity: var(--opacity-subtle);
 
   /* 404 */
-  --hero-404-title: var(--text-primary);
-  --hero-404-subtitle: var(--text-secondary);
   --nav-404-bg: var(--bg-card);
   --nav-404-text-primary: var(--text-primary);
   --nav-404-text-secondary: var(--text-secondary);

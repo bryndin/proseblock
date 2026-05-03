@@ -2,57 +2,18 @@
    PAGE: 404 Error
    ========================================================================== */
 
-/* --- Hero Modifier --- */
-.c-hero--404 {
-  /* @api: title, subtitle */
-  --_title: var(--hero-404-title);
-  --_subtitle: var(--hero-404-subtitle);
-
-  /* @internal: padding-y (fluid), title-size (fluid), title-weight, title-tracking, title-spacing, title-lh, subtitle-size, subtitle-max-w, subtitle-lh */
-  --_title-size: var(--text-6xl);
-  --_title-size-fluid: 6rem;
-  --_title-weight: var(--weight-extrabold);
-  --_title-tracking: var(--tracking-tight);
-  --_title-spacing: var(--space-8);
-  --_title-lh: var(--leading-tight);
-  --_subtitle-size: var(--text-xl);
-  --_subtitle-max-w: 42rem;
-  --_subtitle-lh: var(--leading-relaxed);
-
-  /* fluid: space-24 → space-32 */
-  padding-top: clamp(var(--space-24), 5vw + 0.5rem, var(--space-32));
-  padding-bottom: clamp(var(--space-24), 5vw + 0.5rem, var(--space-32));
-}
-
-.c-hero--404 .c-hero__title {
-  color: var(--_title);
-  /* fluid: text-6xl → 6rem */
-  font-size: clamp(var(--_title-size), 8vw + 0.5rem, var(--_title-size-fluid));
-  font-weight: var(--_title-weight);
-  letter-spacing: var(--_title-tracking);
-  line-height: var(--_title-lh);
-  margin-bottom: var(--_title-spacing);
-}
-
-.c-hero--404 .c-hero__subtitle {
-  color: var(--_subtitle);
-  font-size: var(--_subtitle-size);
-  max-width: var(--_subtitle-max-w);
-  line-height: var(--_subtitle-lh);
-}
-
 /* ==========================================================================
    COMPONENT: Error Navigation (.c-404-nav)
    ========================================================================== */
 
 .c-404-nav {
-  /* @api: bg, text-primary, text-secondary, text-heading */
+  /* @api */
   --_bg: var(--nav-404-bg);
   --_text-primary: var(--nav-404-text-primary);
   --_text-secondary: var(--nav-404-text-secondary);
   --_text-heading: var(--nav-404-text-heading);
 
-  /* @internal: max-w, padding-y, padding-x, gap, gap-md, transition, home-gap, home-icon-size, home-title-size, home-title-weight, home-title-lh, home-subtitle-size, explore-heading-size, explore-heading-weight, explore-heading-tracking, explore-heading-spacing, list-gap, list-gap-md, link-gap, link-icon-size, link-icon-muted-opacity, link-title-size, link-title-weight, link-subtitle-size, link-subtitle-weight, link-subtitle-tracking, icon-hover-offset */
+  /* @internal */
   --_max-w: 1920px;
   --_padding-y: var(--space-24);
   --_padding-x: var(--space-12);
