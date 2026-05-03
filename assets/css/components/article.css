@@ -8,7 +8,7 @@
   --_bg: var(--article-bg);
   --_text: var(--article);
 
-  /* @internal: padding (fluid), shadow */
+  /* @internal */
   --_shadow: var(--shadow-editorial);
 
   display: flex;
@@ -17,7 +17,6 @@
   font-size: var(--text-base);
   line-height: var(--leading-normal);
   color: var(--_text);
-  font-weight: var(--weight-light);
 
   background-color: var(--_bg);
   padding: clamp(var(--space-8), 6.25vw, var(--space-16));
