@@ -287,6 +287,15 @@
   --author-card: var(--text-primary);
   --author-card-count: oklch(from var(--text-secondary) l c h / var(--opacity-low));
 
+  /* Categories (taxonomy) */
+  --category-card-bg: var(--bg-transparent);
+  --category-card-bg-hover: var(--bg-secondary);
+  --category-card-border: var(--border-subtle);
+  --category-card-border-hover: var(--accent);
+  --category-card-title: var(--text-primary);
+  --category-card-index: var(--text-tertiary);
+  --category-card-count: var(--text-tertiary);
+
   /* Article */
   --article-bg: var(--bg-card);
   --article: var(--text-secondary);

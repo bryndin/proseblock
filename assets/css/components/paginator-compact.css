@@ -4,7 +4,7 @@
    ========================================================================== */
 
 .c-featured__pagination {
-  /* @api: body, accent */
+  /* @api: body */
   --_body: var(--featured-body);
 
   /* @internal: font-size, gap, icon-size, muted-opacity, transition */
@@ -26,7 +26,7 @@
 }
 
 .c-featured__page-btn:hover {
-  color: var(--interactive-hover);
+  --_btn: var(--interactive-hover);
 }
 
 .c-featured__page-btn svg {
