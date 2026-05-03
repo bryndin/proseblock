@@ -34,13 +34,13 @@
     {{- end -}}
 
     {{- /* Title */ -}}
-    <h2 class="c-hero__title">
+    <h1 class="c-hero__title">
       {{- if $titleHtml -}}
         {{ $titleHtml | safeHTML }}
       {{- else -}}
         {{ $title }}
       {{- end -}}
-    </h2>
+    </h1>
 
     {{- /* Subtitle/Content */ -}}
     {{- with $subtitle -}}
