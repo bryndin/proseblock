@@ -43,49 +43,41 @@
     </aside>
 
     {{- /* Right Main Column */ -}}
-    <div class="l-site__main">
-      {{- /* article-container ID is critical for header-scroll.js to calculate progress! */ -}}
-      <div class="l-article-content" id="article-container">
+    <div class="l-site__main u-main" id="article-container">
+      <div class="c-author-index">
         
-        {{- /* Uses c-article to inherit the white background, padding, and editorial shadow */ -}}
-        <article class="c-article">
-          <div class="c-author-index">
-            
-            {{- $currentLetter := "" -}}
-            
-            {{- range $term := $authors -}}
-              {{- $firstChar := substr $term.Page.Title 0 1 | upper -}}
-              
-              {{- /* If letter changes, close the old grid and open a new section */ -}}
-              {{- if ne $firstChar $currentLetter -}}
-                {{- if ne $currentLetter "" -}}
-                    </div> <!-- c-author-section__grid -->
-                  </div> <!-- c-author-section -->
-                {{- end -}}
-                
-                <div id="section-{{ $firstChar | lower }}" class="c-author-section">
-                  <h3 class="c-author-section__title">{{ $firstChar }}</h3>
-                  <div class="c-author-section__grid">
-                
-                {{- $currentLetter = $firstChar -}}
-              {{- end -}}
-
-              {{- /* BEM Component for Author Card */ -}}
-              <a href="{{ $term.Page.RelPermalink }}" class="c-author-card">
-                <span class="c-author-card__name">{{ $term.Page.Title }}</span>
-                <span class="c-author-card__count">{{ printf "%02d" $term.Count }}</span>
-              </a>
-
-            {{- end -}}
-            
-            {{- /* Close the final bucket */ -}}
+        {{- $currentLetter := "" -}}
+        
+        {{- range $term := $authors -}}
+          {{- $firstChar := substr $term.Page.Title 0 1 | upper -}}
+          
+          {{- /* If letter changes, close the old grid and open a new section */ -}}
+          {{- if ne $firstChar $currentLetter -}}
             {{- if ne $currentLetter "" -}}
                 </div> <!-- c-author-section__grid -->
               </div> <!-- c-author-section -->
             {{- end -}}
+            
+            <div id="section-{{ $firstChar | lower }}" class="c-author-section">
+              <h3 class="c-author-section__title">{{ $firstChar }}</h3>
+              <div class="c-author-section__grid">
+            
+            {{- $currentLetter = $firstChar -}}
+          {{- end -}}
 
-          </div>
-        </article>
+          {{- /* BEM Component for Author Card */ -}}
+          <a href="{{ $term.Page.RelPermalink }}" class="c-author-card">
+            <span class="c-author-card__name">{{ $term.Page.Title }}</span>
+            <span class="c-author-card__count">{{ printf "%02d" $term.Count }}</span>
+          </a>
+
+        {{- end -}}
+        
+        {{- /* Close the final bucket */ -}}
+        {{- if ne $currentLetter "" -}}
+            </div> <!-- c-author-section__grid -->
+          </div> <!-- c-author-section -->
+        {{- end -}}
 
       </div>
     </div>

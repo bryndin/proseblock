@@ -48,59 +48,52 @@
     </aside>
 
     {{- /* Right Main Column */ -}}
-    <div class="l-site__main">
-      <div class="l-article-content" id="article-container">
+    <div class="l-site__main u-main" id="article-container">
+      <div class="c-archive">
         
-        {{- /* Uses c-article to inherit the white background, padding, and editorial shadow */ -}}
-        <article class="c-article" style="padding-bottom: var(--space-32);">
-          <div class="c-archive">
-            
-            {{- /* Loop Years */ -}}
-            {{- range $yearGroup := $articles.GroupByDate "2006" -}}
-              {{- $year := $yearGroup.Key -}}
-              <div id="year-{{ $year }}" class="c-archive__year-group">
-                <h3 class="c-archive__year-title">{{ $year }}</h3>
-                
-                <div class="c-archive__months">
-                  {{- /* Loop Months within Year */ -}}
-                  {{- range $monthGroup := $yearGroup.Pages.GroupByDate "January" -}}
-                    {{- $month := $monthGroup.Key -}}
-                    <div id="{{ $month | lower }}-{{ $year }}" class="c-archive__month-group">
-                      <h4 class="c-archive__month-title">{{ $month }}</h4>
-                      
-                      <div class="c-archive__articles">
-                        {{- /* Loop Articles within Month */ -}}
-                        {{- range $article := $monthGroup.Pages -}}
-                          
-                          <a href="{{ $article.RelPermalink }}" class="c-archive-card group">
-                            
-                            {{- /* Date Block (Left) */ -}}
-                            <div class="c-archive-card__date">
-                              <span class="c-archive-card__month">{{ $article.Date.Format "Jan" }}</span>
-                              <span class="c-archive-card__day">{{ $article.Date.Format "02" }}</span>
-                            </div>
-                            
-                            {{- $categories := $article.Params.categories -}}
-                            {{- /* Content Block (Right) */ -}}
-                            <div class="c-archive-card__content">
-                              {{- with $categories -}}
-                                <span class="c-archive-card__category">{{ delimit $categories " / " }}</span>
-                              {{- end -}}
-                              <h5 class="c-archive-card__title">{{ $article.Title }}</h5>
-                            </div>
+        {{- /* Loop Years */ -}}
+        {{- range $yearGroup := $articles.GroupByDate "2006" -}}
+          {{- $year := $yearGroup.Key -}}
+          <div id="year-{{ $year }}" class="c-archive__year-group">
+            <h3 class="c-archive__year-title">{{ $year }}</h3>
 
-                          </a>
+            <div class="c-archive__months">
+              {{- /* Loop Months within Year */ -}}
+              {{- range $monthGroup := $yearGroup.Pages.GroupByDate "January" -}}
+                {{- $month := $monthGroup.Key -}}
+                <div id="{{ $month | lower }}-{{ $year }}" class="c-archive__month-group">
+                  <h4 class="c-archive__month-title">{{ $month }}</h4>
 
-                        {{- end -}}
-                      </div>
-                    </div>
-                  {{- end -}}
+                  <div class="c-archive__articles">
+                    {{- /* Loop Articles within Month */ -}}
+                    {{- range $article := $monthGroup.Pages -}}
+
+                      <a href="{{ $article.RelPermalink }}" class="c-archive-card group">
+
+                        {{- /* Date Block (Left) */ -}}
+                        <div class="c-archive-card__date">
+                          <span class="c-archive-card__month">{{ $article.Date.Format "Jan" }}</span>
+                          <span class="c-archive-card__day">{{ $article.Date.Format "02" }}</span>
+                        </div>
+
+                        {{- $categories := $article.Params.categories -}}
+                        {{- /* Content Block (Right) */ -}}
+                        <div class="c-archive-card__content">
+                          {{- with $categories -}}
+                            <span class="c-archive-card__category">{{ delimit $categories " / " }}</span>
+                          {{- end -}}
+                          <h5 class="c-archive-card__title">{{ $article.Title }}</h5>
+                        </div>
+
+                      </a>
+
+                    {{- end -}}
+                  </div>
                 </div>
-              </div>
-            {{- end -}}
-
+              {{- end -}}
+            </div>
           </div>
-        </article>
+        {{- end -}}
 
       </div>
     </div>

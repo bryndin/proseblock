@@ -296,10 +296,6 @@
   --category-card-index: var(--text-tertiary);
   --category-card-count: var(--text-tertiary);
 
-  /* Article */
-  --article-bg: var(--bg-card);
-  --article: var(--text-secondary);
-
   /* Prose */
   --prose-blockquote-bg: var(--bg-secondary);
   --prose-code-bg: var(--bg-secondary);

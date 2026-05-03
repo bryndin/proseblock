@@ -19,28 +19,25 @@
   <div class="l-site__columns l-site__columns--sidebar-right">
 
     {{- /* Main Column (Inherits white card shadow exactly like Home) */ -}}
-    <div class="l-site__main">
-      <div class="u-home-main">
-        <div class="c-category-grid">
-          {{- /* Get Categories sorted by highest count */ -}}
-          {{- $taxonomies := $page.Data.Terms.ByCount -}}
-          {{- range $index, $term := $taxonomies -}}
+    <div class="l-site__main u-main">
+      <div class="c-category-grid">
+        {{- /* Get Categories sorted by highest count */ -}}
+        {{- $taxonomies := $page.Data.Terms.ByCount -}}
+        {{- range $index, $term := $taxonomies -}}
 
-            {{- /* BEM Card Component */ -}}
-            <div class="c-category-card">
-              <a href="{{ $term.Page.RelPermalink }}" class="c-category-card__link">
-                <div class="c-category-card__header">
-                  {{- /* 1-based index with zero-padding (01, 02) */ -}}
-                  <span class="c-category-card__index">{{ printf "%02d" (add $index 1) }}</span>
-                  <span class="c-category-card__count">{{ printf "%02d" $term.Count }} ARTICLES</span>
-                </div>
-                <h3 class="c-category-card__title">{{ $term.Page.Title }}</h3>
-              </a>
-            </div>
+          {{- /* BEM Card Component */ -}}
+          <div class="c-category-card">
+            <a href="{{ $term.Page.RelPermalink }}" class="c-category-card__link">
+              <div class="c-category-card__header">
+                {{- /* 1-based index with zero-padding (01, 02) */ -}}
+                <span class="c-category-card__index">{{ printf "%02d" (add $index 1) }}</span>
+                <span class="c-category-card__count">{{ printf "%02d" $term.Count }} ARTICLES</span>
+              </div>
+              <h3 class="c-category-card__title">{{ $term.Page.Title }}</h3>
+            </a>
+          </div>
 
-          {{- end -}}
-        </div>
-
+        {{- end -}}
       </div>
     </div>
 

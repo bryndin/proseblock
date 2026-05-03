@@ -64,14 +64,10 @@
 
 .l-site__main {
   min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .l-site__sidebar {
   min-width: 0;
-}
-
-/* --- Main content area (wraps article + author + newsletter) on pages --- */
-.l-article-content {
-  display: flex;
-  flex-direction: column;
 }

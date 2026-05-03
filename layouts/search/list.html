@@ -22,12 +22,10 @@
   </header>
 
   <div class="l-site__columns l-site__columns--sidebar-right">
-    <div class="l-site__main">
-      <div class="u-home-main">
-        {{- /* Search Results Container */ -}}
-        <section id="search-results-container" class="c-article-list" data-max-results="{{ $maxResults }}" data-search-url="{{ $searchUrl }}" aria-live="polite"></section>
-        {{ partial "paginator-dynamic.html" }}
-      </div>
+    <div class="l-site__main u-main">
+      {{- /* Search Results Container */ -}}
+      <section id="search-results-container" class="c-article-list" data-max-results="{{ $maxResults }}" data-search-url="{{ $searchUrl }}" aria-live="polite"></section>
+      {{ partial "paginator-dynamic.html" }}
     </div>
 
     {{- /* Sidebar */ -}}

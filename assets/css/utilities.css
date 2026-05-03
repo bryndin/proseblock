@@ -26,20 +26,11 @@
   text-transform: uppercase;
 }
 
-/* --- Content wrapper for the home main column --- */
+/* --- Content wrapper for the main column --- */
 
-.u-home-main {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-32);
-
+.u-main {
+  gap: var(--space-8);
   background-color: var(--bg-card);
-  padding: var(--space-12);
   box-shadow: var(--shadow-editorial);
-}
-
-@media (width >= 768px) {
-  .u-home-main {
-    padding: var(--space-20);
-  }
+  padding: clamp(var(--space-8), 6.25vw, var(--space-16));
 }

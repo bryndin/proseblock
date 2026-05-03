@@ -38,18 +38,14 @@
     </aside>
 
     {{- /* Main content column (Comes SECOND in HTML for Left Sidebar) */ -}}
-    <div class="l-site__main">
-      <div class="l-article-content" id="article-container">
-
+    <div class="l-site__main u-main" id="article-container">
         {{- /* Article body */ -}}
-        <article class="c-article c-prose">
+        <article class="c-prose">
           {{ $page.Content }}
         </article>
 
         {{ partial "author-block.html" $page }}
         {{ partial "newsletter-block.html" }}
-
-      </div>
     </div>
   </div>
 {{ end }}

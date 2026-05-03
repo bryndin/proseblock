@@ -26,21 +26,19 @@
   <div class="l-site__columns l-site__columns--sidebar-right">
 
     {{- /* Main content area (Comes FIRST in HTML for Right Sidebar) */ -}}
-    <div class="l-site__main">
-      <div class="u-home-main">
-        {{ partial "featured.html"}}
+    <div class="l-site__main u-main">
+      {{ partial "featured.html"}}
 
-        {{- /* Article list */ -}}
-        {{- $paginator := $page.Paginate site.RegularPages }}
-        {{- with $pages := $paginator.Pages }}
-          <section class="c-article-list">
-            {{- range $article := $pages }}
-              {{ partial "article-card.html" $article }}
-            {{- end }}
-          </section>
-        {{- end }}
-        {{ partial "paginator-static.html" $paginator }}
-      </div>
+      {{- /* Article list */ -}}
+      {{- $paginator := $page.Paginate site.RegularPages }}
+      {{- with $pages := $paginator.Pages }}
+        <section class="c-article-list">
+          {{- range $article := $pages }}
+            {{ partial "article-card.html" $article }}
+          {{- end }}
+        </section>
+      {{- end }}
+      {{ partial "paginator-static.html" $paginator }}
     </div>
 
     {{- /* ─── Sidebar (Comes SECOND in HTML for Right Sidebar) ─── */ -}}

@@ -21,13 +21,11 @@
   <div class="l-site__columns l-site__columns--sidebar-right">
 
     {{- /* Main content column */ -}}
-    <div class="l-site__main">
-      <div class="l-article-content" id="article-container">
+    <div class="l-site__main u-main" id="article-container">
         {{- /* The parsed Markdown content from the file */ -}}
-        <article class="c-article c-prose c-about">
+        <article class="c-prose c-about">
           {{ $page.Content }}
         </article>
-      </div>
     </div>
 
     {{- /* Sidebar Area (Right) */ -}}

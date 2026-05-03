@@ -16,51 +16,48 @@
   ) }}
 
   <div class="l-site__columns l-site__columns--sidebar-right">
-    <div class="l-site__main">
-      <div class="u-home-main">
-        <div class="c-tag-index">
-          {{- /* Track the current letter as we loop */ -}}
-          {{- $currentLetter := "" -}}
-          {{- $tags := $page.Data.Terms.Alphabetical -}}
+    <div class="l-site__main u-main">
+      <div class="c-tag-index">
+        {{- /* Track the current letter as we loop */ -}}
+        {{- $currentLetter := "" -}}
+        {{- $tags := $page.Data.Terms.Alphabetical -}}
 
-          {{- range $term := $tags -}}
+        {{- range $term := $tags -}}
 
-            {{- /* Safely extract the first UTF-8 character (rune) and uppercase it */ -}}
-            {{- $firstChar := substr $term.Page.Title 0 1 | upper -}}
+          {{- /* Safely extract the first UTF-8 character (rune) and uppercase it */ -}}
+          {{- $firstChar := substr $term.Page.Title 0 1 | upper -}}
 
-            {{- /* If the letter changes, close the previous bucket and open a new one */ -}}
-            {{- if ne $firstChar $currentLetter -}}
+          {{- /* If the letter changes, close the previous bucket and open a new one */ -}}
+          {{- if ne $firstChar $currentLetter -}}
 
-              {{- /* Close previous bucket if it's not the first iteration */ -}}
-              {{- if ne $currentLetter "" -}}
-                  </div> <!-- c-tag-bucket__grid -->
-                </div> <!-- c-tag-bucket -->
-              {{- end -}}
-
-              {{- /* Open new bucket */ -}}
-              <div class="c-tag-bucket">
-                <h3 class="c-tag-bucket__title">{{ $firstChar }}</h3>
-                <div class="c-tag-bucket__grid">
-
-              {{- /* Update tracker */ -}}
-              {{- $currentLetter = $firstChar -}}
+            {{- /* Close previous bucket if it's not the first iteration */ -}}
+            {{- if ne $currentLetter "" -}}
+                </div> <!-- c-tag-bucket__grid -->
+              </div> <!-- c-tag-bucket -->
             {{- end -}}
 
-            {{- /* Output the Tag Card */ -}}
-            <a href="{{ $term.Page.RelPermalink }}" class="c-tag-card">
-              <span class="c-tag-card__name">#{{ $term.Page.Title }}</span>
-              <span class="c-tag-card__count">{{ printf "%02d" $term.Count }}</span>
-            </a>
+            {{- /* Open new bucket */ -}}
+            <div class="c-tag-bucket">
+              <h3 class="c-tag-bucket__title">{{ $firstChar }}</h3>
+              <div class="c-tag-bucket__grid">
 
+            {{- /* Update tracker */ -}}
+            {{- $currentLetter = $firstChar -}}
           {{- end -}}
 
-          {{- /* Close the final bucket if tags existed */ -}}
-          {{- if ne $currentLetter "" -}}
-              </div> <!-- c-tag-bucket__grid -->
-            </div> <!-- c-tag-bucket -->
-          {{- end -}}
+          {{- /* Output the Tag Card */ -}}
+          <a href="{{ $term.Page.RelPermalink }}" class="c-tag-card">
+            <span class="c-tag-card__name">#{{ $term.Page.Title }}</span>
+            <span class="c-tag-card__count">{{ printf "%02d" $term.Count }}</span>
+          </a>
 
-        </div>
+        {{- end -}}
+
+        {{- /* Close the final bucket if tags existed */ -}}
+        {{- if ne $currentLetter "" -}}
+            </div> <!-- c-tag-bucket__grid -->
+          </div> <!-- c-tag-bucket -->
+        {{- end -}}
 
       </div>
     </div>
