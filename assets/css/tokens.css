@@ -306,9 +306,10 @@
 
   /* Table of Contents */
   --toc: var(--text-secondary);
-  --toc-accent: var(--accent);
-  --toc-rail-bg: var(--border-muted);
-  --toc-separator: var(--border-muted);
+  --toc-hover: var(--interactive-hover);
+  --toc-rail-empty: oklch(from var(--border-muted) l c h / var(--opacity-medium));
+  --toc-rail-fill: var(--accent);
+  --toc-mobile-block-bg: var(--bg-secondary);
 
   /* Author Block */
   --author-bg: var(--bg-highest);

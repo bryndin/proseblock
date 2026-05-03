@@ -4,27 +4,28 @@
    ========================================================================== */
 
 .c-toc {
-  /* @api: text, accent, rail-bg, separator */
+  /* @api */
   --_text: var(--toc);
-  --_accent: var(--toc-accent);
-  --_rail-bg: var(--toc-rail-bg);
-  --_separator: var(--toc-separator);
+  --_hover: var(--toc-hover);
+  --_rail-empty: var(--toc-rail-empty);
+  --_rail-fill: var(--toc-rail-fill);
+  --_mobile-block-bg: var(--toc-mobile-block-bg);
 
   /* @internal: Typography, spacing, and rail configuration */
+  /* horizontal indent for each level is a multiple of base, plus extra indent on hover */
+  --_indent-base: var(--space-4);
+  --_indent-hover-extra: var(--space-2);
+
   --_link-size: var(--text-tiny);
   --_link-weight: var(--weight-semibold);
   --_link-spacing: var(--tracking-widest);
   --_link-padding-v: var(--space-1);
-  --_link-padding-h: var(--space-2);
+  --_link-padding-h: var(--_indent-hover-extra);
 
-  --_rail-width: 2px;
-  --_rail-opacity: var(--opacity-medium);
+  --_separator: var(--_rail-empty);
+  --_rail-width: var(--border-width-thin);
   --_rail-offset-l: 6px;
   --_rail-offset-v: 7px;
-
-  --_separator-muted-opacity: var(--opacity-subtle);
-  --_indent-base: var(--text-base);
-  --_indent-hover-extra: var(--space-2);
 
   --_transition: var(--duration-normal) var(--ease-editorial);
   --_progress-transition: var(--duration-faster) var(--ease-editorial);
@@ -45,6 +46,9 @@
 /* --- Accordion Summary (Mobile) --- */
 
 .c-toc__summary {
+  /* @internal */
+  --_icon-size: var(--space-4);
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -56,18 +60,17 @@
   text-transform: uppercase;
   color: var(--_text);
   padding: var(--space-4);
-  background: var(--bg-secondary);
+  background: var(--_mobile-block-bg);
   transition: background-color var(--_transition);
 }
 
 .c-toc__summary:hover {
-  background-color: var(--bg-secondary);
   box-shadow: var(--shadow-inner);
 }
 
 .c-toc__summary svg {
-  width: var(--space-4);
-  height: var(--space-4);
+  width: var(--_icon-size);
+  height: var(--_icon-size);
   fill: none;
   stroke: currentcolor;
   flex-shrink: 0;
@@ -87,7 +90,7 @@
   align-items: stretch;
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
   .c-toc {
     gap: 0;
   }
@@ -134,15 +137,15 @@
 }
 
 .c-toc__list nav a:hover {
-  color: var(--interactive-hover);
-  padding-right: 0;
+  --_text: var(--_hover);
+  --_link-padding-h: 0;
 }
 
 .c-toc__list nav a::before {
   content: "";
   display: block;
-  height: 1px;
-  background-color: oklch(from var(--_separator) l c h / var(--_separator-muted-opacity));
+  height: var(--border-width-minimal);
+  background-color: var(--_separator);
   flex-shrink: 0;
   transition: width var(--_transition),
     background-color var(--_transition);
@@ -150,25 +153,31 @@
 
 /* Indentation via width increase */
 .c-toc__list nav a::before {
-  width: var(--_indent-base);
+  /* @internal */
+  --_width: var(--_indent-base);
+
+  width: var(--_width);
 }
+
 .c-toc__list nav a:hover::before {
-  width: calc(var(--_indent-base) + var(--_indent-hover-extra));
-  background-color: oklch(from var(--_accent) l c h / var(--_rail-opacity));
+  --_separator: var(--_hover);
+  --_width: calc(var(--_indent-base) + var(--_indent-hover-extra));
 }
 
 .c-toc__list nav ul ul a::before {
-  width: calc(var(--_indent-base) * 2);
+  --_width: calc(var(--_indent-base) * 2);
 }
+
 .c-toc__list nav ul ul a:hover::before {
-  width: calc(var(--_indent-base) * 2 + var(--_indent-hover-extra));
+  --_width: calc(var(--_indent-base) * 2 + var(--_indent-hover-extra));
 }
 
 .c-toc__list nav ul ul ul a::before {
-  width: calc(var(--_indent-base) * 3);
+  --_width: calc(var(--_indent-base) * 3);
 }
+
 .c-toc__list nav ul ul ul a:hover::before {
-  width: calc(var(--_indent-base) * 3 + var(--_indent-hover-extra));
+  --_width: calc(var(--_indent-base) * 3 + var(--_indent-hover-extra));
 }
 
 /* --- Floating Title (Toggled via JS) --- */
@@ -201,7 +210,7 @@
 }
 
 .c-toc__floating-title a:hover {
-  color: var(--interactive-hover);
+  --_text: var(--_hover);
 }
 
 /* --- Reading rail --- */
@@ -211,7 +220,7 @@
   margin-left: var(--_rail-offset-l);
   margin-top: var(--_rail-offset-v);
   margin-bottom: var(--_rail-offset-v);
-  background-color: oklch(from var(--_rail-bg) l c h / var(--_rail-opacity));
+  background-color: var(--_rail-empty);
   position: relative;
   flex-shrink: 0;
 }
@@ -222,6 +231,6 @@
   left: 0;
   width: 100%;
   height: 0;
-  background-color: var(--_accent);
+  background-color: var(--_rail-fill);
   transition: height var(--_progress-transition);
 }
