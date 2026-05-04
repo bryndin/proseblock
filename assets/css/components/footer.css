@@ -4,18 +4,18 @@
    ========================================================================== */
 
 .c-footer {
-  /* @api: bg, text, border */
+  /* @api */
   --_bg: var(--footer-bg);
   --_text: var(--footer);
   --_border: var(--footer-border);
 
-  /* @internal: padding-x, padding-y, gap, label-size, copyright-opacity, link-opacity, border-w, transition */
+  /* @internal */
   --_padding-x: var(--space-12);
   --_padding-y: var(--space-20);
   --_gap: var(--space-8);
   --_label-size: var(--text-xs);
   --_copyright: oklch(from var(--_text) l c h / var(--opacity-subtle));
-  --_link: oklch(from var(--_text) l c h / var( --_link-opacity));
+  --_link: oklch(from var(--_text) l c h / var(--_link-opacity));
   --_link-opacity: var(--opacity-subtle);
   --_border-w: var(--border-width-minimal);
   --_transition: var(--transition-normal-ease-default);
@@ -31,7 +31,7 @@
   gap: var(--_gap);
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
   .c-footer {
     flex-direction: row;
   }
