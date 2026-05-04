@@ -39,4 +39,5 @@
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-widest);
   color: var(--_indicator);
+  font-variant-numeric: tabular-nums;
 }

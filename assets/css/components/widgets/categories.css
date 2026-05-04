@@ -54,4 +54,5 @@
   color: var(--_count);
   margin-bottom: 1px;
   transition: color var(--duration-fast) var(--ease-default);
+  font-variant-numeric: tabular-nums;
 }

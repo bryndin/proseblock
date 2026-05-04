@@ -92,6 +92,7 @@
   font-size: var(--text-xs);
   font-weight: var(--weight-black);
   transition: color var(--_transition);
+  font-variant-numeric: tabular-nums;
 }
 
 .c-tag-card:hover .c-tag-card__count {

@@ -88,6 +88,7 @@
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-wider);
   transition: color var(--_transition);
+  font-variant-numeric: tabular-nums;
 }
 
 .c-category-card:hover .c-category-card__count {
