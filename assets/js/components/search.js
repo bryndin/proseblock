@@ -129,7 +129,7 @@ export function initSearchPage() {
 
     if (data.length === 0) {
       // Empty state uses the dedicated CSS class we added to utilities
-      resultsContainer.innerHTML = '<p class="c-search-empty">No articles match your criteria.</p>';
+      resultsContainer.innerHTML = '<p class="c-search__empty">No articles match your criteria.</p>';
       return;
     }
 

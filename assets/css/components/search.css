@@ -225,7 +225,7 @@
    SEARCH UTILITIES
    ========================================================================== */
 
-.c-search-empty {
+.c-search__empty {
   font-size: var(--text-xl);
   color: oklch(from var(--text-secondary) l c h / var(--opacity-medium));
   margin-top: var(--space-8);
