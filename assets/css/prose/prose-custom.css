@@ -1,6 +1,6 @@
 /* --- Drop cap on first paragraph --- */
 
-:where(.c-prose) > p:first-child::first-letter {
+:where(.c-prose)>p:first-child::first-letter {
   font-size: var(--text-6xl);
   font-weight: var(--weight-bold);
   float: left;
@@ -19,10 +19,10 @@
   border: none;
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
-  background-color: var(--_code-bg);
+  background-color: var(--_blockquote-bg);
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
   :where(.c-prose) .chroma {
     --_code-padding: var(--space-6);
   }
@@ -49,7 +49,7 @@
 
 /* @lint-ignore: used in markdown content */
 :where(.c-prose) .chroma .hl {
-  background-color: var(--_code-highlighted-lines-bg);
+  background: var(--_bgmix-8);
 }
 
 /* @lint-ignore: used in markdown content */

@@ -14,8 +14,10 @@
   --_code-padding: var(--space-4);
   --_table-margin: var(--space-8);
 
-  --_blockquote-bg-nested: oklch(from var(--text-primary) l c h / var(0.04));
-  --_code-highlighted-lines-bg: oklch(from var(--accent) l c h / var(--opacity-minimal));
+  /* nesting converges to this color */
+  --_bg-deepest-nested: var(--bg-inverse);
+  --_bgmix-8: color-mix(in oklch, transparent 92%, oklch(from var(--_bg-deepest-nested) l calc(c * 0.9) h));
+  --_bgmix-4: color-mix(in oklch, transparent 96%, oklch(from var(--_bg-deepest-nested) l calc(c * 0.9) h));
 }
 
 /* --- Vertical Rhythm --- */
@@ -41,10 +43,11 @@
 }
 
 /* Prevent double-spacing at the start/end of the prose block */
-:where(.c-prose) > *:first-child {
+:where(.c-prose)>*:first-child {
   margin-block-start: 0;
 }
-:where(.c-prose) > *:last-child {
+
+:where(.c-prose)>*:last-child {
   margin-block-end: 0;
 }
 
@@ -83,13 +86,13 @@
   list-style: decimal;
 }
 
-:where(.c-prose) li + li {
+:where(.c-prose) li+li {
   margin-top: var(--space-2);
 }
 
 /* Fix for nested Markdown lists */
-:where(.c-prose) li > ul,
-:where(.c-prose) li > ol {
+:where(.c-prose) li>ul,
+:where(.c-prose) li>ol {
   margin-block-start: var(--space-2);
   /* Prevents nested lists from blowing up line height */
   margin-block-end: 0;
@@ -108,7 +111,7 @@
 }
 
 /* Prevents the <p> tag inside the blockquote from creating uneven bottom padding */
-:where(.c-prose) blockquote > *:last-child {
+:where(.c-prose) blockquote>*:last-child {
   margin-block-end: 0;
 }
 
@@ -116,14 +119,14 @@
 :where(.c-prose) blockquote blockquote {
   margin: 0;
   padding-inline-end: 0;
-  background-color: var(--_blockquote-bg-nested);
+  background: var(--_bgmix-4);
 }
 
 /* --- Code --- */
 
 :where(.c-prose) p code,
 :where(.c-prose) li code {
-  background-color: var(--bg-secondary);
+  background-color: var(--prose-code-bg);
   padding: 0.2em 0.4em;
   border-radius: 4px;
 }
@@ -132,13 +135,15 @@
 :where(.c-prose) pre {
   overflow-x: auto;
   padding: var(--space-4);
-  background-color: var(--bg-secondary);
+  background-color: var(--prose-code-bg);
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
 }
 
-@media (width >= 768px) {
-  :where(.c-prose) pre { padding: var(--space-6); }
+@media (width >=768px) {
+  :where(.c-prose) pre {
+    padding: var(--space-6);
+  }
 }
 
 :where(.c-prose) pre code {
