@@ -126,6 +126,10 @@
   background-color: var(--_code-bg);
   padding: 0.2em 0.4em;
   border-radius: var(--radius-sm);
+  /* Match font sizes visually */
+  font-size: calc(var(--text-base) * var(--font-ratio));
+  /* Match font weights visually */
+  font-weight: var(--weight-light);
 }
 
 /* Pre-formatted code blocks */

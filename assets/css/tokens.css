@@ -75,6 +75,9 @@
   --font-sans: "Manrope", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
 
+  /* Font scale ratio between Manrope and JetBrains Mono */
+  --font-ratio: 0.9;
+
   /* Font scales */
   --text-min: 0.25rem;
   --text-xs: 0.625rem;

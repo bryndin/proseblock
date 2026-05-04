@@ -39,6 +39,15 @@
   }
 }
 
+/* Match Syntax Highlighting Default Color */
+:where(.c-prose) .chroma,
+:where(.c-prose) .chroma .nx,
+:where(.c-prose) .chroma .na,
+:where(.c-prose) .chroma .p {
+  color: inherit;
+}
+
+
 /* @lint-ignore: used in markdown content */
 :where(.c-prose) .chroma .lntable {
   margin: 0;
