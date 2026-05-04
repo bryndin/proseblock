@@ -296,6 +296,15 @@
   --category-card-index: var(--text-tertiary);
   --category-card-count: var(--text-tertiary);
 
+  /* Tags (taxonomy) */
+  --tag-bucket-title: var(--text-tertiary);
+  --tag-card-bg: var(--bg-transparent);
+  --tag-card-bg-hover: var(--bg-secondary);
+  --tag-card-border: var(--border-subtle);
+  --tag-card-border-hover: var(--accent);
+  --tag-card-title: var(--text-primary);
+  --tag-card-count: var(--text-tertiary);
+
   /* Prose */
   --prose-blockquote-bg: var(--bg-secondary);
   --prose-code-bg: var(--bg-secondary);
