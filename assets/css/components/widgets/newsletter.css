@@ -27,6 +27,7 @@
   padding-block: var(--space-4);
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-widest);
+  color: var(--text-secondary);
   transition: border-color var(--_transition);
 }
 

@@ -85,6 +85,7 @@
   padding: var(--space-4) 0;
   font-size: var(--text-sm);
   font-weight: var(--weight-light);
+  color: var(--_text);
   outline: none;
 }
 
