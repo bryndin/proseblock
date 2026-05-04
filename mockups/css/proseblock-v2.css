@@ -1,0 +1,1150 @@
+/* ============================================================
+   ProseBlock v2 — Art Direction Pivot
+   Implements the recommendations in /art-direction-critique.md
+   ------------------------------------------------------------
+   Type:   Fraunces (display + body) × Manrope (UI/labels) ×
+           JetBrains Mono (code/numerals)
+   Light:  warm paper, dark warm ink (not blue-gray), oxidised
+           red accent
+   Dark:   cool ink bg + warm amber accent (temperature shift,
+           not just a luminance flip)
+   ============================================================ */
+
+/* ---------- Tokens ---------- */
+:root {
+  /* Type families */
+  --font-display: "Fraunces", "GT Sectra", "Times New Roman", Georgia, serif;
+  --font-body:    "Fraunces", "Source Serif 4", Georgia, serif;
+  --font-italic:  "Fraunces", Georgia, serif;
+  --font-ui:      "Manrope", -apple-system, system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Type scale — dramatic editorial jumps (display / section / body / micro) */
+  --fs-display: clamp(3.75rem, 9vw, 8rem);     /* 60–128 */
+  --fs-section: clamp(2.25rem, 4.5vw, 4rem);   /* 36–64 */
+  --fs-h2:      clamp(1.625rem, 2.4vw, 2.25rem);
+  --fs-h3:      1.375rem;
+  --fs-body:    1.125rem;                       /* 18 */
+  --fs-small:   0.9375rem;                      /* 15 */
+  --fs-mono:    0.9375rem;
+  --fs-micro:   0.75rem;                        /* 12 */
+
+  --lh-display: 0.95;
+  --lh-section: 1.05;
+  --lh-h2:      1.15;
+  --lh-body:    1.65;
+  --lh-tight:   1.25;
+
+  /* Color — light: warm paper / warm ink, oxidised red accent */
+  --paper:      oklch(0.985 0.005 80);
+  --paper-2:    oklch(0.965 0.008 80);
+  --paper-tint: oklch(0.97 0.012 80);
+  --ink:        oklch(0.22 0.018 60);
+  --ink-soft:   oklch(0.42 0.014 60);
+  --ink-faint:  oklch(0.62 0.01 60);
+  --rule-hair:  oklch(0.86 0.005 60);
+  --rule-bold:  oklch(0.22 0.018 60);
+  --accent:     oklch(0.45 0.18 28);   /* oxidised red */
+  --accent-2:   oklch(0.55 0.13 28);
+  --quote-bg:   oklch(0.97 0.012 80);
+
+  /* Spacing — 8pt with editorial breathing room */
+  --s-1: 0.5rem;
+  --s-2: 1rem;
+  --s-3: 1.5rem;
+  --s-4: 2rem;
+  --s-6: 3rem;
+  --s-8: 4rem;
+  --s-10: 5rem;
+  --s-12: 6rem;
+  --s-16: 8rem;
+
+  /* Layout */
+  --measure: 62ch;
+  --gutter:  clamp(1rem, 4vw, 4rem);
+  --site-max: 1280px;
+  --rail:    8.5rem;          /* date/year gutter rail */
+
+  /* Rules — TWO weights (per critique §3.1) */
+  --rule-w-hair: 0.5px;
+  --rule-w-edit: 1.5px;
+}
+
+[data-theme="dark"] {
+  /* Cool ink + warm amber — "reading lamp" mood */
+  --paper:      oklch(0.165 0.022 270);
+  --paper-2:    oklch(0.21 0.024 270);
+  --paper-tint: oklch(0.2 0.022 270);
+  --ink:        oklch(0.93 0.03 85);
+  --ink-soft:   oklch(0.74 0.04 85);
+  --ink-faint:  oklch(0.55 0.03 85);
+  --rule-hair:  oklch(0.32 0.018 270);
+  --rule-bold:  oklch(0.86 0.04 85);
+  --accent:     oklch(0.82 0.14 70);   /* warm amber/cream */
+  --accent-2:   oklch(0.72 0.12 70);
+  --quote-bg:   oklch(0.2 0.022 270);
+}
+
+/* ---------- Reset (light) ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  /* Subtle vertical paper gradient (critique §3.1) */
+  background-image: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-feature-settings: "kern", "liga", "calt", "ss01";
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  hanging-punctuation: first last;       /* critique §2.4 */
+}
+
+img, svg { display: block; max-width: 100%; }
+
+/* ---------- Typography defaults ---------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0;
+  text-wrap: balance;                    /* critique §2.4 */
+  letter-spacing: -0.01em;
+}
+h1 { font-size: var(--fs-section); line-height: var(--lh-section); }
+h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); letter-spacing: -0.005em; }
+h3 { font-size: var(--fs-h3); line-height: 1.3; font-weight: 600; }
+
+p { margin: 0 0 1em 0; }
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: var(--accent);
+  transition: text-decoration-thickness .15s ease, color .15s ease;
+}
+a:hover { text-decoration-thickness: 2.5px; }
+
+/* Italic emphasis routed to Fraunces italic — magazine-grade (critique §2.3) */
+em, i, .italic {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-feature-settings: "kern", "liga", "calt";
+}
+
+/* Strong — display-weighted */
+strong, b { font-weight: 600; color: var(--ink); }
+
+/* Tabular numerals where they matter (critique §3.11 of v1) */
+time, .num, .meta-num, .gutter-date {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum", "kern";
+}
+
+/* ---------- UI labels (Manrope) ---------- */
+.eyebrow,
+.label,
+.kicker-ui {
+  font-family: var(--font-ui);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Italic display kicker — different register (critique §1.5) */
+.kicker-italic {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-h3);
+  color: var(--accent);
+  letter-spacing: -0.005em;
+}
+
+/* Numeric prefix — alternative label register */
+.kicker-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+}
+
+/* Inverted chip — third register */
+.chip-inverted {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.35em 0.7em;
+}
+
+/* ---------- Layout shell ---------- */
+.shell {
+  width: 100%;
+  max-width: var(--site-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Header — flush-left logo, word-link nav, no burger on desktop */
+.site-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  padding: var(--s-3) 0;
+  border-bottom: var(--rule-w-hair) solid var(--rule-hair);
+}
+.logo {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.logo em { font-weight: 500; color: var(--accent); }
+
+.site-nav {
+  display: flex;
+  gap: var(--s-4);
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+.site-nav a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.15em;
+}
+.site-nav a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.site-nav a.is-current { border-bottom-color: var(--ink); }
+
+.header-utils { display: flex; gap: var(--s-2); align-items: center; }
+.icon-btn {
+  width: 44px; height: 44px;       /* AAA target — critique §4.3 */
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent;
+  color: var(--ink);
+  border: none;
+  cursor: pointer;
+}
+.icon-btn:hover { color: var(--accent); }
+.icon-btn svg { width: 18px; height: 18px; }
+
+/* Footer — editorial signature with TWO rule weights */
+.site-footer {
+  margin-top: var(--s-16);
+  border-top: var(--rule-w-edit) solid var(--rule-bold);
+  padding: var(--s-6) 0 var(--s-8);
+  font-family: var(--font-ui);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.site-footer .signet {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+.site-footer__row {
+  display: flex; justify-content: space-between; gap: var(--s-4);
+  flex-wrap: wrap;
+}
+
+/* ---------- The Ornament — vertical rail in gutter (critique §3.1) ---------- */
+.gutter-rail {
+  position: relative;
+}
+.gutter-rail::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: -1.25rem;
+  width: 1px;
+  background: var(--rule-hair);
+}
+
+/* ============================================================
+   PAGE: HOME — three rhythmic zones (Lead / Stack / Index)
+   ============================================================ */
+
+/* Issue masthead — uses the slab once, ceremonially (critique §1.1) */
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--s-4);
+  align-items: end;
+  padding: var(--s-12) 0 var(--s-6);
+  border-bottom: var(--rule-w-edit) solid var(--rule-bold);
+  margin-bottom: var(--s-8);
+}
+.masthead__issue {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.masthead__motto {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  color: var(--ink);
+  line-height: 1.15;
+  text-wrap: balance;
+  max-width: 22ch;
+}
+.masthead__date {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* THE LEAD — oversized, no card, one piece (§4.1, §4.2) */
+.lead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding: var(--s-6) 0 var(--s-12);
+  border-bottom: var(--rule-w-edit) solid var(--rule-bold);
+  margin-bottom: var(--s-12);
+  position: relative;
+}
+.lead__kicker {
+  font-family: var(--font-italic);
+  font-style: italic;
+  color: var(--accent);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  margin-bottom: var(--s-3);
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.lead__kicker::before {
+  content: "";
+  width: 2.5rem; height: 1px;
+  background: var(--accent);
+}
+.lead__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: -0.025em;
+  margin-bottom: var(--s-4);
+  text-wrap: balance;
+}
+.lead__title em {
+  font-style: italic;
+  color: var(--accent);
+}
+.lead__dek {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: clamp(1.25rem, 1.7vw, 1.5rem);
+  line-height: 1.4;
+  color: var(--ink-soft);
+  max-width: 40ch;
+  margin-bottom: var(--s-4);
+}
+.lead__byline {
+  font-family: var(--font-ui);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.lead__byline a { color: var(--ink); text-decoration: none; border-bottom: 1px solid currentColor; }
+
+/* THE STACK — varied 3-up grid (§4.1) */
+.stack {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--s-6);
+  margin-bottom: var(--s-12);
+  border-bottom: var(--rule-w-hair) solid var(--rule-hair);
+  padding-bottom: var(--s-12);
+}
+@media (max-width: 880px) { .stack { grid-template-columns: 1fr; } }
+.stack__item {
+  display: flex; flex-direction: column;
+  gap: var(--s-2);
+}
+.stack__item--tall {
+  grid-row: span 2;
+  border-right: var(--rule-w-hair) solid var(--rule-hair);
+  padding-right: var(--s-6);
+}
+@media (max-width: 880px) {
+  .stack__item--tall { grid-row: auto; border-right: none; padding-right: 0; }
+}
+.stack__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.4vw, 2.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.stack__item--tall .stack__title { font-size: clamp(2rem, 3.4vw, 3rem); }
+.stack__title a { color: var(--ink); text-decoration: none; }
+.stack__title a:hover { color: var(--accent); }
+.stack__title a em { color: var(--accent); }
+.stack__excerpt {
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+.stack__meta {
+  font-family: var(--font-ui);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  display: flex; gap: var(--s-3);
+}
+.stack__meta time { font-family: var(--font-mono); letter-spacing: 0.05em; }
+
+/* THE INDEX — typographic table of recent pieces (§4.1, §4.4) */
+.index-table {
+  display: grid;
+  margin-bottom: var(--s-12);
+}
+.index-table__head {
+  display: grid;
+  grid-template-columns: 5rem 1fr 10rem 5rem;
+  gap: var(--s-4);
+  padding-bottom: var(--s-2);
+  border-bottom: var(--rule-w-edit) solid var(--rule-bold);
+  font-family: var(--font-ui);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.index-table__row {
+  display: grid;
+  grid-template-columns: 5rem 1fr 10rem 5rem;
+  gap: var(--s-4);
+  padding: var(--s-3) 0;
+  border-bottom: var(--rule-w-hair) solid var(--rule-hair);
+  align-items: baseline;
+  color: var(--ink);
+  text-decoration: none;
+}
+.index-table__row:hover { background: var(--paper-tint); }
+.index-table__row:hover .index-table__title { color: var(--accent); }
+.index-table__date {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+  font-feature-settings: "tnum";
+}
+.index-table__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+}
+.index-table__title a { color: var(--ink); text-decoration: none; }
+.index-table__title a:hover { color: var(--accent); }
+.index-table__cat {
+  font-family: var(--font-italic);
+  font-style: italic;
+  color: var(--accent);
+  font-size: 1rem;
+}
+.index-table__time {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--ink-faint);
+  text-align: right;
+}
+@media (max-width: 720px) {
+  .index-table__head, .index-table__row {
+    grid-template-columns: 5rem 1fr;
+  }
+  .index-table__cat, .index-table__time { display: none; }
+}
+
+/* Editor's note (§4.1) */
+.editor-note {
+  margin: 0 0 var(--s-12);
+  padding: var(--s-8) 0;
+  border-top: var(--rule-w-edit) solid var(--rule-bold);
+  border-bottom: var(--rule-w-edit) solid var(--rule-bold);
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  gap: var(--s-6);
+}
+@media (max-width: 720px) { .editor-note { grid-template-columns: 1fr; } }
+.editor-note__label {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--accent);
+}
+.editor-note__body p {
+  font-size: 1.0625rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.8em;
+}
+.editor-note__sig {
+  margin-top: var(--s-3);
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 1.125rem;
+  color: var(--ink);
+}
+
+/* End-of-content newsletter (§4.3 — moved out of sidebar) */
+.newsletter-end {
+  border-top: var(--rule-w-edit) solid var(--rule-bold);
+  padding: var(--s-8) 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-8);
+  align-items: end;
+}
+@media (max-width: 720px) { .newsletter-end { grid-template-columns: 1fr; } }
+.newsletter-end h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.newsletter-end h2 em { color: var(--accent); }
+.newsletter-end__form { display: flex; gap: 0; align-items: stretch; }
+.newsletter-end__form input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--ink);
+  padding: var(--s-2) 0;
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  color: var(--ink);
+}
+.newsletter-end__form input::placeholder {
+  font-family: var(--font-italic);
+  font-style: italic;
+  color: var(--ink-faint);
+}
+.newsletter-end__form button {
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  padding: 0 var(--s-4);
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.newsletter-end__form button:hover { background: var(--accent); }
+
+/* ============================================================
+   PAGE: POST — display title in column, drop cap, pull quote
+   ============================================================ */
+.post-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 16rem;
+  gap: var(--s-8);
+  align-items: start;
+  margin-top: var(--s-8);
+}
+@media (max-width: 980px) {
+  .post-shell { grid-template-columns: minmax(0, 1fr); }
+}
+
+.post-header {
+  margin-bottom: var(--s-8);
+  padding-bottom: var(--s-6);
+  border-bottom: var(--rule-w-edit) solid var(--rule-bold);
+}
+.post-header__crumb {
+  display: flex; gap: var(--s-1); align-items: center;
+  font-family: var(--font-mono); font-size: var(--fs-micro);
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--s-4);
+}
+.post-header__crumb a { color: var(--ink-soft); text-decoration: none; }
+.post-header__crumb a:hover { color: var(--accent); }
+.post-header__crumb span { color: var(--rule-hair); }
+
+.post-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--s-4);
+  text-wrap: balance;
+}
+.post-title em { color: var(--accent); }
+
+.post-dek {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: clamp(1.125rem, 1.6vw, 1.5rem);
+  line-height: 1.4;
+  color: var(--ink-soft);
+  max-width: 50ch;
+  margin-bottom: var(--s-6);
+}
+
+.post-byline {
+  font-family: var(--font-ui);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: flex; gap: var(--s-4); flex-wrap: wrap;
+}
+.post-byline time { font-family: var(--font-mono); letter-spacing: 0.05em; }
+.post-byline a { color: var(--ink); text-decoration: none; border-bottom: 1px solid currentColor; }
+
+/* Prose body */
+.prose {
+  max-width: var(--measure);
+  font-size: 1.1875rem;       /* 19px */
+  line-height: 1.65;
+  color: var(--ink);
+}
+.prose p { margin: 0 0 1.4em 0; }
+.prose p a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+}
+.prose em, .prose i {
+  font-family: var(--font-italic);
+  font-style: italic;
+  color: var(--ink);
+}
+
+/* Drop cap on first paragraph (critique §2.4) */
+.prose > p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 5.4em;
+  line-height: 0.85;
+  float: left;
+  padding: 0.06em 0.12em 0 0;
+  color: var(--accent);
+}
+
+.prose h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 2.2em 0 0.6em;
+  color: var(--ink);
+}
+.prose h2::before {
+  content: "§";
+  font-family: var(--font-italic);
+  font-style: italic;
+  color: var(--accent);
+  margin-right: 0.4em;
+  font-weight: 400;
+}
+.prose h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.5rem;
+  margin: 1.8em 0 0.5em;
+  letter-spacing: -0.01em;
+}
+
+/* Pull quote — magazine-grade (critique §4.2 supporting drama) */
+.prose blockquote.pull {
+  margin: 2.5em 0;
+  padding: 0;
+  border: none;
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  line-height: 1.25;
+  color: var(--ink);
+  text-align: left;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.prose blockquote.pull::before {
+  content: "“";
+  display: block;
+  font-size: 3em;
+  line-height: 0.5;
+  color: var(--accent);
+  margin-bottom: 0.2em;
+}
+.prose blockquote.pull cite {
+  display: block;
+  margin-top: var(--s-3);
+  font-family: var(--font-ui);
+  font-style: normal;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* Code blocks — JetBrains Mono 15px on bordered surface (critique §2.5, §3) */
+.prose pre {
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  background: var(--paper-2);
+  border-top: var(--rule-w-edit) solid var(--rule-bold);
+  border-bottom: var(--rule-w-edit) solid var(--rule-bold);
+  padding: var(--s-3) var(--s-4);
+  margin: 2em calc(-1 * var(--s-4));
+  overflow-x: auto;
+  position: relative;
+}
+.prose pre::before {
+  content: attr(data-lang);
+  position: absolute;
+  top: -0.7em; left: var(--s-4);
+  background: var(--paper);
+  font-family: var(--font-ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 0 0.5em;
+}
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--paper-tint);
+  padding: 0.08em 0.35em;
+  border-radius: 2px;
+  color: var(--ink);
+}
+.prose pre code { background: none; padding: 0; font-size: inherit; }
+
+/* Footnotes */
+.prose .fn-ref {
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  vertical-align: super;
+  color: var(--accent);
+  text-decoration: none;
+  margin-left: 0.1em;
+}
+.prose .footnotes {
+  margin-top: var(--s-12);
+  padding-top: var(--s-4);
+  border-top: var(--rule-w-edit) solid var(--rule-bold);
+  font-size: 1rem;
+  color: var(--ink-soft);
+}
+.prose .footnotes ol { padding-left: 1.2rem; }
+
+/* Post sidebar — editorial, not utility (critique §4.3) */
+.post-aside {
+  position: sticky;
+  top: var(--s-3);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+  border-left: var(--rule-w-hair) solid var(--rule-hair);
+  padding-left: var(--s-3);
+}
+.post-aside__section { margin-bottom: var(--s-6); }
+.post-aside__h {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--accent);
+  margin-bottom: var(--s-2);
+}
+.post-aside__list { list-style: none; padding: 0; margin: 0; }
+.post-aside__list li {
+  padding: var(--s-1) 0;
+  border-bottom: var(--rule-w-hair) solid var(--rule-hair);
+}
+.post-aside__list a {
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1.3;
+  display: block;
+}
+.post-aside__list a:hover { color: var(--accent); }
+.post-aside__list .num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.15em;
+}
+
+/* ============================================================
+   PAGE: TAXONOMY — text-driven index, no cards (critique §3.3, §4.4)
+   ============================================================ */
+.tax-header {
+  padding: var(--s-12) 0 var(--s-6);
+  border-bottom: var(--rule-w-edit) solid var(--rule-bold);
+  margin-bottom: var(--s-8);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-6);
+  align-items: end;
+}
+@media (max-width: 720px) { .tax-header { grid-template-columns: 1fr; } }
+.tax-header__kicker {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: var(--s-3);
+}
+.tax-header__title {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  text-transform: lowercase;        /* mixed label register (§1.5) */
+}
+.tax-header__title::before {
+  content: "#";
+  color: var(--accent);
+  margin-right: 0.05em;
+}
+.tax-header__editor {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  max-width: 38ch;
+}
+.tax-header__editor em { color: var(--ink); }
+
+.tax-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18rem;
+  gap: var(--s-8);
+}
+@media (max-width: 980px) { .tax-shell { grid-template-columns: 1fr; } }
+
+/* Reuses .index-table from home — single canonical pattern */
+
+/* Editorial sidebar — not Dispatch+Cats+Tags */
+.tax-aside {
+  border-left: var(--rule-w-hair) solid var(--rule-hair);
+  padding-left: var(--s-4);
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+}
+.tax-aside section { margin-bottom: var(--s-6); }
+.tax-aside h3 {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: var(--ink);
+  margin-bottom: var(--s-2);
+}
+.tax-aside .stat {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding: var(--s-2) 0;
+  border-bottom: var(--rule-w-hair) solid var(--rule-hair);
+  font-family: var(--font-ui);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.tax-aside .stat span:last-child {
+  font-family: var(--font-mono);
+  color: var(--ink);
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+.tax-aside .quote-mini {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  color: var(--ink);
+  border-left: 2px solid var(--accent);
+  padding-left: var(--s-2);
+}
+
+/* ============================================================
+   PAGE: AUTHOR — contents-page (critique §4.5)
+   ============================================================ */
+.author-header {
+  padding: var(--s-12) 0 var(--s-6);
+  border-bottom: var(--rule-w-edit) solid var(--rule-bold);
+  margin-bottom: var(--s-8);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--s-8);
+  align-items: end;
+}
+@media (max-width: 720px) { .author-header { grid-template-columns: 1fr; } }
+
+.author-header__kicker {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: var(--s-3);
+}
+.author-header__name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+.author-header__tagline {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+  color: var(--ink-soft);
+  line-height: 1.45;
+  max-width: 38ch;
+}
+
+/* Stat strip */
+.author-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: var(--rule-w-hair) solid var(--rule-hair);
+  border-bottom: var(--rule-w-hair) solid var(--rule-hair);
+  padding: var(--s-3) 0;
+  margin-bottom: var(--s-8);
+  gap: var(--s-3);
+}
+@media (max-width: 720px) { .author-stats { grid-template-columns: repeat(2, 1fr); } }
+.author-stats__item { display: flex; flex-direction: column; gap: 0.2em; }
+.author-stats__num {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.author-stats__label {
+  font-family: var(--font-ui);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Pull quote from her work */
+.author-pull {
+  margin: var(--s-8) 0;
+  padding: var(--s-6) 0;
+  border-top: var(--rule-w-edit) solid var(--rule-bold);
+  border-bottom: var(--rule-w-edit) solid var(--rule-bold);
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  line-height: 1.3;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--ink);
+  max-width: 30ch;
+  margin-left: auto; margin-right: auto;
+}
+.author-pull cite {
+  display: block;
+  margin-top: var(--s-3);
+  font-family: var(--font-ui);
+  font-style: normal;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* Contents-page index reuses .index-table */
+
+/* ============================================================
+   PAGE: 404 — small, dry, quiet (critique §4.6)
+   ============================================================ */
+.utility-page {
+  min-height: 60vh;
+  display: grid;
+  align-content: center;
+  padding: var(--s-12) 0;
+  max-width: 50ch;
+  margin: 0 auto;
+}
+.utility-page__num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: var(--s-3);
+}
+.utility-page h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--s-3);
+}
+.utility-page h1 em { color: var(--accent); }
+.utility-page__lede {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin-bottom: var(--s-4);
+}
+.utility-page__links {
+  list-style: none; padding: 0; margin: 0;
+  border-top: var(--rule-w-hair) solid var(--rule-hair);
+}
+.utility-page__links li { border-bottom: var(--rule-w-hair) solid var(--rule-hair); }
+.utility-page__links a {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr auto;
+  gap: var(--s-3);
+  align-items: baseline;
+  padding: var(--s-2) 0;
+  text-decoration: none;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+}
+.utility-page__links a span:first-child {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+}
+.utility-page__links a span:last-child {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+}
+.utility-page__links a:hover { color: var(--accent); }
+.utility-page__links a:hover span:last-child { color: var(--accent); }
+
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+}
+.skip-link:focus {
+  left: var(--s-2); top: var(--s-2);
+  background: var(--ink); color: var(--paper);
+  padding: 0.5em 1em; font-family: var(--font-ui);
+  z-index: 100;
+}
+
+/* ---------- Focus ring (universal) ---------- */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ---------- Mockup gallery (index.html) ---------- */
+.gallery {
+  padding: var(--s-12) 0;
+}
+.gallery h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  margin-bottom: var(--s-2);
+}
+.gallery h1 em { color: var(--accent); }
+.gallery__lede {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--ink-soft);
+  max-width: 50ch;
+  margin-bottom: var(--s-8);
+}
+.gallery ol {
+  list-style: none; padding: 0; margin: 0;
+  border-top: var(--rule-w-edit) solid var(--rule-bold);
+}
+.gallery li { border-bottom: var(--rule-w-hair) solid var(--rule-hair); }
+.gallery a {
+  display: grid;
+  grid-template-columns: 4rem 1fr auto;
+  gap: var(--s-3);
+  align-items: baseline;
+  padding: var(--s-3) 0;
+  text-decoration: none;
+  color: var(--ink);
+}
+.gallery a:hover { background: var(--paper-tint); }
+.gallery a strong {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+.gallery a em {
+  font-family: var(--font-italic);
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+.gallery a span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+}

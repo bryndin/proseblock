@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>ProseBlock — Issue 04 / Spring 2026</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=JetBrains+Mono:ital,wght@0,400..700;1,400..600&family=Manrope:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/proseblock-v2.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="shell">
+  <header class="site-header">
+    <a class="logo" href="./home.html">Prose<em>Block</em></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="./home.html" class="is-current">Essays</a>
+      <a href="#">Archives</a>
+      <a href="./author.html">Authors</a>
+      <a href="#">About</a>
+    </nav>
+    <div class="header-utils">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Toggle theme" onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme==='dark'?'light':'dark'">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A8 8 0 0 1 12 2Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- MASTHEAD: the slab used ceremonially, once -->
+    <section class="masthead">
+      <div>
+        <div class="masthead__issue">Issue 04 · Vol. II</div>
+        <p class="masthead__motto">A quarterly publication on <em>typography</em>, structure, and the quiet web.</p>
+      </div>
+      <div class="masthead__date">Spring 2026</div>
+    </section>
+
+    <!-- THE LEAD: oversized, no card, single piece -->
+    <article class="lead" aria-labelledby="lead-title">
+      <div class="lead__kicker"><span>The Lead</span></div>
+      <h1 class="lead__title" id="lead-title">
+        Building <em>resilient</em> web applications with modern CSS.
+      </h1>
+      <p class="lead__dek">
+        Cascade Layers, custom properties, and modern layout patterns can transform how we maintain interfaces at scale — if we let go of the pixel-grid mindset and design with the cascade.
+      </p>
+      <div class="lead__byline">
+        By <a href="./author.html">Jane Doe</a> &nbsp;·&nbsp; <time datetime="2026-03-15">15.03.26</time> &nbsp;·&nbsp; 7 min
+      </div>
+    </article>
+
+    <!-- THE STACK: 3-up varied -->
+    <section class="stack" aria-label="Recent essays">
+      <article class="stack__item stack__item--tall">
+        <span class="kicker-italic">Field notes</span>
+        <h2 class="stack__title"><a href="./post.html">The Three-Tier Design Token System &amp; the limits of abstraction.</a></h2>
+        <p class="stack__excerpt">Why the standard primitive → semantic → component model breaks at scale, and what to put in its place when a single team owns multiple brands.</p>
+        <div class="stack__meta"><time datetime="2026-03-13">13.03.26</time><span>Architecture</span><span>11 min</span></div>
+      </article>
+
+      <article class="stack__item">
+        <span class="kicker-num">§ 02</span>
+        <h2 class="stack__title"><a href="./post.html">Code Blocks, Recovered.</a></h2>
+        <p class="stack__excerpt">A quiet case for treating code as editorial typography.</p>
+        <div class="stack__meta"><time datetime="2026-02-01">01.02.26</time><span>Code</span></div>
+      </article>
+
+      <article class="stack__item">
+        <span class="chip-inverted">Dispatch</span>
+        <h2 class="stack__title"><a href="./post.html">Markdown — a benchmark.</a></h2>
+        <p class="stack__excerpt">Eleven minutes through every element a renderer ought to handle.</p>
+        <div class="stack__meta"><time datetime="2026-01-01">01.01.26</time><span>Test</span></div>
+      </article>
+    </section>
+
+    <!-- THE INDEX: typographic table (the archives' voice, ported outward) -->
+    <section class="index-table" aria-label="From the archives">
+      <header class="index-table__head">
+        <span>Date</span>
+        <span>Title</span>
+        <span>Section</span>
+        <span style="text-align:right">Read</span>
+      </header>
+
+      <a class="index-table__row" href="./post.html">
+        <span class="index-table__date">14.12.25</span>
+        <span class="index-table__title">Hairlines, &amp; the politics of one pixel.</span>
+        <span class="index-table__cat">Design Systems</span>
+        <span class="index-table__time">04 min</span>
+      </a>
+      <a class="index-table__row" href="./post.html">
+        <span class="index-table__date">21.10.25</span>
+        <span class="index-table__title">In defense of the slow homepage.</span>
+        <span class="index-table__cat">Editorial</span>
+        <span class="index-table__time">12 min</span>
+      </a>
+      <a class="index-table__row" href="./post.html">
+        <span class="index-table__date">02.09.25</span>
+        <span class="index-table__title">Reading at 19 / 1.65: the case for serif body.</span>
+        <span class="index-table__cat">Typography</span>
+        <span class="index-table__time">08 min</span>
+      </a>
+      <a class="index-table__row" href="./post.html">
+        <span class="index-table__date">17.07.25</span>
+        <span class="index-table__title">A theme that does not know it is a theme.</span>
+        <span class="index-table__cat">Manifesto</span>
+        <span class="index-table__time">06 min</span>
+      </a>
+    </section>
+
+    <!-- EDITOR'S NOTE: the publication's voice -->
+    <section class="editor-note">
+      <div class="editor-note__label">From the editor</div>
+      <div class="editor-note__body">
+        <p>This issue is about the parts of the web we tend to skip: the type, the rhythm, the blank space between paragraphs. We have spent a quarter trying to make the smallest things matter — the <em>letter-spacing</em> on a kicker, the weight of a hairline, the moment a page begins.</p>
+        <p>If you stayed for the long pieces, thank you. If you only stayed for the table of contents, that is also a way of reading.</p>
+        <div class="editor-note__sig">— J.D., editor.</div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER moved out of the rail into a deliberate end slot -->
+    <section class="newsletter-end">
+      <h2>The <em>Dispatch</em> — a quiet letter, monthly.</h2>
+      <form class="newsletter-end__form" onsubmit="event.preventDefault()">
+        <label class="skip-link" for="news-email">Email address</label>
+        <input id="news-email" type="email" placeholder="your@address.com" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__row">
+      <span>© 2026 — Issue 04</span>
+      <span class="signet">Set in <em>Fraunces</em>, Manrope &amp; JetBrains Mono.</span>
+      <span>Vol. II / Spring</span>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>ProseBlock v2 — mockups</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=JetBrains+Mono:ital,wght@0,400..700;1,400..600&family=Manrope:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/proseblock-v2.css">
+</head>
+<body>
+<div class="shell">
+  <header class="site-header">
+    <a class="logo" href="./index.html">Prose<em>Block</em></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="./index.html" class="is-current">Mockups</a>
+    </nav>
+    <div class="header-utils">
+      <button class="icon-btn" aria-label="Toggle theme" onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme==='dark'?'light':'dark'">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A8 8 0 0 1 12 2Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="gallery">
+    <div class="masthead__issue" style="margin-bottom:1rem">Pivot · v2 · Mockups</div>
+    <h1>The <em>quiet</em> web, with teeth.</h1>
+    <p class="gallery__lede">
+      Five concrete views demonstrating the art-direction pivot. Each view follows the critique:
+      Fraunces × Manrope × JetBrains Mono pairing, the slab hero retired except on the homepage,
+      and the archives' typographic-index voice ported outward to the rest of the system.
+    </p>
+
+    <ol>
+      <li>
+        <a href="./home.html">
+          <span>§ 01</span>
+          <strong>The homepage</strong>
+          <em>masthead → lead → stack → index → editor's note</em>
+        </a>
+      </li>
+      <li>
+        <a href="./post.html">
+          <span>§ 02</span>
+          <strong>The single post</strong>
+          <em>display title in column · drop cap · pull quote · mono code</em>
+        </a>
+      </li>
+      <li>
+        <a href="./taxonomy.html">
+          <span>§ 03</span>
+          <strong>A taxonomy page</strong>
+          <em>italic-display lowercase title · text-driven index · editorial sidebar</em>
+        </a>
+      </li>
+      <li>
+        <a href="./author.html">
+          <span>§ 04</span>
+          <strong>The author profile</strong>
+          <em>compressed bio · stat strip · pull quote · contents page</em>
+        </a>
+      </li>
+      <li>
+        <a href="./404.html">
+          <span>§ 05</span>
+          <strong>The 404</strong>
+          <em>small, dry, quiet — failure is not a design moment</em>
+        </a>
+      </li>
+    </ol>
+
+    <p style="margin-top:3rem;font-family:var(--font-italic);font-style:italic;color:var(--ink-soft);">
+      Toggle the moon icon (top right) to see warm-amber dark mode.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__row">
+      <span>© 2026 — v2 mockups</span>
+      <span class="signet">Set in <em>Fraunces</em>, Manrope &amp; JetBrains Mono.</span>
+      <span>Pivot</span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
