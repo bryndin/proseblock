@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>Building Resilient Web Applications with Modern CSS — ProseBlock</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=JetBrains+Mono:ital,wght@0,400..700;1,400..600&family=Manrope:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/proseblock-v2.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="shell">
+  <header class="site-header">
+    <a class="logo" href="./home.html">Prose<em>Block</em></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="./home.html">Essays</a>
+      <a href="#">Archives</a>
+      <a href="./author.html">Authors</a>
+      <a href="#">About</a>
+    </nav>
+    <div class="header-utils">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Toggle theme" onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme==='dark'?'light':'dark'">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A8 8 0 0 1 12 2Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- NO grey slab; title sits in the column with a thin display rule -->
+    <header class="post-header">
+      <nav class="post-header__crumb" aria-label="Breadcrumb">
+        <a href="./home.html">Essays</a>
+        <span>/</span>
+        <a href="./taxonomy.html">Architecture</a>
+        <span>/</span>
+        <span>15.03.26</span>
+      </nav>
+      <h1 class="post-title">
+        Building <em>resilient</em> web applications with modern CSS.
+      </h1>
+      <p class="post-dek">
+        Cascade Layers, custom properties, and modern layout patterns can transform how we maintain interfaces at scale — if we let go of the pixel-grid mindset and design with the cascade.
+      </p>
+      <div class="post-byline">
+        <span>By <a href="./author.html">Jane Doe</a></span>
+        <span><time datetime="2026-03-15">15 March 2026</time></span>
+        <span>7 min</span>
+      </div>
+    </header>
+
+    <div class="post-shell">
+
+      <article class="prose">
+
+        <p>Modern CSS is no longer the cause of frontend complexity — it is the cure. For two decades the discipline accreted preprocessors, methodology dialects and component-scoped runtime stylesheets, all to compensate for one missing primitive: control over the cascade. That primitive arrived in <em>2022</em>, and most teams still have not noticed.<a class="fn-ref" href="#fn1" id="fnref1">1</a></p>
+
+        <p>The thesis of this essay is small and unfashionable. <em>Cascade Layers</em>, custom properties and the new layout primitives are sufficient to retire most of the architectural scaffolding the frontend has built around CSS. What remains is editorial: deciding which decisions are global, which are sectional, and which belong to the page in front of you.</p>
+
+        <h2 id="problem">The problem with traditional CSS.</h2>
+
+        <p>Every team that grows past a single product runs into the same two failures. First, <em>specificity drift</em>: utility classes lose to component classes lose to one-off overrides, and nobody can predict which selector wins without grepping the codebase. Second, <em>token sprawl</em>: design decisions multiply at every level of the stack until the system has six grays for the same shade and no one can throw any of them away.</p>
+
+        <blockquote class="pull">
+          A design system fails not when it has too few tokens, but when it loses the right to delete one.
+          <cite>— from “Hairlines &amp; the Politics of One Pixel.”</cite>
+        </blockquote>
+
+        <h2 id="layers">Enter Cascade Layers.</h2>
+
+        <p>Layers solve specificity drift the way <code>z-index</code> ought to have solved stacking — by making the order explicit and naming it. We put resets, primitives, components and overrides into named layers, and the browser resolves them in the order we declare. The implication for design systems is that <em>specificity becomes editorial</em>: you choose the layer the rule belongs to, not the selector that wins.</p>
+
+<pre data-lang="css"><code>@layer reset, tokens, primitives, components, overrides;
+
+@layer tokens {
+  :root {
+    --paper: oklch(0.985 0.005 80);
+    --ink:   oklch(0.22 0.018 60);
+  }
+}
+
+@layer components {
+  .post-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    line-height: 0.98;
+  }
+}</code></pre>
+
+        <p>This is the smallest interesting CSS you can write today. There is no preprocessor, no methodology, no scoped runtime — only the cascade, declared explicitly. The sample compiles unchanged in every browser shipped after late 2022.</p>
+
+        <h2 id="tokens">The 3-tier design token system.</h2>
+
+        <p>A token system fails when its tiers cannot defend their own boundary. We name three: <em>primitives</em> (the raw values, e.g. <code>oklch(0.985 0.005 80)</code>), <em>semantic</em> (the meaning, e.g. <code>--paper</code>), and <em>component</em> (the local override, e.g. <code>--card-bg</code>). The discipline is not that the tiers exist — it is that no rule may reach across them.</p>
+
+        <h3>A worked example.</h3>
+
+        <p>Consider a card that needs a background slightly darker than the page in light mode and slightly lighter than the page in dark mode. The naïve fix is a <em>component</em> token that flips with <code>data-theme</code>. The correct fix is a <em>semantic</em> token, <code>--surface-elevated</code>, defined once at the root and inherited everywhere a surface needs to lift.</p>
+
+<pre data-lang="css"><code>:root {
+  --surface-elevated: oklch(0.965 0.008 80);
+}
+[data-theme="dark"] {
+  --surface-elevated: oklch(0.21 0.024 270);
+}
+.card { background: var(--surface-elevated); }</code></pre>
+
+        <p>The card no longer knows what theme it is in. It only knows it is <em>elevated</em>. The system does the rest.</p>
+
+        <h2 id="closing">A closing observation.</h2>
+
+        <p>The temptation, when modern CSS arrives, is to keep the architecture and use the new primitives as faster pavers. The harder, more interesting move is to <em>remove</em> the architecture and let the language do its job. The cascade is editorial. Use it that way.</p>
+
+        <section class="footnotes" aria-label="Footnotes">
+          <ol>
+            <li id="fn1">Layers shipped to all major engines by Q3 2022; the holdouts were Safari iOS &lt; 15.4. — <a href="#fnref1" aria-label="Back to reference 1">↩</a></li>
+          </ol>
+        </section>
+
+      </article>
+
+      <aside class="post-aside" aria-label="On this page and series">
+        <section class="post-aside__section">
+          <div class="post-aside__h">On this page</div>
+          <ul class="post-aside__list">
+            <li><a href="#problem"><span class="num">§ 01</span>The problem with traditional CSS</a></li>
+            <li><a href="#layers"><span class="num">§ 02</span>Enter Cascade Layers</a></li>
+            <li><a href="#tokens"><span class="num">§ 03</span>The 3-tier design token system</a></li>
+            <li><a href="#closing"><span class="num">§ 04</span>A closing observation</a></li>
+          </ul>
+        </section>
+        <section class="post-aside__section">
+          <div class="post-aside__h">Previously, in this series</div>
+          <ul class="post-aside__list">
+            <li><a href="./post.html"><span class="num">02.09.25</span>Reading at 19 / 1.65: the case for serif body.</a></li>
+            <li><a href="./post.html"><span class="num">14.12.25</span>Hairlines &amp; the politics of one pixel.</a></li>
+          </ul>
+        </section>
+      </aside>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__row">
+      <span>© 2026 — Issue 04</span>
+      <span class="signet">Set in <em>Fraunces</em>, Manrope &amp; JetBrains Mono.</span>
+      <span>Vol. II / Spring</span>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>

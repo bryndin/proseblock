@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>404 — ProseBlock</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=JetBrains+Mono:ital,wght@0,400..700;1,400..600&family=Manrope:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/proseblock-v2.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="shell">
+  <header class="site-header">
+    <a class="logo" href="./home.html">Prose<em>Block</em></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="./home.html">Essays</a>
+      <a href="#">Archives</a>
+      <a href="./author.html">Authors</a>
+      <a href="#">About</a>
+    </nav>
+    <div class="header-utils">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Toggle theme" onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme==='dark'?'light':'dark'">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A8 8 0 0 1 12 2Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!--
+      404 — small, dry, quiet.
+      The biggest type on the site is reserved for content; failure is set at body scale.
+      (Critique §4.6)
+    -->
+    <section class="utility-page">
+      <div class="utility-page__num">Status · 404</div>
+      <h1>Page <em>not</em> found.</h1>
+      <p class="utility-page__lede">
+        The address you followed has no article behind it. It may have been moved,
+        retired, or — most often — never existed. We apologise for the small detour.
+      </p>
+
+      <ul class="utility-page__links">
+        <li>
+          <a href="./home.html">
+            <span>§ 01</span>
+            <strong>Return to the current issue.</strong>
+            <span>Spring 2026</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span>§ 02</span>
+            <strong>Browse the archives.</strong>
+            <span>121 essays since 2024</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span>§ 03</span>
+            <strong>Search the publication.</strong>
+            <span>By keyword or author</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__row">
+      <span>© 2026 — Issue 04</span>
+      <span class="signet">Set in <em>Fraunces</em>, Manrope &amp; JetBrains Mono.</span>
+      <span>Vol. II / Spring</span>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>

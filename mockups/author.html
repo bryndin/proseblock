@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>Jane Doe — ProseBlock</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=JetBrains+Mono:ital,wght@0,400..700;1,400..600&family=Manrope:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/proseblock-v2.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="shell">
+  <header class="site-header">
+    <a class="logo" href="./home.html">Prose<em>Block</em></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="./home.html">Essays</a>
+      <a href="#">Archives</a>
+      <a href="./author.html" class="is-current">Authors</a>
+      <a href="#">About</a>
+    </nav>
+    <div class="header-utils">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Toggle theme" onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme==='dark'?'light':'dark'">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A8 8 0 0 1 12 2Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- Compressed bio (no large hero panel; portrait demoted, name in display) -->
+    <header class="author-header">
+      <div>
+        <div class="author-header__kicker">§ Author · 01 of 04</div>
+        <h1 class="author-header__name">Jane Doe.</h1>
+      </div>
+      <p class="author-header__tagline">
+        Minimalist architect and digital theorist. Writes about <em>structural clarity</em>, the reduction of noise, and the small kinds of permanence one can still build into a website.
+      </p>
+    </header>
+
+    <!-- Stat strip (typographic, mono numerals) -->
+    <section class="author-stats" aria-label="Author by the numbers">
+      <div class="author-stats__item">
+        <div class="author-stats__num">12</div>
+        <div class="author-stats__label">Essays</div>
+      </div>
+      <div class="author-stats__item">
+        <div class="author-stats__num">2024–26</div>
+        <div class="author-stats__label">Active</div>
+      </div>
+      <div class="author-stats__item">
+        <div class="author-stats__num">07</div>
+        <div class="author-stats__label">Avg. minutes</div>
+      </div>
+      <div class="author-stats__item">
+        <div class="author-stats__num">02</div>
+        <div class="author-stats__label">Series</div>
+      </div>
+    </section>
+
+    <!-- Pull quote from her work -->
+    <blockquote class="author-pull">
+      “We do not need more design. We need permission to keep what already works.”
+      <cite>— from “In defense of the slow homepage.”</cite>
+    </blockquote>
+
+    <!-- Contents page (typographic table of work) -->
+    <section class="index-table" aria-label="Selected work">
+      <header class="index-table__head">
+        <span>Date</span>
+        <span>Title</span>
+        <span>Section</span>
+        <span style="text-align:right">Read</span>
+      </header>
+
+      <a class="index-table__row" href="./post.html">
+        <span class="index-table__date">15.03.26</span>
+        <span class="index-table__title">Building <em>resilient</em> web applications with modern CSS.</span>
+        <span class="index-table__cat">Architecture</span>
+        <span class="index-table__time">07 min</span>
+      </a>
+      <a class="index-table__row" href="./post.html">
+        <span class="index-table__date">14.12.25</span>
+        <span class="index-table__title">Hairlines, &amp; the politics of one pixel.</span>
+        <span class="index-table__cat">Design Systems</span>
+        <span class="index-table__time">04 min</span>
+      </a>
+      <a class="index-table__row" href="./post.html">
+        <span class="index-table__date">21.10.25</span>
+        <span class="index-table__title">In defense of the slow homepage.</span>
+        <span class="index-table__cat">Editorial</span>
+        <span class="index-table__time">12 min</span>
+      </a>
+      <a class="index-table__row" href="./post.html">
+        <span class="index-table__date">02.09.25</span>
+        <span class="index-table__title">Reading at 19 / 1.65: the case for serif body.</span>
+        <span class="index-table__cat">Typography</span>
+        <span class="index-table__time">08 min</span>
+      </a>
+      <a class="index-table__row" href="./post.html">
+        <span class="index-table__date">17.07.25</span>
+        <span class="index-table__title">A theme that does not know it is a theme.</span>
+        <span class="index-table__cat">Manifesto</span>
+        <span class="index-table__time">06 min</span>
+      </a>
+      <a class="index-table__row" href="./post.html">
+        <span class="index-table__date">11.06.25</span>
+        <span class="index-table__title">Code fences as editorial typography.</span>
+        <span class="index-table__cat">Code</span>
+        <span class="index-table__time">04 min</span>
+      </a>
+      <a class="index-table__row" href="./post.html">
+        <span class="index-table__date">22.04.25</span>
+        <span class="index-table__title">A small grammar for tables.</span>
+        <span class="index-table__cat">Markdown</span>
+        <span class="index-table__time">05 min</span>
+      </a>
+      <a class="index-table__row" href="./post.html">
+        <span class="index-table__date">01.01.25</span>
+        <span class="index-table__title">A field guide to <em>quiet</em> interfaces.</span>
+        <span class="index-table__cat">Design Systems</span>
+        <span class="index-table__time">09 min</span>
+      </a>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__row">
+      <span>© 2026 — Issue 04</span>
+      <span class="signet">Set in <em>Fraunces</em>, Manrope &amp; JetBrains Mono.</span>
+      <span>Vol. II / Spring</span>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
