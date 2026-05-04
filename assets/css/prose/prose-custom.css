@@ -1,3 +1,14 @@
+.c-prose {
+  /* @api */
+  --_code-bg: var(--prose-code-bg);
+
+  /* @internal */
+  --_code-padding: var(--space-4);
+
+  /* nesting converges to this color */
+  --_bg-deepest-nested: var(--bg-inverse);
+  --_bgmix-8: color-mix(in oklch, transparent 92%, oklch(from var(--_bg-deepest-nested) l calc(c * 0.9) h));
+}
 /* --- Drop cap on first paragraph --- */
 
 :where(.c-prose)>p:first-child::first-letter {
@@ -19,7 +30,7 @@
   border: none;
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
-  background-color: var(--_blockquote-bg);
+  background-color: var(--_code-bg);
 }
 
 @media (width >=768px) {
