@@ -315,7 +315,7 @@
   --prose-code-bg: var(--bg-secondary);
 
   /* Table of Contents */
-  --toc: var(--text-secondary);
+  --toc: var(--text-tertiary);
   --toc-hover: var(--interactive-hover);
   --toc-rail-empty: oklch(from var(--border-muted) l c h / var(--opacity-medium));
   --toc-rail-fill: var(--accent);
