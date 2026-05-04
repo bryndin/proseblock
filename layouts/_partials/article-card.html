@@ -22,7 +22,7 @@
       {{- end }}
 
       {{- /* Metadata row */ -}}
-      {{ partial "metadata.html" (dict "article" $article) }}
+      {{ partial "metadata.html" (dict "article" $article "disableLinks" true) }}
       </div>
   </a>
 </article>

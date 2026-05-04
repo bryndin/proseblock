@@ -2,6 +2,7 @@
 {{- $kwargs := . | default dict }}
 {{- $article := $kwargs.article }}
 {{- $modifier := $kwargs.modifier | default "" }} {{/* e.g., "c-metadata--hero" */}}
+{{- $disableLinks := $kwargs.disableLinks | default false }}
 
 {{- /* === API Contract: External Dependencies ================================= */ -}}
 {{- $dateFormat := site.Params.dateFormat -}}
@@ -20,7 +21,7 @@
     {{- $authorTerm := site.GetPage (printf "/authors/%s" ($authorName | urlize)) }}
     <div class="c-metadata__item">
       <span class="c-metadata__icon">{{ partial "svg/person.html" }}</span>
-      {{- if $authorTerm }}
+      {{- if and $authorTerm (not $disableLinks) }}
         <a href="{{ $authorTerm.RelPermalink }}" class="c-metadata__link">{{ $authorName }}</a>
       {{- else }}
         <span>{{ $authorName }}</span>
