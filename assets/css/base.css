@@ -61,13 +61,13 @@ h6 {
 
 h1 {
   font-size: var(--text-4xl);
-  font-weight: var(--weight-normal);
+  font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-tight);
 }
 
 h2 {
   font-size: var(--text-3xl);
-  font-weight: var(--weight-normal);
+  font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-tight);
 }
 
