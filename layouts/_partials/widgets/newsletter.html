@@ -16,7 +16,7 @@
     {{- end }}
 
     <form class="c-sidebar__form js-newsletter-form" id="newsletter-form" action="{{ $action }}" method="POST">
-      <input class="c-sidebar__input" type="email" name="email" placeholder="EMAIL ADDRESS" required>
+      <input class="c-sidebar__input" type="email" name="email" placeholder="EMAIL ADDRESS" aria-label="Email address for newsletter subscription" required>
       <button class="c-sidebar__submit" type="submit">
         <span class="c-sidebar__submit-text">Subscribe</span>
         <span class="c-sidebar__submit-icon">{{ partial "svg/arrow-forward.html" }}</span>
