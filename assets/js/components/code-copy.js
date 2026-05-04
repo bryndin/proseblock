@@ -44,6 +44,9 @@ export function initCodeCopy() {
     button.innerHTML = iconCopy;
 
     container.classList.add("c-code-copy");
+    // Remove tabindex from pre to prevent it from being a keyboard tab stop
+    // (Hugo/Chroma adds this by default, but it's not needed with the copy button)
+    pre.removeAttribute("tabindex");
     container.insertBefore(button, container.firstChild);
   });
 
