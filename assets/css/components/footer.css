@@ -11,7 +11,7 @@
 
   /* @internal */
   --_padding-x: var(--space-12);
-  --_padding-y: var(--space-20);
+  --_padding-y: var(--space-6);
   --_gap: var(--space-8);
   --_label-size: var(--text-xs);
   --_copyright: oklch(from var(--_text) l c h / var(--opacity-subtle));
