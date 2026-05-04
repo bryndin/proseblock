@@ -24,7 +24,7 @@
   <div class="l-site__columns l-site__columns--sidebar-right">
     <div class="l-site__main u-main">
       {{- /* Search Results Container */ -}}
-      <section id="search-results-container" class="c-article-list" data-max-results="{{ $maxResults }}" data-search-url="{{ $searchUrl }}" aria-live="polite"></section>
+      <section id="search-results-container" class="c-article-list" data-max-results="{{ $maxResults }}" data-search-url="{{ $searchUrl }}" role="region" aria-label="Search results" aria-live="polite"></section>
       {{ partial "paginator-dynamic.html" }}
     </div>
 
@@ -38,7 +38,7 @@
           <div class="c-search-filter">
             <label class="c-search-filter__label">Category</label>
             <div class="c-dropdown" id="dropdown-category">
-              <button class="c-dropdown__toggle" aria-haspopup="listbox" aria-expanded="false" type="button">
+              <button class="c-dropdown__toggle" aria-haspopup="listbox" aria-expanded="false" aria-controls="search-results-container" type="button">
                 <span class="c-dropdown__value">All Categories</span>
                 {{ partial "svg/chevron-down.html" }}
               </button>
@@ -56,7 +56,7 @@
           <div class="c-search-filter">
             <label class="c-search-filter__label">Timeline</label>
             <div class="c-dropdown" id="dropdown-timeline">
-              <button class="c-dropdown__toggle" aria-haspopup="listbox" aria-expanded="false" type="button">
+              <button class="c-dropdown__toggle" aria-haspopup="listbox" aria-expanded="false" aria-controls="search-results-container" type="button">
                 <span class="c-dropdown__value">Any time</span>
                 {{ partial "svg/chevron-down.html" }}
               </button>
