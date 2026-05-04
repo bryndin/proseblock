@@ -18,7 +18,6 @@
   {{- with $authors }}
     {{- $authorName := index $authors 0 }}
     {{- $authorTerm := site.GetPage (printf "/authors/%s" ($authorName | urlize)) }}
-    <span class="c-metadata__dot"></span>
     <div class="c-metadata__item">
       <span class="c-metadata__icon">{{ partial "svg/person.html" }}</span>
       {{- if $authorTerm }}
@@ -30,7 +29,6 @@
   {{- end }}
   
   {{- with $enableReadingTime }}
-    <span class="c-metadata__dot"></span>
     <div class="c-metadata__item">
       <span class="c-metadata__icon">{{ partial "svg/schedule.html" }}</span>
       <span>{{ $article.ReadingTime }} min</span>

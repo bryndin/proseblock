@@ -11,12 +11,10 @@
   /* @internal: font-size, icon-size, gap-x, gap-y */
   --_font-size: var(--text-xs);
   --_icon-size: var(--text-lg);
-  --_dot-size: var(--text-min);
   --_gap-x: var(--space-8);
   --_gap-y: var(--space-4);
   /* Make icons and dots less prominent */
   --_icon-color: oklch(from var(--_color) l c h / var(--metadata-icon-opacity));
-  --_dot-color: oklch(from var(--_color) l c h / var(--metadata-icon-opacity));
 
   display: flex;
   flex-wrap: wrap;
@@ -50,13 +48,6 @@
 .c-metadata__icon svg {
   width: 100%;
   height: 100%;
-}
-
-.c-metadata__dot {
-  width: var(--_dot-size);
-  height: var(--_dot-size);
-  border-radius: var(--radius-full);
-  background-color: var(--_dot-color);
 }
 
 .c-metadata__share {
