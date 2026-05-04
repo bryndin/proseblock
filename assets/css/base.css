@@ -81,10 +81,16 @@ h4 {
   font-weight: var(--weight-semibold);
 }
 
-h5,
-h6 {
+h5 {
   font-size: var(--text-lg);
   font-weight: var(--weight-semibold);
+}
+
+h6 {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
 }
 
 /* --- Body text (Global) --- */
