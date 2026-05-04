@@ -125,3 +125,23 @@
   height: var(--_spinner-size);
   color: currentcolor;
 }
+
+/* Feedback Messages */
+.c-newsletter__feedback-message {
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.c-newsletter__feedback-message--success {
+  color: var(--_accent);
+}
+
+.c-newsletter__feedback-message--error {
+  color: var(--text-error);
+}
+
+/* State: Hidden (initially hidden, shown via JS) */
+.c-newsletter__submit-spinner,
+.c-newsletter__feedback-message {
+  display: none;
+}

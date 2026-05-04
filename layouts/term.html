@@ -13,13 +13,13 @@
 
   {{- /* 1. Determine Title Prefix Logic */ -}}
   {{- $title := $page.Title -}}
-  {{- $heroParams := dict "modifier" "taxonomy" "subtitle" $page.Content -}}
+  {{- $heroParams := dict "modifier" "c-hero--taxonomy-term" "subtitle" $page.Content -}}
 
   {{- if eq $page.Type "tags" -}}
-    {{- $titleHtml := printf "<span style=\"opacity: 0.6; font-weight: 300;\">Tag:</span>#%s" $page.Title -}}
+    {{- $titleHtml := printf "<span class=\"c-hero__title-prefix\">Tag:</span>#%s" $page.Title -}}
     {{- $heroParams = $heroParams | merge (dict "title_html" $titleHtml) -}}
   {{- else if eq $page.Type "categories" -}}
-    {{- $titleHtml := printf "<span style=\"opacity: 0.6; font-weight: 300;\">Category:</span>%s" $page.Title -}}
+    {{- $titleHtml := printf "<span class=\"c-hero__title-prefix\">Category:</span>%s" $page.Title -}}
     {{- $heroParams = $heroParams | merge (dict "title_html" $titleHtml) -}}
   {{- else -}}
     {{- $heroParams = $heroParams | merge (dict "title" $title) -}}

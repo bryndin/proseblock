@@ -93,3 +93,9 @@
 .c-sidebar__feedback-message--error {
   color: var(--text-error);
 }
+
+/* State: Hidden (initially hidden, shown via JS) */
+.c-sidebar__submit-spinner,
+.c-sidebar__feedback-message {
+  display: none;
+}
