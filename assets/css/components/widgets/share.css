@@ -18,7 +18,7 @@
   --_menu-radius: var(--radius-md);
   --_menu-shadow: var(--shadow-tonal);
   --_item-padding: var(--space-3) var(--space-4);
-  --_item-radius: var(--radius-sm);
+  --_item-radius: var(--radius-xs);
   --_item-gap: var(--space-3);
   --_icon-size: var(--text-lg);
   --_label-size: var(--text-sm);

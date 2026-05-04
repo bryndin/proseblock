@@ -125,7 +125,7 @@
 :where(.c-prose) li code {
   background-color: var(--_code-bg);
   padding: 0.2em 0.4em;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 /* Pre-formatted code blocks */

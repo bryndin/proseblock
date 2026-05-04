@@ -44,7 +44,7 @@ button {
 button:focus-visible {
   outline: var(--border-width-thin) solid var(--accent);
   outline-offset: var(--border-width-thin);
-  /* border-radius: var(--radius-sm); */
+  /* border-radius: var(--radius-xs); */
 }
 
 /* --- Headings (Global) --- */
