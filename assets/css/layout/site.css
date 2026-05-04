@@ -41,6 +41,22 @@
 }
 
 /* -----------------------------------------------------------------------
+   Sidebar positioning modifiers (Mobile)
+   ----------------------------------------------------------------------- */
+
+@media (width < 768px) {
+  /* Right Sidebar: hide entirely on mobile */
+  .l-site__columns--sidebar-right .l-site__sidebar {
+    display: none;
+  }
+
+  /* Left Sidebar: hide everything except ToC and Tags on mobile */
+  .l-site__columns--sidebar-left .c-sidebar > :not(.c-toc):not(.c-widget-tags) {
+    display: none;
+  }
+}
+
+/* -----------------------------------------------------------------------
    Sidebar positioning modifiers (Desktop)
    ----------------------------------------------------------------------- */
 
